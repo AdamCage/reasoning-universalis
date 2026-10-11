@@ -1,0 +1,27 @@
+name: kernel checks
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install .
+      - run: python -m pip install uv==0.11.28
+      - run: python -m unittest discover -s tests -v
+      - name: container role profile
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.11'
+        env:
+          EPISTEME_CONTAINER_TEST: "1"
+        run: |
+          docker pull busybox:1.36.1
+          # discover puts tests/ on sys.path. tests.test_role_profile does not, so sibling imports fail.
+          python -m unittest discover -s tests -p test_role_profile.py -k ContainerRoleProfileTests -v

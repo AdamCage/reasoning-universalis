@@ -1,0 +1,986 @@
+"""Validated research commands; agents propose, this kernel admits transitions.
+
+Actor identities are supplied by a trusted caller in this prototype. They are
+separation-of-duty checks, not authentication or proof of independent reasoning.
+"""
+
+from __future__ import annotations
+
+import json
+import math
+import re
+import unicodedata
+from dataclasses import dataclass
+from typing import Any
+from uuid import uuid4
+
+from .claim_context import resolve_context, validate_link
+from .claims import ClaimLink
+from .protocols import DesignError, StatisticalDesign
+from .planning import binding_for, planning_context
+from .store import IntegrityError, Store, canonical, digest
+
+
+class GateError(ValueError):
+    """The requested transition lacks its required evidence."""
+
+
+@dataclass(frozen=True)
+class Actor:
+    id: str
+    role: str
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise GateError(message)
+
+
+# ADR 0018 §3.2: an approval counts only through its assigned delivery.
+APPROVAL_PATH = ("approval requires review.assign, delivery and review.submit; "
+                 "legacy review paths record only negative opinions")
+
+
+# ADR 0018: new records use one ASCII form, and independence compares a
+# normalized key, so case, width or space variants cannot pass as another actor.
+# Historical records keep their exact IDs; replay compares them as admitted.
+_ACTOR_ID = re.compile(r"[a-z0-9](?:[a-z0-9._@:-]{0,126}[a-z0-9])?")
+
+
+def canonical_actor(value: Any) -> bool:
+    return type(value) is str and _ACTOR_ID.fullmatch(value) is not None
+
+
+def require_canonical_actor(value: Any, label: str = "actor id") -> None:
+    require(canonical_actor(value),
+            f"{label} must be canonical: 1-128 lowercase ASCII letters, digits or ._@:- "
+            "that start and end with a letter or digit")
+
+
+def actor_key(value: str) -> str:
+    return unicodedata.normalize("NFKC", value).casefold().strip()
+
+
+def independent_of(actor: str, contributors: set[str]) -> bool:
+    """No contributor shares the actor's normalized key."""
+    key = actor_key(actor)
+    return all(actor_key(other) != key for other in contributors)
+
+
+def lenient_digest(data: bytes) -> str:
+    """ADR 0018 §6: digest ignoring a UTF-8 BOM, CRLF and trailing whitespace.
+
+    A tripwire for trivially re-encoded copies only; reordered rows, other
+    serializations, compression or unit changes keep a different digest.
+    Bytes that are not UTF-8 keep their exact digest.
+    """
+    try:
+        text = data.decode("utf-8")
+    except UnicodeDecodeError:
+        return digest(data)
+    text = text.removeprefix("\ufeff").replace("\r\n", "\n")
+    return digest("\n".join(line.rstrip() for line in text.split("\n")).rstrip().encode("utf-8"))
+
+
+def finite(value: Any) -> bool:
+    try:
+        return type(value) in (int, float) and math.isfinite(value)
+    except OverflowError:
+        return False
+
+
+def protocol_exposures(history: list[dict[str, Any]], plan: dict[str, Any]) -> list[dict[str, Any]]:
+    """Declared and conservatively inferred exposures for a typed review basis.
+
+    Kept shared with the read-only graph so historical review hashes use exactly
+    the same subset and ordering. Foreign attempts on the same bytes and newly
+    declared seen_data matter; an unrelated plan merely inheriting the global
+    seen_data snapshot does not. None of these records attests actual access.
+    """
+    p = plan["payload"]
+    if "statistical_design" not in p:
+        return []
+    data = {p["data"], *p["seen_data"], *(split["digest"] for split in p["statistical_design"]["data_splits"])}
+    run_ids = {event["id"] for event in history if event["kind"] == "run"
+               and event["payload"]["protocol"] == plan["id"]}
+    for event in history:
+        if event["kind"] == "result" and event["payload"]["run"] in run_ids:
+            raw = event["payload"]["outputs"].get("raw_data")
+            if raw is not None:
+                data.add(raw)
+    plans = {event["id"]: event for event in history if event["kind"] == "protocol"}
+    runs = {event["id"]: event for event in history if event["kind"] == "run"}
+    selected: set[str] = set()
+    known: set[str] = set()
+    for event in history:
+        e = event["payload"]
+        if event["kind"] == "data_exposure":
+            if e["data"] in data or e["protocol"] == plan["id"]:
+                selected.add(event["id"])
+            known.add(e["data"])
+        elif event["kind"] == "protocol":
+            declared = set(e.get("seen_data", []))
+            if event["id"] != plan["id"] and (declared - known) & data:
+                selected.add(event["id"])
+            known.update(declared)
+        elif event["kind"] == "run":
+            source = plans[e["protocol"]]
+            inputs = protocol_data(source["payload"])
+            if source["id"] != plan["id"] and inputs & data:
+                selected.update((source["id"], event["id"]))
+            known.update(inputs)
+        elif event["kind"] == "result":
+            raw = e["outputs"].get("raw_data")
+            source_run = runs[e["run"]]
+            if source_run["payload"]["protocol"] != plan["id"] and (
+                    raw in data or source_run["id"] in selected):
+                selected.update((source_run["payload"]["protocol"], source_run["id"], event["id"]))
+            if raw is not None:
+                known.add(raw)
+    return [event for event in history if event["id"] in selected]
+
+
+def protocol_data(payload: dict[str, Any]) -> set[str]:
+    return {payload["data"], *(split["digest"] for split in
+                              payload.get("statistical_design", {}).get("data_splits", []))}
+
+
+def exposure_artifacts(event: dict[str, Any], store: Store | None = None) -> set[str]:
+    """Artifact closure of the extra events used to evaluate exposure context."""
+    if event["kind"].startswith("agent_"):
+        from .agents import agent_artifacts
+        require(store is not None, "agent provenance requires its artifact store")
+        return agent_artifacts(store, event)
+    if event["kind"] == "domain_binding":
+        from .domain_binding import binding_artifacts
+        return binding_artifacts(event)
+    if event["kind"] in {"pack_binding", "pack_analysis"}:
+        from .domain_packs import pack_artifacts
+        require(store is not None, "pack provenance requires its artifact store")
+        return pack_artifacts(store, event)
+    if event["kind"] in {"batch_plan", "batch_slot", "batch_settlement", "batch_analysis"}:
+        from .batch import batch_artifacts
+        require(store is not None, "batch artifact context requires a store")
+        return batch_artifacts(store, event)
+    p = event["payload"]
+    if event["kind"].startswith("execution_"):
+        from .execution import execution_artifacts
+        require(store is not None, "execution provenance requires its artifact store")
+        return execution_artifacts(store, event)
+    if event["kind"] == "data_exposure":
+        return {p["data"]}
+    if event["kind"] == "protocol":
+        return protocol_data(p) | set(p.get("seen_data", [])) | {p["implementation"], p["environment"]}
+    if event["kind"] == "run":
+        return {p["implementation"], p["environment"]}
+    if event["kind"] == "result":
+        return set(p["outputs"].values())
+    if event["kind"] in {"research_question", "explanation_set", "hypothesis",
+                         "search_tree", "experiment_node", "search_selection"}:
+        return set()  # Frozen planning declarations contain event refs, not blob refs.
+    raise GateError("unsupported exposure evidence kind")
+
+
+class Kernel:
+    def __init__(self, store: Store, actor: Actor):
+        require(isinstance(actor.id, str) and bool(actor.id.strip()), "actor id is required")
+        require(isinstance(actor.role, str) and bool(actor.role.strip()), "actor role is required")
+        self.store = store
+        self.actor = actor
+
+    def _history(self) -> list[dict[str, Any]]:
+        return self.store.events()
+
+    @staticmethod
+    def _get(history: list[dict[str, Any]], id: str, kind: str) -> dict[str, Any]:
+        matches = [e for e in history if e["id"] == id and e["kind"] == kind]
+        require(len(matches) == 1, f"unknown {kind}: {id}")
+        return matches[0]
+
+    def _write(self, history: list[dict[str, Any]], kind: str, payload: dict[str, Any],
+               roles: set[str]) -> str:
+        require(self.actor.role in roles, f"{self.actor.role} cannot create {kind}")
+        require_canonical_actor(self.actor.id)
+        id = f"{kind}-{uuid4().hex[:16]}"
+        self.store.append(id=id, kind=kind, actor=self.actor.id, role=self.actor.role,
+                          payload=payload, expected_revision=len(history))
+        return id
+
+    def hypothesis(self, statement: str, prediction: str, falsifier: str,
+                   scope: dict[str, str]) -> str:
+        require(all(isinstance(s, str) and s.strip() for s in
+                    (statement, prediction, falsifier)), "hypothesis needs prediction and falsifier")
+        self._scope(scope)
+        return self._write(self._history(), "hypothesis", dict(statement=statement,
+                           prediction=prediction, falsifier=falsifier, scope=scope), {"planner"})
+
+    @staticmethod
+    def _scope(scope: dict[str, str]) -> None:
+        require(isinstance(scope, dict) and bool(scope) and all(
+            isinstance(k, str) and bool(k.strip()) and isinstance(v, str) and bool(v.strip())
+            for k, v in scope.items()), "scope must be a nonempty string mapping")
+
+    def preregister(self, *, hypotheses: list[str], scope: dict[str, str], design: str,
+                    metric: str, analysis_plan: str, stopping_rule: str, seeds: list[int],
+                    run_limit: int, implementation: str, environment: str, data: str,
+                    replication_tolerance: float, parent: str | None = None,
+                    statistical_design: dict[str, Any] | None = None,
+                    amendment_reason: str | None = None, seen_data: list[str] | None = None) -> str:
+        return self._preregister(history=self._history(), planning=None, hypotheses=hypotheses,
+            scope=scope, design=design, metric=metric, analysis_plan=analysis_plan,
+            stopping_rule=stopping_rule, seeds=seeds, run_limit=run_limit,
+            implementation=implementation, environment=environment, data=data,
+            replication_tolerance=replication_tolerance, parent=parent,
+            statistical_design=statistical_design, amendment_reason=amendment_reason, seen_data=seen_data)
+
+    def preregister_for_set(self, *, explanation_set: str, design: str, metric: str,
+                            analysis_plan: str, stopping_rule: str, seeds: list[int],
+                            run_limit: int, implementation: str, environment: str, data: str,
+                            replication_tolerance: float, parent: str | None = None,
+                            statistical_design: dict[str, Any] | None = None,
+                            amendment_reason: str | None = None, seen_data: list[str] | None = None) -> str:
+        return self._preregister_for_set(
+            pack_path=False, explanation_set=explanation_set, design=design, metric=metric,
+            analysis_plan=analysis_plan, stopping_rule=stopping_rule, seeds=seeds,
+            run_limit=run_limit, implementation=implementation, environment=environment, data=data,
+            replication_tolerance=replication_tolerance, parent=parent,
+            statistical_design=statistical_design, amendment_reason=amendment_reason, seen_data=seen_data)
+
+    def _preregister_for_set(self, *, pack_path: bool, explanation_set: str, design: str,
+                             metric: str, analysis_plan: str, stopping_rule: str, seeds: list[int],
+                             run_limit: int, implementation: str, environment: str, data: str,
+                             replication_tolerance: float, parent: str | None = None,
+                             statistical_design: dict[str, Any] | None = None,
+                             amendment_reason: str | None = None,
+                             seen_data: list[str] | None = None) -> str:
+        history = self._history()
+        binding = binding_for(history, explanation_set, current=True)
+        question = self._get(history, binding["question"], "research_question")["payload"]
+        explanations = self._get(history, explanation_set, "explanation_set")["payload"]
+        return self._preregister(history=history, planning=binding,
+            hypotheses=list(explanations["hypotheses"]), scope=dict(question["scope"]),
+            design=design, metric=metric, analysis_plan=analysis_plan,
+            stopping_rule=stopping_rule, seeds=seeds, run_limit=run_limit,
+            implementation=implementation, environment=environment, data=data,
+            replication_tolerance=replication_tolerance, parent=parent,
+            statistical_design=statistical_design, amendment_reason=amendment_reason, seen_data=seen_data,
+            pack_path=pack_path)
+
+    def _preregister(self, *, history: list[dict[str, Any]], planning: dict[str, Any] | None,
+                     hypotheses: list[str], scope: dict[str, str], design: str,
+                     metric: str, analysis_plan: str, stopping_rule: str, seeds: list[int],
+                     run_limit: int, implementation: str, environment: str, data: str,
+                     replication_tolerance: float, parent: str | None,
+                     statistical_design: dict[str, Any] | None,
+                     amendment_reason: str | None, seen_data: list[str] | None,
+                     pack_path: bool = False) -> str:
+        self._scope(scope)
+        require(len(set(hypotheses)) >= 2 and len(set(hypotheses)) == len(hypotheses),
+                "at least two distinct competing hypotheses required")
+        for id in hypotheses:
+            hypothesis = self._get(history, id, "hypothesis")
+            require(hypothesis["payload"]["scope"] == scope, "hypothesis scope mismatch")
+        require(all(isinstance(s, str) and s.strip() for s in
+                    (design, metric, analysis_plan, stopping_rule)), "incomplete protocol")
+        require(bool(seeds) and all(type(s) is int for s in seeds)
+                and len(set(seeds)) == len(seeds), "seeds must be unique integers")
+        require(type(run_limit) is int and run_limit >= 2 * len(seeds),
+                "run limit must cover primary runs and reanalyses")
+        require(finite(replication_tolerance) and replication_tolerance >= 0,
+                "replication tolerance must be finite and nonnegative")
+        for key in (implementation, environment, data):
+            self.store.read(key)
+        if parent:
+            previous = self._get(history, parent, "protocol")["payload"]
+            require("statistical_design" not in previous or statistical_design is not None,
+                    "typed protocol amendment requires a statistical design")
+            from .domain_packs import pack_lineage
+            # ADR 0018: an unbound amendment or follow-up would escape the pack's claim ceiling.
+            require(pack_lineage(history, parent) is None,
+                    "a pack-bound protocol lineage cannot be amended outside its pack")
+        # Each amendment is a NEW protocol ID. The parent remains immutable.
+        payload = dict(hypotheses=hypotheses, scope=scope, design=design, metric=metric,
+                       analysis_plan=analysis_plan, stopping_rule=stopping_rule,
+                       seeds=seeds, run_limit=run_limit, implementation=implementation,
+                       environment=environment, data=data,
+                       replication_tolerance=replication_tolerance, parent=parent)
+        if planning is not None:
+            payload["planning"] = planning
+        self._validate_planning_protocol(history, payload)
+        if statistical_design is not None:
+            try:
+                typed = StatisticalDesign.from_dict(statistical_design)
+            except DesignError as exc:
+                raise GateError(str(exc)) from exc
+            supplied = [] if seen_data is None else seen_data
+            require(isinstance(supplied, list) and all(isinstance(key, str) for key in supplied)
+                    and len(set(supplied)) == len(supplied), "seen_data must be unique artifact digests")
+            payload.update(statistical_design=typed.to_dict(), protocol_mode=typed.mode,
+                           amendment_reason=amendment_reason,
+                           seen_data=sorted(set(supplied) | self._known_seen_data(history, parent)))
+            self._validate_typed_protocol(history, payload)
+        else:
+            require(amendment_reason is None and seen_data is None,
+                    "amendment/exposure declarations require a statistical design")
+        if not pack_path and any(event["kind"] == "pack_binding" for event in history):
+            from .domain_packs import pinned_bytes
+            require(not ({implementation} | protocol_data(payload)) & pinned_bytes(self.store, history),
+                    "a protocol outside its pack cannot reuse programs, input or captured bytes pinned by a pack binding")
+        return self._write(history, "protocol", payload, {"planner"})
+
+    def _validate_planning_protocol(self, preceding: list[dict[str, Any]], p: dict[str, Any]) -> None:
+        previous = self._get(preceding, p["parent"], "protocol")["payload"] if p["parent"] is not None else {}
+        require("planning" not in previous or "planning" in p,
+                "planning-bound protocol amendment cannot drop its planning binding")
+        if "planning" not in p:
+            return
+        binding = p["planning"]
+        try:
+            context = planning_context(preceding, binding)
+            require(binding_for(preceding, binding["explanation_set"], current=True) == binding,
+                    "protocol planning binding is not current at preregistration")
+            question = self._get(preceding, binding["question"], "research_question")["payload"]
+            explanations = self._get(preceding, binding["explanation_set"], "explanation_set")["payload"]
+            require(p["scope"] == question["scope"] and p["hypotheses"] == explanations["hypotheses"],
+                    "protocol scope or hypotheses differ from its frozen explanation set")
+            if "planning" in previous:
+                prior = planning_context(preceding, previous["planning"])
+                roots = lambda events: {event["id"] for event in events
+                    if event["kind"] == "research_question" and event["payload"]["parent"] is None}
+                require(previous["planning"]["study_id"] == binding["study_id"] and roots(prior) == roots(context),
+                        "protocol amendment must retain its study and question lineage")
+        except (ValueError, KeyError, TypeError) as exc:
+            raise GateError(f"invalid protocol planning binding: {exc}") from exc
+
+    def _planning_evidence(self, history: list[dict[str, Any]], plan: dict[str, Any]) -> list[dict[str, Any]]:
+        preceding = [event for event in history if event["seq"] < plan["seq"]]
+        self._validate_planning_protocol(preceding, plan["payload"])
+        return planning_context(preceding, plan["payload"]["planning"]) if "planning" in plan["payload"] else []
+
+    @staticmethod
+    def _known_seen_data(history: list[dict[str, Any]], parent: str | None = None) -> set[str]:
+        """Conservative local-store policy: declared reads and attempted inputs.
+
+        An amendment treats all parent inputs/splits as exposed, even without a
+        declared read. There is no authenticated access service to prove that an
+        old parent holdout remained concealed. This deliberately requires new
+        confirmatory bytes and applies to sequential designs as well.
+        """
+        seen = {event["payload"]["data"] for event in history if event["kind"] == "data_exposure"}
+        # A failed attempt can also expose observations that inform a new plan.
+        seen.update(event["payload"]["outputs"]["raw_data"] for event in history
+                    if event["kind"] == "result" and "raw_data" in event["payload"]["outputs"])
+        attempted = {event["payload"]["protocol"] for event in history if event["kind"] == "run"}
+        for event in history:
+            if event["kind"] != "protocol":
+                continue
+            previous = event["payload"]
+            seen.update(previous.get("seen_data", []))
+            if event["id"] in attempted:
+                # Omitting a parent link must not relabel an attempted discovery
+                # input as a fresh confirmatory holdout in a new root protocol.
+                seen.add(previous["data"])
+                seen.update(split["digest"] for split in previous.get("statistical_design", {}).get("data_splits", []))
+        if parent is not None:
+            previous = Kernel._get(history, parent, "protocol")["payload"]
+            seen.add(previous["data"])
+            seen.update(previous.get("seen_data", []))
+            seen.update(split["digest"] for split in previous.get("statistical_design", {}).get("data_splits", []))
+        return seen
+
+    def _validate_typed_protocol(self, preceding_history: list[dict[str, Any]], p: dict[str, Any]) -> None:
+        if "statistical_design" not in p:
+            return
+        try:
+            typed = StatisticalDesign.from_dict(p["statistical_design"])
+            typed.validate_metric(p["metric"])
+        except DesignError as exc:
+            raise GateError(str(exc)) from exc
+        require(p["statistical_design"] == typed.to_dict(), "statistical design is not normalized")
+        require(p["protocol_mode"] == typed.mode, "protocol mode differs from statistical design")
+        require(p["stopping_rule"] == typed.stopping_rule.rule, "stopping rule differs from statistical design")
+        seen = p["seen_data"]
+        require(isinstance(seen, list) and all(isinstance(key, str) for key in seen)
+                and len(set(seen)) == len(seen), "seen_data must be unique artifact digests")
+        required = self._known_seen_data(preceding_history, p["parent"])
+        require(required <= set(seen), "seen_data omits known exposure or parent inputs")
+        if p["parent"] is not None:
+            require(isinstance(p["amendment_reason"], str) and bool(p["amendment_reason"].strip()),
+                    "typed protocol amendment requires a reason")
+        else:
+            require(p["amendment_reason"] is None, "amendment reason requires a parent protocol")
+        for key in {*seen, *(split.digest for split in typed.data_splits)}:
+            self.store.read(key)
+        if typed.mode == "confirmatory":
+            lenient_seen = {lenient_digest(self.store.read(key)) for key in seen}
+            for split in typed.data_splits:
+                if split.role == "confirmatory":
+                    require(split.digest not in seen,
+                            f"confirmatory split was already exposed: {split.id}")
+                    require(lenient_digest(self.store.read(split.digest)) not in lenient_seen,
+                            f"confirmatory split was already exposed up to whitespace and line endings: {split.id}")
+
+    def expose_data(self, *, data: str, purpose: str, protocol: str | None = None) -> str:
+        """Record a caller-declared exposure, not an authenticated access log."""
+        history = self._history()
+        self.store.read(data)
+        require(isinstance(purpose, str) and bool(purpose.strip()), "data exposure needs a purpose")
+        if protocol is not None:
+            self._get(history, protocol, "protocol")
+        return self._write(history, "data_exposure", dict(data=data, purpose=purpose, protocol=protocol),
+                           {"planner", "executor", "replicator", "analyst", "reviewer"})
+
+    def start_run(self, protocol: str, *, seed: int, implementation: str,
+                  environment: str, command: list[str], replicate_of: str | None = None) -> str:
+        return self._start_run(protocol, seed=seed, implementation=implementation,
+                               environment=environment, command=command, replicate_of=replicate_of,
+                               batch_slot=None, role_profile=None)
+
+    def _start_run(self, protocol: str, *, seed: int, implementation: str,
+                   environment: str, command: list[str], replicate_of: str | None,
+                   batch_slot: tuple[str, str] | None,
+                   role_profile: dict[str, Any] | None = None) -> str:
+        history = self._history()
+        from .batch import validate_start
+        validate_start(self.store, history, protocol, batch_slot)
+        plan = self._get(history, protocol, "protocol")
+        p = plan["payload"]
+        self._planning_evidence(history, plan)
+        self._validate_typed_protocol([event for event in history if event["seq"] < plan["seq"]], p)
+        require(type(seed) is int and seed in p["seeds"], "seed not preregistered")
+        require(isinstance(command, list) and bool(command) and all(
+            isinstance(s, str) and s.strip() for s in command), "command must be argv")
+        for key in (implementation, environment, p["data"]):
+            self.store.read(key)
+        runs = [e for e in history if e["kind"] == "run" and e["payload"]["protocol"] == protocol]
+        require(len(runs) < p["run_limit"], "protocol run budget exhausted")
+        if replicate_of:
+            original = self._get(history, replicate_of, "run")
+            require(original["payload"]["replicate_of"] is None, "cannot replicate a reanalysis")
+            require(original["payload"]["protocol"] == protocol
+                    and original["payload"]["seed"] == seed, "replication protocol/seed mismatch")
+            require(original["actor"] != self.actor.id, "executor cannot replicate itself")
+            require(implementation != original["payload"]["implementation"],
+                    "independent reanalysis requires a different implementation artifact")
+            result = self._result(history, replicate_of)
+            require(result is not None and result["payload"]["status"] == "completed",
+                    "replication needs a completed original run")
+            roles = {"replicator"}
+        else:
+            require(implementation == p["implementation"] and environment == p["environment"],
+                    "primary implementation/environment differs from frozen protocol")
+            roles = {"executor"}
+        role_name = "replicator" if replicate_of else "executor"
+        from .role_profile import check_profile_for_run, local_profile
+        if role_profile is None:
+            role_profile = local_profile(role_name)
+        check_profile_for_run(role_profile, role_name)
+        return self._write(history, "run", dict(protocol=protocol, protocol_hash=plan["hash"],
+                           seed=seed, implementation=implementation, environment=environment,
+                           command=command, replicate_of=replicate_of, role_profile=role_profile), roles)
+
+    @staticmethod
+    def _result(history: list[dict[str, Any]], run: str) -> dict[str, Any] | None:
+        return next((e for e in history if e["kind"] == "result"
+                     and e["payload"]["run"] == run), None)
+
+    def finish_run(self, run: str, *, status: str, outputs: dict[str, str],
+                   reason: str = "") -> str:
+        return self._finish_run(run, status=status, outputs=outputs, reason=reason, managed_job=None)
+
+    def _finish_run(self, run: str, *, status: str, outputs: dict[str, str], reason: str,
+                    managed_job: str | None) -> str:
+        history = self._history()
+        managed = next((e for e in history if e["kind"] == "execution_job" and e["payload"]["run"] == run), None)
+        require((managed is None and managed_job is None) or (managed is not None
+                and managed["id"] == managed_job and self.store._command_context is not None),
+                "managed runs require verified Execution finalization")
+        started = self._get(history, run, "run")
+        require(started["actor"] == self.actor.id and started["role"] == self.actor.role,
+                "only the assigned run actor can record its terminal result")
+        require(self._result(history, run) is None, "run already terminal")
+        require(status in {"completed", "failed", "cancelled"}, "invalid run status")
+        require(isinstance(outputs, dict), "outputs must be a mapping")
+        for key in outputs.values():
+            self.store.read(key)
+        if status == "completed":
+            require({"raw_data", "metrics", "log"} <= outputs.keys(),
+                    "completed run needs raw_data, metrics and log")
+            p = self._get(history, started["payload"]["protocol"], "protocol")["payload"]
+            self._metric(outputs["metrics"], p["metric"])
+        else:
+            require(bool(reason.strip()), "failure/cancellation must be explained")
+        return self._write(history, "result", dict(run=run, status=status, outputs=outputs,
+                           reason=reason), {"executor", "replicator"})
+
+    def _metric(self, artifact: str, metric: str) -> float:
+        try:
+            metrics = json.loads(self.store.read(artifact))
+        except (ValueError, UnicodeError) as exc:
+            raise GateError("invalid metrics artifact") from exc
+        require(isinstance(metrics, dict) and finite(metrics.get(metric)),
+                f"missing or non-finite primary metric: {metric}")
+        return float(metrics[metric])
+
+    def claim(self, *, protocol: str, statement: str, scope: dict[str, str],
+              evidence: list[str], limitations: list[str], outcome: str,
+              inference_mode: str | None = None) -> str:
+        return self._claim(protocol=protocol, statement=statement, scope=scope, evidence=evidence,
+                           limitations=limitations, outcome=outcome, inference_mode=inference_mode,
+                           pack_admission=False)
+
+    def _claim(self, *, protocol: str, statement: str, scope: dict[str, str],
+               evidence: list[str], limitations: list[str], outcome: str,
+               inference_mode: str | None, pack_admission: bool) -> str:
+        history = self._history()
+        # A pack-bound protocol's strength ceiling is enforced only by pack.analyse;
+        # descendants without their own binding inherit the restriction (ADR 0018).
+        from .domain_packs import pack_lineage
+        require(pack_admission or pack_lineage(history, protocol) is None,
+                "claims on a pack-bound protocol are admitted only by pack.analyse")
+        plan = self._get(history, protocol, "protocol")["payload"]
+        require(scope == plan["scope"], "claim scope exceeds/differs from protocol scope")
+        require(bool(statement.strip()) and bool(limitations) and all(
+            isinstance(s, str) and s.strip() for s in limitations), "claim needs limitations")
+        require(outcome in {"supports", "refutes", "inconclusive"}, "invalid claim outcome")
+        require(bool(evidence) and len(set(evidence)) == len(evidence), "claim needs unique run IDs")
+        for id in evidence:
+            run = self._get(history, id, "run")
+            require(run["payload"]["protocol"] == protocol, "cross-protocol evidence prohibited")
+            result = self._result(history, id)
+            require(result is not None and result["payload"]["status"] == "completed",
+                    "claim evidence must refer to completed runs")
+        mode = self._inference_mode(plan, inference_mode)
+        payload = dict(protocol=protocol, statement=statement, scope=scope,
+                       evidence=evidence, limitations=limitations, outcome=outcome)
+        if "statistical_design" in plan or inference_mode is not None:
+            payload["inference_mode"] = mode
+        return self._write(history, "claim", payload, {"analyst", "executor"})
+
+    @staticmethod
+    def _inference_mode(plan: dict[str, Any], requested: str | None) -> str:
+        mode = plan.get("protocol_mode", "unclassified") if requested is None else requested
+        require(isinstance(mode, str) and mode in {"unclassified", "descriptive", "exploratory", "confirmatory"},
+                "invalid claim inference mode")
+        require(mode != "confirmatory" or ("statistical_design" in plan
+                and plan.get("protocol_mode") == "confirmatory"),
+                "confirmatory inference requires a confirmatory statistical protocol")
+        return mode
+
+    def _local_evidence(self, history: list[dict[str, Any]], claim: str
+                        ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        c = self._get(history, claim, "claim")
+        protocol = c["payload"]["protocol"]
+        plan = self._get(history, protocol, "protocol")
+        runs = [e for e in history if e["kind"] == "run" and e["payload"]["protocol"] == protocol]
+        ids = {e["id"] for e in runs}
+        results = [e for e in history if e["kind"] == "result" and e["payload"]["run"] in ids]
+        basis = [plan, c, *runs, *results, *protocol_exposures(history, plan)]
+        planning = {event["id"]: event for protocol_event in basis if protocol_event["kind"] == "protocol"
+                    for event in self._planning_evidence(history, protocol_event)}
+        basis.extend(sorted(planning.values(), key=lambda event: event["seq"]))
+        if any(e["kind"].startswith("agent_") for e in history):
+            from .agents import agent_context
+            # Legacy protocols still carry generated hypotheses. Planning
+            # ancestry also retains excluded candidates and preceding sets.
+            entities = {event["id"] for event in basis
+                        if event["kind"] in {"hypothesis", "explanation_set", "protocol"}}
+            entities.update(id for event in basis if event["kind"] == "protocol"
+                            for id in event["payload"]["hypotheses"])
+            existing = {event["id"] for event in basis}
+            basis.extend(event for event in agent_context(self.store, history, entities)
+                         if event["id"] not in existing)
+        if any(e["kind"] == "execution_job" for e in history):
+            from .execution import execution_context
+            context_runs = {event["id"] for event in basis if event["kind"] == "run"}
+            basis.extend(execution_context(self.store, history, context_runs))
+        if any(e["kind"] == "batch_plan" for e in history):
+            from .batch import batch_context
+            context_runs = {event["id"] for event in basis if event["kind"] == "run"}
+            basis.extend(batch_context(self.store, history, context_runs))
+        basis.extend(event for event in history if event["kind"] == "domain_binding"
+                     and event["payload"].get("protocol") == protocol)
+        basis.extend(event for event in history if event["kind"] == "pack_binding"
+                     and event["payload"].get("protocol") == protocol)
+        # A frozen domain proposal is part of the evidence revision reviewed
+        # later. Its event follows the claim, so it cannot be added by claim().
+        basis.extend(event for event in history if event["kind"] == "batch_analysis"
+                     and event["payload"].get("claim") == claim)
+        basis.extend(event for event in history if event["kind"] == "pack_analysis"
+                     and event["payload"].get("claim") == claim)
+        return basis, runs
+
+    def _basis(self, history: list[dict[str, Any]], claim: str) -> tuple[str, list[dict[str, Any]]]:
+        local, runs = self._local_evidence(history, claim)
+        context = resolve_context(history, claim)
+        if not context.link_ids:
+            return digest(canonical(local)), runs  # Preserve the published v1 recipe exactly.
+        basis = dict(basis_version=2, claim=claim,
+                     claims=[dict(claim=id, evidence=self._local_evidence(history, id)[0])
+                             for id in context.claim_ids],
+                     links=[self._get(history, id, "claim_link") for id in context.link_ids],
+                     context_findings=self._context_findings(history, claim)[0])
+        return digest(canonical(basis)), runs
+
+    @staticmethod
+    def _context_findings(history: list[dict[str, Any]], claim: str
+                          ) -> tuple[list[dict[str, Any]], set[str]]:
+        """Keep foreign negative findings and their first same-owner closure.
+
+        Own reviews never enter their own evidence basis. Ordinary positive
+        reviews also stay out: repeated mutual approvals must not stale each
+        other forever. Retaining closed episodes prevents revival of an older
+        approval after a finding is raised and subsequently withdrawn.
+        """
+        others = set(resolve_context(history, claim).claim_ids) - {claim}
+        records: list[dict[str, Any]] = []
+        pending: dict[tuple[str, str], str] = {}
+        for event in history:
+            p = event["payload"]
+            if event["kind"] != "review" or p["claim"] not in others:
+                continue
+            key = p["claim"], event["actor"]
+            if p["verdict"] != "approve":
+                records.append(event)
+                pending[key] = event["id"]
+            elif key in pending:
+                records.append(event)
+                del pending[key]
+        return records, set(pending.values())
+
+    def link_claims(self, *, source: str, target: str, relation: str, rationale: str,
+                    expected_bases: dict[str, str]) -> str:
+        """Record a relation proposal at two immutable evidence revisions."""
+        require(self.actor.role in {"planner", "analyst"}, "only planner/analyst may propose claim links")
+        history = self._history()
+        require(isinstance(expected_bases, dict) and set(expected_bases) == {source, target},
+                "expected bases must cover exactly both claim endpoints")
+        a, b = self._get(history, source, "claim"), self._get(history, target, "claim")
+        source_basis, _ = self._basis(history, source)
+        target_basis, _ = self._basis(history, target)
+        require(expected_bases == {source: source_basis, target: target_basis}, "stale claim link evidence")
+        link = ClaimLink(schema_version=1, source=source, target=target, relation=relation,
+                         rationale=rationale, source_hash=a["hash"], target_hash=b["hash"],
+                         source_basis=source_basis, target_basis=target_basis)
+        validate_link(history, link)
+        # An author of a new relation cannot subsequently provide its independent
+        # review. Avoid stranding a prior veto whose owner must explicitly revise it.
+        candidate = dict(id="candidate-" + uuid4().hex, seq=len(history) + 1, kind="claim_link",
+                         payload=link.to_dict(), hash=digest(canonical(link.to_dict())), actor=self.actor.id)
+        # The veto binds the owner's whole claim family (ADR 0018), and only the
+        # owner can withdraw it for each member it would review.
+        from .review_admission import admission, claim_family
+        extended = [*history, candidate]
+        for owner, id in admission(self.store, history).negatives:
+            for member in claim_family(extended, id):
+                context, contributors, _ = self._review_members(extended, member)
+                require(candidate["id"] not in context.link_ids or independent_of(owner, contributors),
+                        "claim link would prevent an open review veto owner from independently reviewing its context")
+        return self._write(history, "claim_link", link.to_dict(), {"planner", "analyst"})
+
+    def gate(self, claim: str) -> dict[str, Any]:
+        """Fail closed on absent/changed evidence; never certifies scientific truth."""
+        return self._gate(self._history(), claim)
+
+    def _gate(self, history: list[dict[str, Any]], claim: str) -> dict[str, Any]:
+        self._get(history, claim, "claim")
+        context = resolve_context(history, claim)
+        result = self._gate_local(history, claim)
+        if context.link_ids:
+            related = []
+            for id in context.claim_ids:
+                if id != claim:
+                    record = self._get(history, id, "claim")
+                    original = [e for e in history if e["seq"] <= record["seq"]]
+                    related.append(dict(claim=id, historical_gate=self._gate_local(original, id),
+                                        current_gate=self._gate_local(history, id)))
+                    # A historical claim can be superseded because newer runs
+                    # exceed its immutable citations. Verify all current bytes
+                    # without mislabelling that old claim as mechanically valid.
+                    for event in self._local_evidence(history, id)[0]:
+                        if event["kind"] == "claim":
+                            continue
+                        for key in exposure_artifacts(event, self.store):
+                            try:
+                                self.store.read(key)
+                            except IntegrityError as exc:
+                                result["failures"].append(f"linked claim {id}: {exc}")
+            for id in context.link_ids:
+                link = self._get(history, id, "claim_link")
+                before = [e for e in history if e["seq"] < link["seq"]]
+                p = link["payload"]
+                if (self._basis(before, p["source"])[0] != p["source_basis"]
+                        or self._basis(before, p["target"])[0] != p["target_basis"]):
+                    result["failures"].append(f"claim link basis mismatch: {id}")
+            result["basis_hash"] = self._basis(history, claim)[0]
+            result["passed"] = not result["failures"]
+            result["checks_version"] = "0.2.0"
+            result["context_claims"] = list(context.claim_ids)
+            result["claim_links"] = list(context.link_ids)
+            result["related_claims"] = related
+            result["open_context_reviews"] = sorted(self._context_findings(history, claim)[1])
+        return result
+
+    def _gate_local(self, history: list[dict[str, Any]], claim: str) -> dict[str, Any]:
+        c = self._get(history, claim, "claim")["payload"]
+        plan = self._get(history, c["protocol"], "protocol")
+        p = plan["payload"]
+        evidence, runs = self._local_evidence(history, claim)
+        basis = digest(canonical(evidence))
+        failures: list[str] = []
+        primary: list[dict[str, Any]] = []
+        completed: set[str] = set()
+        successful_replicas: set[str] = set()
+        try:
+            self._validate_typed_protocol([event for event in history if event["seq"] < plan["seq"]], p)
+            self._inference_mode(p, c.get("inference_mode"))
+            for exposure in protocol_exposures(history, plan):
+                for key in exposure_artifacts(exposure, self.store):
+                    self.store.read(key)
+        except (GateError, IntegrityError, KeyError) as exc:
+            failures.append(str(exc))
+        from .domain_packs import pack_lineage
+        if pack_lineage(history, c["protocol"]) is not None and not any(
+                event["kind"] == "pack_analysis" and event["payload"].get("claim") == claim
+                for event in evidence):
+            failures.append("claim on a pack-bound protocol lineage lacks pack.analyse admission")
+        for key in (p["implementation"], p["environment"], p["data"]):
+            try:
+                self.store.read(key)
+            except IntegrityError as exc:
+                failures.append(str(exc))
+        for event in evidence:
+            if event["kind"] not in {"batch_analysis", "domain_binding", "pack_binding", "pack_analysis"}:
+                continue
+            try:
+                # Pack closures read CAS manifests; report damage as a gate failure.
+                keys = exposure_artifacts(event, self.store)
+            except IntegrityError as exc:
+                failures.append(str(exc))
+                continue
+            for key in keys:
+                try:
+                    self.store.read(key)
+                except IntegrityError as exc:
+                    failures.append(str(exc))
+        for run in runs:
+            r = run["payload"]
+            if not r["replicate_of"]:
+                primary.append(run)
+            try:
+                require(run["seq"] > plan["seq"] and r["protocol_hash"] == plan["hash"],
+                        "preregistration order/hash mismatch")
+                self.store.read(r["implementation"])
+                self.store.read(r["environment"])
+                result = self._result(history, run["id"])
+                require(result is not None, f"unterminated run: {run['id']}")
+                outputs = result["payload"]["outputs"]
+                for key in outputs.values():
+                    self.store.read(key)
+                if result["payload"]["status"] != "completed":
+                    continue  # retained; a successful retry still needs the scheduled seed
+                metric = self._metric(outputs["metrics"], p["metric"])
+                completed.add(run["id"])
+                if r["replicate_of"]:
+                    original = self._get(history, r["replicate_of"], "run")
+                    original_result = self._result(history, original["id"])
+                    require(original_result is not None, "missing original result")
+                    original_outputs = original_result["payload"]["outputs"]
+                    require(outputs["raw_data"] == original_outputs["raw_data"],
+                            "reanalysis must use the original raw data artifact")
+                    expected = self._metric(original_outputs["metrics"], p["metric"])
+                    require(abs(metric - expected) <= p["replication_tolerance"],
+                            f"reanalysis disagreement: {run['id']}")
+                    successful_replicas.add(original["id"])
+            except (GateError, IntegrityError, KeyError) as exc:
+                failures.append(str(exc))
+        design = p.get("statistical_design")
+        if design is not None and design["stopping_rule"]["kind"] == "fixed_sample":
+            # ADR 0018 §4.5: a fixed sample admits no new attempt once a seed's outcome was recorded.
+            observed: set[int] = set()
+            for run in primary:
+                seed = run["payload"]["seed"]
+                if seed in observed:
+                    failures.append(f"seed retried after an observed outcome: seed {seed}")
+                    break
+                result = self._result(history, run["id"])
+                if result is not None and {"raw_data", "metrics"} & set(result["payload"]["outputs"]):
+                    observed.add(seed)
+        if c.get("inference_mode") == "confirmatory":
+            # ADR 0018 §6 tripwires: confirmatory evidence is managed and reads no exposed bytes.
+            seen = set(p.get("seen_data", []))
+            jobs = {e["payload"]["run"]: e["id"] for e in history if e["kind"] == "execution_job"}
+            finalized = {e["payload"]["job"] for e in history if e["kind"] == "execution_finalized"}
+            if p["data"] in seen:
+                failures.append("confirmatory evidence reads exposed protocol data")
+            for run in runs:
+                if jobs.get(run["id"]) not in finalized:
+                    failures.append(f"confirmatory evidence requires managed execution: {run['id']}")
+                result = self._result(history, run["id"])
+                if result is not None and result["payload"]["outputs"].get("raw_data") in seen:
+                    failures.append(f"confirmatory raw data was already exposed: {run['id']}")
+        successful_primary = {e["id"] for e in primary if e["id"] in completed}
+        seeds = {e["payload"]["seed"] for e in primary if e["id"] in completed}
+        if seeds != set(p["seeds"]):
+            failures.append("scheduled primary seeds incomplete")
+        if set(c["evidence"]) != completed:
+            failures.append("claim must include all completed runs, including reanalyses")
+        if not successful_primary or not successful_primary <= successful_replicas:
+            failures.append("independent reanalysis missing for primary evidence")
+        return dict(passed=not failures, failures=failures, basis_hash=basis,
+                    claim=claim, checks_version="0.1.0", scientific_validity="not_assessed")
+
+    def review(self, claim: str, *, verdict: str, rationale: str,
+               actions: list[str], expected_basis: str) -> str:
+        return self._record_review(claim, verdict=verdict, rationale=rationale, actions=actions,
+                                   expected_basis=expected_basis, link_assessments=None)
+
+    def review_with_links(self, claim: str, *, verdict: str, rationale: str,
+                          actions: list[str], expected_basis: str,
+                          link_assessments: dict[str, dict[str, Any]]) -> str:
+        """Review every declared relation explicitly; no automatic truth inference."""
+        require(isinstance(link_assessments, dict), "link assessments must be a mapping")
+        return self._record_review(claim, verdict=verdict, rationale=rationale, actions=actions,
+                                   expected_basis=expected_basis, link_assessments=link_assessments)
+
+    def _record_review(self, claim: str, *, verdict: str, rationale: str,
+                       actions: list[str], expected_basis: str,
+                       link_assessments: dict[str, dict[str, Any]] | None,
+                       allow_approval: bool = False, acknowledgement_v3: bool = False) -> str:
+        history = self._history()
+        gate = self.gate(claim)
+        # gate() may observe a newer state; never admit that against stale history.
+        basis, runs = self._basis(history, claim)
+        require(gate["basis_hash"] == basis == expected_basis, "stale review evidence bundle")
+        require(gate["passed"], "mechanical gate failed: " + "; ".join(gate["failures"]))
+        context, contributors, admissible_refs = self._review_members(history, claim)
+        require(not context.link_ids or link_assessments is not None,
+                "linked claim context requires review_with_links")
+        require(independent_of(self.actor.id, contributors), "reviewer must be independent of contributors")
+        require(isinstance(verdict, str) and verdict in {"approve", "request_changes", "reject"},
+                "invalid review verdict")
+        require(isinstance(rationale, str) and bool(rationale.strip()), "review requires rationale")
+        require(isinstance(actions, list) and all(isinstance(a, str) and a.strip() for a in actions),
+                "actions must be nonempty strings")
+        require(verdict == "approve" or bool(actions), "non-approval requires replan actions")
+        require(verdict != "approve" or not actions, "approval cannot have unresolved actions")
+        payload = dict(claim=claim, verdict=verdict, rationale=rationale, actions=actions, basis_hash=basis)
+        if link_assessments is not None:
+            required = self._context_findings(history, claim)[1]
+            if acknowledgement_v3:
+                # ADR 0018 §4.3: only open opinions about linked claims outside the family.
+                from .review_assignment import linked_open_findings
+                required = {row["id"] for row in linked_open_findings(self.store, history, claim,
+                                                                      in_replay=False)}
+                admissible_refs = admissible_refs | required
+            self._validate_assessments(link_assessments, set(context.link_ids), admissible_refs, verdict)
+            if verdict == "approve":
+                acknowledged = {id for assessment in link_assessments.values() for id in assessment["evidence"]}
+                require(required <= acknowledged,
+                        "approval must explicitly acknowledge every open review in the linked context")
+                accepted_replacements = {
+                    self._get(history, id, "claim_link")["payload"]["target"]
+                    for id, assessment in link_assessments.items()
+                    if assessment["judgment"] == "accepted"
+                    and self._get(history, id, "claim_link")["payload"]["relation"] == "supersedes"}
+                for id, assessment in link_assessments.items():
+                    if assessment["judgment"] != "accepted":
+                        continue
+                    link = self._get(history, id, "claim_link")["payload"]
+                    source = self._get(history, link["source"], "claim")
+                    # A -> B -> C keeps B's historical replacement decision,
+                    # while current coverage belongs to the accepted frontier C.
+                    current_source = (link["relation"] == "supersedes"
+                                      and source["id"] not in accepted_replacements)
+                    basis_history = (history if current_source else
+                                     [e for e in history if e["seq"] <= source["seq"]])
+                    checked = self._gate_local(basis_history, source["id"])
+                    require(checked["passed"], f"accepted link has mechanically unqualified source: {id}")
+            payload.update(review_schema_version=3 if acknowledgement_v3 else 2,
+                           link_assessments=link_assessments)
+        require(self.actor.role == "reviewer", f"{self.actor.role} cannot create review")
+        require(verdict != "approve" or allow_approval, APPROVAL_PATH)
+        return self._write(history, "review", payload, {"reviewer"})
+
+    def _review_members(self, history: list[dict[str, Any]], claim: str) -> tuple[Any, set[str], set[str]]:
+        context = resolve_context(history, claim)
+        contributors: set[str] = set()
+        admissible_refs = set(context.link_ids)
+        for id in context.claim_ids:
+            evidence, _ = self._local_evidence(history, id)
+            for event in evidence:
+                admissible_refs.add(event["id"])
+                if event["kind"] != "data_exposure":
+                    contributors.add(event["actor"])
+                if event["kind"] == "protocol":
+                    for hypothesis in event["payload"]["hypotheses"]:
+                        admissible_refs.add(hypothesis)
+                        contributors.add(self._get(history, hypothesis, "hypothesis")["actor"])
+        contributors.update(self._get(history, id, "claim_link")["actor"] for id in context.link_ids)
+        admissible_refs.update(event["id"] for event in self._context_findings(history, claim)[0])
+        return context, contributors, admissible_refs
+
+    @staticmethod
+    def _validate_assessments(assessments: dict[str, Any], links: set[str],
+                              admissible_refs: set[str], verdict: str) -> None:
+        require(isinstance(assessments, dict) and set(assessments) == links,
+                "assessments must cover exactly all claim links in the review context")
+        for assessment in assessments.values():
+            require(isinstance(assessment, dict) and set(assessment) == {
+                "judgment", "disposition", "rationale", "evidence"}, "invalid link assessment fields")
+            require(isinstance(assessment["judgment"], str) and assessment["judgment"] in {
+                "accepted", "rejected", "unresolved"}, "invalid link judgment")
+            require(isinstance(assessment["disposition"], str) and assessment["disposition"] in {
+                "compatible_as_written", "requires_claim_revision", "needs_evidence"}, "invalid link disposition")
+            require(isinstance(assessment["rationale"], str) and bool(assessment["rationale"].strip()),
+                    "link assessment requires a rationale")
+            refs = assessment["evidence"]
+            require(isinstance(refs, list) and bool(refs) and all(isinstance(id, str) for id in refs)
+                    and len(set(refs)) == len(refs) and set(refs) <= admissible_refs,
+                    "link assessment needs unique evidence references from its review context")
+            if verdict == "approve":
+                require(assessment["judgment"] != "unresolved"
+                        and assessment["disposition"] == "compatible_as_written",
+                        "approval cannot leave an unresolved or incompatible claim link")
+
+    def next_action(self, claim: str) -> dict[str, Any]:
+        return self._next_action(self._history(), claim)
+
+    def _next_action(self, history: list[dict[str, Any]], claim: str) -> dict[str, Any]:
+        gate = self._gate(history, claim)
+        if not gate["passed"]:
+            return dict(action="repair_evidence", reasons=gate["failures"])
+        from .review_admission import admission
+        # ADR 0018: obligations and vetoes bind the whole claim family; a
+        # resolution or withdrawal counts only for the claim it names.
+        projection = admission(self.store, history)
+        obligations = projection.blocking_obligations(claim)
+        if obligations:
+            return dict(action="replan", obligations=[event["id"] for event in obligations],
+                        reasons=[event["payload"]["action"] for event in obligations])
+        vetoes = projection.vetoes(claim)
+        if vetoes:
+            decision = dict(action="replan", reasons=[a for r in vetoes for a in r["payload"]["actions"]])
+            inherited = [r for r in vetoes if r["payload"]["claim"] != claim]
+            if inherited:
+                decision["family_vetoes"] = [dict(review=r["id"], claim=r["payload"]["claim"],
+                                                  reviewer=r["actor"]) for r in inherited]
+            return decision
+        # Only approvals admitted under ADR 0018 §3.1 count; others stay advisory.
+        approvals, advisory = projection.approvals(claim, gate["basis_hash"])
+        if not approvals:
+            decision = dict(action="scientific_review", basis_hash=gate["basis_hash"])
+            if advisory:
+                decision["advisory_approvals"] = [dict(review=e["id"], reviewer=e["actor"],
+                                                       defect=projection.approval_defect(e))
+                                                  for e in advisory]
+            return decision
+        current = {e["actor"]: e["payload"] for e in approvals}
+        for link in (self._get(history, id, "claim_link") for id in resolve_context(history, claim).link_ids):
+            if link["payload"]["relation"] == "supersedes" and link["payload"]["target"] == claim:
+                if any(review.get("link_assessments", {}).get(link["id"], {}).get("judgment") == "accepted"
+                       for review in current.values()):
+                    return dict(action="superseded", claim=claim, replacement=link["payload"]["source"],
+                                reason="reviewed replacement; original claim and findings remain in history")
+        return dict(action="paper_candidate", claim=claim, basis_hash=gate["basis_hash"],
+                    limitation="local internal approval; human release and venue review still required")
