@@ -1,3 +1,5 @@
 {
-  "install": "curl -LsSf https://astral.sh/uv/install.sh | sh && . \"$HOME/.local/bin/env\" && uv python install 3.12 && cd EpistemeOS && uv sync --frozen"
+  "name": "Reasoning Universalis",
+  "install": "bash .cursor/install.sh",
+  "start": "bash .cursor/start.sh"
 }
