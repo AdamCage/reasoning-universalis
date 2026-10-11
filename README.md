@@ -7,6 +7,7 @@ EpistemeOS — ядро доказательств: протоколы, пров
 ## Документы
 
 - [RESEARCH_SPECIFICATION.md](RESEARCH_SPECIFICATION.md) — научная спецификация
+- [literature/README.md](literature/README.md) — обзор литературы этапа 0 спецификации
 - [cursor_objective.md](cursor_objective.md) — рабочий бриф
 - [env.example](env.example) — контракт окружения без секрета
 - [AGENTS.md](AGENTS.md) — операционные правила агента
