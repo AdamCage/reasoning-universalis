@@ -39,7 +39,7 @@ Cursor — единственный агентный харнес. Отдель�
 
 ## Cursor Cloud
 
-Установка выполняется командой из `.cursor/environment.json`. Секрет `ROUTERAI_API_KEY` задаётся во вкладке секретов Cursor Cloud и в git не попадает.
+Установка выполняется `bash .cursor/install.sh` из `.cursor/environment.json`. Секрет `ROUTERAI_API_KEY` задаётся во вкладке секретов Cursor Cloud. При старте агента `.cursor/start.sh` собирает из него и из `env.example` локальный `.env`; этот файл в git не попадает.
 
 ## Статус
 

@@ -38,8 +38,8 @@ EpistemeOS используется для протоколов, провена�
 ## Cursor Cloud specific instructions
 
 - Облачная среда — Ubuntu VM.
-- Скрипт установки из корня репозитория запускает `uv` (см. `.cursor/environment.json`): установка `uv`, Python 3.12, затем `cd EpistemeOS && uv sync --frozen`.
-- Тесты лежат в `EpistemeOS`.
+- Установка: `bash .cursor/install.sh` (её вызывает `.cursor/environment.json`). Скрипт ставит `uv`, связывает его в `/usr/local/bin` (login-шелл не читает `~/.bashrc`), ставит Python 3.12 и выполняет `uv sync --frozen` в `EpistemeOS`.
+- Тесты: из `EpistemeOS` команда `uv run python -m unittest discover -s tests -v`.
 - RouterAI не вызывать, пока не начат этап 0. `ROUTERAI_API_KEY` не печатать.
-- `.env` только для локальной машины. В Cloud ключ берётся из секретов Cursor, не из git.
+- Секрет `ROUTERAI_API_KEY` задаётся в секретах Cursor Cloud, не в git. `.cursor/start.sh` при загрузке агента собирает gitignored `.env` из `env.example` и этого секрета. Несекретные значения берутся из `env.example`. Готовый `.env` не коммитить и не логировать.
 - Научную спецификацию не переписывать.
