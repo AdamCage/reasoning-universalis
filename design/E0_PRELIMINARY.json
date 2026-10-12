@@ -1,0 +1,24 @@
+{
+  "revision": "e0-development-v0.1",
+  "status": "proposed_preliminary_not_G2_not_validated",
+  "unit_of_resampling": "task_root",
+  "double_annotation_fraction_e0": 1.0,
+  "minimum_evaluation_segments": 200,
+  "minimum_evaluation_roots": 40,
+  "minimum_gold_examples_per_role": 20,
+  "minimum_roots_per_role": 10,
+  "metrics": {
+    "boundary_f1_exact": {"target": 0.85, "review_band": [0.75, 0.85]},
+    "human_cohen_kappa_primary": {"target": 0.67, "review_band": [0.5, 0.67]},
+    "macro_f1_eight_roles": {"target": 0.7, "review_band": [0.6, 0.7]},
+    "minimum_recall_per_role": {"target": 0.5},
+    "minimum_macro_f1_family_domain": {"target": 0.6},
+    "maximum_ambiguous_fraction_natural_sample": {"target": 0.2},
+    "maximum_macro_f1_ci_width": {"target": 0.2},
+    "maximum_paired_paraphrase_or_style_f1_drop": {"target": 0.1}
+  },
+  "confidence_interval": {"method": "percentile_task_root_bootstrap", "level": 0.95, "replicates": 1000, "seed": 20261012},
+  "acceptance": "All coverage and quality criteria required; review band means revise on development, never automatic acceptance. Missing coverage or wide CI means unresolved.",
+  "revision_rule": "After opening validation, any change to method or threshold needs new revision and fresh unopened validation roots. Final thresholds frozen before that evaluation; confirmatory never used for tuning.",
+  "limitations": "These engineering targets are design choices, not values given by the specification or evidence of measurement validity. No significance test or scientific effect size is fixed here."
+}

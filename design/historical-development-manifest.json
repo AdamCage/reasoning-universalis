@@ -1,0 +1,62 @@
+{
+  "version": "task-splits-v1",
+  "seed": "measurement-development-v1",
+  "allocation": [
+    60,
+    20,
+    20
+  ],
+  "status": "development_design_not_G2",
+  "tasks": [
+    {
+      "task_id": "historical-stage0-algorithms-1",
+      "root_id": "historical-stage0-algorithms-1",
+      "domain": "algorithms",
+      "generator_id": "stage0-fixed-manifest",
+      "prompt_sha256": "e12942ae8d3bb2ce0025135d18e93123d00f46616466f67b8d004aa0c7926b09",
+      "split": "development"
+    },
+    {
+      "task_id": "historical-stage0-logic-1",
+      "root_id": "historical-stage0-logic-1",
+      "domain": "logic",
+      "generator_id": "stage0-fixed-manifest",
+      "prompt_sha256": "76c73d0477312f3c163fb1c8f91934f1622440409ff37773418627b06c7850ef",
+      "split": "development"
+    },
+    {
+      "task_id": "historical-stage0-logic-2",
+      "root_id": "historical-stage0-logic-2",
+      "domain": "logic",
+      "generator_id": "stage0-fixed-manifest",
+      "prompt_sha256": "dcd1eb6fea6cf5b7978bb76f58f079acd92be735574592d3b0e46d4e0db66174",
+      "split": "development"
+    },
+    {
+      "task_id": "historical-stage0-math-1",
+      "root_id": "historical-stage0-math-1",
+      "domain": "math",
+      "generator_id": "stage0-fixed-manifest",
+      "prompt_sha256": "24b5eaf2d33baaaf9d526511fef508035096ea931e0c7692547d0232d65bc769",
+      "split": "development"
+    },
+    {
+      "task_id": "historical-stage0-math-2",
+      "root_id": "historical-stage0-math-2",
+      "domain": "math",
+      "generator_id": "stage0-fixed-manifest",
+      "prompt_sha256": "bdf4f15457d8476f6f3942c624863b304d30bda56c042bce76794b2ca941a888",
+      "split": "development"
+    },
+    {
+      "task_id": "historical-stage0-planning-1",
+      "root_id": "historical-stage0-planning-1",
+      "domain": "planning",
+      "generator_id": "stage0-fixed-manifest",
+      "prompt_sha256": "4a3f903ee06ed899f1101a9277401b50bc51d510b84509a42926df0e8df3ac8c",
+      "split": "development"
+    }
+  ],
+  "task_set_digest": "8e69ec59249a0ef2b10374a4bd6e947b92e4e095a50fd86e18c032fa27972573",
+  "manifest_digest": "3b5ec259210d90f41ee3f6f0009d2daa1c5ce4eb83bcc75286758e30c4e8ee9a"
+}
