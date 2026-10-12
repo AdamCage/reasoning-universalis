@@ -9,5 +9,9 @@
   "approval_statement": null,
   "selected_decisions": "design/SELECTED_DECISIONS.json",
   "implementation_target": "cloud_project_stage1",
-  "note": "AdamCage selected design directions. Final Stage 1 preregistration and its immutable approval manifest are to be prepared in the cloud; no G1 approval of a concrete final revision is fabricated."
+  "note": "Конкретный Stage 1 пакет подготовлен в облаке для ревью; выбранные направления и разрешение начать работу не являются утверждением. Receipt G1 исключён из payload manifest во избежание circular approval hash; при явном approval записать exact snapshot commit и manifest digest.",
+  "requested_revision": "stage1-design-v1",
+  "requested_manifest": "design/STAGE1_APPROVAL_MANIFEST.json",
+  "approval_instructions": "design/G1_APPROVAL.md",
+  "requested_payload_sha256": "75db392bff348bb0d2a87bf827c6b6863da43ab3de7a61e5b67276b53376ee46"
 }

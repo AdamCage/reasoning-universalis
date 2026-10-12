@@ -1,0 +1,67 @@
+{
+  "revision": "machine-annotation-stage1-v1",
+  "status": "engineering_design_for_G1_review_not_live_authorization",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "base_url": "https://routerai.ru/api/v1",
+  "panel_size": 5,
+  "majority_required": 3,
+  "maximum_rounds": 2,
+  "seed_schedule": [
+    [
+      2026101201,
+      2026101202,
+      2026101203,
+      2026101204,
+      2026101205
+    ],
+    [
+      2026101211,
+      2026101212,
+      2026101213,
+      2026101214,
+      2026101215
+    ]
+  ],
+  "temperature": 0.7,
+  "top_p": 1.0,
+  "max_output_tokens": 1024,
+  "request_timeout_seconds": 120,
+  "max_concurrent_requests": 1,
+  "automatic_retries": 0,
+  "incomplete_panel": "technical_unresolved_stop_item_no_semantic_repeat",
+  "no_majority": "second_full_panel_only_if_first_panel_complete",
+  "aggregation": "use_majority_of_first_complete_resolved_round_never_pool_rounds",
+  "after_second_no_majority": "ambiguous_unresolved",
+  "repeatability_audit": {
+    "selection": "first SHA256-ranked ceil(0.10*N) completed development items, at least one if N>0; before examining labels",
+    "fraction": 0.1,
+    "repeat_round": 1,
+    "same_input_seed_and_route": true,
+    "maximum_additional_attempts_per_selected_item": 5,
+    "effect_on_consensus": "none"
+  },
+  "context": {
+    "previous_segments": 2,
+    "maximum_previous_unicode_codepoints": 1000,
+    "overflow": "keep suffix of concatenated previous segments; save cut coordinates",
+    "future_segments": 0,
+    "current_segment": "unaltered; if context limit exceeded mark oversized_unresolved, no silent truncation"
+  },
+  "segment_prompt": "design/prompts/segment-role-v1.md",
+  "cluster_prompt": "design/prompts/cluster-role-v1.md",
+  "response_schema": "design/ANNOTATION_RESPONSE.schema.json",
+  "roles": [
+    "problem_formulation",
+    "planning",
+    "deduction_computation",
+    "exploration",
+    "verification",
+    "uncertainty",
+    "backtracking_correction",
+    "conclusion",
+    "ambiguous_other"
+  ],
+  "seed_execution": "document provider support separately; requested seed is not proof of deterministic execution",
+  "routing": "pin admitted provider; unknown revision explicit; route drift invalidates attempt",
+  "reproducibility": "saved request/response bytes first; same-seed audit separate from fresh-seed voting"
+}

@@ -1,5 +1,5 @@
 {
-  "status": "draft_not_G1_or_G2",
+  "status": "stage1_review_ready_G1_pending_G2_not_frozen",
   "source_git_blob": "a9db63e35b389004e0cb5a62ea740dc999927907",
   "source_sha256_lf": "a776fbd34d4a0a8172127debe71395f94c8586af187400200bfe847000dd26ee",
   "normalization": "UTF-8, CRLF to LF, no other normalization",
@@ -17,7 +17,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "cdcab32d733807adc6081fa65d104317200385836e46df63fc2a19cd79699f6f",
+      "support_source": "В §3 нет отдельного блока поддержки H0; операционное правило ниже производно от H0, §11 и дополнения плана, не цитата.",
+      "refutation_source": "В §3 нет отдельного блока опровержения H0; устойчивые эффекты сверх контролей противоречат её второму предложению, не устанавливая внутренний механизм.",
+      "analysis_status": "interpretive_null_not_separate_primary_test",
+      "observable_signals": "Остаточные межсемейные преимущества после сильных контролей; интервалы эквивалентности при валидном измерителе.",
+      "allowed_conclusions": "При достаточной точности допустим вывод об отсутствии practically meaningful observable эффекта в изученных условиях. Общие обучающие данные остаются возможным объяснением.",
+      "forbidden_conclusions": "Незначимый p-value, провал E0 или широкий интервал не принимают H0; ненаблюдаемые обучающие корпуса не устанавливают причину общности.",
+      "design_choices": {
+        "primary_metric": "Практическая эквивалентность остаточного преимущества относительно сильных контролей; границы научной полезности задаются G2.",
+        "direction": "Практическая эквивалентность в обе стороны.",
+        "null_model": "Совместные контроли языка, инструкции, длины, позиции, домена/сложности и измерителя; обучение ненаблюдаемо и только ограничение.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "H0 интерпретирует controls/equivalence; отдельное тестирование требует заранее заданного G2 family.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H0",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H1",
@@ -32,7 +54,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "96361d79b1bc7bb971a2454a026eef8ac9d07e3eea68578eb61384e9f5995c43",
+      "support_source": "перенос состояния между семействами существенно превосходит контролируемые базовые методы и не исчезает при изменении инструмента измерения.",
+      "refutation_source": "семантические состояния оказываются специфичными для модели, языка или эмбеддера либо качество переноса сводится к поверхностным признакам текста.",
+      "analysis_status": "primary_confirmatory_candidate_G2_required",
+      "observable_signals": "Перенос функциональных состояний на новую семью × новые roots: delta macro-F1 относительно lexical baseline, absolute F1, recall каждой роли, confusion/coverage, balanced accuracy и калибровка.",
+      "allowed_conclusions": "Переносимые функциональные роли наблюдаемого текста в проверенных условиях после E0.",
+      "forbidden_conclusions": "Машинный консенсус не является human gold; общий кластер или один эмбеддер не доказывает внутренние вычислительные состояния.",
+      "design_choices": {
+        "primary_metric": "delta macro-F1 над lexical baseline, absolute macro-F1, recall ролей; human reference обязателен до содержательной интерпретации.",
+        "direction": "Положительное преимущество динамики/переноса по заранее выбранному контрасту; прочие effects двусторонние.",
+        "null_model": "TF-IDF/SVD, position/length/style/domain predictors, частотная роль; одинаковые folds и training-only fit.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Основное семейство H1–H3: Holm candidate; окончательные contrasts/correction G2.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H1",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H2",
@@ -47,7 +91,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "3395d48c17b6e8550ccce86d778a5c72dd8ea78936f65598015456d25746e4d0",
+      "support_source": "общие структурные закономерности сохраняются на невиденных задачах и моделях, превышая сходство, которое ожидается от поверхностной структуры любого связного текста.",
+      "refutation_source": "общая топология исчезает после контроля длины, позиции сегмента, синтаксиса и состава задач.",
+      "analysis_status": "primary_confirmatory_candidate_G2_required",
+      "observable_signals": "Сходство поддержанных directed edges на matched числе roots/переходов плюс независимое motif/path расстояние; cycles, returns, пути завершения и обязательный held-out next-state prediction gain.",
+      "allowed_conclusions": "Воспроизводимая общая текстовая топология сверх контролей при переносимых состояниях; равные transition probabilities не требуются.",
+      "forbidden_conclusions": "Один прогнозный score не заменяет топологию. Полный граф из хотя бы одного наблюдения каждого ребра не доказывает структуру; порядок текста не доказывает вычислительное ветвление.",
+      "design_choices": {
+        "primary_metric": "Jaccard поддержанных направленных рёбер на matched объёме, независимое расстояние motif/path distributions и held-out prediction advantage над frequency/position.",
+        "direction": "Положительное преимущество динамики/переноса по заранее выбранному контрасту; прочие effects двусторонние.",
+        "null_model": "Within-root state shuffle, position/domain stratified shuffle, role-run order shuffle with endpoints, position-frequency generator; каждый проверяется на сохраняемые инварианты.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Основное семейство H1–H3: Holm candidate; окончательные contrasts/correction G2.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H2",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H3",
@@ -62,7 +128,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "fea4e9c8637251001841496f7adcab2cfc4a65a396773caa02877a4aed44d401",
+      "support_source": "общий словарь состояний переносится между моделями, но их динамические параметры демонстрируют воспроизводимые различия.",
+      "refutation_source": "либо общие состояния не обнаруживаются, либо предполагаемые различия полностью объясняются составом задач и другими контролируемыми факторами.",
+      "analysis_status": "primary_confirmatory_candidate_G2_required",
+      "observable_signals": "Различия conditional transition distributions при одинаковых tasks/budget; dwell, entropy, return probabilities и completion hazards как вторичные.",
+      "allowed_conclusions": "Переносимый словарь и воспроизводимые различия динамики в условиях model × provider × revision.",
+      "forbidden_conclusions": "При совпадении model/provider факторов различия не называются чистым эффектом архитектуры. Отсутствие переносимых состояний блокирует исходную связку H3.",
+      "design_choices": {
+        "primary_metric": "Task-paired Jensen–Shannon differences conditional transition distributions; dwell и returns вторичны; редкие строки отдельно.",
+        "direction": "Двусторонние differences; направление отдельного контраста задаётся до G2.",
+        "null_model": "Blocked model-condition permutation внутри matched task/budget/domain/complexity только при exchangeability; иначе наблюдательная иерархическая оценка.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Основное семейство H1–H3: Holm candidate; окончательные contrasts/correction G2.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H3",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H4",
@@ -77,7 +165,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "f2e2e9e6174463f5801686d9527792480f65ed547ac20818caef59d41cdd365f",
+      "support_source": "структурная близость успешных траекторий статистически выше, чем ошибочных, на отложенной выборке.",
+      "refutation_source": "после контроля факторов успешные рассуждения не обнаруживают большей общности либо ошибочные оказываются столь же структурно согласованными.",
+      "analysis_status": "secondary_exploratory_prespecified",
+      "observable_signals": "Парная разность межмодельной структурной близости successful и failed траекторий внутри одинаковых roots, сопоставленных по длине/сложности; sequence distance и общие мотивы.",
+      "allowed_conclusions": "Ассоциация успеха с большей структурной близостью на новых задачах при контролях.",
+      "forbidden_conclusions": "Сравнение лёгких успешных с трудными ошибочными не проверяет H4; отбор только mixed-outcome roots раскрывается, не распространяется на всю популяцию.",
+      "design_choices": {
+        "primary_metric": "Task-paired successful-minus-failed similarity: normalized sequence distance и motif similarity; предварительный matching по length/complexity.",
+        "direction": "Положительное преимущество динамики/переноса по заранее выбранному контрасту; прочие effects двусторонние.",
+        "null_model": "Переназначение целых trajectories к matched tasks/outcomes в допустимых стратах; не переставлять отдельные segments.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Отдельные prespecified exploratory contrasts; FDR candidate, не основной Holm family. Повышение до confirmatory только отдельным G2 до данных.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H4",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H5",
@@ -92,7 +202,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "29f8b0c5119939223a9f0c89754d3d183831ee10859facbd48d2e0d29d0b9801",
+      "support_source": "определённые динамические характеристики предсказывают непродуктивное продолжение сверх признаков длины и сложности.",
+      "refutation_source": "рекуррентность не связана с ухудшением результатов после контроля вычислительного бюджета, либо наблюдаемая зависимость не переносится на новые модели.",
+      "analysis_status": "secondary_exploratory_prespecified_feasibility_gated",
+      "observable_signals": "Изменение вероятности правильного завершения между фиксированными префиксами по repeated independent probes; incremental prediction от recurrence сверх length/complexity/budget.",
+      "allowed_conclusions": "Различение productive reconsideration, harmless и harmful overthinking по вероятности исхода и полной цене, с интервалами.",
+      "forbidden_conclusions": "Любой цикл не патология. Принудительный ответ не доказывает, что модель уже знала ответ; повторная передача префикса не равна продолжению скрытого состояния.",
+      "design_choices": {
+        "primary_metric": "delta probability of correct completion from repeated probes и added prediction сверх length/complexity/budget; интервалы по roots.",
+        "direction": "Положительное преимущество динамики/переноса по заранее выбранному контрасту; прочие effects двусторонние.",
+        "null_model": "Length/budget/position controls, comparable continuation settings, fixed prefix schedule, answer-leakage audit; результаты probes не возвращать исходной модели.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Отдельные prespecified exploratory contrasts; FDR candidate, не основной Holm family. Повышение до confirmatory только отдельным G2 до данных.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H5",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H6",
@@ -107,7 +239,29 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "1a74b6e127b47b1f829190c581659c3b1df1b0dddaf3a00efe77e6c2d8d409be",
+      "support_source": "обнаруживается воспроизводимая связь масштаба с определёнными динамическими характеристиками.",
+      "refutation_source": "эффект отсутствует, нестабилен либо целиком объясняется иной подготовкой модели, длиной рассуждения и особенностями задач.",
+      "analysis_status": "exploratory_prespecified_admission_gated",
+      "observable_signals": "Парные различия transition/correction/dwell/cost между сопоставимыми checkpoint одной обучающей линии разного масштаба после допуска.",
+      "allowed_conclusions": "Наблюдательная связь масштаба с динамикой с явными training/quantization/provider ограничениями; если сопоставимой пары нет — unresolved.",
+      "forbidden_conclusions": "Qwen3.8-27B против Qwen3-32B не изолирует масштаб. Неизвестные checkpoints/обучение не допускают причинного scaling вывода.",
+      "design_choices": {
+        "primary_metric": "Same-lineage paired differences в productive correction, transition/dwell и cost-per-correct; пара после admission, иначе unresolved.",
+        "direction": "Двусторонние differences; направление отдельного контраста задаётся до G2.",
+        "null_model": "Сопоставление task/budget/checkpoint lineage, отдельный анализ training и quantization confounding; произвольная model permutation не обоснована.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Отдельные prespecified exploratory contrasts; FDR candidate, не основной Holm family. Повышение до confirmatory только отдельным G2 до данных.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H6",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     },
     {
       "id": "H7",
@@ -122,7 +276,30 @@
         "multiple_testing_family": "не задано спецификацией; решение отложено до заморозки протокола",
         "minimally_meaningful_effect": "не задано спецификацией; решение отложено до заморозки протокола",
         "insufficient_power_criterion": "не задано спецификацией; решение отложено до заморозки протокола"
-      }
+      },
+      "source_text_sha256_lf": "0b79770cdae4f87cf610b0b4a8f1415c1bb79fcd334c15039b0611e9d9c5bf74",
+      "support_source": "предиктор улучшает качество прогноза на отложенных моделях, а политика завершения обеспечивает подтверждённое улучшение соотношения точности и стоимости.",
+      "refutation_source": "преимущество исчезает при контроле простых baseline или приводит к ухудшению качества ответов.",
+      "analysis_status": "secondary_exploratory_prespecified_prediction_and_intervention",
+      "observable_signals": "Held-out prefix predictive gain по proper scoring/calibration и ROC-AUC как дополнительной метрике; затем actual stopping accuracy/cost при одинаковом допустимом риске.",
+      "allowed_conclusions": "Предсказательная полезность E6 отдельно; полная H7 требует также E7 с фактической остановкой и измеренной суммарной стоимостью.",
+      "forbidden_conclusions": "Ретроспективное обрезание оплаченной трассы не экономит inference. Финальная длина, будущие segments/outcomes и результаты probes недоступны онлайн; E6 без E7 не подтверждает полную H7.",
+      "design_choices": {
+        "primary_metric": "Prediction: delta Brier/log-loss сверх prefix baselines. Intervention: total cost reduction at matched answer-loss risk плюс accuracy interval; E6 и E7 отдельно.",
+        "direction": "Положительное преимущество динамики/переноса по заранее выбранному контрасту; прочие effects двусторонние.",
+        "null_model": "Token count, used budget, prefix position, text-only embedding, uncertainty cues; confidence/entropy/leap/stability если API доступно; обычная генерация, fixed budget, random matched cost и length stopping.",
+        "effect_size": "Парная разность в исходных единицах метрики; task-root агрегат с сохранением зависимых повторов. Для H0 — расстояние и интервал относительно equivalence region.",
+        "confidence_interval": "Paired task-root bootstrap; обе модели, все repeats и prefixes одного root ресэмплируются совместно. Уровень, число повторов и hierarchy фиксируются G2; семья — фактор, не множество независимых архитектур.",
+        "significance_plan": "Blocked permutation только после обоснования exchangeability; совместно effect intervals. При отсутствии exchangeability — обоснованная иерархическая оценка, без фиктивного permutation p-value.",
+        "multiple_testing_family": "Отдельные prespecified exploratory contrasts; FDR candidate, не основной Holm family. Повышение до confirmatory только отдельным G2 до данных.",
+        "minimally_meaningful_effect": "Задать по научной полезности и измерительной ошибке, не величине замеченного pilot effect; пока отложено до G2.",
+        "insufficient_power_criterion": "Simulation-based power с dependence roots/repeats/families; ширина CI относительно meaningful effect. Для H4 — число mixed-outcome roots; для rare roles/edges — coverage; незначимость сама по себе не negative evidence."
+      },
+      "selected_decision_references": [
+        "design/SELECTED_DECISIONS.json#/metric_candidates_selected/H7",
+        "design/SELECTED_DECISIONS.json#/statistical_candidates_selected"
+      ]
     }
-  ]
+  ],
+  "revision": "stage1-design-v1"
 }

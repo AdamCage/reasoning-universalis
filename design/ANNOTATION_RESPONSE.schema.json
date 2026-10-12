@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reasoning_universalis_v1/annotation-response-stage1-v1",
+  "title": "Proposed initial-role annotation response; not measurement gold",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "item_id",
+    "primary_role",
+    "secondary_roles",
+    "confidence",
+    "reason_code",
+    "evidence_quotes"
+  ],
+  "properties": {
+    "item_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "primary_role": {
+      "enum": [
+        "problem_formulation",
+        "planning",
+        "deduction_computation",
+        "exploration",
+        "verification",
+        "uncertainty",
+        "backtracking_correction",
+        "conclusion",
+        "ambiguous_other"
+      ]
+    },
+    "secondary_roles": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 3,
+      "items": {
+        "enum": [
+          "problem_formulation",
+          "planning",
+          "deduction_computation",
+          "exploration",
+          "verification",
+          "uncertainty",
+          "backtracking_correction",
+          "conclusion"
+        ]
+      }
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "reason_code": {
+      "enum": [
+        "formulation",
+        "strategy",
+        "new_inference",
+        "alternatives",
+        "check_existing",
+        "insufficient_information",
+        "explicit_revision",
+        "answer_statement",
+        "mixed_operations",
+        "insufficient_context",
+        "boundary_problem",
+        "other"
+      ]
+    },
+    "evidence_quotes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "quote"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          }
+        }
+      }
+    }
+  }
+}
