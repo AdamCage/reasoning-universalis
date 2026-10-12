@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-12",
+  "scope": "stage_zero_only",
+  "technical_validation": "completed",
+  "literature_stage": "accepted_with_source_limitation",
+  "human_decision": "Да, принять полный препринт с этим ограничением",
+  "decision_actor": "user in current chat",
+  "levy_source": "https://arxiv.org/html/2512.12777v1",
+  "limitation": "Journal version not checked; preprint findings not attributed to journal full text",
+  "specification_sha256": "f88b5747a29650e622b155e598b4ce7e820599b12e410f1fc125d28b768e07e7",
+  "independent_scientific_review": false,
+  "confirmatory_protocol_frozen": false,
+  "main_study_started": false,
+  "replacement_proposal": "qwen/qwen3-14b; no paid call and not included in cohort",
+  "billing_confirmed_rub": "0.41653321870992",
+  "error_cost_unreported_attempts": 4,
+  "audit_sha256": "f5e5cc26d034b546946f550e67d365e73155abd7d9b0c64cfc1a3d28a606bcfe"
+}
