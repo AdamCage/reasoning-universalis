@@ -1,0 +1,53 @@
+{
+  "revision": "stage1-preparation-v0.2",
+  "status": "user_selected_design_not_frozen_G2",
+  "approver": "AdamCage",
+  "implementation_target": "cloud_project",
+  "local_scope": "prepare_documents_and_handoff_only",
+  "priority_and_measurement": {
+    "article_scope": "B_all_H1_H7",
+    "ontology": "B_cluster_first_then_functional_interpretation",
+    "task_grouping": "A_conservative_root_groups",
+    "transfer": "A_new_family_and_new_roots",
+    "segmentation": "A_S1_S2_S3",
+    "annotation": "DeepSeek_single_model_multiseed_ensemble_only",
+    "annotation_model": "deepseek/deepseek-v4.1-flash",
+    "annotation_votes_requested": [3, 5],
+    "annotation_seeds": "fixed_and_logged_per_attempt",
+    "no_majority": "repeat_with_different_seed_schedule",
+    "human_validation": "deferred_by_explicit_user_decision",
+    "E0_status": "not_passed",
+    "preliminary_E0_targets": "A_revisable_on_development_never_lowered_to_pass_seen_validation"
+  },
+  "metric_candidates_selected": {
+    "H1": "delta_macro_F1_vs_lexical_baseline_plus_absolute_F1_and_role_recall",
+    "H2": "supported_edge_similarity_matched_volume_plus_required_transfer_prediction_check",
+    "H3": "conditional_transition_distribution_differences_primary_dwell_and_returns_secondary",
+    "H4": "successful_vs_failed_trajectory_similarity_on_comparable_tasks",
+    "H5": "change_in_correct_completion_probability_with_repeated_probes",
+    "H6": "comparable_same_lineage_size_pair_after_admission_else_unresolved",
+    "H7": "heldout_prefix_prediction_then_actual_matched_risk_stopping_for_full_hypothesis",
+    "H0": "practical_equivalence_given_valid_measurement_and_sufficient_precision"
+  },
+  "statistical_candidates_selected": {
+    "direction": "positive_advantage_where_prespecified_otherwise_two_sided",
+    "null": "strong_controls_preserving_frequency_position_length_domain_task_structure",
+    "effect": "paired_difference_in_original_metric_units",
+    "interval": "paired_task_root_bootstrap_with_dependence_preserved",
+    "significance": "blocked_permutation_where_exchangeability_justified_plus_effect_intervals",
+    "multiplicity": "primary_H1_H3_contrasts_Holm_candidate_exploratory_separate_FDR_candidate",
+    "minimum_effect": "scientific_utility_and_measurement_error_not_observed_pilot_effect",
+    "insufficient_power": "simulation_and_interval_width_relative_to_meaningful_effect",
+    "domain_pack": "separate_reasoning_universalis_v1",
+    "identity": "model_provider_available_revision_quantization_unknowns_explicit",
+    "G1": "AdamCage_concrete_commit_and_artifact_hash_manifest"
+  },
+  "scope_resolution": "All H1-H7 belong to the first article; article coverage does not make all contrasts part of the primary H1-H3 statistical family. Final status of each additional contrast is specified before G2.",
+  "annotation_details_still_proposed": {
+    "panel_size": 5,
+    "majority_required": 3,
+    "maximum_rounds": 2,
+    "after_second_no_majority": "ambiguous_unresolved_keep_all_votes",
+    "proposal_status": "engineering_details_to_finalize_in_cloud_stage1_not_claimed_user_selected_numbers"
+  }
+}

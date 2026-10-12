@@ -1,0 +1,13 @@
+{
+  "gate": "G1",
+  "status": "pending",
+  "approver": "AdamCage",
+  "approver_designation": "explicit_user_instruction_repository_owner",
+  "approved_commit": null,
+  "approved_artifact_hashes": null,
+  "approved_at": null,
+  "approval_statement": null,
+  "selected_decisions": "design/SELECTED_DECISIONS.json",
+  "implementation_target": "cloud_project_stage1",
+  "note": "AdamCage selected design directions. Final Stage 1 preregistration and its immutable approval manifest are to be prepared in the cloud; no G1 approval of a concrete final revision is fabricated."
+}

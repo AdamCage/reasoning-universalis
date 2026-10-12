@@ -1,0 +1,66 @@
+{
+  "status": "preparation_manifest_not_G1_approval",
+  "byte_rule": "Exact bytes of staged Git blobs (LF canonical repository content), not working CRLF files",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "git_blob": "5db8f41d33f5e0cf3761c7be105e369f6a74b56e",
+      "sha256_git_blob_bytes": "a16bdd54687e908bf2ee15b7a87c85adcfc0611e970ac69237b6bd2c6fcb7ee7"
+    },
+    {
+      "path": "STAGE1_CLOUD_HANDOFF.md",
+      "git_blob": "16ec5c6c3bca737fdafaf2f6632657e510f51e42",
+      "sha256_git_blob_bytes": "7a59f5467f4489e20f751165b2665ade60fb45a5ae763c0c5cee97d885c72d4f"
+    },
+    {
+      "path": "RESEARCH_PLAN.md",
+      "git_blob": "6fcb4ab49986b059a607a4a357a7847d91202654",
+      "sha256_git_blob_bytes": "b67ed6e6b201ebacc6b9efc7634160f02f8a43fa599c4d70aa5831f4c7ed17ca"
+    },
+    {
+      "path": "design/SELECTED_DECISIONS.json",
+      "git_blob": "9813c93fe1bea81f231ef5a78716091d8327a0d4",
+      "sha256_git_blob_bytes": "c65ff2399bdbbae948984955c0c27d31feefa660b3f7204fc929b4ce1adad069"
+    },
+    {
+      "path": "design/MACHINE_ANNOTATION_PROTOCOL.md",
+      "git_blob": "aa4484c0ca76d5272deb63513a5ab5f9b73cb242",
+      "sha256_git_blob_bytes": "48c8662d33381a98d1eec862c701a885222f24ed692d9217dc907aecd792d623"
+    },
+    {
+      "path": "design/PREREGISTRATION_DRAFT.md",
+      "git_blob": "c70bc2a6658f12ba56e94caa1f336c17e383821b",
+      "sha256_git_blob_bytes": "9c8c14a5ed9196be3e36ff06f197743c5d8d4c4b3692cd17aa4cbac26a848d26"
+    },
+    {
+      "path": "design/hypotheses.json",
+      "git_blob": "26f1ea0375af4777035611282e84fd26b957d7d3",
+      "sha256_git_blob_bytes": "f12e7b87c19069aa15b88b7f925ea1a7bba3732736be733b497bd0847f63a28a"
+    },
+    {
+      "path": "design/ANNOTATION_PROTOCOL.md",
+      "git_blob": "7d0f3d4b546c9c9b3303be6547113a0ac7326d67",
+      "sha256_git_blob_bytes": "328af5b1481a35248fea8b7331d5f973dd503b92df7ce536b3efbb67e0c6766a"
+    },
+    {
+      "path": "design/SPLITS.md",
+      "git_blob": "40d8723aff8de7c96f9afd9b43329af4c82e8e32",
+      "sha256_git_blob_bytes": "b49040762fa7ab9fd713ce3505e2e4fb58bdf24784ecbf5731aec7753c520496"
+    },
+    {
+      "path": "design/E0_PRELIMINARY.json",
+      "git_blob": "c42eff04590f07e05e3ff57e0c1b6587669cec33",
+      "sha256_git_blob_bytes": "9d25e0312f073c8769cb6e24ff0dccce568dfc555ebe8e506b5644db9f272fef"
+    },
+    {
+      "path": "design/G1.json",
+      "git_blob": "19d10a731a02745e5f225826e204a48db96d5795",
+      "sha256_git_blob_bytes": "fc5376c4f50278f36318286a797a2c172215c7ab9f429da51c1f559268a8bfe6"
+    },
+    {
+      "path": "RESEARCH_SPECIFICATION.md",
+      "git_blob": "a9db63e35b389004e0cb5a62ea740dc999927907",
+      "sha256_git_blob_bytes": "a776fbd34d4a0a8172127debe71395f94c8586af187400200bfe847000dd26ee"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 {
   "revision": "e0-development-v0.1",
   "status": "proposed_preliminary_not_G2_not_validated",
+  "current_reference_status": "human_validation_deferred_machine_ensemble_only_E0_not_passed",
+  "human_metrics_status": "not_evaluated_do_not_replace_with_machine_consensus_accuracy",
   "unit_of_resampling": "task_root",
   "double_annotation_fraction_e0": 1.0,
   "minimum_evaluation_segments": 200,
