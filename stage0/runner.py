@@ -1,5 +1,6 @@
 """Serial, journaled RouterAI probes. Failed/unknown attempts remain in the ledger."""
 import argparse
+import base64
 from datetime import datetime, timezone
 from decimal import Decimal
 import hashlib
@@ -67,19 +68,78 @@ def http(path, key=None, body=None, timeout=30):
     started = time.monotonic()
     try:
         with request.build_opener(NoRedirect).open(req, timeout=timeout) as response:
-            status, raw, meta = response.status, response.read().decode('utf-8'), dict(response.headers)
+            status, raw, meta = response.status, response.read(), dict(response.headers)
     except error.HTTPError as exc:
-        status, raw, meta = exc.code, exc.read().decode('utf-8', errors='replace'), dict(exc.headers)
+        status, raw, meta = exc.code, exc.read(), dict(exc.headers)
     except Exception as exc:
         # No exception string: upstream errors may reflect Authorization headers.
         return {'http_status': None, 'raw_body': None, 'network_error': type(exc).__name__,
                 'elapsed_seconds': time.monotonic() - started, 'json': {}}
+    captured = capture_body(raw, key)
+    return {'http_status': status, **captured, 'headers': meta,
+            'elapsed_seconds': time.monotonic() - started}
+
+
+def capture_body(raw, key=None):
+    """Preserve received bytes, except explicitly labelled secret redaction."""
+    original_hash = hashlib.sha256(raw).hexdigest()
+    safe = raw
+    if key:
+        for secret in (key, json.dumps(key)[1:-1], parse.quote(key, safe='')):
+            safe = safe.replace(secret.encode('utf-8'), b'[REDACTED]')
+    result = {'body_base64': base64.b64encode(safe).decode('ascii'),
+              'body_sha256': hashlib.sha256(safe).hexdigest(),
+              'body_storage': 'original_bytes' if safe == raw else 'redacted_bytes_original_not_retained',
+              'received_body_sha256': original_hash, 'raw_body': None, 'json': {}}
     try:
-        parsed = json.loads(raw)
+        result['raw_body'] = safe.decode('utf-8')
+    except UnicodeDecodeError:
+        result['decode_error'] = 'invalid_utf8'
+        return result
+    try:
+        value = json.loads(result['raw_body'])
+        if isinstance(value, dict):
+            result['json'] = value
+        else:
+            result['json_error'] = 'non_object_json'
     except ValueError:
-        parsed = {}
-    return {'http_status': status, 'raw_body': raw, 'headers': meta,
-            'elapsed_seconds': time.monotonic() - started, 'json': parsed}
+        result['json_error'] = 'invalid_json'
+    return result
+
+
+def validate_review(config, review):
+    if review.get('scope') != 'technical_probe_trace_review' or not review.get('models'):
+        raise StopRun('Missing explicit full-trace review')
+    for model, evidence in review['models'].items():
+        if model not in MODELS or evidence.get('full_visible_trace') is not True:
+            raise StopRun('Unapproved trace model')
+        documents = {}
+        for kind, hash_key in (('response', 'sha256'), ('request', 'request_sha256')):
+            if not evidence.get(kind + '_path') or not evidence.get(hash_key):
+                raise StopRun('Review requires both request and response hashes')
+            path = Path(evidence[kind + '_path']).resolve()
+            if not path.is_relative_to(config.root.resolve()) or not path.is_file():
+                raise StopRun('Trace review evidence outside research root or missing')
+            data = path.read_bytes()
+            if hashlib.sha256(data).hexdigest() != evidence[hash_key]:
+                raise StopRun('Trace review evidence changed')
+            documents[kind] = json.loads(data)
+        sent, received = documents['request'], documents['response']
+        body, payload = sent.get('request', {}), received.get('json', {})
+        if sent.get('model') != model or body.get('model') != model or payload.get('model') != model:
+            raise StopRun('Trace review model identity mismatch')
+        if received.get('http_status') != 200 or payload.get('error') is not None or received.get('decode_error') or received.get('network_error'):
+            raise StopRun('Trace review response unsuccessful')
+        if body.get('reasoning', {}).get('enabled') is not True or body.get('include_reasoning') is not True:
+            raise StopRun('Trace review request did not enable reasoning')
+        if not evidence.get('provider') or evidence['provider'] != payload.get('provider'):
+            raise StopRun('Trace review provider mismatch or missing')
+        request_path, response_path = Path(evidence['request_path']), Path(evidence['response_path'])
+        if request_path.parent.resolve() != response_path.parent.resolve() or request_path.name.removesuffix('-request.json') != response_path.name.removesuffix('-response.json'):
+            raise StopRun('Review request and response are not the same recorded attempt')
+        if inspect_trace(payload)['status'] != 'visible_trace_candidate':
+            raise StopRun('Review cannot override missing, summary or truncated trace')
+    return review
 
 
 class Ledger:
@@ -186,6 +246,10 @@ def run(config, tasks=6, review_path=None):
         journal.save('context.json', context)
         journal.save('source-snapshot.json', {str(p): p.read_bytes().decode('utf-8')
                                              for p in sorted(Path('stage0').glob('*.py'))})
+        review = None
+        if review_path is not None:
+            review = validate_review(config, json.loads(Path(review_path).read_text(encoding='utf-8')))
+            journal.save('trace-review.json', review)
         catalog = http('/models')
         journal.save('catalog.json', catalog)
         if catalog['http_status'] != 200:
@@ -226,10 +290,18 @@ def run(config, tasks=6, review_path=None):
                       'budget': dict(reservation)}
             if embedding:
                 result['embedding'] = inspect_embeddings(response['json'], model, len(body['input']))
+                if response['http_status'] != 200 or response.get('decode_error') or response.get('network_error'):
+                    result['embedding'].update(valid=False, reason='unsuccessful HTTP response')
+                result['analysis_usable'] = result['embedding']['valid']
             else:
                 result['trace'] = inspect_trace(response['json'])
                 if response.get('json', {}).get('model') != model:
                     result['trace']['status'] = 'unavailable' if not response.get('json', {}).get('choices') else 'model_mismatch'
+                if response['http_status'] != 200 or response.get('json', {}).get('error') is not None:
+                    result['trace']['status'] = 'unsuccessful_response'
+                if review is not None and result['provider'] != review['models'][model]['provider']:
+                    result['trace']['status'] = 'reviewed_provider_changed'
+                result['analysis_usable'] = result['trace']['status'] == 'visible_trace_candidate'
             observations.append(result)
             journal.save('observations.json', observations)
             print(label, 'HTTP', response['http_status'], flush=True)
@@ -246,31 +318,30 @@ def run(config, tasks=6, review_path=None):
                 call(model, {'model': model, 'input': ['A implies B. A is true.', 'Therefore B is true.']},
                      f'embedding-probe-{i}', True)
         else:
-            review = json.loads(Path(review_path).read_text(encoding='utf-8'))
-            if review.get('scope') != 'technical_probe_trace_review' or not review.get('models'):
-                raise StopRun('Missing explicit full-trace review')
-            journal.save('trace-review.json', review)
             for model, evidence in review['models'].items():
-                if model not in MODELS or not evidence.get('full_visible_trace'):
-                    raise StopRun('Unapproved trace model')
-                raw_path = Path(evidence['response_path']).resolve()
-                if not raw_path.is_relative_to(config.root) or hashlib.sha256(raw_path.read_bytes()).hexdigest() != evidence['sha256']:
-                    raise StopRun('Trace review evidence changed')
-                observed = inspect_trace(json.loads(raw_path.read_text(encoding='utf-8'))['json'])
-                if observed['status'] != 'visible_trace_candidate':
-                    raise StopRun('Review cannot override missing, summary or truncated trace')
                 for i, task in enumerate(manifest()[:tasks]):
                     result = call(model, chat_body(config, model, task['prompt'], True), f'pilot-{model.replace("/", "_")}-{i}')
                     result['task_id'] = task['id']
                     result['verification'] = verify_answer(task, result['trace']['answer'])
                     result['segments'] = segment(result['trace']['trace'])
-                    result['usable_trace'] = result['trace']['status'] == 'visible_trace_candidate'
+                    result['usable_trace'] = result['analysis_usable'] and bool(result['segments'])
                     journal.save('observations.json', observations)
                     if result['usable_trace']:
                         for j, embedder in enumerate(EMBEDDERS):
                             call(embedder, {'model': embedder, 'input': result['segments']},
                                  f'pilot-embedding-{model.replace("/", "_")}-{i}-{j}', True)
+        failures = [r['label'] for r in observations if 'embedding' in r and not r['embedding']['valid']]
+        if review is not None:
+            failures += [r['label'] for r in observations if 'task_id' in r and not r['usable_trace']]
+            expected_embeddings = len(review['models']) * tasks * len(EMBEDDERS)
+            if sum('embedding' in r for r in observations) != expected_embeddings:
+                failures.append('missing_required_pilot_embeddings')
+        elif not any(r['analysis_usable'] for r in observations if 'trace' in r and r['request']['reasoning']['enabled']):
+            failures.append('no_visible_trace_candidate')
         summary = {'run_id': run_id, 'directory': str(directory), 'observations': observations,
+                   'process_completed': True, 'technical_criteria_met': not failures,
+                   'failed_requirements': failures,
+                   'data_usability': 'per_observation_analysis_usable_requires_scientific_validation',
                    'budget_cap_rub': str(config.budget), 'committed_rub': str(ledger.committed),
                    'reported_cost_rub': str(sum((Decimal(r['reported_cost_rub']) for r in ledger.rows
                                                if r['reported_cost_rub'] is not None), Decimal(0))),
@@ -299,7 +370,10 @@ def main():
     try:
         config = Config.load(args.env)
         if args.live:
-            run(config, args.tasks, args.review)
+            summary = run(config, args.tasks, args.review)
+            if not summary['technical_criteria_met']:
+                print('Process completed; mandatory technical criteria failed', file=sys.stderr)
+                return 1
         else:
             print('Configuration valid; no network calls. Budget:', config.budget, 'RUB')
     except (ConfigurationError, StopRun) as exc:

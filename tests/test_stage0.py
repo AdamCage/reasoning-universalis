@@ -72,11 +72,11 @@ class EvidenceTests(unittest.TestCase):
         self.assertNotEqual(x['status'], 'visible_trace_candidate')
 
     def test_dimensions_finite_and_indices(self):
-        value = {'data': [{'index': 0, 'embedding': [0.1] * 1024}]}
+        value = {'model': 'BAAI/bge-m3', 'data': [{'index': 0, 'embedding': [0.1] * 1024}]}
         self.assertTrue(inspect_embeddings(value, 'baai/bge-m3', 1)['valid'])
         value['data'][0]['embedding'][3] = float('nan')
         self.assertFalse(inspect_embeddings(value, 'baai/bge-m3', 1)['valid'])
-        value = {'data': [{'index': 0, 'embedding': [0.1] * 4097}]}
+        value = {'model': 'qwen/qwen3-embedding-8b', 'data': [{'index': 0, 'embedding': [0.1] * 4097}]}
         self.assertFalse(inspect_embeddings(value, 'qwen/qwen3-embedding-8b', 1)['valid'])
 
     def test_secret_redacted_in_errors_and_raw_body(self):
