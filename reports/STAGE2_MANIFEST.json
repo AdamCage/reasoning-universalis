@@ -1,0 +1,132 @@
+{
+  "payload": {
+    "revision": "stage2-development-v1",
+    "status": "implementation_ready_for_review_not_E0",
+    "G1_approved_commit": "68fc12da05000674e3d770a07e449c37a4fbc119",
+    "base_commit": "380d9f03126dedcb03d1cdc2597ea9dfca4f2389",
+    "E0": "not_passed",
+    "G2": "not_frozen",
+    "files": [
+      {
+        "path": "evidence/stage2-2026-10-14.zip",
+        "sha256": "74b0f24a80955af6475831532db83b62b79b671413aba3ca2b12d4686b4327fe",
+        "bytes": 484814
+      },
+      {
+        "path": "reasoning_universalis_v1/__init__.py",
+        "sha256": "3f4697946ccac7356a3ff0e4ceb3e747615f6c69c26a7b16546aa00166a118b7",
+        "bytes": 12079
+      },
+      {
+        "path": "reasoning_universalis_v1/capture.py",
+        "sha256": "e7b84cc97579db364443b1ab7630fc92c28a7521f79d2e2ec716a696d12c8829",
+        "bytes": 975
+      },
+      {
+        "path": "reasoning_universalis_v1/inventory.py",
+        "sha256": "62a76eb77cee8721f6b7e5633274834ee16937e5c72387a64ecf7c487656ee99",
+        "bytes": 12570
+      },
+      {
+        "path": "reasoning_universalis_v1/programs.py",
+        "sha256": "329a5ee68b714252883b5b415ff87e3a58657dd4048a4c9a9c0c32ee383bf829",
+        "bytes": 2612
+      },
+      {
+        "path": "reports/STAGE2_REPORT.md",
+        "sha256": "a3cdc4c9341a160224c4cfb05e71edeaaa74ca7b3e7d0a4ce1d9606446468da8",
+        "bytes": 12345
+      },
+      {
+        "path": "stage2/README.md",
+        "sha256": "23e5f2cbaa8e0f8f36fda303519605e3cd88ad21b5a01ddeec7e630cfc5fd053",
+        "bytes": 9065
+      },
+      {
+        "path": "stage2/__init__.py",
+        "sha256": "4c4d8dcea5370a11dc331b24af5348393e199507f0bf7fa250d275d1c9b6b756",
+        "bytes": 77
+      },
+      {
+        "path": "stage2/annotation.py",
+        "sha256": "05edfcd005ffd01e9c52739c7ef59b6455636379e0dc48243ff7f1ac77c339b6",
+        "bytes": 4113
+      },
+      {
+        "path": "stage2/datasets.py",
+        "sha256": "a87f03b09ff45a68a3bce352d47db8ceb47273cccb2e887eee27388da77fc232",
+        "bytes": 5945
+      },
+      {
+        "path": "stage2/discovery.py",
+        "sha256": "a5bc915b36598d3cb80a713d0dadf4595e80c357f58dc7980f8afbb5a2e12f66",
+        "bytes": 7816
+      },
+      {
+        "path": "stage2/episteme_bridge.py",
+        "sha256": "eb20d970dad723315e2a0c8cb6aa6766223e05cfe3d2abca934a306debe7af4b",
+        "bytes": 6341
+      },
+      {
+        "path": "stage2/evidence.py",
+        "sha256": "dfb10f6992dc6a89ff7ab2f711bf6c57054af2af2d09c12f4adb1b8dd0529d68",
+        "bytes": 6723
+      },
+      {
+        "path": "stage2/historical.py",
+        "sha256": "6c85328f9be8ddc8df67037f98a046ceae0e1555b65e724d58507f0a28c1fb8f",
+        "bytes": 9411
+      },
+      {
+        "path": "stage2/inference.py",
+        "sha256": "77ff087c35511c288189fd98245a0818a2d3cb26043a4ae3de0dc9f05388bb77",
+        "bytes": 4905
+      },
+      {
+        "path": "stage2/observations.py",
+        "sha256": "9400a2e5a46a6fb338980cd578a03e331d130d5829ea903c36249d72a33a89d5",
+        "bytes": 8040
+      },
+      {
+        "path": "stage2/representations.py",
+        "sha256": "e22a81ef55568b7d7d25f51c5c65108069e642237f90a67e22bd3c8c79eeab15",
+        "bytes": 5147
+      },
+      {
+        "path": "stage2/segmentation.py",
+        "sha256": "75cbebd970a312dc001921aae703b65a56908d2b58be088028396f1fc0b8aef4",
+        "bytes": 4027
+      },
+      {
+        "path": "stage2/tokenization.py",
+        "sha256": "2fb2a1f24d6cad61107a4f577947ca066360a06a64a647d2e68b1c00c868e5ec",
+        "bytes": 2490
+      },
+      {
+        "path": "tests/test_stage2_pack.py",
+        "sha256": "00080b3ad2870dffcacf0eedbe9254a3c0010354a22ea76808a900b9a9d20b13",
+        "bytes": 12208
+      },
+      {
+        "path": "tests/test_stage2_pipeline.py",
+        "sha256": "7a04fa39ec37b5741c4190fc9711196f0f36d466a6b5484f3f91adc19aa186e2",
+        "bytes": 10198
+      }
+    ],
+    "tests": {
+      "root": {
+        "run": 61,
+        "passed": 61
+      },
+      "kernel": {
+        "run": 711,
+        "skipped": 1,
+        "failed": 0
+      }
+    },
+    "paid_stage2_calls": 0,
+    "pack_code_digest": "e18d07054a2e45282effc1e0007aabd3269a57ec54e2cea9c82725fadf88dd28",
+    "evidence_sha256": "74b0f24a80955af6475831532db83b62b79b671413aba3ca2b12d4686b4327fe"
+  },
+  "payload_sha256": "03932e8f90dd3a8fa1b7d22a42c1cd0527585e70a158a6f1fb6decba39e0dab8"
+}
