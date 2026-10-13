@@ -1,17 +1,59 @@
 {
   "gate": "G1",
-  "status": "pending",
+  "status": "approved",
   "approver": "AdamCage",
   "approver_designation": "explicit_user_instruction_repository_owner",
-  "approved_commit": null,
-  "approved_artifact_hashes": null,
-  "approved_at": null,
-  "approval_statement": null,
+  "approved_commit": "68fc12da05000674e3d770a07e449c37a4fbc119",
+  "approved_artifact_hashes": {
+    "payload_sha256": "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963",
+    "manifest_sha256_git_blob_bytes": "9be935db4575e6d96cdbd8b7468dbb95658b22dd15760d255744e019c00ebb40",
+    "manifest_reference": "68fc12da05000674e3d770a07e449c37a4fbc119:design/STAGE1_APPROVAL_MANIFEST.json",
+    "question_and_ontology_sources": {
+      "RESEARCH_SPECIFICATION.md": {
+        "git_blob": "a9db63e35b389004e0cb5a62ea740dc999927907",
+        "sha256_git_blob_bytes": "a776fbd34d4a0a8172127debe71395f94c8586af187400200bfe847000dd26ee"
+      },
+      "design/PREREGISTRATION_DRAFT.md": {
+        "git_blob": "584c483737273370cf250e19259d3f0d1ebb5cca",
+        "sha256_git_blob_bytes": "6e37ed459a6d4a5300f0a795d3f08f8bd2131d6a994e92f57e06515184124ea1"
+      },
+      "design/hypotheses.json": {
+        "git_blob": "bc825598b9a433cde8d8ae6d55744986fd98323e",
+        "sha256_git_blob_bytes": "b2de71866a4a6d69c8f93a584879a4d5e73af773b86e739568734616b28971f5"
+      },
+      "design/SELECTED_DECISIONS.json": {
+        "git_blob": "9813c93fe1bea81f231ef5a78716091d8327a0d4",
+        "sha256_git_blob_bytes": "c65ff2399bdbbae948984955c0c27d31feefa660b3f7204fc929b4ce1adad069"
+      }
+    }
+  },
+  "approved_at": "2026-10-14T00:31:12+03:00",
+  "approval_statement": "ок утверждаю",
   "selected_decisions": "design/SELECTED_DECISIONS.json",
   "implementation_target": "cloud_project_stage1",
-  "note": "Конкретный Stage 1 пакет подготовлен в облаке для ревью; выбранные направления и разрешение начать работу не являются утверждением. Receipt G1 исключён из payload manifest во избежание circular approval hash; при явном approval записать exact snapshot commit и manifest digest.",
+  "note": "AdamCage явно утвердил предъявленный пакет G1 v1.1 в чате. Receipt связывает неизменённый snapshot 68fc12d и payload; исторические pending записи внутри утверждённого пакета сохранены. Stage 1 принят как дизайн. G2/G3/G4 и E0 остаются отдельными невыполненными условиями; запись не разрешает платный запуск или переход к следующим этапам и не создаёт EpistemeOS scientific claim.",
   "requested_revision": "stage1-design-v1.1",
   "requested_manifest": "design/STAGE1_APPROVAL_MANIFEST.json",
   "approval_instructions": "design/G1_APPROVAL.md",
-  "requested_payload_sha256": "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963"
+  "requested_payload_sha256": "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963",
+  "approval_reference": {
+    "source": "current_codex_chat",
+    "user_message_exact": "ок утверждаю",
+    "context": "Ответ на предъявленный пакет G1 v1.1 в PR #4, commit 68fc12d, payload SHA-256 04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963. Перед ответом пользователь подтвердил закрытие P2 и отсутствие новых замечаний; ассистент запросил явное утверждение этого commit и payload.",
+    "message_id": null
+  },
+  "approval_time_basis": "Время фиксации решения по UTC clock, переведённое в Europe/Istanbul; timestamp исходного сообщения интерфейсом не предоставлен.",
+  "approval_scope": [
+    "research_question",
+    "initial_hypothesis_ontology_H0_H7",
+    "stage1_design_package_v1.1"
+  ],
+  "stage1_status": "accepted",
+  "remaining_gates": {
+    "E0": "not_passed",
+    "human_validation": "deferred",
+    "G2": "not_frozen",
+    "G3": "not_completed",
+    "G4": "not_completed"
+  }
 }
