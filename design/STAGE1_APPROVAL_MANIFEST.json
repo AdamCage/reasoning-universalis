@@ -1,6 +1,6 @@
 {
   "payload": {
-    "revision": "stage1-design-v1",
+    "revision": "stage1-design-v1.1",
     "status": "review_ready_G1_pending_not_G2",
     "approver": "AdamCage",
     "baseline_commit": "83da1ca355c767f67d4558d5735078f443037e28",
@@ -57,9 +57,9 @@
       },
       {
         "path": "design/DOMAIN_PACK_DESIGN.md",
-        "bytes": 14669,
-        "git_blob": "ae20a70975ade5a629a812eea7ca0f3834512bf2",
-        "sha256_git_blob_bytes": "264b4a7cc35cad1101c675d77c5afbce8b587a5e83b70130a16966d0c90d5d34"
+        "bytes": 15004,
+        "git_blob": "bb8d319ecd25ebf03b3bdbd24f8e2df92653ec81",
+        "sha256_git_blob_bytes": "f15196b2c0d1a455d929fd7bb233c21b3b9fbf38c78f17fac2853e702b11c586"
       },
       {
         "path": "design/E0_PRELIMINARY.json",
@@ -69,9 +69,9 @@
       },
       {
         "path": "design/G1_APPROVAL.md",
-        "bytes": 6422,
-        "git_blob": "3892039a934b0c8180e4fe613df12951a31ca0b8",
-        "sha256_git_blob_bytes": "f09233d16ad1d4d9a355dd62ed82dea11176f81f5844174bce7b66a560d11f1a"
+        "bytes": 6426,
+        "git_blob": "11b1de2dd7dfe70457732cde67470d2a1a1f6b14",
+        "sha256_git_blob_bytes": "f5181531b0a03185f8cd3330887999ea0335e5fbe8e5143672b8db3f5dc085a0"
       },
       {
         "path": "design/MACHINE_ANNOTATION_PROTOCOL.md",
@@ -87,9 +87,9 @@
       },
       {
         "path": "design/PREREGISTRATION_DRAFT.md",
-        "bytes": 63412,
-        "git_blob": "a68fccf07d8660800cd0e93b2cbe4207930a2e16",
-        "sha256_git_blob_bytes": "38e5c6ca0bdc531a8f8ac5db84fd48f53f0e874ebcb462ef1dc9708acbdcb41a"
+        "bytes": 64120,
+        "git_blob": "584c483737273370cf250e19259d3f0d1ebb5cca",
+        "sha256_git_blob_bytes": "6e37ed459a6d4a5300f0a795d3f08f8bd2131d6a994e92f57e06515184124ea1"
       },
       {
         "path": "design/SELECTED_DECISIONS.json",
@@ -111,9 +111,9 @@
       },
       {
         "path": "design/STATE_DISCOVERY.md",
-        "bytes": 10352,
-        "git_blob": "ab311cf290083494d7fdbac190642e04fbbcb4a1",
-        "sha256_git_blob_bytes": "ba12b79486a3a9a1badc97f50e8aa1337085960b14ff9037621534ab5e28438d"
+        "bytes": 13261,
+        "git_blob": "36275e400c22cddd3de8d21b31f530208488769e",
+        "sha256_git_blob_bytes": "149515bdf68af328d0be31c3228ad31dd69e6c504e7a82b4e94a2b4a57d3a07d"
       },
       {
         "path": "design/historical-development-manifest.json",
@@ -123,9 +123,9 @@
       },
       {
         "path": "design/hypotheses.json",
-        "bytes": 59647,
-        "git_blob": "cddfd7704210a4750210ca7b234c43b31fbca15b",
-        "sha256_git_blob_bytes": "c7780c88f8718e7a9e07ce106754e02126a03a3f8650c3a6656f6f1416be3df2"
+        "bytes": 59649,
+        "git_blob": "bc825598b9a433cde8d8ae6d55744986fd98323e",
+        "sha256_git_blob_bytes": "b2de71866a4a6d69c8f93a584879a4d5e73af773b86e739568734616b28971f5"
       },
       {
         "path": "design/prompts/cluster-role-v1.md",
@@ -165,9 +165,9 @@
       },
       {
         "path": "reports/STAGE1_REPORT.md",
-        "bytes": 11716,
-        "git_blob": "d1a7bc92a0b50d101860b10ebe53f17be9acf3e7",
-        "sha256_git_blob_bytes": "ce98d5bd7409ab0f0918732ccf35700899cca69fa1edbb5b3dea938bdd08864f"
+        "bytes": 13668,
+        "git_blob": "5dc31379c4e0af8f036345a71989cfefbdc75f7b",
+        "sha256_git_blob_bytes": "9be80893cdf9d4cf4c44fb52136d7383a36ef0727fa40a59b4d44b7be6b0dc73"
       },
       {
         "path": "tests/test_stage1_package.py",
@@ -175,7 +175,12 @@
         "git_blob": "1d9f39d1a49f79d90685f7e33188d74b8729f363",
         "sha256_git_blob_bytes": "1ea39e595682ae8fd34880ef11308c9e2a35b4df414c1ae974258d91edd896fd"
       }
-    ]
+    ],
+    "supersedes": {
+      "review_snapshot_commit": "fcacadea1016b926badd10127358a4f839961ba5",
+      "payload_sha256": "75db392bff348bb0d2a87bf827c6b6863da43ab3de7a61e5b67276b53376ee46",
+      "reason": "P2: distinguish same-segmentation representation matching from cross-segmentation trace/root comparisons"
+    }
   },
-  "payload_sha256": "75db392bff348bb0d2a87bf827c6b6863da43ab3de7a61e5b67276b53376ee46"
+  "payload_sha256": "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963"
 }

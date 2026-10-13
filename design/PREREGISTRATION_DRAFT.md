@@ -1,4 +1,4 @@
-# Preregistration — Stage 1, версия v1
+# Preregistration — Stage 1, версия v1.1
 
 **Дизайн подготовлен для ревью AdamCage; G1 pending, G2 не заморожен.** Первая статья охватывает H1–H7 по `SELECTED_DECISIONS.json`. Это охват вопросов, не обещание положительных результатов или выполнение экспериментов. Ни модели, ни разметчик не вызываются на Stage 1.
 
@@ -373,7 +373,7 @@ Cluster-first, nested grouped selection, выбор K, training-only alignment �
 
 Неудачи, missing raw, truncation, seed unsupported, route drift, unknown identity и parsing failures сохраняются по попыткам; заранее различать technical failure и scientific outcome. Анализ пригодных traces сопровождается denominator всех attempts и sensitivity к exclusions. Для H4 power считается по mixed-outcome roots, редким ролям и transitions; исключение насыщенных tasks по закрытым outcomes запрещено. Для H5 repeated probes, prefixes/templates и leakage audits фиксируются до соответствующего теста; методы извлечения ответа — отдельные условия. Для H7 online classifier получает только текущий prefix/used tokens/past history, даже Contextual representation не получает будущий текст. Actual cancellation/billing проверяются отдельно; суммарная цена включает embeddings, разметку, classifier, probes, re-prefill и latency.
 
-Когорта пока кандидатная: [PILOT_COHORT_ADMISSION.md](PILOT_COHORT_ADMISSION.md); новая allowlist или замена модели не выполняются Stage 1. Model × provider × available revision/quantization задаёт условие; неизвестные параметры записываются как unknown, не выдумываются. Два разрешённых эмбеддера — BGE-M3 и Qwen3-Embedding-8B; 35 исторических alias vectors не допущены автоматически. Все paired comparisons используют общий набор допущенных segment IDs.
+Когорта пока кандидатная: [PILOT_COHORT_ADMISSION.md](PILOT_COHORT_ADMISSION.md); новая allowlist или замена модели не выполняются Stage 1. Model × provider × available revision/quantization задаёт условие; неизвестные параметры записываются как unknown, не выдумываются. Два разрешённых эмбеддера — BGE-M3 и Qwen3-Embedding-8B; 35 исторических alias vectors не допущены автоматически. При фиксированной сегментации/revision paired comparisons представлений используют общий набор допущенных segment IDs с одинаковыми текстами/границами. Между S1/S2/S3 paired comparisons используют общие исходные traces/runs с совпадающими raw/trace digests и task roots; собственные segments, labels и native metrics каждой конфигурации сохраняются. Правила нормирования и необязательной координатной проекции фиксируются до validation/test по STATE_DISCOVERY.md; совпадение segment IDs разных сегментаций не требуется.
 
 ## Совместное правило универсальности (§11.4)
 

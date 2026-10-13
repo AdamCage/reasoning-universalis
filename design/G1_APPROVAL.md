@@ -1,4 +1,4 @@
-# Конкретный пакет G1 — Stage 1 v1
+# Конкретный пакет G1 — Stage 1 v1.1
 
 Утверждающий: **AdamCage**, владелец репозитория, назначен пользователем. Статус: **дизайн подготовлен, Stage 1 ожидает утверждения**. Основание требования explicit approval: `STAGE1_CLOUD_HANDOFF.md`, работы 7–8 и критерий завершения; `AGENTS.md` отличает выбор направлений от утверждения версии; §7.9 плана и §13.7 спецификации требуют имени и immutable hash. Настоящее разрешение начать Stage 1 не является approval этой новой версии.
 
@@ -14,7 +14,7 @@
 
 Из корня: `python3 design/verify_stage1.py`; для неизменяемого Git snapshot: `python3 design/verify_stage1.py --commit <snapshot_commit>`. Проверка read-only, без env и сети. `--commit` должен называть commit, содержащий предъявленный manifest, а не baseline. Для независимой проверки скрипт должен происходить из доверенной/reviewed версии; green exit не является scientific approval.
 
-AdamCage утверждает **названные snapshot commit и payload digest** явным сообщением/решением, например: «Утверждаю G1 для Stage 1 v1, commit <snapshot_commit>, payload SHA-256 <payload_sha256>. Утверждаю научный вопрос и исходную онтологию гипотез в этом пакете; это не G2, не разрешение платного запуска и не scientific review G3». Допустимо утверждение только вопроса/онтологии с замечаниями к остальному дизайну — тогда отдельно записываются scope/замечания и Stage 1 acceptance не выдаётся автоматически.
+AdamCage утверждает **названные snapshot commit и payload digest** явным сообщением/решением, например: «Утверждаю G1 для Stage 1 v1.1, commit <snapshot_commit>, payload SHA-256 <payload_sha256>. Утверждаю научный вопрос и исходную онтологию гипотез в этом пакете; это не G2, не разрешение платного запуска и не scientific review G3». Допустимо утверждение только вопроса/онтологии с замечаниями к остальному дизайну — тогда отдельно записываются scope/замечания и Stage 1 acceptance не выдаётся автоматически.
 
 После explicit решения повторно проверить exact snapshot и manifest. В **новом** commit записать `G1.json`: status approved, approver AdamCage, approved_commit=<snapshot_commit>, approved_artifact_hashes=<payload_sha256 и source/ontology manifest references>, approved_at с timezone, дословный approval_statement и reference решения. Нельзя подставить текущую дату/имя как свидетельство уже совершённого approval. Если версия изменена по замечаниям, создать новый payload manifest/snapshot и предъявить заново.
 

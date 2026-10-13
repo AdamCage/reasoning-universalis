@@ -10,8 +10,8 @@
   "selected_decisions": "design/SELECTED_DECISIONS.json",
   "implementation_target": "cloud_project_stage1",
   "note": "Конкретный Stage 1 пакет подготовлен в облаке для ревью; выбранные направления и разрешение начать работу не являются утверждением. Receipt G1 исключён из payload manifest во избежание circular approval hash; при явном approval записать exact snapshot commit и manifest digest.",
-  "requested_revision": "stage1-design-v1",
+  "requested_revision": "stage1-design-v1.1",
   "requested_manifest": "design/STAGE1_APPROVAL_MANIFEST.json",
   "approval_instructions": "design/G1_APPROVAL.md",
-  "requested_payload_sha256": "75db392bff348bb0d2a87bf827c6b6863da43ab3de7a61e5b67276b53376ee46"
+  "requested_payload_sha256": "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963"
 }

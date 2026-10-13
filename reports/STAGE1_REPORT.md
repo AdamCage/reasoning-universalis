@@ -1,6 +1,6 @@
 # STAGE1 — пакет научного дизайна для ревью
 
-12 октября 2026, версия `stage1-design-v1`, baseline `83da1ca355c767f67d4558d5735078f443037e28` (`origin/main` при передаче).
+Исходный пакет подготовлен 12 октября 2026; после замечания P2 обновлён 14 октября 2026 до `stage1-design-v1.1`. Baseline `83da1ca355c767f67d4558d5735078f443037e28` (`origin/main` при передаче).
 
 **Дизайн подготовлен, Stage 1 ожидает утверждения AdamCage.** G1 pending, G2/G3/G4 не выполнены; E0 не пройден. Выполнена документальная реализация §7 RESEARCH_PLAN, не измерительный Stage 2, научный пилот или основной корпус. Новых вызовов RouterAI и платной разметки нет. H0–H7, научная спецификация и EpistemeOS сохранены.
 
@@ -49,6 +49,12 @@
 - `python3 -m measurement.demo`: 6 historical traces, 95 S2 segments, manifest `3b5ec259210d90f41ee3f6f0009d2daa1c5ce4eb83bcc75286758e30c4e8ee9a`, scientific_approved=false, token_alignment_complete=false. Это проверка прежнего offline import, не E0.
 - `python3 -m stage0.evidence --verify evidence/stage0-2026-10-12.zip`: 32 paid attempts, 6/6, 105 old segments, 210 vectors, 175 identity-verified. Два `parasail-bge-m3` ответа (35 vectors) остаются inadmissible; 28 confirmed receipts = 0.41653321870992 RUB, 4 costs unknown. Алиасы и unknown costs не «исправлены» документами.
 - `git diff --check`: без ошибок. Diff от baseline не меняет `RESEARCH_SPECIFICATION.md`, `RESEARCH_PLAN.md`, `SELECTED_DECISIONS.json`, `E0_PRELIMINARY.json`, исходники/тесты/README/AGENTS EpistemeOS или stage0/measurement runtime. Нет отслеживаемого `.env`; Stage 1 verifier не читает секреты. Не добавлены API headers/credentials. Интеграционные тесты ядра не требуются: его семантика/код не менялись.
+
+## Ответ на P2 по ревью `fcacade`
+
+Уточнено сопоставление разных сегментаций в STATE_DISCOVERY.md: одинаковые admitted segment IDs/texts/boundaries требуются для сравнения представлений только при фиксированной сегментации/revision. Между S1/S2/S3 фиксируется общий набор исходных traces/runs с совпадающими raw-response/visible-trace digests и task roots; собственные границы, метки, fit/mapping и native metrics сохраняются. Сравнение парное по traces/roots, нормирование и необязательная overlap projection выбираются на development и замораживаются до независимой оценки. Отсутствующая S1 не заменяется пересечением несовместимых IDs: тройной контраст unavailable с раскрытием coverage. Согласованы preregistration и описание representation schema; подготовлен новый approval manifest и pending G1 request для v1.1. Прежний snapshot `fcacade` остаётся в истории, новый требует version-bound approval AdamCage; G1 pending и E0 not passed.
+
+После правки повторены 43/43 tests, integrity verifier рабочего пакета и точного нового Git snapshot, offline demo, Stage 0 audit и diff checks. Новые научные/сетевые эксперименты не проводились; замечание исправлено на уровне дизайна, метод сопоставления ещё не реализован.
 
 ## Риски, открытые решения и порядок продолжения
 
