@@ -1,0 +1,73 @@
+{
+  "stage": 2,
+  "status": "accepted",
+  "accepted_on": "2026-10-18",
+  "implementation_commit": "62b9cd5c1ecad8ee6711cc354c25fa8ea67ce07f",
+  "implementation_manifest": "reports/STAGE2_MANIFEST.json",
+  "implementation_payload_sha256": "03932e8f90dd3a8fa1b7d22a42c1cd0527585e70a158a6f1fb6decba39e0dab8",
+  "implementation_status_inside_payload": "implementation_ready_for_review_not_E0",
+  "evidence_path": "evidence/stage2-2026-10-14.zip",
+  "evidence_sha256": "74b0f24a80955af6475831532db83b62b79b671413aba3ca2b12d4686b4327fe",
+  "evidence_bytes": 484814,
+  "G1_approved_commit": "68fc12da05000674e3d770a07e449c37a4fbc119",
+  "G1_payload_sha256": "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963",
+  "E0": "not_passed",
+  "human_validation": "deferred",
+  "G2": "not_frozen",
+  "G3": "not_completed",
+  "G4": "not_completed",
+  "scientific_validity": "not_assessed",
+  "paid_stage2_calls": 0,
+  "stage3_started": false,
+  "pilot_section_5_5_started": false,
+  "live_models_on_stage2": [
+    {
+      "model_id": "openai/gpt-oss-20b",
+      "license": "Apache-2.0",
+      "full_trace_obtained_at_harness_stage0": true,
+      "new_live_call_on_stage2": false,
+      "source": "historical Stage 0 ZIP imported offline"
+    }
+  ],
+  "nemotron_license": "NVIDIA Nemotron Open Model License",
+  "nemotron_called": false,
+  "criteria_met": {
+    "1": "D1–D4 generators and independent non-model verifiers",
+    "2": "Identity, Inference, Raw observations, Outcome, Provenance on each attempt",
+    "3": "Parser failure retains raw response bytes",
+    "4": "Failed, incomplete, repeated and contradictory text stays in the record",
+    "5": "Separate S1, S2 and S3 segmenters",
+    "6": "Segment text, character bounds, token intervals, position, progress, length, version",
+    "7": "No edge from one trajectory into another",
+    "8": "Semantic adapters limited to BGE-M3 and Qwen3-Embedding-8B; TF-IDF calls no LLM",
+    "9": "Local and Contextual are distinct measurement configurations",
+    "10": "Historical GPT-OSS trace restores statistic, feature, segment, raw response, run, model, task and protocol",
+    "11": "reasoning_universalis_v1 passes the kernel contract; risen_universalis_v1 remains the smoke pack",
+    "12": "Dataset, task, task-set, split, method, protocol, run and raw digests stay distinct",
+    "13": "Automatic tests cover every §13.8 property",
+    "14": "Role protocol has definitions, examples, ambiguous/other, adjudication, agreement measurement and a version log; main-corpus double-annotation fraction and agreement threshold stay deferred to stage 4",
+    "15": "GPT-OSS-20B license and Stage 0 full-trace admission are recorded; Nemotron was not called and is named under the NVIDIA Nemotron Open Model License"
+  },
+  "reconfirmed_on": "2026-10-18",
+  "reconfirmed_checks": {
+    "root_unittest_before_acceptance_guards": {"ran": 61, "passed": 61, "failed": 0},
+    "episteme_kernel_unittest": {"ran": 711, "skipped": 1, "failed": 0},
+    "evidence_verify": {"attempts": 6, "segments": 144, "S1": 10, "S2": 95, "S3": 39, "network_calls": 0}
+  },
+  "unchanged_locks": {
+    "RESEARCH_SPECIFICATION.md": {
+      "git_blob": "a9db63e35b389004e0cb5a62ea740dc999927907",
+      "sha256": "a776fbd34d4a0a8172127debe71395f94c8586af187400200bfe847000dd26ee"
+    },
+    "EpistemeOS/README.md": {
+      "sha256": "073d75ec59d0ca34497fa09f2e11e89e5d24da954c7d5285e5749461a010a650"
+    },
+    "EpistemeOS/AGENTS.md": {
+      "sha256": "92010715ae0816302a2f2056e9aaf0cceb91290a1c47f4dd17e46765d3e7cd7b"
+    },
+    "reports/MODEL_LICENSES.md": {
+      "sha256": "c0f733b1395933858879e390786040c0781c306d69e137b2194f69ffe4d26847"
+    }
+  },
+  "closure_basis": "Repository owner instructed the cloud agent to finish Stage 2. Acceptance means all fifteen RESEARCH_PLAN §8 criteria hold on the unchanged implementation payload. It does not pass E0, freeze G2, or authorize the §5.5 pilot."
+}
