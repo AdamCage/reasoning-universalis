@@ -1,6 +1,6 @@
 # Reasoning Universalis
 
-**Этап 2 принят как измерительный pipeline.** [Приёмка](reports/STAGE2_ACCEPTANCE.md) связывает пятнадцать критериев §8 с неизменным payload `62b9cd5`. G1 v1.1 утверждён AdamCage, snapshot `68fc12d`: [запись](design/G1.json), [итог этапа 1](reports/STAGE1_ACCEPTANCE.md). Первая статья охватывает H1–H7, онтология cluster-first, разметка — ансамбль DeepSeek с фиксированными seeds. Человеческая валидация отложена, E0 не пройден. [STAGE1_CLOUD_HANDOFF.md](STAGE1_CLOUD_HANDOFF.md) — историческая инструкция этапа 1.
+**К этапу 3 можно переходить: список пилота §5.5 зарегистрирован, живой прогон не начат.** [Готовность](reports/STAGE3_READINESS.md) и [roster](design/PILOT_SECTION_5_5_ROSTER.json) фиксируют 200 задач вне confirmatory. [Этап 2](reports/STAGE2_ACCEPTANCE.md) принят, payload `62b9cd5`. G1 v1.1 утверждён AdamCage, snapshot `68fc12d`. Человеческая валидация отложена, E0 не пройден. [STAGE1_CLOUD_HANDOFF.md](STAGE1_CLOUD_HANDOFF.md) — историческая инструкция этапа 1.
 
 Исследование того, какая часть структуры и динамики машинного рассуждения сохраняется при смене модели, а какая задаётся архитектурой, обучением, задачей и способом измерения.
 
@@ -47,7 +47,9 @@ Cursor — единственный агентный харнес. Отдель�
 
 ## Статус
 
-Этап 2 принят 18 октября 2026: [приёмка](reports/STAGE2_ACCEPTANCE.md), [матрица реализации](reports/STAGE2_REPORT.md), [воспроизведение](stage2/README.md). Standalone DomainPack прошёл kernel workflow на 6 реальных исторических GPT-OSS трассах; новых API вызовов нет. E0 не пройден, G2 не заморожен. Пилот §5.5 не начат.
+К живому этапу 3 подготовлен вход: [готовность](reports/STAGE3_READINESS.md), [зарегистрированный список §5.5](design/PILOT_SECTION_5_5_ROSTER.json). 200 задач исключены из confirmatory. Вызовов моделей для этого списка нет. E0 не пройден, G2 не заморожен.
+
+Этап 2 принят 18 октября 2026: [приёмка](reports/STAGE2_ACCEPTANCE.md), [матрица реализации](reports/STAGE2_REPORT.md), [воспроизведение](stage2/README.md). Standalone DomainPack прошёл kernel workflow на 6 реальных исторических GPT-OSS трассах.
 
 Stage 1: G1 утверждён AdamCage 14 октября 2026 для v1.1, commit `68fc12d`. [Текущая приёмка](reports/STAGE1_ACCEPTANCE.md), [исторический review report](reports/STAGE1_REPORT.md), [preregistration утверждённого пакета](design/PREREGISTRATION_DRAFT.md). Новые вызовы моделей не выполнялись; E0 не пройден, G2 не заморожен.
 
