@@ -21,10 +21,25 @@ def require_trajectory_order(rows):
     return rows
 
 
-def align_embeddings(rows, records, model_id, dimension):
+def embedding_texts(rows, context_mode):
+    """Full registered embedder input. Contextual uses the two previous segments, capped at 1000 characters."""
+    if context_mode not in ("Local", "Contextual"):
+        raise ValueError("Unknown embedding condition")
+    require_trajectory_order(rows)
+    histories = {}
+    texts = []
+    for row in rows:
+        history = histories.setdefault((row["trace_id"], row["measurement_config_digest"]), [])
+        context = "".join(item["text"] for item in history[-2:])[-1000:] if context_mode == "Contextual" else ""
+        history.append(row)
+        texts.append(context + row["text"])
+    return texts
+
+
+def align_embeddings(rows, records, model_id, dimension, context_mode="Local"):
     if model_id not in DIMENSIONS or dimension != DIMENSIONS[model_id]:
         raise ValueError("Embedding configuration dimension is not the registered one")
-    require_trajectory_order(rows)
+    texts = embedding_texts(rows, context_mode)
     by_id = {}
     for record in records:
         segment_id = record.get("segment_id")
@@ -40,10 +55,10 @@ def align_embeddings(rows, records, model_id, dimension):
     if set(by_id) != {row["segment_id"] for row in rows}:
         raise ValueError("Embedding roster does not match the segments")
     aligned = []
-    for row in rows:
+    for row, text in zip(rows, texts):
         record = by_id[row["segment_id"]]
-        if record.get("input_sha256") != text_hash(row["text"]):
-            raise ValueError("Embedding input does not match the segment text")
+        if record.get("input_sha256") != text_hash(text):
+            raise ValueError("Embedding input does not match the registered " + context_mode + " input")
         if record.get("trace_sha256") != row["trace_sha256"]:
             raise ValueError("Embedding trace binding drifted")
         aligned.append(record["vector"])
