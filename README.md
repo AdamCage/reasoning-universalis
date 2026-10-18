@@ -1,6 +1,6 @@
 # Reasoning Universalis
 
-**К этапу 3 можно переходить: список пилота §5.5 зарегистрирован, живой прогон не начат.** [Готовность](reports/STAGE3_READINESS.md) и [roster](design/PILOT_SECTION_5_5_ROSTER.json) фиксируют 200 задач вне confirmatory. [Этап 2](reports/STAGE2_ACCEPTANCE.md) принят, payload `62b9cd5`. G1 v1.1 утверждён AdamCage, snapshot `68fc12d`. Человеческая валидация отложена, E0 не пройден. [STAGE1_CLOUD_HANDOFF.md](STAGE1_CLOUD_HANDOFF.md) — историческая инструкция этапа 1.
+**Этап 2 принят как инженерный pipeline. Массовый пилот на 1 800 трасс не начат.** Список v1 оставлен development-only. Новый список v2 — [PILOT_SECTION_5_5_ROSTER_V2.json](design/PILOT_SECTION_5_5_ROSTER_V2.json) — имеет 200 отдельных структурных roots и не исполнен. Ответ на ревью: [STAGE3_REVIEW_RESPONSE.md](reports/STAGE3_REVIEW_RESPONSE.md). E0 не пройден.
 
 Исследование того, какая часть структуры и динамики машинного рассуждения сохраняется при смене модели, а какая задаётся архитектурой, обучением, задачей и способом измерения.
 
@@ -47,7 +47,7 @@ Cursor — единственный агентный харнес. Отдель�
 
 ## Статус
 
-К живому этапу 3 подготовлен вход: [готовность](reports/STAGE3_READINESS.md), [зарегистрированный список §5.5](design/PILOT_SECTION_5_5_ROSTER.json). 200 задач исключены из confirmatory. Вызовов моделей для этого списка нет. E0 не пройден, G2 не заморожен.
+Ревью 18 октября 2026 принято в пределах §8: Stage 2 не переписывался. Содержательные генераторы v2, 200 независимых roots и офлайн-guards записаны в [ответе](reports/STAGE3_REVIEW_RESPONSE.md). Список v1 — development-only. Допуск `qwen/qwen3-32b` и `deepseek/deepseek-v4.1-flash`, E0 и массовый прогон не выполнены.
 
 Этап 2 принят 18 октября 2026: [приёмка](reports/STAGE2_ACCEPTANCE.md), [матрица реализации](reports/STAGE2_REPORT.md), [воспроизведение](stage2/README.md). Standalone DomainPack прошёл kernel workflow на 6 реальных исторических GPT-OSS трассах.
 

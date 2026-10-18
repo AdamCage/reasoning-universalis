@@ -1,0 +1,32 @@
+name: offline research checks
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install uv==0.11.28
+      - name: root suite without a key
+        env:
+          PYTHONPATH: EpistemeOS/src
+        run: python -m unittest discover -s tests -v
+      - name: published evidence and acceptance locks
+        env:
+          PYTHONPATH: EpistemeOS/src
+        run: |
+          python -m stage2.evidence --verify evidence/stage2-2026-10-14.zip
+          python -m stage3.evidence_audit evidence/stage2-2026-10-14.zip
+          python design/verify_stage1.py --commit 68fc12da05000674e3d770a07e449c37a4fbc119
+          python design/verify_stage2_acceptance.py
+          python -m stage3.roster --check design/PILOT_SECTION_5_5_ROSTER.json
+          python -m stage3.roster_v2 --check design/PILOT_SECTION_5_5_ROSTER_V2.json
