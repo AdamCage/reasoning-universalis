@@ -1,6 +1,6 @@
 # Reasoning Universalis
 
-**Этап 2 принят как инженерный pipeline. Массовый пилот на 1 800 трасс не начат.** Список v1 оставлен development-only. Новый список v2 — [PILOT_SECTION_5_5_ROSTER_V2.json](design/PILOT_SECTION_5_5_ROSTER_V2.json) — имеет 200 отдельных структурных roots и не исполнен. Ответ на ревью: [STAGE3_REVIEW_RESPONSE.md](reports/STAGE3_REVIEW_RESPONSE.md). E0 не пройден.
+**Этап 2 закрыт. Массовый пилот не разрешён.** Guards Stage 3 стоят на пути `stage3/pipeline.py`. Список v2 остаётся development-проверкой с утечкой ответа через семейство; дополнение v3 её снижает. E0 не пройден. Подробности: [STAGE3_PIPELINE.md](reports/STAGE3_PIPELINE.md).
 
 Исследование того, какая часть структуры и динамики машинного рассуждения сохраняется при смене модели, а какая задаётся архитектурой, обучением, задачей и способом измерения.
 
@@ -47,7 +47,7 @@ Cursor — единственный агентный харнес. Отдель�
 
 ## Статус
 
-Ревью 18 октября 2026 принято в пределах §8: Stage 2 не переписывался. Содержательные генераторы v2, 200 независимых roots и офлайн-guards записаны в [ответе](reports/STAGE3_REVIEW_RESPONSE.md). Список v1 — development-only. Допуск `qwen/qwen3-32b` и `deepseek/deepseek-v4.1-flash`, E0 и массовый прогон не выполнены.
+Ревью после PR #8: guards подключены к `stage3/pipeline.py`, контекстный эмбеддинг сверяется по полному входу. Список v2 сохраняет семейную утечку (always-UNSAT 66%). Дополнение v3 — [PILOT_SECTION_5_5_ROSTER_V3.json](design/PILOT_SECTION_5_5_ROSTER_V3.json). Допуск двух новых моделей, E0 и массовый прогон не выполнены.
 
 Этап 2 принят 18 октября 2026: [приёмка](reports/STAGE2_ACCEPTANCE.md), [матрица реализации](reports/STAGE2_REPORT.md), [воспроизведение](stage2/README.md). Standalone DomainPack прошёл kernel workflow на 6 реальных исторических GPT-OSS трассах.
 

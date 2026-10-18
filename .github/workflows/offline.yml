@@ -30,3 +30,4 @@ jobs:
           python design/verify_stage2_acceptance.py
           python -m stage3.roster --check design/PILOT_SECTION_5_5_ROSTER.json
           python -m stage3.roster_v2 --check design/PILOT_SECTION_5_5_ROSTER_V2.json
+          python -m stage3.roster_v3 --check design/PILOT_SECTION_5_5_ROSTER_V3.json
