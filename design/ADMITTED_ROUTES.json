@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "positive_allowlist",
+  "note": "A route is admitted only for the listed purpose. Stage 0 short traces do not admit a long-trace pilot. qwen/qwen3-32b and deepseek/deepseek-v4.1-flash are absent until a recorded long visible trace passes the admission protocol.",
+  "routes": [
+    {"model_id": "openai/gpt-oss-20b", "provider_id": "Darkbloom", "purpose": "stage0_short_visible_trace", "admitted": true, "long_trace_admitted": false},
+    {"model_id": "openai/gpt-oss-20b", "provider_id": "DekaLLM", "purpose": "stage0_short_visible_trace", "admitted": true, "long_trace_admitted": false},
+    {"model_id": "openai/gpt-oss-20b", "provider_id": "Parasail", "purpose": "stage0_short_visible_trace", "admitted": true, "long_trace_admitted": false},
+    {"model_id": "openai/gpt-oss-20b", "provider_id": "Google", "purpose": "stage0_short_visible_trace", "admitted": true, "long_trace_admitted": false},
+    {"model_id": "openai/gpt-oss-20b", "provider_id": "Groq", "purpose": "stage0_short_visible_trace", "admitted": true, "long_trace_admitted": false}
+  ]
+}

@@ -33,38 +33,57 @@ class PipelineTests(unittest.TestCase):
             accept_embeddings(rows, records, "baai/bge-m3", 1024, "Contextual")
 
     def test_dispatch_checks_admission_ledger_and_status_before_analysis(self):
+        import tempfile
+        from decimal import Decimal
         calls = []
 
         def transport(request):
             calls.append(request)
-            return {"json": {"model": request["model"], "provider": "reviewed", "id": "gen",
+            return {"http_status": 200, "json": {"model": request["model"], "provider": "reviewed", "id": "gen",
                              "choices": [{"finish_reason": "stop", "message": {"reasoning": "Plan.", "content": "4"}}]}}
 
-        with self.assertRaisesRegex(ValueError, "not admitted"):
-            execute_attempt(model_id="qwen/qwen3-32b", task_id="t", sample_index=0, seed=1,
-                            provider_id="proposed", protocol_digest="abc", task_prompt="Q",
-                            transport=transport, http_status=200, ledger_sha256=LEDGER)
-        self.assertEqual(calls, [])
-        with self.assertRaisesRegex(ValueError, "ledger"):
-            execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=0, seed=1,
-                            provider_id="reviewed", protocol_digest="abc", task_prompt="Q",
-                            transport=transport, http_status=200, ledger_sha256=None)
-        self.assertEqual(calls, [])
-        with self.assertRaisesRegex(ValueError, "Mass pilot"):
-            execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=1, seed=3,
-                            provider_id="reviewed", protocol_digest="abc", task_prompt="Q",
-                            transport=transport, http_status=200, ledger_sha256=LEDGER, mass_pilot=True)
-        record = execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=1, seed=3,
-                                 provider_id="reviewed", protocol_digest="abc", task_prompt="Q",
-                                 transport=transport, http_status=200, ledger_sha256=LEDGER)
-        self.assertEqual(record["status"], "completed")
-        self.assertTrue(record["analysis_usable"])
-        self.assertEqual(calls[0]["model"], "openai/gpt-oss-20b")
-        self.assertEqual(calls[0]["seed"], 3)
-        with self.assertRaisesRegex(ValueError, "disagrees"):
-            execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=2, seed=4,
-                            provider_id="reviewed", protocol_digest="abc", task_prompt="Q",
-                            transport=transport, http_status=200, ledger_sha256=LEDGER, claimed_status="failed")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            ledger = root / "ledger.json"
+            ledger.write_text("[]", encoding="utf-8")
+            allowlist = root / "allow.json"
+            allowlist.write_text(json.dumps({"routes": [
+                {"model_id": "openai/gpt-oss-20b", "provider_id": "reviewed", "purpose": "fixture", "admitted": True}
+            ]}), encoding="utf-8")
+            common = dict(task_prompt="Q", transport=transport, ledger_path=ledger, journal_root=root / "journal",
+                          cap_rub=Decimal("10"), prompt_per_token="0.000001", completion_per_token="0.000002",
+                          purpose="fixture", allowlist_path=allowlist,
+                          expected_ledger_sha256=__import__("hashlib").sha256(ledger.read_bytes()).hexdigest())
+            with self.assertRaisesRegex(ValueError, "positive admission"):
+                execute_attempt(model_id="qwen/qwen3-32b", task_id="t", sample_index=0, seed=1,
+                                provider_id="proposed", protocol_digest="abc", **common)
+            self.assertEqual(calls, [])
+            before = ledger.read_bytes()
+            def fail(_request):
+                raise RuntimeError("down")
+            with self.assertRaises(RuntimeError):
+                execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=0, seed=1,
+                                provider_id="reviewed", protocol_digest="abc",
+                                **{**common, "transport": fail, "expected_ledger_sha256": __import__("hashlib").sha256(before).hexdigest()})
+            pending = json.loads(ledger.read_text(encoding="utf-8"))
+            self.assertEqual(pending[0]["state"], "pending")
+            self.assertTrue(any(path.is_file() for path in (root / "journal" / "raw").iterdir()))
+            with self.assertRaisesRegex(ValueError, "Mass pilot"):
+                execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=1, seed=3,
+                                provider_id="reviewed", protocol_digest="abc", mass_pilot=True,
+                                **{**common, "expected_ledger_sha256": __import__("hashlib").sha256(ledger.read_bytes()).hexdigest()})
+            record = execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=1, seed=3,
+                                     provider_id="reviewed", protocol_digest="abc",
+                                     **{**common, "expected_ledger_sha256": __import__("hashlib").sha256(ledger.read_bytes()).hexdigest()})
+            self.assertEqual(record["status"], "completed")
+            self.assertEqual(record["http_status"], 200)
+            self.assertTrue(record["analysis_usable"])
+            self.assertEqual(calls[0]["model"], "openai/gpt-oss-20b")
+            self.assertEqual(calls[0]["seed"], 3)
+            with self.assertRaisesRegex(ValueError, "disagrees"):
+                execute_attempt(model_id="openai/gpt-oss-20b", task_id="t", sample_index=2, seed=4,
+                                provider_id="reviewed", protocol_digest="abc", claimed_status="failed",
+                                **{**common, "expected_ledger_sha256": __import__("hashlib").sha256(ledger.read_bytes()).hexdigest()})
 
     def test_v2_family_leak_is_measured_and_v3_is_not_family_determined(self):
         v2 = json.loads((ROOT / "design" / "PILOT_SECTION_5_5_ROSTER_V2.json").read_bytes())
