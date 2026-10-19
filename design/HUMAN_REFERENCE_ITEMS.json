@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_human_annotation",
+  "blinded": true,
+  "shows_model_identity": false,
+  "shows_correctness": false,
+  "items": [
+    {
+      "item_id": "synthetic-0",
+      "segments": [
+        {
+          "segment_id": "synthetic-0:0",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-0:1",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Next we check the value against the constraint."
+          ]
+        },
+        {
+          "segment_id": "synthetic-0:2",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "Next we check the value against the constraint.",
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-0:3",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Then we compute the intermediate value."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-1",
+      "segments": [
+        {
+          "segment_id": "synthetic-1:0",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-1:1",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Therefore the final answer is ready."
+          ]
+        },
+        {
+          "segment_id": "synthetic-1:2",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Therefore the final answer is ready.",
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-1:3",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Next we check the value against the constraint."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-2",
+      "segments": [
+        {
+          "segment_id": "synthetic-2:0",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-2:1",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Then we compute the intermediate value."
+          ]
+        },
+        {
+          "segment_id": "synthetic-2:2",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "Then we compute the intermediate value.",
+            "Next we check the value against the constraint."
+          ]
+        },
+        {
+          "segment_id": "synthetic-2:3",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Next we check the value against the constraint.",
+            "Therefore the final answer is ready."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-3",
+      "segments": [
+        {
+          "segment_id": "synthetic-3:0",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-3:1",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Therefore the final answer is ready."
+          ]
+        },
+        {
+          "segment_id": "synthetic-3:2",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Therefore the final answer is ready.",
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-3:3",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Next we check the value against the constraint."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-4",
+      "segments": [
+        {
+          "segment_id": "synthetic-4:0",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-4:1",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Next we check the value against the constraint."
+          ]
+        },
+        {
+          "segment_id": "synthetic-4:2",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "Next we check the value against the constraint.",
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-4:3",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Therefore the final answer is ready."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-5",
+      "segments": [
+        {
+          "segment_id": "synthetic-5:0",
+          "text": "First we choose the method.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-5:1",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-5:2",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Then we compute the intermediate value."
+          ]
+        },
+        {
+          "segment_id": "synthetic-5:3",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Then we compute the intermediate value.",
+            "Therefore the final answer is ready."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-6",
+      "segments": [
+        {
+          "segment_id": "synthetic-6:0",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-6:1",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Therefore the final answer is ready."
+          ]
+        },
+        {
+          "segment_id": "synthetic-6:2",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "Therefore the final answer is ready.",
+            "Next we check the value against the constraint."
+          ]
+        },
+        {
+          "segment_id": "synthetic-6:3",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Next we check the value against the constraint.",
+            "Then we compute the intermediate value."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-7",
+      "segments": [
+        {
+          "segment_id": "synthetic-7:0",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-7:1",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "Therefore the final answer is ready."
+          ]
+        },
+        {
+          "segment_id": "synthetic-7:2",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Therefore the final answer is ready.",
+            "Then we compute the intermediate value."
+          ]
+        },
+        {
+          "segment_id": "synthetic-7:3",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Then we compute the intermediate value.",
+            "First we choose the method."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-8",
+      "segments": [
+        {
+          "segment_id": "synthetic-8:0",
+          "text": "First we choose the method.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-8:1",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-8:2",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Next we check the value against the constraint."
+          ]
+        },
+        {
+          "segment_id": "synthetic-8:3",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "Next we check the value against the constraint.",
+            "Therefore the final answer is ready."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-9",
+      "segments": [
+        {
+          "segment_id": "synthetic-9:0",
+          "text": "First we choose the method.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-9:1",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-9:2",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Then we compute the intermediate value."
+          ]
+        },
+        {
+          "segment_id": "synthetic-9:3",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "Then we compute the intermediate value.",
+            "Next we check the value against the constraint."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-10",
+      "segments": [
+        {
+          "segment_id": "synthetic-10:0",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-10:1",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "Therefore the final answer is ready."
+          ]
+        },
+        {
+          "segment_id": "synthetic-10:2",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "Therefore the final answer is ready.",
+            "Next we check the value against the constraint."
+          ]
+        },
+        {
+          "segment_id": "synthetic-10:3",
+          "text": "First we choose the method.",
+          "previous_texts": [
+            "Next we check the value against the constraint.",
+            "Then we compute the intermediate value."
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "synthetic-11",
+      "segments": [
+        {
+          "segment_id": "synthetic-11:0",
+          "text": "First we choose the method.",
+          "previous_texts": []
+        },
+        {
+          "segment_id": "synthetic-11:1",
+          "text": "Then we compute the intermediate value.",
+          "previous_texts": [
+            "First we choose the method."
+          ]
+        },
+        {
+          "segment_id": "synthetic-11:2",
+          "text": "Next we check the value against the constraint.",
+          "previous_texts": [
+            "First we choose the method.",
+            "Then we compute the intermediate value."
+          ]
+        },
+        {
+          "segment_id": "synthetic-11:3",
+          "text": "Therefore the final answer is ready.",
+          "previous_texts": [
+            "Then we compute the intermediate value.",
+            "Next we check the value against the constraint."
+          ]
+        }
+      ]
+    }
+  ]
+}

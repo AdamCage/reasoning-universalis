@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "not_annotated",
+  "annotators": [],
+  "labels": [],
+  "kappa": null,
+  "note": "Empty until two independent human files exist. Do not fill this with model votes."
+}
