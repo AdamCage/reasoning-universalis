@@ -153,7 +153,8 @@ def state_allowed(relative):
         return (relative in STATE_FILES or
                 bool(re.fullmatch(r"(?:baai_bge-m3|qwen_qwen3-embedding-8b)-embedding-route\.json", relative)))
     if parts[0] == "calls":
-        return len(parts) == 3 and bool(HEX.fullmatch(parts[1])) and parts[2] in CALL_FILES
+        return (len(parts) == 3 and bool(HEX.fullmatch(parts[1])) and
+                (parts[2] in CALL_FILES or bool(re.fullmatch(r"embedding-pinned-[0-9a-f]{64}\.json", parts[2]))))
     if parts[0] == "metadata":
         return (len(parts) == 2 or len(parts) == 3 and parts[1] == "history") and parts[-1].endswith(".json")
     if parts[0] == "source":
@@ -162,6 +163,11 @@ def state_allowed(relative):
     if parts[0] == "compatibility":
         return (len(parts) == 3 and parts[1] == "embedding-ascii-casefold-v1" and
                 parts[-1] in ("amendment.json", "collector.py", "binding.json"))
+    if parts[0] == "embedding-conditions":
+        return (len(parts) >= 3 and bool(HEX.fullmatch(parts[1])) and
+                (len(parts) == 3 and (parts[-1] in ("amendment.json", "collector.py", "binding.json", "mapping.json") or
+                 bool(re.fullmatch(r"(?:baai_bge-m3|qwen_qwen3-embedding-8b)-embedding-route\.json", parts[-1]))) or
+                 len(parts) == 4 and parts[2] == "intents" and bool(re.fullmatch(r"[0-9a-f]{64}\.json", parts[-1]))))
     return False
 
 
@@ -172,6 +178,7 @@ def project_allowed(relative):
     if relative in {"LOCAL_RESUME.md", "AGENTS.md", "RESEARCH_SPECIFICATION.md",
                     "requirements-resumption.txt", "requirements-publication.txt",
                     "design/LOCAL_PILOT_2026_11_08.json", "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json",
+                    "design/LOCAL_EMBEDDING_PINNED_2026_11_08.json", "artifacts/local/error-audit.json",
                     "scripts/export_local_evidence.py"}:
         return True
     if path.suffix.lower() not in OUTPUT_SUFFIXES:
@@ -204,6 +211,7 @@ def selected_files(state, project, include_project=True):
         candidates = [project / p for p in ("LOCAL_RESUME.md", "AGENTS.md", "RESEARCH_SPECIFICATION.md",
                                            "requirements-resumption.txt", "requirements-publication.txt",
                                            "design/LOCAL_PILOT_2026_11_08.json", "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json",
+                                           "design/LOCAL_EMBEDDING_PINNED_2026_11_08.json", "artifacts/local/error-audit.json",
                                            "scripts/export_local_evidence.py")]
         for directory in ("reports", "manuscript", "artifacts/resumption-2026-11-08", "output/pdf",
                           "literature/resumption_2026_11_08", *sorted(CODE_DIRECTORIES)):

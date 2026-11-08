@@ -122,6 +122,7 @@ class LocalReproductionTests(unittest.TestCase):
         amendment = {"schema_version": 1, "amendment_id": "synthetic-ascii-casefold-only",
                      "base_protocol_sha256": self.bindings["protocol_sha256"], "script_sha256": collector_sha,
                      "model_identity_rule": reproduction.COMPAT_RULE, "models": [self.model],
+                     "expected_routes": {self.model: {"provider": "synthetic-provider", "dimension": 1024}},
                      "created_utc": "2026-11-08T10:00:00+00:00"}
         amendment_path = project / reproduction.COMPAT_AMENDMENT
         amendment_path.parent.mkdir(parents=True)
@@ -140,6 +141,7 @@ class LocalReproductionTests(unittest.TestCase):
                    "results_document_sha256": reproduction.sha(reproduction.encoded(
                        json.loads((self.state / "results.json").read_bytes()))),
                    "model_identity_rule": reproduction.COMPAT_RULE, "models": [self.model],
+                   "expected_routes": amendment["expected_routes"],
                    "amendment_path": reproduction.COMPAT_AMENDMENT,
                    "collector_path": reproduction.COMPAT_COLLECTOR, "scientific_validity": "not_assessed"}
         (directory / "binding.json").write_bytes(reproduction.encoded(binding))
@@ -168,6 +170,113 @@ class LocalReproductionTests(unittest.TestCase):
         self.write("baai_bge-m3-embedded.json", self.aggregate)
         markers = exporter.derived_embedding_registry(self.state, ())
         self.marker = next(row for row in markers["files"] if row["file_present"])
+
+    def authorize_pinned_fixture(self, new_request=False):
+        if new_request:
+            self.response["json"]["model"] = "parasail-bge-m3"
+            self.update_response()
+        project = self.root / "project"
+        script = project / reproduction.PINNED_COLLECTOR
+        script.parent.mkdir(parents=True, exist_ok=True)
+        script.write_bytes(b"# Synthetic separately pinned provider collector, never executed.\n")
+        script_sha = reproduction.sha(script.read_bytes())
+        amendment = {"schema_version": 1, "amendment_id": "synthetic-pinned-provider-v1",
+            "created_utc": "2026-11-08T11:00:00+00:00", "base_protocol_sha256": self.bindings["protocol_sha256"],
+            "script_sha256": script_sha, "model_identity_rule": reproduction.COMPAT_RULE,
+            "models": [self.model], "expected_routes": {self.model: {"provider": "synthetic-provider", "dimension": 1024}},
+            "parent_call_ids": [self.call_id], "allowed_replacement_call_ids": [self.call_id] if new_request else []}
+        amendment_path = project / reproduction.PINNED_AMENDMENT
+        amendment_path.parent.mkdir(parents=True, exist_ok=True)
+        amendment_path.write_bytes(reproduction.encoded(amendment))
+        condition = reproduction.sha(amendment_path.read_bytes())
+        directory_name = "embedding-conditions/" + condition
+        directory = self.state / directory_name
+        directory.mkdir(parents=True)
+        (directory / "amendment.json").write_bytes(amendment_path.read_bytes())
+        (directory / "collector.py").write_bytes(script.read_bytes())
+        binding = {"schema_version": 1, "condition_sha256": condition, "amendment_id": amendment["amendment_id"],
+            "amendment_sha256": condition, "collector_sha256": script_sha,
+            "base_protocol_sha256": self.bindings["protocol_sha256"],
+            "source_inventory_sha256": self.bindings["source_inventory_sha256"],
+            "corpus_sha256": self.bindings["corpus_sha256"],
+            "results_sha256": reproduction.sha((self.state / "results.json").read_bytes()),
+            "results_document_sha256": reproduction.sha(reproduction.encoded(
+                json.loads((self.state / "results.json").read_bytes()))),
+            "model_identity_rule": reproduction.COMPAT_RULE, "models": [self.model],
+            "expected_routes": amendment["expected_routes"], "parent_call_ids": [self.call_id],
+            "allowed_replacement_call_ids": amendment["allowed_replacement_call_ids"],
+            "amendment_path": reproduction.PINNED_AMENDMENT, "collector_path": reproduction.PINNED_COLLECTOR,
+            "scientific_validity": "not_assessed"}
+        (directory / "binding.json").write_bytes(reproduction.encoded(binding))
+        mapping = {"schema_version": 1, "condition_sha256": condition,
+                   "trace_mapping": {condition + ":" + row["trace_id"]: row["trace_id"]
+                                     for row in self.originals if row["status"] == "completed"}}
+        (directory / "mapping.json").write_bytes(reproduction.encoded(mapping))
+        selected_call, selected_request, selected_response = self.call_id, self.request, self.response
+        selected_identity = self.reservation["identity"]
+        if new_request:
+            selected_identity = [[condition + ":" + trace, start, end] for trace, start, end in selected_identity]
+            selected_call = reproduction.sha(reproduction.encoded({"kind": "embedding", "identity": selected_identity,
+                         "protocol": self.bindings["protocol_sha256"], "model": self.model}))
+            selected_request = {**self.request, "provider": {"order": ["synthetic-provider"], "allow_fallbacks": False}}
+            selected_response = copy.deepcopy(self.response)
+            selected_response["json"]["model"] = self.model
+            reservation = {**self.bindings, "call_id": selected_call, "kind": "embedding", "identity": selected_identity,
+                "model": self.model, "request_sha256": reproduction.sha(reproduction.encoded(selected_request)),
+                "reservation_id": "synthetic-pinned-reservation"}
+            result = {**reservation, "http_status": 200, "response": selected_response,
+                      "response_sha256": reproduction.sha(reproduction.encoded(selected_response))}
+            for name, value in (("reservation", reservation), ("request", selected_request),
+                                ("response", selected_response), ("result", result)):
+                self.write("calls/" + selected_call + "/" + name + ".json", value)
+            self.write("ledger.json", [{"id": name, "state": "charged", "charged_or_reserved_rub": "1"}
+                                       for name in ("synthetic-reservation", "synthetic-pinned-reservation")])
+            intent = {"schema_version": 1, "condition_sha256": condition, "model": self.model,
+                "original_identity": self.reservation["identity"], "paid_identity": selected_identity,
+                "request_body_sha256": reproduction.sha(reproduction.encoded(selected_request)), "amendment_sha256": condition}
+            self.write(directory_name + "/intents/" + selected_call + ".json", intent)
+        request_sha = reproduction.sha(reproduction.encoded(selected_request))
+        response_sha = reproduction.sha(reproduction.encoded(selected_response))
+        route = {"model": self.model, "provider": "synthetic-provider", "dimension": 1024,
+            "first_response_sha256": response_sha, "provider_identity_verified": True,
+            "revision": "not_reported_not_inferred", "identity_rule": reproduction.COMPAT_RULE,
+            "condition_sha256": condition, "amendment_sha256": condition, "collector_sha256": script_sha}
+        self.write(directory_name + "/baai_bge-m3-embedding-route.json", route)
+        receipt_name = "calls/" + selected_call + "/embedding-pinned-" + condition + ".json"
+        input_mapping = []
+        records = copy.deepcopy(self.aggregate["records"])
+        for index, segment in enumerate(records[0]["embeddings"][self.model]):
+            paid_trace = selected_identity[index][0]
+            segment.update(model_id=self.model, returned_model_id=selected_response["json"]["model"],
+                identity_rule=reproduction.COMPAT_RULE, measurement_condition_sha256=condition,
+                embedding_call_id=selected_call, paid_trace_id=paid_trace, pinned_receipt_path=receipt_name,
+                reused_known_valid=not new_request, parent_rejected_call_ids=amendment["allowed_replacement_call_ids"],
+                request_route_pinned=new_request,
+                request_sha256=request_sha, response_sha256=response_sha)
+            input_mapping.append({"response_index": index, "original_trace_id": "synthetic-trace",
+                "paid_trace_id": paid_trace, "start": segment["start"], "end": segment["end"],
+                "input_sha256": segment["input_sha256"]})
+        receipt = {"schema_version": 1, "condition_sha256": condition, "call_id": selected_call,
+            "request_sha256": request_sha, "response_sha256": response_sha, "requested_model": self.model,
+            "returned_model_id": selected_response["json"]["model"], "provider": "synthetic-provider", "dimension": 1024,
+            "identity_rule": reproduction.COMPAT_RULE, "amendment_sha256": condition, "collector_sha256": script_sha,
+            "accepted_source": "condition_request" if new_request else "reused_known_valid_unpinned",
+            "input_mapping": input_mapping, "parent_rejected_call_ids": amendment["allowed_replacement_call_ids"],
+            "body_provider_pinned": new_request, "scientific_validity": "not_assessed"}
+        self.write(receipt_name, receipt)
+        execution = {key: binding[key] for key in ("amendment_path", "amendment_sha256", "collector_path", "collector_sha256",
+            "model_identity_rule", "base_protocol_sha256", "condition_sha256", "parent_call_ids", "allowed_replacement_call_ids")}
+        execution.update(canonical_requested_model=self.model, returned_model_identity_preserved=True,
+            provider="synthetic-provider", dimension=1024, state_binding_path=directory_name + "/binding.json",
+            condition_mapping_path=directory_name + "/mapping.json")
+        self.aggregate.update(records=records, embedding_route=route, identity_rule=reproduction.COMPAT_RULE,
+            measurement_condition_sha256=condition, execution_pinned_condition=execution,
+            reused_known_chunks=0 if new_request else len(input_mapping),
+            new_condition_chunks=len(input_mapping) if new_request else 0)
+        self.write("baai_bge-m3-embedded.json", self.aggregate)
+        self.marker = next(row for row in exporter.derived_embedding_registry(self.state, ())["files"] if row["file_present"])
+        return {"condition": condition, "directory_name": directory_name, "selected_call": selected_call,
+                "receipt_name": receipt_name, "execution": execution}
 
     def test_exact_aggregate_reconstruction_and_frozen_source_inventory(self):
         records, audit = self.rebuild()
@@ -239,6 +348,79 @@ class LocalReproductionTests(unittest.TestCase):
         self.write(self.prefix + "result.json", self.result)
         with self.assertRaisesRegex(reproduction.ReproductionError, "changed text"):
             self.rebuild()
+
+    def test_pinned_condition_reuses_known_valid_parent_without_replacing_its_raw_call(self):
+        fixture = self.authorize_pinned_fixture()
+        before = (self.state / self.prefix / "request.json").read_bytes()
+        records, audit = self.rebuild()
+        self.assertEqual(audit["execution_pinned_condition"]["condition_sha256"], fixture["condition"])
+        self.assertEqual(audit["validated_modes"][self.model]["reused_known_chunks"], 8)
+        self.assertEqual((self.state / self.prefix / "request.json").read_bytes(), before)
+        self.assertTrue(records[0]["embeddings"][self.model][0]["reused_known_valid"])
+
+    def test_pinned_condition_binds_new_provider_request_to_known_rejected_parent(self):
+        fixture = self.authorize_pinned_fixture(new_request=True)
+        records, audit = self.rebuild()
+        self.assertEqual(audit["validated_modes"][self.model]["new_condition_chunks"], 8)
+        segment = records[0]["embeddings"][self.model][0]
+        self.assertEqual(segment["embedding_call_id"], fixture["selected_call"])
+        self.assertEqual(segment["parent_rejected_call_ids"], [self.call_id])
+        self.assertEqual(json.loads((self.state / self.prefix / "response.json").read_bytes())["json"]["model"], "parasail-bge-m3")
+
+    def test_pinned_condition_cannot_hide_an_unknown_underlying_original_chunk(self):
+        self.authorize_pinned_fixture(new_request=True)
+        identities = self.reservation["identity"][:1]
+        call_id = reproduction.sha(reproduction.encoded({"kind": "embedding", "identity": identities,
+            "protocol": self.bindings["protocol_sha256"], "model": self.model}))
+        request = {"model": self.model, "input": self.request["input"][:1]}
+        self.write("calls/" + call_id + "/request.json", request)
+        self.write("calls/" + call_id + "/reservation.json", {**self.bindings, "kind": "embedding", "model": self.model,
+            "identity": identities, "call_id": call_id, "reservation_id": "unknown-synthetic",
+            "request_sha256": reproduction.sha(reproduction.encoded(request))})
+        with self.assertRaisesRegex(reproduction.ReproductionError, "unknown underlying chunk"):
+            self.rebuild()
+
+    def test_pinned_condition_rejects_fallback_and_missing_prospective_intent(self):
+        fixture = self.authorize_pinned_fixture(new_request=True)
+        intent = self.state / fixture["directory_name"] / "intents" / (fixture["selected_call"] + ".json")
+        original_intent = intent.read_bytes()
+        intent.unlink()
+        with self.assertRaisesRegex(reproduction.ReproductionError, "prospective original/paid intent"):
+            self.rebuild()
+        intent.write_bytes(original_intent)
+        directory = self.state / "calls" / fixture["selected_call"]
+        request = json.loads((directory / "request.json").read_bytes())
+        request["provider"]["allow_fallbacks"] = True
+        (directory / "request.json").write_bytes(reproduction.encoded(request))
+        digest = reproduction.sha(reproduction.encoded(request))
+        for name in ("reservation", "result"):
+            value = json.loads((directory / (name + ".json")).read_bytes())
+            value["request_sha256"] = digest
+            (directory / (name + ".json")).write_bytes(reproduction.encoded(value))
+        with self.assertRaisesRegex(reproduction.ReproductionError, "pin the exact provider"):
+            self.rebuild()
+
+    def test_pinned_condition_mapping_and_per_chunk_parent_links_are_not_optional(self):
+        fixture = self.authorize_pinned_fixture(new_request=True)
+        marker = copy.deepcopy(self.marker)
+        marker["records"][0]["record"]["embeddings"][self.model][0]["parent_rejected_call_ids"] = []
+        with self.assertRaisesRegex(reproduction.ReproductionError, "segment provenance"):
+            reproduction.reconstruct_embedding(self.state, marker, self.originals, self.bindings)
+        mapping_path = self.state / fixture["directory_name"] / "mapping.json"
+        mapping = json.loads(mapping_path.read_bytes())
+        mapping["trace_mapping"] = {}
+        mapping_path.write_bytes(reproduction.encoded(mapping))
+        with self.assertRaisesRegex(reproduction.ReproductionError, "changes the original"):
+            self.rebuild()
+
+    def test_pinned_condition_portable_export_reconstructs_new_and_reused_evidence(self):
+        self.authorize_pinned_fixture(new_request=True)
+        exported = exporter.export_bundle(self.state, self.root / "pinned-bundle", project=self.root / "project",
+                                          include_project=True, secrets=())
+        result = reproduction.reproduce(exported["manifest"], self.root / "pinned-reanalysis", bootstrap_samples=0)
+        report = json.loads(Path(result["report"]).read_bytes())
+        self.assertEqual(report["embedding_modes"][self.model]["status"], "reconstructed_exact")
+        self.assertEqual(report["embedding_modes"][self.model]["validated_modes"][self.model]["new_condition_chunks"], 8)
 
     def test_invalid_batch_model_provider_dimension_and_vectors_fail_closed(self):
         for kind in ("model", "provider", "dimension", "bool_vector"):

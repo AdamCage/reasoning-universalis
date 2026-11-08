@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "amendment_id": "embedding-deepinfra-pinned-v1",
+  "created_utc": "2026-11-08T10:07:02.800215+00:00",
+  "status": "post_routing_preflight_before_provider_pinned_condition_dispatch",
+  "base_protocol_sha256": "f4b1865945ceee0527ef904615148a33d573bd6ed0374c606bf30f9f2a8f8340",
+  "script_sha256": "882eafadb80d99687b130b8e031f57659728c29c8d0787ffd39168bce0b2895f",
+  "model_identity_rule": "ascii_casefold_only",
+  "models": [
+    "baai/bge-m3",
+    "qwen/qwen3-embedding-8b"
+  ],
+  "expected_routes": {
+    "baai/bge-m3": {
+      "provider": "DeepInfra",
+      "dimension": 1024
+    },
+    "qwen/qwen3-embedding-8b": {
+      "provider": "DeepInfra",
+      "dimension": 4096
+    }
+  },
+  "parent_call_ids": [
+    "29d927d05232c1538cffa32a937019563acfddfdc4ed0230d5d5af77ea0a8d27",
+    "3810c3e6801d1644484492b41189e53e69e5be6cbe385eaf0024579a15799c0c",
+    "532a19830a1c37ad41efc2b5fbbbc68d63d74acf66a97b3db40d8d42ff36da3c",
+    "58f31bd29eeafb7806cf5d5e4ab2165d08f8dd3de30ca0ad98b6d787e2cfbefc",
+    "8982dfdcfd65953a32ac88e833231343fc0d4f1a60134468a8a9218ec1ec6abc"
+  ],
+  "allowed_replacement_call_ids": [
+    "29d927d05232c1538cffa32a937019563acfddfdc4ed0230d5d5af77ea0a8d27",
+    "532a19830a1c37ad41efc2b5fbbbc68d63d74acf66a97b3db40d8d42ff36da3c"
+  ],
+  "parent_evidence": [
+    {
+      "call_id": "29d927d05232c1538cffa32a937019563acfddfdc4ed0230d5d5af77ea0a8d27",
+      "requested_model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "dimension": 1024,
+      "request_sha256": "0237489ede17626de14d11bc841fcbc6467933c9e8f49ec53920b25e202cd55f",
+      "response_sha256": "87b39d41bb2a996c267e84a1efb3ce1c7d229167fe1f63ef63c9b7f97eced709",
+      "disposition": "known_rejected_parent",
+      "reasons": [
+        "unverified_alias",
+        "different_provider"
+      ]
+    },
+    {
+      "call_id": "3810c3e6801d1644484492b41189e53e69e5be6cbe385eaf0024579a15799c0c",
+      "requested_model": "baai/bge-m3",
+      "returned_model": "BAAI/bge-m3",
+      "provider": "DeepInfra",
+      "dimension": 1024,
+      "request_sha256": "9e1007ae4a329b3c102f4abe9fb46491113f2ee569bb2f2b49a01b43350fffa6",
+      "response_sha256": "9ff23f8c8deda5c097aadc088711cdb5c5a74319be027a57841a82a47f8a0a4b",
+      "disposition": "reuse_known_valid_without_dispatch",
+      "reasons": []
+    },
+    {
+      "call_id": "532a19830a1c37ad41efc2b5fbbbc68d63d74acf66a97b3db40d8d42ff36da3c",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model": "Qwen/Qwen3-Embedding-8B",
+      "provider": "Nebius",
+      "dimension": 4096,
+      "request_sha256": "81ba8f130d42089f55f348c21d40973c91b53f63f3fd5cebff85e4e4f91e2660",
+      "response_sha256": "967d13aa08b770d2750e4ee1108d34dfe070f164b2bb7977b55b20b24e327678",
+      "disposition": "known_rejected_parent",
+      "reasons": [
+        "different_provider"
+      ]
+    },
+    {
+      "call_id": "58f31bd29eeafb7806cf5d5e4ab2165d08f8dd3de30ca0ad98b6d787e2cfbefc",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model": "Qwen/Qwen3-Embedding-8B",
+      "provider": "DeepInfra",
+      "dimension": 4096,
+      "request_sha256": "b219f2f2f6fd3616a27139711335f79241ba2a0968d23588d551cfa4feb3c377",
+      "response_sha256": "df46adcb57b7609bab9b9ed6514031078b0d405aaae66a9a84189994fc57fc7f",
+      "disposition": "reuse_known_valid_without_dispatch",
+      "reasons": []
+    },
+    {
+      "call_id": "8982dfdcfd65953a32ac88e833231343fc0d4f1a60134468a8a9218ec1ec6abc",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model": "Qwen/Qwen3-Embedding-8B",
+      "provider": "DeepInfra",
+      "dimension": 4096,
+      "request_sha256": "d889af7f6660bcee3831a193cce11a78b78bbcb4e2d180db22b8892749297ad8",
+      "response_sha256": "7c6fe0027ac287b1a38e344da797cd521c4fea72e91bd8f0a4121d3a2e4ea6b0",
+      "disposition": "reuse_known_valid_without_dispatch",
+      "reasons": []
+    }
+  ],
+  "reason": "Unpinned metadata-valid responses changed routes to Parasail (unverified alias) and Nebius. The collector checked route after response but did not constrain subsequent embedding requests. This explicit new measurement condition pins DeepInfra in each new request; it does not silently accept a different route or modify the original frozen sources.",
+  "timing_disclosure": "Created after main collection and five known embedding preflight responses, before any semantic predictive fit. Lexical analysis and answer coverage were available. Provider/model validation alone motivated this condition; no BGE/Qwen predictive effect was inspected. This is an operational amendment to an exploratory development study, not G2 or external preregistration.",
+  "request_provider": {
+    "order": [
+      "DeepInfra"
+    ],
+    "allow_fallbacks": false
+  },
+  "condition_identity": "SHA256(exact amendment bytes):original generator trace_id; character offsets unchanged. Immutable mapping records this namespace as a measurement condition, never an independent task or generation.",
+  "repetition_policy": "Three known valid DeepInfra batches are reused from original raw responses without a request or charge. Two explicitly named known rejected routing batches may receive one measurement in this new pinned condition, preserving every prior reservation and raw output. Any missing result, unknown transport response or network error on the same original chunk/model across any condition blocks dispatch. No automatic retry inside this condition.",
+  "invariants": [
+    "Single existing live state and shared historical/new ledger; no budget reset or reserve release.",
+    "Original scientific protocol, task corpus, generated traces, labels, analysis code, primary BGE256 estimand, controls, split assignments and deadline unchanged.",
+    "Exact ASCII identifier ignoring lettercase only; no alias or whitespace normalization.",
+    "Every newly dispatched request pins the expected provider without fallbacks and validates returned provider and dimension.",
+    "Preserve raw request/response hashes, accepted/rejected parent links, per-condition intents, mappings, receipts and original statistical trace/root IDs.",
+    "The method reports the three reused batches as originally unpinned requests with the observed expected provider.",
+    "If this condition is rejected, stop and report incomplete measurement rather than creating an automatic further condition."
+  ],
+  "cap_total_rub": "3000",
+  "old_parent_costs_retained": true,
+  "scientific_validity": "not_assessed",
+  "E0": "not_passed"
+}

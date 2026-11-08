@@ -32,6 +32,8 @@ COMPAT_RULE = "ascii_casefold_only"
 COMPAT_AMENDMENT = "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json"
 COMPAT_COLLECTOR = "scripts/collect_embedding_compat.py"
 COMPAT_STATE = "compatibility/embedding-ascii-casefold-v1"
+PINNED_AMENDMENT = "design/LOCAL_EMBEDDING_PINNED_2026_11_08.json"
+PINNED_COLLECTOR = "scripts/collect_embedding_pinned.py"
 
 
 class ReproductionError(ValueError):
@@ -131,6 +133,7 @@ def verify_execution_compatibility(state, header, model, bindings):
         raise ReproductionError("Embedding amendment/collector SHA-256 binding is invalid")
     amendment = json_file(amendment_path)
     models = amendment.get("models")
+    expected_routes = amendment.get("expected_routes")
     if (type(amendment.get("schema_version")) is not int or amendment.get("schema_version") != 1
             or not isinstance(amendment.get("amendment_id"), str) or not amendment["amendment_id"]
             or amendment.get("base_protocol_sha256") != bindings["protocol_sha256"]
@@ -139,6 +142,15 @@ def verify_execution_compatibility(state, header, model, bindings):
             or not isinstance(models, list) or len(set(models)) != len(models)
             or not set(models) <= set(MODELS) or model not in models):
         raise ReproductionError("Embedding amendment does not authorize this exact canonical model/rule")
+    if (not isinstance(expected_routes, dict) or set(expected_routes) != set(models)
+            or any(not isinstance(route, dict) or set(route) != {"provider", "dimension"}
+                   or not isinstance(route.get("provider"), str) or not route["provider"]
+                   or route["provider"].strip() != route["provider"]
+                   or type(route.get("dimension")) is not int
+                   or not (route["dimension"] == 1024 if name == "baai/bge-m3"
+                           else 1 <= route["dimension"] <= 4096)
+                   for name, route in expected_routes.items())):
+        raise ReproductionError("Embedding amendment has no exact supported provider/dimension roster")
     try:
         created = datetime.fromisoformat(amendment["created_utc"].replace("Z", "+00:00"))
         if created.tzinfo is None:
@@ -161,12 +173,13 @@ def verify_execution_compatibility(state, header, model, bindings):
                         "results_sha256": sha((state / "results.json").read_bytes()),
                         "results_document_sha256": sha(encoded(json_file(state / "results.json"))),
                         "model_identity_rule": COMPAT_RULE, "models": models,
+                        "expected_routes": expected_routes,
                         "amendment_path": COMPAT_AMENDMENT, "collector_path": COMPAT_COLLECTOR,
                         "scientific_validity": "not_assessed"}
     if binding != expected_binding:
         raise ReproductionError("Embedding compatibility state binding differs from the retained evidence")
     return {**execution, "amendment_id": amendment["amendment_id"],
-            "created_utc": amendment["created_utc"]}
+            "created_utc": amendment["created_utc"], "expected_routes": expected_routes}
 
 
 def model_identity_matches(returned, requested, compatibility):
@@ -176,6 +189,314 @@ def model_identity_matches(returned, requested, compatibility):
         return True
     return (compatibility is not None and compatibility.get("model_identity_rule") == COMPAT_RULE
             and returned.isascii() and requested.isascii() and returned.casefold() == requested.casefold())
+
+
+def verify_pinned_execution(state, header, model, bindings, originals):
+    execution = header.get("execution_pinned_condition")
+    if not isinstance(execution, dict) or header.get("identity_rule") != COMPAT_RULE:
+        raise ReproductionError("Pinned embedding aggregate has no supported execution metadata")
+    project = state.parent / "project"
+    amendment_path, collector_path = project / PINNED_AMENDMENT, project / PINNED_COLLECTOR
+    if not amendment_path.is_file() or not collector_path.is_file():
+        raise ReproductionError("Pinned embedding amendment/collector is absent")
+    amendment_sha, collector_sha = sha(amendment_path.read_bytes()), sha(collector_path.read_bytes())
+    condition = execution.get("condition_sha256")
+    directory_name = "embedding-conditions/" + amendment_sha
+    required = {"amendment_path": PINNED_AMENDMENT, "amendment_sha256": amendment_sha,
+                "collector_path": PINNED_COLLECTOR, "collector_sha256": collector_sha,
+                "model_identity_rule": COMPAT_RULE, "canonical_requested_model": model,
+                "returned_model_identity_preserved": True,
+                "base_protocol_sha256": bindings["protocol_sha256"], "condition_sha256": amendment_sha,
+                "state_binding_path": directory_name + "/binding.json",
+                "condition_mapping_path": directory_name + "/mapping.json"}
+    if (condition != amendment_sha or header.get("measurement_condition_sha256") != amendment_sha
+            or execution.get("returned_model_identity_preserved") is not True
+            or any(execution.get(key) != value for key, value in required.items())):
+        raise ReproductionError("Pinned execution metadata does not match its exact condition artifacts")
+    amendment = json_file(amendment_path)
+    models, routes = amendment.get("models"), amendment.get("expected_routes")
+    if (type(amendment.get("schema_version")) is not int or amendment["schema_version"] != 1
+            or not isinstance(amendment.get("amendment_id"), str) or not amendment["amendment_id"]
+            or amendment.get("base_protocol_sha256") != bindings["protocol_sha256"]
+            or amendment.get("script_sha256") != collector_sha
+            or amendment.get("model_identity_rule") != COMPAT_RULE
+            or not isinstance(models, list) or len(set(models)) != len(models)
+            or not set(models) <= set(MODELS) or model not in models
+            or not isinstance(routes, dict) or set(routes) != set(models)):
+        raise ReproductionError("Pinned amendment does not authorize the exact model/condition")
+    for name, route in routes.items():
+        if (not isinstance(route, dict) or set(route) != {"provider", "dimension"}
+                or not isinstance(route.get("provider"), str) or not route["provider"]
+                or route["provider"].strip() != route["provider"]
+                or type(route.get("dimension")) is not int
+                or not (route["dimension"] == 1024 if name == MODELS[0] else 1 <= route["dimension"] <= 4096)):
+            raise ReproductionError("Pinned amendment has an unsupported provider/dimension roster")
+    parents, replacements = amendment.get("parent_call_ids"), amendment.get("allowed_replacement_call_ids")
+    if (any(not isinstance(values, list) or len(set(values)) != len(values)
+            or any(not isinstance(value, str) or not HEX.fullmatch(value) for value in values)
+            for values in (parents, replacements)) or not set(replacements) <= set(parents)):
+        raise ReproductionError("Pinned amendment has invalid parent/replacement call identities")
+    try:
+        if datetime.fromisoformat(amendment["created_utc"].replace("Z", "+00:00")).tzinfo is None:
+            raise ValueError
+    except (KeyError, TypeError, ValueError, AttributeError):
+        raise ReproductionError("Pinned amendment lacks a timezone-aware timestamp") from None
+    directory = state / directory_name
+    if (not (directory / "binding.json").is_file() or not (directory / "mapping.json").is_file()
+            or not (directory / "amendment.json").is_file() or not (directory / "collector.py").is_file()
+            or (directory / "amendment.json").read_bytes() != amendment_path.read_bytes()
+            or (directory / "collector.py").read_bytes() != collector_path.read_bytes()):
+        raise ReproductionError("Pinned state has no exact amendment/collector/mapping snapshot")
+    expected_binding = {"schema_version": 1, "amendment_id": amendment["amendment_id"],
+                        "amendment_sha256": amendment_sha, "collector_sha256": collector_sha,
+                        "base_protocol_sha256": bindings["protocol_sha256"],
+                        "source_inventory_sha256": bindings["source_inventory_sha256"],
+                        "corpus_sha256": bindings["corpus_sha256"],
+                        "results_sha256": sha((state / "results.json").read_bytes()),
+                        "results_document_sha256": sha(encoded(json_file(state / "results.json"))),
+                        "model_identity_rule": COMPAT_RULE, "models": models, "expected_routes": routes,
+                        "parent_call_ids": parents, "allowed_replacement_call_ids": replacements,
+                        "condition_sha256": condition, "amendment_path": PINNED_AMENDMENT,
+                        "collector_path": PINNED_COLLECTOR, "scientific_validity": "not_assessed"}
+    if json_file(directory / "binding.json") != expected_binding:
+        raise ReproductionError("Pinned state binding differs from the retained source/results/condition")
+    completed = [row["trace_id"] for row in originals if row.get("status") == "completed"]
+    expected_mapping = {"schema_version": 1, "condition_sha256": condition,
+                        "trace_mapping": {condition + ":" + trace: trace for trace in completed}}
+    if json_file(directory / "mapping.json") != expected_mapping:
+        raise ReproductionError("Pinned trace mapping changes the original completed-trace population")
+    if (execution.get("provider") != routes[model]["provider"]
+            or execution.get("dimension") != routes[model]["dimension"]
+            or execution.get("parent_call_ids") != parents
+            or execution.get("allowed_replacement_call_ids") != replacements):
+        raise ReproductionError("Pinned aggregate route/parents differ from the prospective amendment")
+    return {**execution, "amendment_id": amendment["amendment_id"],
+            "created_utc": amendment["created_utc"], "expected_routes": routes,
+            "trace_mapping": expected_mapping["trace_mapping"], "directory_name": directory_name}
+
+
+def raw_embedding_batch(state, call_id, bindings):
+    directory = state / "calls" / call_id
+    names = ("reservation", "request", "response", "result")
+    if not all((directory / (name + ".json")).is_file() for name in names):
+        raise ReproductionError("Selected pinned batch lacks finalized raw evidence")
+    raw = {name: (directory / (name + ".json")).read_bytes() for name in names}
+    reservation, request, response, result = (json.loads(raw[name]) for name in names)
+    identities, model = reservation.get("identity"), reservation.get("model")
+    if (reservation.get("kind") != "embedding" or reservation.get("call_id") != call_id
+            or model not in MODELS or not isinstance(identities, list) or not identities
+            or any(not isinstance(identity, list) or len(identity) != 3 or not isinstance(identity[0], str)
+                   or type(identity[1]) is not int or type(identity[2]) is not int for identity in identities)):
+        raise ReproductionError("Pinned raw batch has invalid logical chunk identities")
+    expected_id = sha(encoded({"kind": "embedding", "identity": identities,
+                              "protocol": bindings["protocol_sha256"], "model": model}))
+    if (call_id != expected_id or any(reservation.get(key) != value for key, value in bindings.items())
+            or sha(raw["request"]) != reservation.get("request_sha256")
+            or sha(raw["response"]) != result.get("response_sha256")
+            or any(result.get(key) != value for key, value in reservation.items())
+            or result.get("response") != response or request.get("model") != model):
+        raise ReproductionError("Pinned raw request/response/source binding mismatch")
+    inputs, payload = request.get("input"), response.get("json")
+    if (not isinstance(inputs, list) or len(inputs) != len(identities)
+            or any(not isinstance(text, str) for text in inputs)
+            or result.get("http_status") != 200 or response.get("http_status") != 200
+            or not isinstance(payload, dict) or payload.get("error") is not None):
+        raise ReproductionError("Pinned parent or selected batch has an unknown/invalid HTTP/API result")
+    return {"call_id": call_id, "reservation": reservation, "request": request, "response": response,
+            "result": result, "identities": identities, "model": model,
+            "request_sha256": sha(raw["request"]), "response_sha256": sha(raw["response"]),
+            "payload": payload, "inputs": inputs}
+
+
+def pinned_embedding_calls(state, model, records, marker_rows, policy, bindings, route):
+    originals = {row["trace_id"]: row for row in records}
+    chunks = {(trace, chunk["start"], chunk["end"]): chunk
+              for trace, row in originals.items() if row.get("status") == "completed"
+              for chunk in expected_chunks(row["text"])}
+    condition, provider = policy["condition_sha256"], policy["provider"]
+    references = {}
+    for entry in marker_rows:
+        record = entry["record"]
+        for segment in record.get("embeddings", {}).get(model, []):
+            call_id = segment.get("embedding_call_id")
+            if (not isinstance(call_id, str) or not HEX.fullmatch(call_id)
+                    or segment.get("measurement_condition_sha256") != condition):
+                raise ReproductionError("Pinned segment has no exact condition/call binding")
+            references.setdefault(call_id, []).append((record["trace_id"], segment))
+    if not references:
+        raise ReproductionError("Pinned aggregate has no recorded accepted chunks")
+    # Resolve all namespaces from preserved sidecars, including other conditions,
+    # so a prior unknown attempt cannot disappear by changing its condition ID.
+    mapping = {trace: trace for trace in originals}
+    for mapping_path in sorted((state / "embedding-conditions").glob("*/mapping.json")):
+        declared = json_file(mapping_path)
+        if (not HEX.fullmatch(mapping_path.parent.name)
+                or declared.get("condition_sha256") != mapping_path.parent.name):
+            raise ReproductionError("A condition mapping differs from its namespace directory")
+        for paid, original in declared.get("trace_mapping", {}).items():
+            if original not in originals or paid != declared.get("condition_sha256", "") + ":" + original:
+                raise ReproductionError("A preserved condition mapping has an invalid original trace identity")
+            if paid in mapping and mapping[paid] != original:
+                raise ReproductionError("Condition mappings disagree about an original trace")
+            mapping[paid] = original
+    input_texts = {chunk["text"] for chunk in chunks.values()}
+    for request_path in sorted((state / "calls").glob("*/request.json")):
+        request = json_file(request_path)
+        if (request.get("model") == model and isinstance(request.get("input"), list)
+                and not (request_path.parent / "reservation.json").is_file()
+                and input_texts.intersection(request["input"])):
+            raise ReproductionError("An unresolved embedding request lacks a reservation identity")
+    for reservation_path in sorted((state / "calls").glob("*/reservation.json")):
+        reservation = json_file(reservation_path)
+        if reservation.get("kind") != "embedding" or reservation.get("model") != model:
+            continue
+        identities = reservation.get("identity", [])
+        if (not isinstance(identities, list) or any(not isinstance(identity, list) or len(identity) != 3
+                or identity[0] not in mapping for identity in identities)):
+            raise ReproductionError("An embedding attempt has no preserved original-trace mapping")
+        related = any((mapping[identity[0]], identity[1], identity[2]) in chunks for identity in identities)
+        if related:
+            if any(reservation.get(key) != value for key, value in bindings.items()):
+                raise ReproductionError("An underlying embedding attempt uses different bound research inputs")
+            result_path, response_path = reservation_path.parent / "result.json", reservation_path.parent / "response.json"
+            if (not result_path.is_file() or not response_path.is_file()
+                    or json_file(result_path).get("http_status") is None
+                    or json_file(response_path).get("http_status") is None
+                    or json_file(response_path).get("network_error")):
+                raise ReproductionError("An unknown underlying chunk remains in the all-condition journal")
+            current = all(identity[0].startswith(condition + ":") for identity in identities)
+            if not current and reservation_path.parent.name not in policy["parent_call_ids"]:
+                raise ReproductionError("A prior embedding condition was not declared as a parent")
+    parent_batches = {call: raw_embedding_batch(state, call, bindings) for call in policy["parent_call_ids"]}
+    replacement_keys = {}
+    for call in policy["allowed_replacement_call_ids"]:
+        parent = parent_batches[call]
+        payload, expected = parent["payload"], policy["expected_routes"][parent["model"]]
+        items = payload.get("data", [])
+        dimension = len(items[0].get("embedding", [])) if items and isinstance(items[0], dict) else None
+        if (model_identity_matches(payload.get("model"), parent["model"], policy)
+                and payload.get("provider") == expected["provider"] and dimension == expected["dimension"]):
+            raise ReproductionError("A replacement parent already satisfies the authorized identity/route")
+        keys = set()
+        for identity in parent["identities"]:
+            if identity[0] not in mapping:
+                raise ReproductionError("Rejected parent has no original-trace mapping")
+            keys.add((mapping[identity[0]], identity[1], identity[2]))
+        replacement_keys[call] = (parent["model"], keys)
+    if (route.get("model") != model or route.get("provider") != provider
+            or route.get("dimension") != policy["dimension"]
+            or route.get("condition_sha256") != condition
+            or route.get("amendment_sha256") != policy["amendment_sha256"]
+            or route.get("collector_sha256") != policy["collector_sha256"]
+            or route.get("identity_rule") != COMPAT_RULE or route.get("provider_identity_verified") is not True):
+        raise ReproductionError("Pinned aggregate route is not bound to its exact condition")
+    route_path = state / policy["directory_name"] / (model.replace("/", "_") + "-embedding-route.json")
+    if not route_path.is_file() or json_file(route_path) != route:
+        raise ReproductionError("Pinned aggregate route differs from the retained condition route")
+    vectors, responses, returned_models, reused, reused_chunks = {}, set(), set(), 0, 0
+    for call_id, selected in sorted(references.items()):
+        batch = raw_embedding_batch(state, call_id, bindings)
+        if batch["model"] != model:
+            raise ReproductionError("Pinned aggregate references another requested model")
+        payload = batch["payload"]
+        if (not model_identity_matches(payload.get("model"), model, policy)
+                or payload.get("provider") != provider):
+            raise ReproductionError("Selected pinned batch has an unauthorized returned model/provider")
+        items = payload.get("data")
+        if (not isinstance(items, list) or len(items) != len(batch["identities"])
+                or any(not isinstance(item, dict) or type(item.get("index")) is not int for item in items)
+                or sorted(item["index"] for item in items) != list(range(len(items)))):
+            raise ReproductionError("Selected pinned batch indices are malformed")
+        if any(not isinstance(item.get("embedding"), list) or len(item["embedding"]) != policy["dimension"]
+               or any(type(value) not in (int, float) or not math.isfinite(value) for value in item["embedding"])
+               or not any(item["embedding"]) for item in items):
+            raise ReproductionError("Selected pinned batch has an invalid vector/dimension")
+        receipt_name = "calls/" + call_id + "/embedding-pinned-" + condition + ".json"
+        receipt_path = state / receipt_name
+        if not receipt_path.is_file():
+            raise ReproductionError("Selected pinned batch has no condition acceptance receipt")
+        receipt = json_file(receipt_path)
+        old = receipt.get("accepted_source") == "reused_known_valid_unpinned"
+        if old:
+            if call_id not in parent_batches or call_id in replacement_keys or batch["request"].get("provider") is not None:
+                raise ReproductionError("A reused unpinned batch is not an authorized valid parent")
+            reused += 1
+        elif (receipt.get("accepted_source") != "condition_request"
+              or batch["request"].get("provider") != {"order": [provider], "allow_fallbacks": False}):
+            raise ReproductionError("A new condition request does not pin the exact provider without fallback")
+        input_mapping, keys = [], set()
+        by_key = {}
+        for item in items:
+            index = item["index"]
+            paid, start, end = batch["identities"][index]
+            if paid not in mapping:
+                raise ReproductionError("Selected pinned chunk lacks its original mapping")
+            original = mapping[paid]
+            if paid != (original if old else condition + ":" + original):
+                raise ReproductionError("Selected pinned chunk uses another measurement condition identity")
+            key = (original, start, end)
+            if key not in chunks or batch["inputs"][index] != chunks[key]["text"] or key in keys:
+                raise ReproductionError("Selected pinned chunk repeats or changes an original observed input")
+            keys.add(key)
+            input_hash = sha(batch["inputs"][index].encode("utf-8"))
+            input_mapping.append({"response_index": index, "original_trace_id": original,
+                                  "paid_trace_id": paid, "start": start, "end": end, "input_sha256": input_hash})
+            by_key[key] = {"vector": item["embedding"], "provider": provider,
+                           "request_sha256": batch["request_sha256"], "response_sha256": batch["response_sha256"],
+                           "input_sha256": input_hash, "returned_model_id": payload["model"]}
+        input_mapping.sort(key=lambda value: value["response_index"])
+        rejected = sorted(call for call, (parent_model, parent_keys) in replacement_keys.items()
+                          if parent_model == model and parent_keys & keys)
+        if not old:
+            intent_path = state / policy["directory_name"] / "intents" / (call_id + ".json")
+            expected_intent = {"schema_version": 1, "condition_sha256": condition, "model": model,
+                               "original_identity": [[mapping[identity[0]], identity[1], identity[2]]
+                                                     for identity in batch["identities"]],
+                               "paid_identity": batch["identities"],
+                               "request_body_sha256": sha(encoded(batch["request"])),
+                               "amendment_sha256": condition}
+            if not intent_path.is_file() or json_file(intent_path) != expected_intent:
+                raise ReproductionError("A pinned paid batch has no exact prospective original/paid intent")
+        expected_receipt = {"schema_version": 1, "condition_sha256": condition, "call_id": call_id,
+                            "request_sha256": batch["request_sha256"], "response_sha256": batch["response_sha256"],
+                            "requested_model": model, "returned_model_id": payload["model"],
+                            "provider": provider, "dimension": policy["dimension"], "identity_rule": COMPAT_RULE,
+                            "amendment_sha256": policy["amendment_sha256"], "collector_sha256": policy["collector_sha256"],
+                            "accepted_source": "reused_known_valid_unpinned" if old else "condition_request",
+                            "input_mapping": input_mapping, "parent_rejected_call_ids": rejected,
+                            "body_provider_pinned": not old, "scientific_validity": "not_assessed"}
+        if receipt != expected_receipt:
+            raise ReproductionError("Pinned acceptance receipt differs from exact batch/mapping/parents")
+        selected_keys = set()
+        for original, segment in selected:
+            key = (original, segment["start"], segment["end"])
+            expected_paid = original if old else condition + ":" + original
+            chunk_rejections = sorted(call for call, (parent_model, parent_keys) in replacement_keys.items()
+                                      if parent_model == model and key in parent_keys)
+            if (key not in by_key or key in selected_keys or key in vectors
+                    or segment.get("paid_trace_id") != expected_paid
+                    or segment.get("pinned_receipt_path") != receipt_name
+                    or segment.get("reused_known_valid") is not old
+                    or segment.get("request_route_pinned") is not (not old)
+                    or segment.get("parent_rejected_call_ids") != chunk_rejections):
+                raise ReproductionError("Pinned segment provenance differs from its accepted batch receipt")
+            selected_keys.add(key)
+            vectors[key] = by_key[key]
+            reused_chunks += old
+        if selected_keys != keys:
+            raise ReproductionError("Pinned aggregate omits part of an accepted raw batch")
+        responses.add(batch["response_sha256"])
+        returned_models.add(payload["model"])
+    first_key = next(iter(chunks), None)
+    if (route.get("first_response_sha256") not in responses or first_key not in vectors
+            or route.get("first_response_sha256") != vectors[first_key]["response_sha256"]):
+        raise ReproductionError("Pinned route's first response is absent from accepted evidence")
+    return vectors, {"batches": len(references), "chunks": len(vectors), "route": route,
+                     "requested_model": model, "returned_model_ids": sorted(returned_models),
+                     "reused_known_valid_batches": reused, "reused_known_chunks": reused_chunks,
+                     "new_condition_chunks": len(vectors) - reused_chunks,
+                     "parent_calls_retained": policy["parent_call_ids"],
+                     "known_rejected_parent_calls_retained": policy["allowed_replacement_call_ids"]}
 
 
 def embedding_calls(state, model, records, bindings, compatibility=None):
@@ -198,6 +519,9 @@ def embedding_calls(state, model, records, bindings, compatibility=None):
             (("identity_rule", COMPAT_RULE), ("amendment_sha256", compatibility["amendment_sha256"]),
              ("collector_sha256", compatibility["collector_sha256"]), ("provider_identity_verified", True))):
         raise ReproductionError("Embedding compatibility route is not bound to the amendment/collector")
+    if compatibility is not None and any(route.get(key) != value for key, value in
+            compatibility["expected_routes"][model].items()):
+        raise ReproductionError("Embedding state route differs from its prospective expected route")
     vectors, batch_count, response_hashes, returned_models = {}, 0, set(), set()
     for reservation_path in sorted((state / "calls").glob("*/reservation.json")):
         reservation = json_file(reservation_path)
@@ -265,6 +589,9 @@ def embedding_calls(state, model, records, bindings, compatibility=None):
         dimension = next(iter(dimensions))
         if not (dimension == 1024 if model == "baai/bge-m3" else 1 <= dimension <= 4096):
             raise ReproductionError("Embedding dimension violates the model contract")
+        if compatibility is not None and compatibility["expected_routes"][model] != {
+                "provider": provider, "dimension": dimension}:
+            raise ReproductionError("Embedding raw response differs from its prospective expected route")
         if any(route.get(key) != value for key, value in
                (("model", model), ("provider", provider), ("dimension", dimension))):
             raise ReproductionError("Embedding provider/dimension route drift")
@@ -313,7 +640,14 @@ def reconstruct_embedding(state, marker, originals, bindings):
             or header.get("protocol_sha256") != bindings["protocol_sha256"]
             or header.get("word_chunk_size") != 16 or header.get("max_observed_words") != 512):
         raise ReproductionError("Embedding completion header uses another protocol or chunking")
-    compatibility = verify_execution_compatibility(state, header, model, bindings)
+    pinned = None
+    if "execution_pinned_condition" in header:
+        if "execution_compatibility" in header:
+            raise ReproductionError("Embedding aggregate mixes two execution amendments")
+        pinned = verify_pinned_execution(state, header, model, bindings, originals)
+        compatibility = pinned
+    else:
+        compatibility = verify_execution_compatibility(state, header, model, bindings)
     rows = marker.get("records")
     order = marker.get("record_order")
     if not isinstance(rows, list) or not isinstance(order, list):
@@ -330,8 +664,12 @@ def reconstruct_embedding(state, marker, originals, bindings):
     for needed_model in sorted(needed):
         if compatibility is not None and needed_model != model:
             raise ReproductionError("Compatibility aggregate must contain only its canonical requested embedder")
-        maps[needed_model], audits[needed_model] = embedding_calls(
-            state, needed_model, originals, bindings, compatibility)
+        if pinned is not None:
+            maps[needed_model], audits[needed_model] = pinned_embedding_calls(
+                state, needed_model, originals, rows, pinned, bindings, header.get("embedding_route", {}))
+        else:
+            maps[needed_model], audits[needed_model] = embedding_calls(
+                state, needed_model, originals, bindings, compatibility)
     restored = []
     seen_slots = set()
     for row in rows:
@@ -393,10 +731,14 @@ def reconstruct_embedding(state, marker, originals, bindings):
         raise ReproductionError("Reconstructed embedding aggregate differs from its original SHA-256/size")
     if header.get("embedding_route") != audits[model]["route"]:
         raise ReproductionError("Aggregate embedding route differs from its bound state route")
+    if pinned is not None and any(header.get(key) != audits[model][key]
+                                 for key in ("reused_known_chunks", "new_condition_chunks")):
+        raise ReproductionError("Pinned aggregate chunk counts differ from selected raw evidence")
     return restored, {"status": "reconstructed_exact", "model": model,
                       "original_sha256": digest, "original_bytes": count,
                       "records": len(restored), "validated_modes": audits,
-                      "execution_compatibility": compatibility}
+                      "execution_compatibility": compatibility if pinned is None else None,
+                      "execution_pinned_condition": pinned}
 
 
 def run_analysis(analysis, records, output, budgets, bootstrap_samples=2000,
