@@ -1,5 +1,7 @@
 """Semantic reference checks and fail-closed offline design contracts."""
 import copy
+from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -149,6 +151,22 @@ class ProposedProtocolTests(unittest.TestCase):
         corpus = self.documents[self.output / "development-preview.json"]
         for row in self.documents[self.output / "proposed-roster.json"]:
             self.assertEqual(row["cell_id"], tasks.digest([corpus["corpus_sha256"], row["task_id"], row["model_id"], row["output_budget_tokens"]]))
+
+    def test_portable_design_metadata_survives_git_text_line_ending_conversion(self):
+        from scripts.build_post_v2_design import ROOT, documents
+        inventory = self.documents[self.output / "source-inventory.json"]
+        audit = self.documents[self.output / "overlap-audit.json"]
+        names = set(inventory["files_lf_sha256"])
+        names.update(row["path"] for row in audit["legacy"]["sources"])
+        names.add("artifacts/pilot-v2-recovery-2026-11-08/budget-final.json")
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory)
+            for name in names:
+                path = project / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                raw = (ROOT / name).read_bytes()
+                path.write_bytes(raw.replace(b"\r\n", b"\n") if path.suffix in (".py", ".json", ".md", ".jsonl") else raw)
+            self.assertEqual(documents(project), self.documents)
 
 
 if __name__ == "__main__":

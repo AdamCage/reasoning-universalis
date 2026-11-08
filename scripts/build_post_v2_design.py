@@ -48,7 +48,14 @@ def overlap_audit(corpus, root=ROOT):
             raise ValueError("Detected same structural root across candidate groups")
         within_root_duplicates += int(key in seen_roots)
         seen_roots[key] = item["root_id"]
-    return {"status": "no_detected_overlap_within_declared_checks", "legacy": legacy.report(),
+    legacy_report = legacy.report()
+    for source in legacy_report["sources"]:
+        path = root / source["path"]
+        raw = path.read_bytes()
+        is_text = path.suffix in (".py", ".json", ".md", ".jsonl")
+        source["sha256"] = sha(raw.replace(b"\r\n", b"\n") if is_text else raw)
+        source["hash_scope"] = "CRLF_to_LF_text_only" if is_text else "exact_binary_bytes"
+    return {"status": "no_detected_overlap_within_declared_checks", "legacy": legacy_report,
             "candidate_root_groups": len(set(seen_roots.values())), "within_root_dependent_variants": within_root_duplicates,
             "coverage": {"all_domains": "normalized exact prompt checks and new-root structural flags",
                          "logic": "legacy exact CNF and conservative WL8 structural flags",
