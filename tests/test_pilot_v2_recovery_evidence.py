@@ -1,5 +1,12 @@
-"""Synthetic sealed-A -> R1 delta/replay, with no model API access."""
+"""Synthetic sealed-A -> R1 delta/replay, with no model API access.
+
+Archive fixtures use a serial scheduler. They do not test concurrent collection.
+Windows CI exposed a real unlocked-ledger-reader/replace race in the frozen R1
+collector; it is documented in PILOT_V2_WINDOWS_IO_COMPATIBILITY.md and tested
+separately by test_pilot_v2_ledger_io_compat.py. Measured sources stay unchanged.
+"""
 import copy
+from concurrent.futures import ThreadPoolExecutor
 import importlib.util
 import json
 from pathlib import Path
@@ -30,6 +37,15 @@ def support(runner, results, path):
     value = STATS.summarize_support(results["records"], runner.tasks, [row["model"] for row in runner.protocol["models"]])
     value["input_sha256"] = {"records": EXPORT.sha((runner.scope / "results.json").read_bytes()), "tasks": runner.tasks_digest}
     path.write_bytes(STATS.canonical(value) + b"\n")
+
+
+def serial_archive_fixture_run(runner):
+    """Only synthetic journal creation; preserve the frozen collector itself."""
+    collector = sys.modules[FIXTURES.RecoveryRunner.__module__]
+    def serial_executor(*args, **kwargs):
+        return ThreadPoolExecutor(max_workers=1)
+    with patch.object(collector, "ThreadPoolExecutor", serial_executor):
+        return runner.run()
 
 
 def fixture():
@@ -66,7 +82,7 @@ class RecoveryEvidenceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.item = fixture()
         cls.runner = cls.item.recovery()
-        cls.results = cls.runner.run()
+        cls.results = serial_archive_fixture_run(cls.runner)
         cls.support = cls.item.project / "support-R1.json"
         support(cls.runner, cls.results, cls.support)
         cls.bundle = cls.item.project / "bundle-R1"
@@ -147,13 +163,13 @@ class RecoveryEvidenceTests(unittest.TestCase):
         try:
             item.akash_mode = "unknown"
             runner = item.recovery()
-            results = runner.run()
+            results = serial_archive_fixture_run(runner)
             count = len(item.akash_paid)
             self.assertGreater(count, 0)
             self.assertLess(count, 96)
             ledger_bytes = (item.state / "ledger.json").read_bytes()
             runner.settings.key, runner.settings.deadline = "", "2000-01-01T00:00:00+00:00"
-            results = runner.run()
+            results = serial_archive_fixture_run(runner)
             self.assertEqual(len(item.akash_paid), count)
             self.assertEqual((item.state / "ledger.json").read_bytes(), ledger_bytes)
             support_path = item.project / "support-R1.json"

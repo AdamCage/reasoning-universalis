@@ -12,6 +12,8 @@ python -X utf8 scripts/reproduce_pilot_v2_recovery.py --manifest evidence/pilot-
 
 Установи `requirements-resumption.txt`; выходной каталог должен быть новым. Исходные CRLF-байты унаследованных source snapshots сохраняются. Сильный historical v1 live-comparison verifier следует запускать с восстановленным v1 state, поскольку текущий общий ledger законно дополнен v2; обычный v1 portable replay остаётся самодостаточным.
 
+Ограничение исходного collector на Windows и последующий I/O adapter описаны в [PILOT_V2_WINDOWS_IO_COMPATIBILITY.md](reports/PILOT_V2_WINDOWS_IO_COMPATIBILITY.md). Этот adapter не применялся к измерениям A/R1 и не разрешён их протоколами для платного запуска; будущая версия должна включить его hash в новый protocol/source inventory. Чтение ledger в параллельном процессе также должно соблюдать общий budget lock.
+
 Ниже сохранена хронология запуска уже закрытых этапов.
 
 **Новое продолжение — pilot v2.** Пользователь после завершения v1 поручил начать следующий development-пилот. Сначала читать [PILOT_V2_SESSION.md](reports/PILOT_V2_SESSION.md) и `design/PILOT_V2_PROTOCOL_2026_11_08.json`. Максимум 192 новых вызова по фиксированному факторному плану, только после source/corpus/protocol freeze и offline-проверок. Все расходы продолжают единственный `.research/resumption-2026-11-08-live/ledger.json`; v1-данные и результаты не перезаписываются. Новые code/artifacts находятся в `pilot_v2/` и `artifacts/pilot-v2-2026-11-08/`. Ниже — закрытый v1 и его история.

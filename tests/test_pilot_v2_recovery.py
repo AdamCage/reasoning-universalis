@@ -13,6 +13,11 @@ from pilot_v2.runner import PilotV2Runner
 from resumption.runner import Runner, Settings, read_json, sha
 from scripts.collect_pilot_v2_recovery import RecoveryRunner, STATUS, GPT, DEEPSEEK, SCRIPT
 from stage0.runner import StopRun, encode, capture_body
+from scripts.pilot_v2_ledger_io_compat_v1 import CooperativeLedgerIOMixin
+
+
+class SyntheticRecoveryRunner(CooperativeLedgerIOMixin, RecoveryRunner):
+    """Keep three-worker fixture concurrency under cooperative ledger I/O."""
 
 
 class RecoveryTests(unittest.TestCase):
@@ -101,7 +106,7 @@ class RecoveryTests(unittest.TestCase):
         self.akash_paid.clear()
 
     def recovery(self, execute=True, state=None):
-        return RecoveryRunner(Settings(state=self.state if state is None else state, key="fixture-key", cap=Decimal(3000), collection_cap=Decimal(3000)),
+        return SyntheticRecoveryRunner(Settings(state=self.state if state is None else state, key="fixture-key", cap=Decimal(3000), collection_cap=Decimal(3000)),
             self.r_path, self.tasks_path, self.recovery_transport, project=self.project, execute=execute,
             fixture_verifier=fixtures.fixture_grade)
 

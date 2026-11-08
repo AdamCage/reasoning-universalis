@@ -12,9 +12,14 @@ import unittest
 from pilot_v2.runner import PilotV2Runner, PROVIDERS, FINAL_STATUS
 from resumption.runner import Runner, Settings, sha
 from stage0.runner import StopRun, capture_body, encode
+from scripts.pilot_v2_ledger_io_compat_v1 import CooperativeLedgerIOMixin
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class SyntheticPilotV2Runner(CooperativeLedgerIOMixin, PilotV2Runner):
+    """Post-data fixture I/O guard; original collector/business logic is frozen."""
 
 
 class Transport:
@@ -111,7 +116,7 @@ class PilotV2RunnerTests(unittest.TestCase):
         self.protocol_path.write_bytes(encode(self.protocol))
 
     def runner(self, execute=True):
-        return PilotV2Runner(Settings(state=self.state, key="fixture-key", cap=Decimal(3000), collection_cap=Decimal(3000)),
+        return SyntheticPilotV2Runner(Settings(state=self.state, key="fixture-key", cap=Decimal(3000), collection_cap=Decimal(3000)),
             self.protocol_path, self.tasks_path, self.transport, project=self.project, execute=execute, fixture_verifier=fixture_grade)
 
     def test_binding_and_preflight_preserve_v1_and_freeze_all_192_cells_without_calls(self):
