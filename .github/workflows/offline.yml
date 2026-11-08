@@ -44,12 +44,9 @@ jobs:
           python -X utf8 scripts/import_e0_human.py --check-package --package artifacts/e0-human-development-2026-11-08
       # Frozen numerical bytes were produced with CPython 3.12.11.
       # Keep the general suite above on the matrix interpreter.
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12.11'
       - name: replay published machine annotation with reference Python without a key
         run: >-
-          python -X utf8 scripts/reproduce_machine_development.py
+          uv run --no-project --python 3.12.11 python -X utf8 scripts/reproduce_machine_development.py
           --manifest evidence/machine-annotation-development-2026-11-08/manifest.json
           --output .research/ci-machine-annotation
 
@@ -61,7 +58,8 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12.11'
+          python-version: '3.12'
+      - run: python -m pip install uv==0.11.28
       - run: python -m pip install -r requirements-resumption.txt
       - name: local handoff checks without a key
         run: >-
@@ -100,8 +98,8 @@ jobs:
           tests.test_machine_development_runner tests.test_machine_development_summary
           tests.test_machine_development_evidence tests.test_machine_evidence_index
           tests.test_machine_vote_failure_audit -v
-      - name: replay published machine annotation without a key
+      - name: replay published machine annotation with reference Python without a key
         run: >-
-          python -X utf8 scripts/reproduce_machine_development.py
+          uv run --no-project --python 3.12.11 python -X utf8 scripts/reproduce_machine_development.py
           --manifest evidence/machine-annotation-development-2026-11-08/manifest.json
           --output .research/ci-machine-annotation
