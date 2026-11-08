@@ -2,7 +2,7 @@
 
 **Актуальный закрытый этап — машинная разметка, 9 ноября 2026 по Москве.** По поручению пользователя 200 сегментов S2 размечены конечным протоколом DeepSeek из пяти голосов: 1125 вызовов, 180 функциональных меток consensus, 15 `ambiguous_other`, 2 неразрешённых расхождения и 3 технически неполных панели. Общий ledger содержит 2109 строк и `2038.3174633704220 RUB charged-or-reserved` из 3300 RUB. Этап закрыт: не повторять collect-команды ниже, не сбрасывать `machine-development/condition-v1.json`, не создавать новый ledger. [Результат](reports/MACHINE_DEVELOPMENT_RESULT.md), [английская записка](manuscript/MACHINE_DEVELOPMENT_NOTE.md), [технический аудит](reports/MACHINE_VOTE_FAILURE_AUDIT.md). Пакет для людей отложен; E0 не пройден, генерации v3 и будущий test не запускались.
 
-Проверенный бесплатный перенос без ключа и `.env` (Python3.12, `requirements-resumption.txt`, новый output-каталог):
+Проверенный бесплатный перенос без ключа и `.env` (reference CPython3.12.11 для точных численных bytes, `requirements-resumption.txt`, новый output-каталог):
 
 ```powershell
 python -X utf8 scripts/reproduce_machine_development.py --manifest evidence/machine-annotation-development-2026-11-08/manifest.json --output .research/new-machine-offline-replay
