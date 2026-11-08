@@ -49,7 +49,10 @@ class PilotV2RunnerTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
-        self.project = Path(self.temporary.name)
+        # The frozen A adapter requires a canonical state spelling. On GitHub
+        # Windows TEMP may use RUNNER~1 while resolve() expands runneradmin.
+        # R1 normalizes this at its production boundary; A bytes stay frozen.
+        self.project = Path(self.temporary.name).resolve()
         self.state = self.project / "live"
         self.transport = Transport()
         parent_protocol, parent_tasks = self.project / "parent-protocol.json", self.project / "parent-tasks.json"
