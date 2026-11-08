@@ -1,5 +1,7 @@
 # Reasoning Universalis
 
+**Development-пилот v2 начат 8 ноября.** [Фиксированный протокол](design/PILOT_V2_PROTOCOL_2026_11_08.json), [статистический план](design/PILOT_V2_STATISTICAL_PLAN.md), [ход работы](reports/PILOT_V2_SESSION.md). Проверяется поддержка завершённых ошибочных и верных решений на новых development-roots при раздельных уровнях сложности и лимитах генерации. V1 ниже сохраняется как закрытый результат; E0 не пройден.
+
 **8 ноября 2026: локальный ограниченный пилот завершён.** Сохранены 384 основные попытки, 333 оцениваемых ответа и четыре ошибки; BGE-M3 и Qwen embedding покрывают по 5778 chunks. Основной вопрос о предсказании ошибок остался неразрешённым из-за нехватки классов. [Результат и ограничения](reports/LOCAL_RESEARCH_RESULT_RU.md), [английская рукопись](manuscript/LOCAL_RESEARCH_PAPER.md), [PDF](output/pdf/local-reasoning-pilot.pdf), [evidence sheet](output/pdf/portfolio-evidence-sheet.pdf). E0 не пройден; H0–H7 не подтверждены.
 
 Платный сбор закрыт. Консервативный charged-or-reserved итог — 651.51803 RUB из разрешённых 3000 RUB, включая исторические обязательства; это не измеренная фактическая оплата. Переносимый архив находится в `evidence/local-pilot-2026-11-08/manifest.json`; [бесплатный offline replay](reports/LOCAL_REPRODUCTION_CHECK.md) восстанавливает исходные bytes и повторяет пять анализов без API. Команды и статус для продолжения — [LOCAL_RESUME.md](LOCAL_RESUME.md).

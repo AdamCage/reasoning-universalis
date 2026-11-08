@@ -52,4 +52,8 @@ jobs:
           tests.test_resumption_statistical_validity tests.test_resumption_episteme
           tests.test_embedding_compat tests.test_embedding_pinned
           tests.test_local_evidence_export tests.test_local_reproduction -v
+      - name: pilot v2 offline checks without a key
+        run: >-
+          python -m unittest tests.test_pilot_v2_tasks tests.test_pilot_v2_statistics
+          tests.test_pilot_v2_runner tests.test_pilot_v2_integration -v
       - run: python -m resumption.tasks --check
