@@ -1,0 +1,108 @@
+{
+  "historical_prefix_preserved": true,
+  "all": {
+    "rows": 790,
+    "states": {
+      "finished": 790
+    },
+    "charged_or_reserved_rub": "651.5180250837596",
+    "reported_cost_rub": "22.6763145487870164037",
+    "retained_reservation_above_reported_cost_rub": "424.0956087886409835963",
+    "commitments_without_reported_cost_rub": "204.7461017463316"
+  },
+  "historical": {
+    "rows": 32,
+    "states": {
+      "finished": 32
+    },
+    "charged_or_reserved_rub": "246.7988793802352",
+    "reported_cost_rub": "0.4137749164723200087",
+    "retained_reservation_above_reported_cost_rub": "45.8149109592428799913",
+    "commitments_without_reported_cost_rub": "200.5701935045200"
+  },
+  "new": {
+    "rows": 758,
+    "states": {
+      "finished": 758
+    },
+    "charged_or_reserved_rub": "404.7191457035244",
+    "reported_cost_rub": "22.262539632314696395",
+    "retained_reservation_above_reported_cost_rub": "378.280697829398103605",
+    "commitments_without_reported_cost_rub": "4.1759082418116"
+  },
+  "new_by_purpose": {
+    "resumption:admission:deepseek/deepseek-v4.1-flash": {
+      "rows": 4,
+      "states": {
+        "finished": 4
+      },
+      "charged_or_reserved_rub": "104.95151580160",
+      "reported_cost_rub": "0.26702946733320002",
+      "retained_reservation_above_reported_cost_rub": "104.68448633426679998",
+      "commitments_without_reported_cost_rub": "0"
+    },
+    "resumption:admission:openai/gpt-oss-20b": {
+      "rows": 4,
+      "states": {
+        "finished": 4
+      },
+      "charged_or_reserved_rub": "7.15988",
+      "reported_cost_rub": "0.0938907444722",
+      "retained_reservation_above_reported_cost_rub": "7.0659892555278",
+      "commitments_without_reported_cost_rub": "0"
+    },
+    "resumption:admission:qwen/qwen3-32b": {
+      "rows": 2,
+      "states": {
+        "finished": 2
+      },
+      "charged_or_reserved_rub": "1.1607219126360",
+      "reported_cost_rub": "0.2476018813840",
+      "retained_reservation_above_reported_cost_rub": "0.9131200312520",
+      "commitments_without_reported_cost_rub": "0"
+    },
+    "resumption:embedding:baai/bge-m3": {
+      "rows": 182,
+      "states": {
+        "finished": 182
+      },
+      "charged_or_reserved_rub": "2.0372410100184",
+      "reported_cost_rub": "0",
+      "retained_reservation_above_reported_cost_rub": "0",
+      "commitments_without_reported_cost_rub": "2.0372410100184"
+    },
+    "resumption:embedding:qwen/qwen3-embedding-8b": {
+      "rows": 182,
+      "states": {
+        "finished": 182
+      },
+      "charged_or_reserved_rub": "2.1386672317932",
+      "reported_cost_rub": "0",
+      "retained_reservation_above_reported_cost_rub": "0",
+      "commitments_without_reported_cost_rub": "2.1386672317932"
+    },
+    "resumption:generation:deepseek/deepseek-v4.1-flash": {
+      "rows": 192,
+      "states": {
+        "finished": 192
+      },
+      "charged_or_reserved_rub": "260.2628884795368",
+      "reported_cost_rub": "16.700224445286096252",
+      "retained_reservation_above_reported_cost_rub": "243.562664034250703748",
+      "commitments_without_reported_cost_rub": "0"
+    },
+    "resumption:generation:openai/gpt-oss-20b": {
+      "rows": 192,
+      "states": {
+        "finished": 192
+      },
+      "charged_or_reserved_rub": "27.0082312679400",
+      "reported_cost_rub": "4.953793093839200123",
+      "retained_reservation_above_reported_cost_rub": "22.054438174100799877",
+      "commitments_without_reported_cost_rub": "0"
+    }
+  },
+  "cap_rub": "3000",
+  "remaining_after_all_commitments_rub": "2348.4819749162404",
+  "interpretation": "Reported costs are observed charges; commitments also retain conservative and unknown reserves. Missing cost is not zero."
+}

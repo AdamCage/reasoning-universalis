@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "scope": "Exact core research inputs, fixed analyses, and accounting; large raw vector journal retained in the separate evidence bundle. Mechanical integrity does not assess scientific validity.",
+  "artifacts": [
+    {
+      "path": "design/LOCAL_PILOT_2026_11_08.json",
+      "role": "protocol",
+      "format": "json",
+      "sha256": "f4b1865945ceee0527ef904615148a33d573bd6ed0374c606bf30f9f2a8f8340",
+      "bytes": 9682
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/tasks.json",
+      "role": "tasks",
+      "format": "json",
+      "sha256": "78fbe31abbf07626bf34d24bfe997446e48b9c155f44d1a3116d6c028e7a0868",
+      "bytes": 122668
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/results.json",
+      "role": "results",
+      "format": "json",
+      "sha256": "03044956b33fbe75899d0c98b5af2ac5341681d73f6e859b233776d7ad93ba29",
+      "bytes": 3411914
+    },
+    {
+      "path": "resumption/analysis.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9",
+      "bytes": 37602
+    },
+    {
+      "path": "resumption/episteme_adapter.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112",
+      "bytes": 18592
+    },
+    {
+      "path": "resumption/generator_audit.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9",
+      "bytes": 28638
+    },
+    {
+      "path": "resumption/runner.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8",
+      "bytes": 51060
+    },
+    {
+      "path": "resumption/tasks.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a",
+      "bytes": 10457
+    },
+    {
+      "path": "stage0/config.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73",
+      "bytes": 5127
+    },
+    {
+      "path": "stage0/runner.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317",
+      "bytes": 20663
+    },
+    {
+      "path": "stage0/traces.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda",
+      "bytes": 3572
+    },
+    {
+      "path": "scripts/collect_embedding_compat.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "b7ee74584f7f1b246a3c061b33d9258249c6fcef941b1ef74caa36168f17210a",
+      "bytes": 15407
+    },
+    {
+      "path": "scripts/collect_embedding_pinned.py",
+      "role": "source",
+      "format": "bytes",
+      "sha256": "882eafadb80d99687b130b8e031f57659728c29c8d0787ffd39168bce0b2895f",
+      "bytes": 28198
+    },
+    {
+      "path": "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json",
+      "role": "operational_amendment",
+      "format": "json",
+      "sha256": "f822dab8f70c080c228bb1c64a3fdb288c19665ca0693e589659d96877b601b0",
+      "bytes": 3277
+    },
+    {
+      "path": "design/LOCAL_EMBEDDING_PINNED_2026_11_08.json",
+      "role": "operational_amendment",
+      "format": "json",
+      "sha256": "732975e60b72a934b79d31fd58d589916a286f6d8def119d49451c2b0b399c82",
+      "bytes": 6551
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-lexical.json",
+      "role": "analysis",
+      "format": "json",
+      "sha256": "ea99cfec486e15fe53e873fcf93f1b0dada98fc36c5f738c26b084fc4091a17e",
+      "bytes": 899144
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-bge.json",
+      "role": "analysis",
+      "format": "json",
+      "sha256": "0f095bc18e696e81da6fef3764372913b8d108d032c3d8c27ce163b94e3673eb",
+      "bytes": 899177
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-qwen.json",
+      "role": "analysis",
+      "format": "json",
+      "sha256": "cf7d859369f8180fa042e686ac4de9c164e9482268934d665637ae7315ed9f1d",
+      "bytes": 899317
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-bge-matched.json",
+      "role": "analysis",
+      "format": "json",
+      "sha256": "ba5f92c7d8356b22eab2827a4e68c1a6f116f4d8325094438e77e9c76e0ae174",
+      "bytes": 1139534
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-qwen-matched.json",
+      "role": "analysis",
+      "format": "json",
+      "sha256": "8c98e7a8bc6d3b6b1c630a943cd265af30a528eeae3093c5146473b82826dfa1",
+      "bytes": 1139662
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/ledger.json",
+      "role": "provenance",
+      "format": "json",
+      "sha256": "c31af39094d10f6b959ee14d4be3b71267dff7e51c1eea138f309a25ad8f815f",
+      "bytes": 212002
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/budget-final.json",
+      "role": "provenance",
+      "format": "json",
+      "sha256": "76e981e2944cdee8e53b66ffc884071b936f119406a69cd95d71b841b4eabfdb",
+      "bytes": 3712
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/source-inventory.json",
+      "role": "provenance",
+      "format": "json",
+      "sha256": "f328e8582d44a4af2b0516f8e95c00995e49696b302a1263b7b3f9cdf22ce593",
+      "bytes": 1002
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/run-manifest.json",
+      "role": "provenance",
+      "format": "json",
+      "sha256": "79512c8463ffdaab01242a809596d105ff7051dabd07b336d35955dbf5abe824",
+      "bytes": 2442
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/error-audit.json",
+      "role": "provenance",
+      "format": "json",
+      "sha256": "0ed44b036dc788a1d26b6616cbb34a6554fc1d59bef90b5698fd58054f9e3623",
+      "bytes": 8267
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/tables/prefix-support.json",
+      "role": "provenance",
+      "format": "json",
+      "sha256": "66f9290f9b3e8973901579a0e901f007938b8d935ff75d8a2bec1d70317441a9",
+      "bytes": 7931
+    }
+  ],
+  "empty_source_files_fixed_by_source_inventory": [
+    "resumption/__init__.py"
+  ]
+}

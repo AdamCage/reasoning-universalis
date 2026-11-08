@@ -120,7 +120,7 @@ class MarkdownPaper:
         self.fonts = fonts
         self.source_url_base = source_url_base.rstrip("/") + "/" if source_url_base else None
         self.repo_root = (repo_root or find_repository_root(self.input_path)).resolve()
-        size, leading = (9.4, 12.2) if compact else (10.5, 13.8)
+        size, leading = (9.4, 12.2) if compact else (10.5, 13.4)
         base = dict(fontName=fonts["body"], fontSize=size, leading=leading,
                     textColor=colors.HexColor("#18212b"), splitLongWords=True,
                     allowWidows=0, allowOrphans=0, spaceAfter=5.0)
@@ -157,6 +157,8 @@ class MarkdownPaper:
         self.styles["bullet"] = ParagraphStyle("paper-bullet", parent=self.styles["left"],
                                                 leftIndent=13, firstLineIndent=0,
                                                 bulletIndent=1, spaceAfter=3)
+        self.styles["reference"] = ParagraphStyle("paper-reference", parent=self.styles["bullet"],
+                                                  fontSize=9.5, leading=11.5, spaceAfter=3)
         self.styles["quote"] = ParagraphStyle("paper-quote", parent=self.styles["left"],
                                                leftIndent=12, rightIndent=12,
                                                textColor=colors.HexColor("#344454"))
@@ -318,6 +320,7 @@ class MarkdownPaper:
         story = []
         title = title_override
         title_written = False
+        references = False
         index = 0
         while index < len(lines):
             line = lines[index].strip()
@@ -329,6 +332,7 @@ class MarkdownPaper:
             heading = HEADING_RE.match(line)
             if heading:
                 level, text = len(heading[1]), heading[2]
+                references = text.strip().lower() == "references"
                 if not title_written and level == 1:
                     title = title_override or text
                     story.append(self.paragraph(title, "title"))
@@ -349,7 +353,8 @@ class MarkdownPaper:
                 while index < len(lines) and lines[index].strip() and "|" in lines[index]:
                     rows.append(self.table_cells(lines[index]))
                     index += 1
-                story.append(self.table(rows))
+                table = self.table(rows)
+                story.append(KeepTogether([table]) if len(rows) <= 5 else table)
                 continue
             figure = IMAGE_RE.match(line)
             if figure:
@@ -394,7 +399,7 @@ class MarkdownPaper:
                     text += " " + lines[index].strip()
                     index += 1
                 marker = "-" if marker in ("-", "+", "*") else marker
-                story.append(self.paragraph(text, "bullet", bulletText=marker))
+                story.append(self.paragraph(text, "reference" if references else "bullet", bulletText=marker))
                 continue
             if line.startswith(">"):
                 quoted = []

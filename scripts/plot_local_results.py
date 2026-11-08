@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-VERSION = "local-result-figures-v1"
+VERSION = "local-result-figures-v1.1"
 COLORS = ("#4C78A8", "#F2A541", "#4F9D69", "#8D6BA8")
 
 
@@ -49,6 +49,19 @@ def finite(value):
     if type(value) not in (int, float) or not math.isfinite(value):
         raise ValueError("Figure values must be finite numbers or explicit nulls")
     return float(value)
+
+
+def target_support(target):
+    """Carry reporting limitations without changing predictions or effects."""
+    static = target.get("static_estimator")
+    dynamic = target.get("dynamic_estimator")
+    test = target.get("static_test") or {}
+    rate = target.get("class_balance")
+    return {"static_estimator": static, "dynamic_estimator": dynamic,
+            "target_correct_fraction": rate, "target_auroc": test.get("auroc"),
+            "constant_predictors": static == dynamic == "smoothed_constant_one_training_class",
+            "no_target_errors": target.get("status") == "evaluated" and rate == 1 and
+                                "auroc" in test and test["auroc"] is None}
 
 
 def plot_data(summary, results):
@@ -90,7 +103,8 @@ def plot_data(summary, results):
     primary = candidates[0] if candidates else None
     targets = {row["target_model"]: row for row in primary.get("targets_256", [])} if primary else {}
     transfer = [{"label": model_name(model), "model": model, "gain": targets.get(model, {}).get("gain"),
-                 "status": targets.get(model, {}).get("status", "not_evaluated")}
+                 "status": targets.get(model, {}).get("status", "not_evaluated"),
+                 **target_support(targets.get(model, {}))}
                 for model in models]
     controls = []
     if primary:
@@ -101,7 +115,8 @@ def plot_data(summary, results):
             for model in models:
                 controls.append({"label": f"{model_name(model)} / {name}", "model": model,
                                  "control_order": contrast["control_order"], "control_seed": contrast["control_seed"],
-                                 "gain": contrast.get("paired_gain_by_target", {}).get(model)})
+                                 "gain": contrast.get("paired_gain_by_target", {}).get(model),
+                                 **target_support(targets.get(model, {}))})
     routes = summary.get("admission", {}).get("routes", [])
     admitted = {route["model"] for route in routes if route.get("observed_trace_admitted") is True}
     admission_rows = summary.get("admission", {}).get("matrix", [])
@@ -138,7 +153,15 @@ def bars(data, fields, labels, title, ylabel, caption):
 
 
 def forest(rows, title, xlabel, caption):
-    figure, ax = plt.subplots(figsize=(8.4, max(3.3, .40 * len(rows) + 1.8)), layout="constrained")
+    has_constant = any(row.get("constant_predictors") for row in rows)
+    has_no_errors = any(row.get("no_target_errors") for row in rows)
+    if has_constant:
+        caption += "\nFor constant predictors, zero contrast reflects identical fits, not equivalence."
+    if has_no_errors:
+        caption += "\nNo target errors: probability-loss comparison only; target AUROC is undefined."
+    row_height = .49 if has_constant or has_no_errors else .40
+    figure, ax = plt.subplots(figsize=(8.4, max(3.6 if has_constant or has_no_errors else 3.3,
+                                               row_height * len(rows) + 1.8)), layout="constrained")
     if not rows or not any(finite((row.get("gain") or {}).get("log_loss_gain")) is not None for row in rows):
         ax.set_axis_off()
         ax.set_title(title, fontsize=12, loc="left", pad=12)
@@ -153,7 +176,13 @@ def forest(rows, title, xlabel, caption):
         gain = row.get("gain") or {}
         point = finite(gain.get("log_loss_gain"))
         roots = gain.get("root_count")
-        labels.append(row["label"] + (f" (roots={roots})" if roots is not None else ""))
+        notes = []
+        if row.get("constant_predictors"):
+            notes.append("constant predictors")
+        if row.get("no_target_errors"):
+            notes.append("no target errors")
+        root_label = f" (roots={roots})" if roots is not None else ""
+        labels.append(row["label"] + ("\n" + "; ".join(notes) if notes else "") + root_label)
         interval = gain.get("log_loss_gain_ci95")
         if point is None:
             ax.text(.02, index, "Not estimated", transform=ax.get_yaxis_transform(),

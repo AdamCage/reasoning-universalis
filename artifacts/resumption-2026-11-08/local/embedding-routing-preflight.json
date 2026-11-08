@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "scope": "all five known responses before pinned measurement condition; no semantic effect used",
+  "responses": [
+    {
+      "call_id": "3810c3e6801d1644484492b41189e53e69e5be6cbe385eaf0024579a15799c0c",
+      "reserved_at": "2026-11-08T09:38:45.709407+00:00",
+      "requested_model": "baai/bge-m3",
+      "returned_model": "BAAI/bge-m3",
+      "provider": "DeepInfra",
+      "http_status": 200,
+      "dimension": 1024,
+      "rows": 32,
+      "request_sha256": "9e1007ae4a329b3c102f4abe9fb46491113f2ee569bb2f2b49a01b43350fffa6",
+      "response_sha256": "9ff23f8c8deda5c097aadc088711cdb5c5a74319be027a57841a82a47f8a0a4b",
+      "accepted_ascii_casefold_receipt_present": true
+    },
+    {
+      "call_id": "58f31bd29eeafb7806cf5d5e4ab2165d08f8dd3de30ca0ad98b6d787e2cfbefc",
+      "reserved_at": "2026-11-08T09:39:11.731106+00:00",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model": "Qwen/Qwen3-Embedding-8B",
+      "provider": "DeepInfra",
+      "http_status": 200,
+      "dimension": 4096,
+      "rows": 32,
+      "request_sha256": "b219f2f2f6fd3616a27139711335f79241ba2a0968d23588d551cfa4feb3c377",
+      "response_sha256": "df46adcb57b7609bab9b9ed6514031078b0d405aaae66a9a84189994fc57fc7f",
+      "accepted_ascii_casefold_receipt_present": true
+    },
+    {
+      "call_id": "29d927d05232c1538cffa32a937019563acfddfdc4ed0230d5d5af77ea0a8d27",
+      "reserved_at": "2026-11-08T09:49:35.238299+00:00",
+      "requested_model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "http_status": 200,
+      "dimension": 1024,
+      "rows": 32,
+      "request_sha256": "0237489ede17626de14d11bc841fcbc6467933c9e8f49ec53920b25e202cd55f",
+      "response_sha256": "87b39d41bb2a996c267e84a1efb3ce1c7d229167fe1f63ef63c9b7f97eced709",
+      "accepted_ascii_casefold_receipt_present": false
+    },
+    {
+      "call_id": "8982dfdcfd65953a32ac88e833231343fc0d4f1a60134468a8a9218ec1ec6abc",
+      "reserved_at": "2026-11-08T09:49:38.567278+00:00",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model": "Qwen/Qwen3-Embedding-8B",
+      "provider": "DeepInfra",
+      "http_status": 200,
+      "dimension": 4096,
+      "rows": 32,
+      "request_sha256": "d889af7f6660bcee3831a193cce11a78b78bbcb4e2d180db22b8892749297ad8",
+      "response_sha256": "7c6fe0027ac287b1a38e344da797cd521c4fea72e91bd8f0a4121d3a2e4ea6b0",
+      "accepted_ascii_casefold_receipt_present": true
+    },
+    {
+      "call_id": "532a19830a1c37ad41efc2b5fbbbc68d63d74acf66a97b3db40d8d42ff36da3c",
+      "reserved_at": "2026-11-08T09:49:48.203080+00:00",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model": "Qwen/Qwen3-Embedding-8B",
+      "provider": "Nebius",
+      "http_status": 200,
+      "dimension": 4096,
+      "rows": 32,
+      "request_sha256": "81ba8f130d42089f55f348c21d40973c91b53f63f3fd5cebff85e4e4f91e2660",
+      "response_sha256": "967d13aa08b770d2750e4ee1108d34dfe070f164b2bb7977b55b20b24e327678",
+      "accepted_ascii_casefold_receipt_present": false
+    }
+  ],
+  "new_unknown_ledger_rows": 0
+}

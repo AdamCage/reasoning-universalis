@@ -239,6 +239,8 @@ def analysis_tables(paths):
                     "class_balance": fold.get("methods", {}).get("static", {}).get("test", {}).get("correct_rate"),
                     "static_test": fold.get("methods", {}).get("static", {}).get("test"),
                     "dynamic_test": fold.get("methods", {}).get("dynamic", {}).get("test"),
+                    "static_estimator": fold.get("methods", {}).get("static", {}).get("estimator"),
+                    "dynamic_estimator": fold.get("methods", {}).get("dynamic", {}).get("estimator"),
                     "gain": run.get("paired_gain_by_target", {}).get(fold["target_model"])}
                    for run in runs for fold in run.get("folds", [])]
         outputs.append({"input": file_evidence(path), "embedding_model": document.get("embedding_model"),
@@ -250,6 +252,30 @@ def analysis_tables(paths):
                         "order_contrasts_256": [contrast for contrast in document.get("order_contrasts", [])
                                                 if contrast.get("budget_words") == 256]})
     return outputs
+
+
+def prefix_support(records, models, budgets):
+    """Raw class and root counts for the specified eligible text population."""
+    rows = []
+    for budget in budgets:
+        for model in models:
+            for split in ("train", "val", "test"):
+                selected = [row for row in records if row["model"] == model
+                            and normalized_split(row["split"]) == split
+                            and row.get("status") == "completed"
+                            and type(row.get("correct")) is bool
+                            and len(re.findall(r"\S+", row["text"])) >= budget]
+                positives = sum(row["correct"] for row in selected)
+                negatives = len(selected) - positives
+                rows.append({"budget_words": budget, "model": model, "split": split,
+                             "eligible_traces": len(selected),
+                             "independent_roots": len({row["root_id"] for row in selected}),
+                             "correct_labels": positives, "incorrect_labels": negatives,
+                             "roots_with_error": len({row["root_id"] for row in selected if not row["correct"]}),
+                             "class_support": ("none" if not selected else "both_classes"
+                                               if positives and negatives else "single_class"),
+                             "scope": "text eligibility before embedding coverage; counts are not independent sample sizes"})
+    return rows
 
 
 def markdown(summary):
@@ -271,7 +297,7 @@ def markdown(summary):
         lines.append("Not evaluated: no original-population BGE analysis was supplied.")
     for item in primary:
         lines += [f"Input: {item['input']['path']}", "",
-                  "| Target | Status | Roots | Traces | Correct fraction | Log loss gain | 95% interval |",
+                  "| Target | Status | Roots | Traces | Root-weighted correct fraction | Log loss gain | 95% interval |",
                   "|---|---|---:|---:|---:|---:|---|"]
         for target in item["targets_256"]:
             gain = target.get("gain") or {}
@@ -336,6 +362,8 @@ def main():
                "admission": {"overall": counts(admission_matrix), "matrix": admission_matrix,
                              "routes": [route for document in admission_documents for route in document.get("routes", [])]},
                "analyses": analysis_tables(args.analysis), "budget": budget,
+               "prefix_class_support": prefix_support(results.get("records", []), models,
+                    protocol["measurement"]["observed_prefix_words"]),
                "counting_notes": ["Every task/model/sample is retained in the planned denominator.",
                                   "Reserved attempts need not have reached the service; missing responses remain unresolved.",
                                   "Root block completion is based on all planned variants and samples, never selected by correctness.",
@@ -344,6 +372,16 @@ def main():
     (args.output / "summary.json").write_bytes(encoded(summary) + b"\n")
     (args.output / "planned-matrix.json").write_bytes(encoded(matrix) + b"\n")
     (args.output / "coverage.md").write_text(markdown(summary), encoding="utf-8", newline="\n")
+    support = summary["prefix_class_support"]
+    (args.output / "prefix-support.json").write_bytes(encoded(support) + b"\n")
+    lines = ["# Prefix class support", "", "Raw label counts; repeated traces within a root are dependent.", "",
+             "| Words | Model | Split | Traces | Roots | Correct | Incorrect | Roots with error | Classes |",
+             "|---:|---|---|---:|---:|---:|---:|---:|---|"]
+    for row in support:
+        lines.append("| " + " | ".join(str(row[key]) for key in (
+            "budget_words", "model", "split", "eligible_traces", "independent_roots",
+            "correct_labels", "incorrect_labels", "roots_with_error", "class_support")) + " |")
+    (args.output / "prefix-support.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"output": str(args.output), "planned": len(matrix), "saved_traces": summary["collection"]["overall"]["trace_records"]}))
 
 

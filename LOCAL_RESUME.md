@@ -1,5 +1,15 @@
 # Продолжение на локальном компьютере
 
+**Состояние после выполнения, 8 ноября 2026.** Платный сбор закрыт: 384 основные попытки, два полных набора по 5778 embedding chunks и пять завершённых анализов. Не запускать приведённые ниже исторические paid-команды повторно. Общий ledger содержит 790 записей, charged-or-reserved — 651.5180250837596 RUB из разрешённых 3000 RUB. Итог и научные ограничения — [LOCAL_RESEARCH_RESULT_RU.md](reports/LOCAL_RESEARCH_RESULT_RU.md); E0 и независимое человеческое review остаются открытыми.
+
+Для бесплатного воспроизведения установи Python 3.12 и `requirements-resumption.txt`, затем выполни из корня репозитория:
+
+```powershell
+python -X utf8 scripts/reproduce_local.py --manifest evidence/local-pilot-2026-11-08/manifest.json --output .research/local-replay-check
+```
+
+Каталог результата должен быть новым. Ключ и `.env` для replay не нужны. Архив содержит raw evidence и закреплённый source snapshot; большие производные embedding JSON восстанавливаются с проверкой исходного SHA. Фактическая проверка этого архива записывается отдельно в [LOCAL_REPRODUCTION_CHECK.md](reports/LOCAL_REPRODUCTION_CHECK.md). Нижеследующие инструкции сохраняют историю переноса и не являются новым разрешением повторить сбор.
+
 **Локальное обновление 8 ноября 2026.** Работа уже начата в `C:\projects\reasoning-universalis`; текущий pre-data commit — `fcd4426`. Пользователь в этом чате увеличил общий потолок до **3000 RUB**, включая исторические обязательства. Действующий локальный development-протокол — `design/LOCAL_PILOT_2026_11_08.json`, платный state — **`.research/resumption-2026-11-08-live`**. Запуски явно используют `--cap-total-rub 3000 --collection-cap-rub 2900 --state .research/resumption-2026-11-08-live --protocol design/LOCAL_PILOT_2026_11_08.json`; на Windows — `python -X utf8`. Старые 900 RUB и исходный протокол ниже сохранены как история передачи. До платного запуска 172/172 теста прошли. Не начинать новый state или повторный сбор: сначала читать текущие `admission-results.json`, `results.json`, ledger и `reports/LOCAL_SESSION.md` в активном state. Все `resumption/*.py` и три Stage 0 source-файла уже закреплены; правка останавливает dispatch. Два старых preflight state не содержат новых paid calls и сохранены отдельно. Deadline остаётся прежним.
 
 Это текущее автономное задание для Codex. Основание — [поручение от 8 ноября](reports/RESUMPTION_SCOPE_2026_11_08.md). Цель остаётся прежней: проверяемое исследовательское портфолио для Anthropic Residency и научная рукопись. Перенос на локальную машину устраняет облачную блокировку RouterAI; **новых модельных экспериментов в облаке не было**.
