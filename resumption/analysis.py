@@ -31,7 +31,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-VERSION = "observable-prefix-transfer-v1"
+VERSION = "observable-prefix-transfer-v1.1"
 CHUNK_WORDS = 16
 DEFAULT_BUDGETS = (128, 256, 512)
 C_GRID = (0.01, 0.1, 1.0)
@@ -186,6 +186,8 @@ def validate_records(records: list[dict]) -> None:
 
 
 def prefixes(records: list[dict], budget: int, embedder: str | None = None) -> tuple[list[Prefix], dict]:
+    if type(budget) is not int or budget <= 0 or budget % CHUNK_WORDS:
+        raise ValueError("Budget must be a positive multiple of chunk_words")
     validate_records(records)
     result, coverage = [], defaultdict(Counter)
     embedding_dimension = None
@@ -220,6 +222,54 @@ def prefixes(records: list[dict], budget: int, embedder: str | None = None) -> t
                              tuple((c["start"], c["end"]) for c in chunks), vectors))
         coverage[key]["eligible"] += 1
     return result, {key: dict(value) for key, value in sorted(coverage.items())}
+
+
+def matched_prefixes(records: list[dict], comparison_records: list[dict], budget: int,
+                     embedder: str, comparison_embedder: str) -> tuple[list[Prefix], dict, dict]:
+    """Intersect exact eligible prefixes before any source or target fit.
+
+    This is a supplementary embedding comparison. The ordinary primary BGE
+    analysis continues to use its original eligible population. Run this helper
+    symmetrically for both embedders to fit each on the same train/val/test rows.
+    """
+    if embedder not in ALLOWED_EMBEDDERS or comparison_embedder not in ALLOWED_EMBEDDERS:
+        raise ValueError("Matched comparison requires the two allowed embedding identities")
+    if embedder == comparison_embedder:
+        raise ValueError("Matched comparison requires two different embedders")
+    rows, coverage = prefixes(records, budget, embedder)
+    comparison_rows, comparison_coverage = prefixes(comparison_records, budget, comparison_embedder)
+    primary_records = {row["trace_id"]: row for row in records}
+    other_records = {row["trace_id"]: row for row in comparison_records}
+    identity = ("root_id", "model", "domain", "difficulty", "correct", "text", "task_id",
+                "sample_index", "provider", "response_sha256")
+    for trace_id in primary_records.keys() & other_records.keys():
+        first, second = primary_records[trace_id], other_records[trace_id]
+        first_split = {"validation": "val"}.get(first["split"], first["split"])
+        second_split = {"validation": "val"}.get(second["split"], second["split"])
+        if (any(first.get(key) != second.get(key) for key in identity) or
+                first_split != second_split or
+                first.get("status", "completed") != second.get("status", "completed")):
+            raise ValueError("Matched embedding inputs disagree on trace identity: " + trace_id)
+    first_ids = {row.trace_id for row in rows}
+    second_ids = {row.trace_id for row in comparison_rows}
+    common = first_ids & second_ids
+    matched = [row for row in rows if row.trace_id in common]
+    counts = Counter("|".join((row.model, row.domain, row.split, str(row.correct))) for row in matched)
+    details = {
+        "scope": "supplementary_matched_embeddings_primary_estimand_unchanged",
+        "embedding_model": embedder, "comparison_embedding_model": comparison_embedder,
+        "comparison_record_digest": digest(comparison_records),
+        "matching_unit": "exact_trace_prefix_before_all_train_validation_test_fits",
+        "budget_words": budget,
+        "primary_eligible": len(rows), "comparison_eligible": len(comparison_rows),
+        "matched_eligible": len(matched), "matched_roots": len({row.root_id for row in matched}),
+        "matched_trace_ids": sorted(common), "matched_counts": dict(sorted(counts.items())),
+        "primary_excluded_trace_ids": sorted(first_ids - common),
+        "comparison_excluded_trace_ids": sorted(second_ids - common),
+        "comparison_coverage": comparison_coverage,
+        "limitation": "Matching selects a common observed population; it does not recover missing embeddings.",
+    }
+    return matched, coverage, details
 
 
 def unit_rows(vectors: Any) -> np.ndarray:
@@ -367,6 +417,21 @@ class FeatureSpace:
                                           for key, value in self.scalers.items()}),
                 "representation": self.representation, "order": self.order, "seed": self.seed}
 
+    def lexical_chunk_coverage(self, rows: list[Prefix]) -> dict:
+        """Diagnose OOV chunks without changing features or eligible rows."""
+        counts = Counter(chunks=0, zero_chunks=0, traces=0,
+                         traces_with_zero_chunks=0, entirely_zero_traces=0)
+        for row in rows:
+            empty = np.asarray(self.vectorizer.transform(row.chunks).getnnz(axis=1)) == 0
+            counts["chunks"] += len(empty)
+            counts["zero_chunks"] += int(empty.sum())
+            counts["traces"] += 1
+            counts["traces_with_zero_chunks"] += int(empty.any())
+            counts["entirely_zero_traces"] += int(empty.all())
+        return {**dict(counts), "zero_chunk_fraction": counts["zero_chunks"] / counts["chunks"]
+                if counts["chunks"] else None,
+                "zero_vector_handling": "unchanged_cosine_geometry_zero_rows_reported_as_coverage"}
+
 
 def metrics(labels: Any, probabilities: Any, weights: Any = None) -> dict:
     labels, probabilities = np.asarray(labels, dtype=float), np.asarray(probabilities, dtype=float)
@@ -437,12 +502,17 @@ def transfer_fold(rows: list[Prefix], target_model: str, representation: str,
             "training_root_count": len({row.root_id for row in training}),
             "validation_roots": sorted({row.root_id for row in validation}),
             "test_roots": sorted({row.root_id for row in testing}),
+            "lexical_chunk_coverage": {name: space.lexical_chunk_coverage(subset)
+                                       for name, subset in (("train", training), ("val", validation),
+                                                            ("test", testing))},
             "feature_manifest": space.manifest(), "methods": fitted, "predictions": predictions}
 
 
 def paired_gain(predictions: list[dict], reference: str = "static", candidate: str = "dynamic",
                 bootstrap_samples: int = 2000, seed: int = 271828) -> dict:
     """Equal-root paired differences; bootstrap a root with all models/repeats."""
+    if type(bootstrap_samples) is not int or bootstrap_samples < 0:
+        raise ValueError("Bootstrap samples must be a nonnegative integer")
     by_trace: dict[str, dict] = defaultdict(dict)
     for prediction in predictions:
         if prediction["method"] in by_trace[prediction["trace_id"]]:
@@ -469,7 +539,13 @@ def paired_gain(predictions: list[dict], reference: str = "static", candidate: s
               "log_loss_gain": float(values[:, 0].mean()), "brier_gain": float(values[:, 1].mean()),
               "bootstrap_unit": "task_root_with_all_models_and_repeats",
               "uncertainty_scope": "conditional_on_fitted_models_and_observed_roots",
+              "interval_status": "not_requested" if not bootstrap_samples else "estimated",
               "bootstrap_samples": bootstrap_samples, "bootstrap_seed": seed}
+    if bootstrap_samples and len(groups) < 2:
+        result.update(interval_status="not_estimated_insufficient_independent_roots",
+                      interval_limitation="One task root cannot estimate between-root uncertainty; the point estimate is descriptive only.",
+                      log_loss_gain_ci95=None, brier_gain_ci95=None)
+        return result
     if bootstrap_samples:
         rng = np.random.default_rng(seed)
         estimates = np.stack([values[rng.integers(0, len(values), len(values))].mean(axis=0)
@@ -481,13 +557,26 @@ def paired_gain(predictions: list[dict], reference: str = "static", candidate: s
 
 def run_analysis(records: list[dict], budgets: tuple[int, ...] = DEFAULT_BUDGETS,
                  embedder: str | None = None, bootstrap_samples: int = 2000,
-                 include_order_controls: bool = True) -> dict:
+                 include_order_controls: bool = True, matched_records: list[dict] | None = None,
+                 matched_embedder: str | None = None) -> dict:
     validate_records(records)
+    if (matched_records is None) != (matched_embedder is None):
+        raise ValueError("Matched records and companion embedding model must be supplied together")
+    if matched_records is not None and embedder is None:
+        raise ValueError("Matched embedding analysis requires a primary embedding model")
+    if not budgets or any(type(budget) is not int or budget < 4 * CHUNK_WORDS or
+                          budget % CHUNK_WORDS for budget in budgets):
+        raise ValueError("Analysis budgets require at least four complete chunks")
     models = sorted({record["model"] for record in records})
     representation = "semantic" if embedder else "lexical"
     runs, order_contrasts = [], []
     for budget in budgets:
-        rows, coverage = prefixes(records, budget, embedder)
+        matching = None
+        if matched_records is None:
+            rows, coverage = prefixes(records, budget, embedder)
+        else:
+            rows, coverage, matching = matched_prefixes(records, matched_records, budget,
+                                                        embedder, matched_embedder)
         observed_dynamic = None
         conditions = [("observed", 0)]
         if include_order_controls:
@@ -497,6 +586,7 @@ def run_analysis(records: list[dict], budgets: tuple[int, ...] = DEFAULT_BUDGETS
             predictions = [prediction for fold in folds for prediction in fold.get("predictions", [])]
             runs.append({"budget_words": budget, "order": order, "order_seed": seed,
                          "coverage": coverage, "eligible_rows": len(rows), "folds": folds,
+                         "matched_embedding_coverage": matching,
                          "paired_gain": paired_gain(predictions, bootstrap_samples=bootstrap_samples),
                          "paired_gain_by_target": {
                              fold["target_model"]: paired_gain(fold.get("predictions", []),
@@ -525,6 +615,9 @@ def run_analysis(records: list[dict], budgets: tuple[int, ...] = DEFAULT_BUDGETS
     return {"analysis_version": VERSION, "record_count": len(records),
             "record_digest": digest(records), "representation": representation,
             "embedding_model": embedder, "word_unit": "Unicode non-whitespace span",
+            "analysis_population": "supplementary_matched_embedding_prefixes" if matched_records is not None
+                                   else "original_embedder_specific_eligible_prefixes",
+            "matched_embedding_model": matched_embedder,
             "chunk_words": CHUNK_WORDS, "C_grid": list(C_GRID), "models": models,
             "scientific_status": "exploratory_predictive_audit_not_H1_H7_validation",
             "E0": "not_passed", "functional_state_labels_used": False,
@@ -533,6 +626,7 @@ def run_analysis(records: list[dict], budgets: tuple[int, ...] = DEFAULT_BUDGETS
                             "Heldout task roots belong to the same programmed benchmark distribution.",
                             "Performance differences do not demonstrate causal benefits of stopping.",
                             "Bootstrap intervals condition on fitted predictors; training uncertainty is not integrated.",
+                            "Source-vocabulary OOV chunks remain zero vectors in lexical geometry; their frequency is reported per fold.",
                             "Regularization selection uses source validation only; fitted predictors are not refit on validation."],
             "runs": runs, "order_contrasts": order_contrasts}
 
@@ -543,14 +637,22 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--budgets", default=",".join(map(str, DEFAULT_BUDGETS)))
     parser.add_argument("--embedding-model", choices=ALLOWED_EMBEDDERS)
+    parser.add_argument("--matched-embedding-input", type=Path,
+                        help="Supplementary only: intersect exact prefixes with the other embedder before all fits")
     parser.add_argument("--bootstrap-samples", type=int, default=2000)
     parser.add_argument("--no-order-controls", action="store_true")
     parser.add_argument("--allow-admission-smoke", action="store_true",
                         help="Allow admission-only records for implementation smoke checks, never findings")
     args = parser.parse_args()
     records = read_records(args.records, args.allow_admission_smoke)
+    matched_records, matched_embedder = None, None
+    if args.matched_embedding_input is not None:
+        if args.embedding_model is None:
+            parser.error("--matched-embedding-input requires --embedding-model")
+        matched_embedder = next(model for model in ALLOWED_EMBEDDERS if model != args.embedding_model)
+        matched_records = read_records(args.matched_embedding_input, args.allow_admission_smoke)
     result = run_analysis(records, tuple(map(int, args.budgets.split(","))), args.embedding_model,
-                          args.bootstrap_samples, not args.no_order_controls)
+                          args.bootstrap_samples, not args.no_order_controls, matched_records, matched_embedder)
     result["admission_smoke_override"] = args.allow_admission_smoke
     if args.allow_admission_smoke:
         result["scientific_status"] = "implementation_smoke_only_no_scientific_findings"

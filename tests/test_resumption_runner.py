@@ -11,7 +11,7 @@ import tempfile
 import threading
 import unittest
 
-from resumption.runner import CANDIDATES, HISTORICAL_SHA, Runner, Settings, balanced_tasks, chunks, sha
+from resumption.runner import CANDIDATES, HISTORICAL_SHA, Runner, Settings, balanced_tasks, chunks, sha, ceiling_rates
 from stage0.runner import StopRun, capture_body, encode
 
 
@@ -37,7 +37,7 @@ class FakeTransport:
             return {"http_status": 200, "json": {"data": [{"id": m} for m in CANDIDATES]}}
         if path.endswith("/endpoints"):
             return {"http_status": 200, "json": {"data": {"endpoints": [
-                {"pricing_units": {"prompt": "token", "completion": "token"},
+                {"provider_name": "FakeProvider", "pricing_units": {"prompt": "token", "completion": "token"},
                  "pricing": {"prompt": self.price, "completion": self.price}}]}}}
         if self.paid:
             return self.paid(path, body)
@@ -77,6 +77,55 @@ class RunnerTests(unittest.TestCase):
         with self.assertRaises(StopRun):
             Runner(Settings(state=runner.state), FakeTransport())
 
+    def test_increased_cap_keeps_historical_obligations_and_rejects_excess(self):
+        runner = self.runner(cap=3000, collection_cap=2900)
+        self.assertEqual(runner.budget()["charged_or_reserved_rub"], "246.7988793802352")
+        self.assertEqual(runner.budget()["cap_rub"], "3000")
+        with self.assertRaises(ValueError):
+            Settings(cap=3001)
+
+    def test_time_band_quote_takes_maximum_without_guessing_active_discount(self):
+        endpoint = {"provider_name": "Cheap", "pricing_units": {"prompt": "token", "completion": "token"},
+                    "pricing": {"prompt": "0.00001", "completion": "0.00002"},
+                    "variable_pricings": [{"type": "time-of-day", "utc_start": 0, "utc_end": 100,
+                                           "prompt": "0.000005", "completion": "0.000008"},
+                                          {"type": "time-of-day", "prompt": "0.00003", "completion": "0.00004"}]}
+        response = {"json": {"data": {"endpoints": [endpoint,
+                    {"provider_name": "Costly", "pricing_units": endpoint["pricing_units"],
+                     "pricing": {"prompt": "0.0001", "completion": "0.0002"}}]}}}
+        self.assertEqual(ceiling_rates(response, "Cheap"), (Decimal("0.00003"), Decimal("0.00004")))
+        self.assertEqual(ceiling_rates(response), (Decimal("0.0001"), Decimal("0.0002")))
+        with self.assertRaises(StopRun):
+            ceiling_rates(response, "unknown")
+        endpoint["variable_pricings"][0]["type"] = "unrecognized"
+        with self.assertRaises(StopRun):
+            ceiling_rates(response, "Cheap")
+
+    def test_unknown_tariff_units_and_additional_charges_fail_closed(self):
+        endpoint = {"provider_name": "FakeProvider", "pricing_units": {"prompt": "token", "completion": "token", "request": "request"},
+                    "pricing": {"prompt": "0.0001", "completion": "0.0002", "request": 1}}
+        response = {"json": {"data": {"endpoints": [endpoint]}}}
+        with self.assertRaises(StopRun):
+            ceiling_rates(response)
+        endpoint["pricing"]["request"] = 0
+        endpoint["pricing_units"]["prompt"] = "million_tokens"
+        with self.assertRaises(StopRun):
+            ceiling_rates(response)
+        endpoint["pricing_units"]["prompt"] = "token"
+        del endpoint["pricing_units"]["request"]
+        with self.assertRaises(StopRun):
+            ceiling_rates(response)
+
+    def test_paid_attempt_pins_exact_quote_and_metadata_history_survives_refresh(self):
+        runner = self.runner()
+        record = runner.chat(CANDIDATES[0], task(), -1, admission=True)
+        result = json.loads((runner.calls / record["trace_id"] / "result.json").read_text())
+        receipt = result["quote_receipt_sha256"]
+        original = runner.state / "metadata/history" / (receipt + ".json")
+        self.assertEqual(sha(original.read_bytes()), receipt)
+        runner.catalog([CANDIDATES[0]])
+        self.assertEqual(sha(original.read_bytes()), receipt)
+        self.assertEqual(result["quoted_prompt_rub_per_token"], "0.00001")
     def test_dry_run_uses_no_network_or_key(self):
         transport = FakeTransport()
         runner = self.runner(transport)
@@ -392,6 +441,31 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(result["records"], initial["records"])
         self.assertEqual(calls, [])
         self.assertEqual(recovered.ledger_path.read_bytes(), budget_before)
+
+    def test_embedding_cross_batch_dimension_drift_is_retained_and_rejected(self):
+        paid_calls = []
+        def embedding(path, body):
+            paid_calls.append(body)
+            dimension = 1024 if len(paid_calls) == 1 else 1536
+            payload = {"model": body["model"], "provider": "FakeProvider", "data": [
+                {"index": i, "embedding": [1.] + [0.] * (dimension - 1)}
+                for i in range(len(body["input"]))]}
+            return {"http_status": 200, **capture_body(encode(payload), "offline-secret")}
+        runner = self.runner(FakeTransport(paid=embedding))
+        record = {"trace_id": "fixture", "status": "completed", "text": "word " * 32}
+        with self.assertRaisesRegex(StopRun, "dimension drift"):
+            runner.embed([record], "qwen/qwen3-embedding-8b", batch_size=1)
+        self.assertEqual(len(paid_calls), 2)
+        self.assertEqual(len(list(runner.calls.glob("*/response.json"))), 2)
+        with self.assertRaises(StopRun):
+            runner.embed([record], "qwen/qwen3-embedding-8b", batch_size=1)
+        self.assertEqual(len(paid_calls), 2)
+
+    def test_missing_embedding_provider_is_reported_without_inventing_a_route(self):
+        runner = self.runner()
+        output = runner.embed([{"trace_id": "fixture", "status": "completed", "text": "word " * 16}], "baai/bge-m3")
+        self.assertIsNone(output["embedding_route"]["provider"])
+        self.assertFalse(output["embedding_route"]["provider_identity_verified"])
 
 
 if __name__ == "__main__":

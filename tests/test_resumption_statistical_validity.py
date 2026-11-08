@@ -54,6 +54,25 @@ def transfer_fixture():
 
 
 class EqualRootInferenceTests(unittest.TestCase):
+    def test_one_original_root_has_a_point_estimate_but_no_uncertainty_interval(self):
+        predictions = []
+        for repeat in range(8):
+            predictions += paired(f"repeat-{repeat}", "only-original-root", .5, .9,
+                                  model=f"model-{repeat % 2}")
+        observed = paired_gain(predictions, bootstrap_samples=200)
+        self.assertAlmostEqual(observed["log_loss_gain"], math.log(.9 / .5))
+        self.assertEqual(observed["root_count"], 1)
+        self.assertEqual(observed["trace_count"], 8)
+        self.assertEqual(observed["status"], "estimated")
+        self.assertEqual(observed["interval_status"], "not_estimated_insufficient_independent_roots")
+        self.assertIsNone(observed["log_loss_gain_ci95"])
+        self.assertIsNone(observed["brier_gain_ci95"])
+        self.assertIn("between-root uncertainty", observed["interval_limitation"])
+
+    def test_invalid_bootstrap_configuration_is_not_an_empty_scientific_result(self):
+        with self.assertRaisesRegex(ValueError, "nonnegative integer"):
+            paired_gain(paired("a", "root-a", .5, .9), bootstrap_samples=-1)
+
     def test_unequal_repeats_and_models_do_not_change_root_estimand(self):
         predictions = paired("a", "root-a", .5, .9)
         for repeat in range(13):

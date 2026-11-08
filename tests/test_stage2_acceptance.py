@@ -36,6 +36,19 @@ class Stage2AcceptanceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Implementation file changed"):
             verify.verify(self.read)
 
+    def test_text_locks_accept_crlf_but_reject_content_changes(self):
+        for path in verify.LOCKS:
+            self.files[path] = self.files[path].replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+        self.assertEqual(verify.verify(self.read)["status"], "accepted")
+        self.files["RESEARCH_SPECIFICATION.md"] += b" "
+        with self.assertRaisesRegex(ValueError, "Locked file changed"):
+            verify.verify(self.read)
+
+    def test_receipt_line_endings_remain_byte_exact(self):
+        self.files[verify.RECEIPT] = self.files[verify.RECEIPT].replace(b"\n", b"\r\n")
+        with self.assertRaisesRegex(ValueError, "receipt bytes mismatch"):
+            verify.verify(self.read)
+
     def test_receipt_cannot_pass_e0_or_start_the_pilot(self):
         receipt = json.loads(self.files[verify.RECEIPT])
         receipt["E0"] = "passed"

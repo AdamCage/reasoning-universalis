@@ -32,6 +32,7 @@ HISTORICAL_ARCHIVE = ROOT / "evidence/stage0-2026-10-12.zip"
 CANDIDATES = ("qwen/qwen3-32b", "deepseek/deepseek-v4.1-flash", "openai/gpt-oss-20b")
 EMBEDDERS = ("baai/bge-m3", "qwen/qwen3-embedding-8b")
 CAP = Decimal("900")
+AUTHORIZED_CAP = Decimal("3000")  # Explicit user increase, 8 November 2026.
 _THREAD_LOCK = threading.RLock()
 
 
@@ -45,6 +46,50 @@ def utcnow() -> str:
 
 def read_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def ceiling_rates(response, provider=None):
+    """Reserve the maximum declared rate, never a guessed time-of-day discount.
+
+    Provider-specific rates apply only to a request pinned to that exact provider.
+    Historical stage0 pricing and its evidence are deliberately unchanged.
+    """
+    endpoints = response.get("json", {}).get("data", {}).get("endpoints", [])
+    if provider is not None:
+        endpoints = [e for e in endpoints if e.get("provider_name") == provider]
+        if not endpoints:
+            raise StopRun("Pinned provider has no exact endpoint quotation")
+    bounded = []
+    for endpoint in endpoints:
+        units = endpoint.get("pricing_units", {})
+        if units.get("prompt") != "token" or units.get("completion", "token") != "token":
+            raise StopRun("Unknown pricing units; cannot reserve budget")
+        base = endpoint.get("pricing", {})
+        if any(key not in units for key in base):
+            raise StopRun("Endpoint charge lacks explicit units")
+        variants = [base]
+        for variation in endpoint.get("variable_pricings", []):
+            if variation.get("type") not in ("prompt-threshold", "time-of-day"):
+                raise StopRun("Unsupported variable pricing")
+            if variation.get("pricing_units", units) != units:
+                raise StopRun("Variable pricing changes units")
+            variants.append({**base, **variation})
+        for price in variants:
+            # These are mutually alternative input/cache rates. Taking their
+            # maximum also covers a cache miss. Other nonzero charges fail closed.
+            for key, value in price.items():
+                if key in units and key not in ("prompt", "completion", "input_cache_read", "input_cache_write"):
+                    if Decimal(str(value)) != 0:
+                        raise StopRun("Additional nonzero endpoint charge is unsupported")
+            prompt = max(Decimal(str(price[key])) for key in
+                         ("prompt", "input_cache_read", "input_cache_write") if key in price)
+            completion = Decimal(str(price.get("completion", 0)))
+            if any(not x.is_finite() or x < 0 or x >= 1 for x in (prompt, completion)):
+                raise StopRun("Endpoint price is not a finite supported rub/token rate")
+            bounded.append((prompt, completion))
+    if not bounded:
+        raise StopRun("No endpoint quotation is available")
+    return max(p[0] for p in bounded), max(p[1] for p in bounded)
 
 
 def chunks(text: str, words: int = 16, maximum: int = 512) -> list[dict]:
@@ -104,8 +149,8 @@ class Settings:
         self.state = Path(self.state)
         self.cap = Decimal(str(self.cap))
         self.collection_cap = Decimal(str(self.collection_cap))
-        if not self.cap.is_finite() or not 0 < self.cap <= CAP:
-            raise ValueError("Cap must be finite, positive, and no greater than 900 RUB")
+        if not self.cap.is_finite() or not 0 < self.cap <= AUTHORIZED_CAP:
+            raise ValueError("Cap must be finite, positive, and no greater than 3000 RUB")
         if not self.collection_cap.is_finite() or not 0 < self.collection_cap <= self.cap:
             raise ValueError("Collection cap must be positive and within the total cap")
         if self.key and (not self.key.strip() or any(char.isspace() for char in self.key)
@@ -133,6 +178,7 @@ class Runner:
         self.calls.mkdir(exist_ok=True)
         self.ledger_path = self.state / "ledger.json"
         self.prices: dict[str, tuple[Decimal, Decimal]] = {}
+        self.price_receipts = {}
         self.protocol_digest = None
         self.tasks_digest = None
         self.source_inventory_digest = None
@@ -325,11 +371,13 @@ class Runner:
 
     def _metadata(self, path, name):
         response = self.transport(path, timeout=min(self.settings.timeout, 30))
-        self.save(self.state / "metadata" / (name + ".json"),
-                  {"retrieved_at": utcnow(), "response": {k: v for k, v in response.items() if k != "headers"}})
+        record = {"retrieved_at": utcnow(), "endpoint": path,
+                  "response": {k: v for k, v in response.items() if k != "headers"}}
+        receipt = self.save(self.state / "metadata" / (name + ".json"), record)
+        self.save(self.state / "metadata" / "history" / (receipt + ".json"), record)
         if response.get("http_status") != 200 or response.get("json", {}).get("error"):
             raise StopRun("Metadata unavailable: " + name)
-        return response
+        return {**response, "metadata_receipt_sha256": receipt}
 
     def catalog(self, models=()):
         catalog = self._metadata("/models", "catalog")
@@ -352,19 +400,22 @@ class Runner:
         self.save(self.state / "catalog-summary.json", summary)
         return summary
 
-    def price(self, model):
+    def price(self, model, provider=None):
         if model not in CANDIDATES + EMBEDDERS:
             raise StopRun("Model is outside the explicit resumption candidates")
-        if model not in self.prices:
-            response = self._metadata("/models/" + quote(model, safe="/") + "/endpoints", model.replace("/", "_") + "-endpoints")
-            try:
-                price = rates(response)
-                if price is None or any(not p.is_finite() or p < 0 or p >= 1 for p in price):
-                    raise ValueError
-            except (KeyError, TypeError, ValueError, ArithmeticError):
-                raise StopRun("Pricing is missing, malformed, or outside the supported rub/token contract") from None
-            self.prices[model] = price
-        return self.prices[model]
+        cache_key = (model, provider)
+        with _THREAD_LOCK:
+            if cache_key not in self.prices:
+                response = self._metadata("/models/" + quote(model, safe="/") + "/endpoints", model.replace("/", "_") + "-endpoints")
+                try:
+                    price = ceiling_rates(response, provider)
+                    if price is None or any(not p.is_finite() or p < 0 or p >= 1 for p in price):
+                        raise ValueError
+                except (KeyError, TypeError, ValueError, ArithmeticError):
+                    raise StopRun("Pricing is missing, malformed, or outside the supported rub/token contract") from None
+                self.prices[cache_key] = price
+                self.price_receipts[cache_key] = response["metadata_receipt_sha256"]
+            return self.prices[cache_key]
 
     def _cached_call(self, directory, expected_request):
         if not directory.exists():
@@ -402,7 +453,10 @@ class Runner:
         if not self.settings.key:
             raise StopRun("ROUTERAI_API_KEY is not configured")
         self._deadline()
-        price = self.price(model)
+        pinned = body.get("provider", {})
+        provider = (pinned["order"][0] if pinned.get("allow_fallbacks") is False
+                    and len(pinned.get("order", [])) == 1 else None)
+        price = self.price(model, provider)
         amount = estimate(body, price)
         with self.locked():
             # A second worker/process could have reserved while metadata loaded.
@@ -425,6 +479,10 @@ class Runner:
                        "source_inventory_sha256": self.source_inventory_digest,
                        "verifier_source_sha256": self.verifier_source_digest,
                        "request_sha256": request_digest, "reservation_id": reservation["id"],
+                       "quote_receipt_sha256": self.price_receipts[(model, provider)],
+                       "quoted_prompt_rub_per_token": str(price[0]),
+                       "quoted_completion_rub_per_token": str(price[1]),
+                       "quoted_provider": provider,
                        "reservation_rub": str(amount), "reserved_at": utcnow(), "automatic_retries": 0}
             self.save(directory / "reservation.json", context)
             if kind == "embedding":
@@ -504,7 +562,7 @@ class Runner:
         predictor_text = raw_reasoning[:answer_marker] if answer_marker >= 0 else raw_reasoning
         provider = payload.get("provider")
         identity_ok = payload.get("model") == model and isinstance(provider, str) and bool(provider.strip())
-        route_ok = admission or any(r["provider"] == provider for r in allowed)
+        route_ok = admission or bool(allowed and allowed[0]["provider"] == provider)
         ok = (result["http_status"] == 200 and payload.get("error") is None and identity_ok and route_ok
               and inspected["status"] == "visible_trace_candidate")
         from resumption.generator_audit import verify_answer
@@ -642,18 +700,30 @@ class Runner:
             raise StopRun("Cannot quote an empty allocation")
         quotes = []
         for model in models:
-            price = self.price(model)
+            allowed = [r for r in self._routes() if r["model"] == model
+                       and r.get("protocol_sha256") == self.protocol_digest]
+            provider = allowed[0]["provider"] if allowed else None
+            price = self.price(model, provider)
             total = Decimal(0)
+            admission_total = Decimal(0)
             for task, repeats in [(t, samples) for t in tasks] + [(t, 1) for t in admission_tasks]:
                 body = {"model": model, "messages": [{"role": "user", "content": task["prompt"]}],
                         "max_tokens": self.settings.max_tokens, "temperature": self.settings.temperature,
                         "top_p": self.settings.top_p, "seed": 999999999, "stream": False,
                         "reasoning": {"enabled": True}, "include_reasoning": True,
                         "provider": {"order": [" " * 256], "allow_fallbacks": False}}
-                total += estimate(body, price) * repeats
+                # Admission has no pinned route and requires the all-route ceiling.
+                is_admission = task in admission_tasks
+                amount = estimate(body, self.price(model) if is_admission else price) * repeats
+                total += amount
+                if is_admission:
+                    admission_total += amount
             quotes.append({"model": model, "prompt_rub_per_token": str(price[0]),
                            "completion_rub_per_token": str(price[1]),
-                           "generation_and_admission_reservation_envelope_rub": str(total)})
+                           "generation_and_admission_reservation_envelope_rub": str(total),
+                           "admission_reservation_envelope_rub": str(admission_total),
+                           "collection_provider": provider,
+                           "pricing_rule": "maximum_declared_rate_across_all_time_bands"})
         embedding_quotes = []
         for model in EMBEDDERS:
             try:
@@ -664,12 +734,15 @@ class Runner:
                 embedding_quotes.append({"model": model, "quote_available": False})
         budget = self.budget()
         total = sum((Decimal(q["generation_and_admission_reservation_envelope_rub"]) for q in quotes), Decimal(0))
+        admission_total = sum((Decimal(q["admission_reservation_envelope_rub"]) for q in quotes), Decimal(0))
         result = {"metadata_only": True, "paid_requests": 0, "created_at": utcnow(),
                   "protocol_sha256": self.protocol_digest, "corpus_sha256": self.tasks_digest,
                   "generation_requests": len(tasks) * len(models) * samples,
                   "maximum_admission_requests": len(admission_tasks) * len(models),
                   "quotes": quotes, "embedding_quotes": embedding_quotes,
                   "allocation_envelope_rub": str(total), "budget": budget,
+                  "admission_envelope_rub": str(admission_total),
+                  "admission_fits_collection_ceiling": Decimal(budget["charged_or_reserved_rub"]) + admission_total <= self.settings.collection_cap,
                   "full_allocation_fits_collection_ceiling": Decimal(budget["charged_or_reserved_rub"]) + total <= self.settings.collection_cap,
                   "embedding_cost": "unknown until observed chunks; headroom is an allocation, not a cost guarantee",
                   "incomplete_blocks": "balanced queue stops before crossing either ceiling; report all exclusions",
@@ -687,6 +760,8 @@ class Runner:
             segments = chunks(record["text"])
             record.setdefault("embeddings", {})[model] = segments
             targets.extend((record["trace_id"], segment) for segment in segments)
+        route_path = self.state / (model.replace("/", "_") + "-embedding-route.json")
+        route = read_json(route_path) if route_path.exists() else None
         for offset in range(0, len(targets), batch_size):
             batch = targets[offset:offset + batch_size]
             body = {"model": model, "input": [segment["text"] for _, segment in batch]}
@@ -696,6 +771,18 @@ class Runner:
             if (result["http_status"] != 200 or not inspection["valid"] or payload.get("model") != model
                     or any(not any(item["embedding"]) for item in payload.get("data", []))):
                 raise StopRun("Embedding identity, shape, or response validation failed; no automatic retry")
+            provider = payload.get("provider")
+            if not isinstance(provider, str) or not provider.strip():
+                provider = None
+            dimension = len(payload["data"][0]["embedding"])
+            observed = {"model": model, "provider": provider, "dimension": dimension}
+            if route is None:
+                route = {**observed, "first_response_sha256": result["response_sha256"],
+                         "provider_identity_verified": provider is not None,
+                         "revision": "not_reported_not_inferred"}
+                self.save(route_path, route)
+            elif any(route.get(key) != value for key, value in observed.items()):
+                raise StopRun("Embedding provider or dimension drift; raw attempt retained, no automatic retry")
             for item in sorted(payload["data"], key=lambda d: d["index"]):
                 _, segment = batch[item["index"]]
                 segment["vector"] = item["embedding"]
@@ -704,9 +791,12 @@ class Runner:
                 segment["input_sha256"] = sha(segment["text"].encode())
                 segment["request_sha256"] = result["request_sha256"]
                 segment["response_sha256"] = result["response_sha256"]
+                segment["provider"] = provider
+                segment["provider_identity_verified"] = provider is not None
         output = {"records": records, "embedding_model": model, "word_chunk_size": 16,
                   "max_observed_words": 512, "budget": self.budget(),
-                  "protocol_sha256": self.protocol_digest, "scientific_validity": "not_assessed"}
+                  "protocol_sha256": self.protocol_digest, "embedding_route": route,
+                  "scientific_validity": "not_assessed"}
         self.save(self.state / (model.replace("/", "_") + "-embedded.json"), output)
         return output
 
@@ -741,6 +831,8 @@ def main():
     parser.add_argument("--concurrency", type=int, default=3)
     parser.add_argument("--collection-cap-rub", type=Decimal, default=Decimal("800"),
                         help="Shared-ledger ceiling for generation/admission, leaving total-cap room for embeddings")
+    parser.add_argument("--cap-total-rub", type=Decimal,
+                        help="Explicit shared cap; maximum authorized 3000 RUB including historical commitments")
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--deadline", help="Absolute timezone-qualified dispatch deadline; default eight hours from first bound command")
     parser.add_argument("--env-file", type=Path, help="Strict KEY=value local file; process environment takes precedence")
@@ -750,7 +842,7 @@ def main():
     if settings_env.get("ROUTERAI_BASE_URL", "https://routerai.ru/api/v1") != "https://routerai.ru/api/v1":
         parser.error("Only the prescribed RouterAI URL is supported")
     config = Settings(state=args.state, key=settings_env.get("ROUTERAI_API_KEY", ""),
-                      cap=Decimal(settings_env.get("RU_MAX_SPEND_RUB", "900")),
+                      cap=args.cap_total_rub if args.cap_total_rub is not None else Decimal(settings_env.get("RU_MAX_SPEND_RUB", "900")),
                       collection_cap=args.collection_cap_rub,
                       max_tokens=args.max_tokens, concurrency=args.concurrency, timeout=args.timeout,
                       deadline=args.deadline or (datetime.now(timezone.utc) + timedelta(hours=8)).isoformat())
