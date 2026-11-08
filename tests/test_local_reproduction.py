@@ -109,6 +109,66 @@ class LocalReproductionTests(unittest.TestCase):
         self.result["response_sha256"] = reproduction.sha(reproduction.encoded(self.response))
         self.write(self.prefix + "result.json", self.result)
 
+    def authorize_casefold_fixture(self):
+        self.response["json"]["model"] = "BAAI/bge-m3"
+        self.update_response()
+        self.route["first_response_sha256"] = self.result["response_sha256"]
+        self.write("baai_bge-m3-embedding-route.json", self.route)
+        project = self.root / "project"
+        collector_path = project / reproduction.COMPAT_COLLECTOR
+        collector_path.parent.mkdir(parents=True)
+        collector_path.write_bytes(b"# Explicit synthetic compatibility collector fixture; no API code.\n")
+        collector_sha = reproduction.sha(collector_path.read_bytes())
+        amendment = {"schema_version": 1, "amendment_id": "synthetic-ascii-casefold-only",
+                     "base_protocol_sha256": self.bindings["protocol_sha256"], "script_sha256": collector_sha,
+                     "model_identity_rule": reproduction.COMPAT_RULE, "models": [self.model],
+                     "created_utc": "2026-11-08T10:00:00+00:00"}
+        amendment_path = project / reproduction.COMPAT_AMENDMENT
+        amendment_path.parent.mkdir(parents=True)
+        amendment_path.write_bytes(reproduction.encoded(amendment))
+        amendment_sha = reproduction.sha(amendment_path.read_bytes())
+        directory = self.state / reproduction.COMPAT_STATE
+        directory.mkdir(parents=True)
+        (directory / "amendment.json").write_bytes(amendment_path.read_bytes())
+        (directory / "collector.py").write_bytes(collector_path.read_bytes())
+        binding = {"schema_version": 1, "amendment_id": amendment["amendment_id"],
+                   "amendment_sha256": amendment_sha, "collector_sha256": collector_sha,
+                   "base_protocol_sha256": self.bindings["protocol_sha256"],
+                   "source_inventory_sha256": self.bindings["source_inventory_sha256"],
+                   "corpus_sha256": self.bindings["corpus_sha256"],
+                   "results_sha256": reproduction.sha((self.state / "results.json").read_bytes()),
+                   "results_document_sha256": reproduction.sha(reproduction.encoded(
+                       json.loads((self.state / "results.json").read_bytes()))),
+                   "model_identity_rule": reproduction.COMPAT_RULE, "models": [self.model],
+                   "amendment_path": reproduction.COMPAT_AMENDMENT,
+                   "collector_path": reproduction.COMPAT_COLLECTOR, "scientific_validity": "not_assessed"}
+        (directory / "binding.json").write_bytes(reproduction.encoded(binding))
+        self.route.update(identity_rule=reproduction.COMPAT_RULE,
+                          amendment_sha256=amendment_sha, collector_sha256=collector_sha)
+        self.write("baai_bge-m3-embedding-route.json", self.route)
+        self.write(self.prefix + "embedding-compatibility.json", {
+            "schema_version": 1, "call_id": self.call_id, "requested_model": self.model,
+            "returned_model_id": "BAAI/bge-m3", "provider": "synthetic-provider", "dimension": 1024,
+            "identity_rule": reproduction.COMPAT_RULE, "request_sha256": self.reservation["request_sha256"],
+            "response_sha256": self.result["response_sha256"], "amendment_sha256": amendment_sha,
+            "collector_sha256": collector_sha, "cached_without_resend": True,
+            "scientific_validity": "not_assessed"})
+        self.aggregate.update(identity_rule=reproduction.COMPAT_RULE,
+            embedding_route=self.route,
+            execution_compatibility={"amendment_path": reproduction.COMPAT_AMENDMENT,
+                "amendment_sha256": amendment_sha, "collector_path": reproduction.COMPAT_COLLECTOR,
+                "collector_sha256": collector_sha, "model_identity_rule": reproduction.COMPAT_RULE,
+                "canonical_requested_model": self.model, "returned_model_identity_preserved": True,
+                "base_protocol_sha256": self.bindings["protocol_sha256"],
+                "state_binding_path": reproduction.COMPAT_STATE + "/binding.json"})
+        for segment in self.aggregate["records"][0]["embeddings"][self.model]:
+            segment.update(identity_rule=reproduction.COMPAT_RULE,
+                           returned_model_id=self.response["json"]["model"],
+                           response_sha256=self.result["response_sha256"])
+        self.write("baai_bge-m3-embedded.json", self.aggregate)
+        markers = exporter.derived_embedding_registry(self.state, ())
+        self.marker = next(row for row in markers["files"] if row["file_present"])
+
     def test_exact_aggregate_reconstruction_and_frozen_source_inventory(self):
         records, audit = self.rebuild()
         self.assertEqual(records, self.aggregate["records"])
@@ -119,6 +179,54 @@ class LocalReproductionTests(unittest.TestCase):
         (self.state / "source/resumption/analysis.py").write_bytes(b"tampered")
         with self.assertRaisesRegex(reproduction.ReproductionError, "Frozen source differs"):
             reproduction.verify_frozen_sources(self.state)
+
+    def test_case_only_response_identity_requires_bound_amendment_and_collector(self):
+        self.response["json"]["model"] = "BAAI/bge-m3"
+        self.update_response()
+        with self.assertRaisesRegex(reproduction.ReproductionError, "HTTP/API/model"):
+            self.rebuild()
+        self.authorize_casefold_fixture()
+        records, audit = self.rebuild()
+        self.assertEqual(audit["execution_compatibility"]["model_identity_rule"], "ascii_casefold_only")
+        self.assertEqual(records[0]["embeddings"][self.model][0]["model_id"], self.model)
+        self.assertEqual(records[0]["embeddings"][self.model][0]["returned_model_id"], "BAAI/bge-m3")
+        self.assertEqual(audit["validated_modes"][self.model]["returned_model_ids"], ["BAAI/bge-m3"])
+
+    def test_casefold_amendment_never_permits_an_alias_or_whitespace_variant(self):
+        self.authorize_casefold_fixture()
+        for returned in ("parasail-bge-m3", "baai/bge-m3 ", "different/bge-m3"):
+            with self.subTest(returned=returned):
+                self.response["json"]["model"] = returned
+                self.update_response()
+                with self.assertRaisesRegex(reproduction.ReproductionError, "HTTP/API/model"):
+                    self.rebuild()
+
+    def test_casefold_amendment_script_and_raw_returned_identity_cannot_be_tampered(self):
+        self.authorize_casefold_fixture()
+        amendment_path = self.root / "project" / reproduction.COMPAT_AMENDMENT
+        original = amendment_path.read_bytes()
+        amendment_path.write_bytes(original + b"\n")
+        with self.assertRaisesRegex(reproduction.ReproductionError, "amendment/collector SHA-256"):
+            self.rebuild()
+        amendment_path.write_bytes(original)
+        marker = copy.deepcopy(self.marker)
+        marker["records"][0]["record"]["embeddings"][self.model][0].pop("returned_model_id")
+        with self.assertRaisesRegex(reproduction.ReproductionError, "preserve the exact returned"):
+            reproduction.reconstruct_embedding(self.state, marker, self.originals, self.bindings)
+        (self.root / "project" / reproduction.COMPAT_COLLECTOR).write_bytes(b"changed synthetic script")
+        with self.assertRaisesRegex(reproduction.ReproductionError, "amendment/collector SHA-256"):
+            self.rebuild()
+
+    def test_authorized_casefold_binding_survives_portable_export_and_reanalysis(self):
+        self.authorize_casefold_fixture()
+        exported = exporter.export_bundle(self.state, self.root / "case-bundle", project=self.root / "project",
+                                          include_project=True, secrets=())
+        result = reproduction.reproduce(exported["manifest"], self.root / "case-reanalysis", bootstrap_samples=0)
+        report = json.loads(Path(result["report"]).read_bytes())
+        self.assertEqual(report["embedding_modes"][self.model]["status"], "reconstructed_exact")
+        execution = report["embedding_modes"][self.model]["execution_compatibility"]
+        self.assertEqual(execution["canonical_requested_model"], self.model)
+        self.assertEqual(execution["model_identity_rule"], "ascii_casefold_only")
 
     def test_original_request_sha_and_exact_chunk_text_are_required(self):
         self.request["input"][0] = "changed synthetic text"

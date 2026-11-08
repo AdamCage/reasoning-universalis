@@ -30,7 +30,8 @@ STATE_FILES = {
     "results.json", "pre-dispatch-plan.json", "catalog-summary.json",
     "embedding-attempted-chunks.json",
 }
-CALL_FILES = {"request.json", "response.json", "reservation.json", "trace.json", "result.json"}
+CALL_FILES = {"request.json", "response.json", "reservation.json", "trace.json", "result.json",
+              "embedding-compatibility.json"}
 CODE_DIRECTORIES = {"resumption", "stage0", "stage2", "stage3", "measurement",
                     "reasoning_universalis_v1", "resumption_evidence_v1", "scripts"}
 DERIVED_EMBEDDINGS = ("baai_bge-m3-embedded.json", "qwen_qwen3-embedding-8b-embedded.json")
@@ -158,6 +159,9 @@ def state_allowed(relative):
     if parts[0] == "source":
         # The frozen collector closure is an explicit Python-only source inventory.
         return len(parts) == 3 and parts[1] in ("resumption", "stage0") and parts[-1].endswith(".py")
+    if parts[0] == "compatibility":
+        return (len(parts) == 3 and parts[1] == "embedding-ascii-casefold-v1" and
+                parts[-1] in ("amendment.json", "collector.py", "binding.json"))
     return False
 
 
@@ -167,7 +171,8 @@ def project_allowed(relative):
         return True
     if relative in {"LOCAL_RESUME.md", "AGENTS.md", "RESEARCH_SPECIFICATION.md",
                     "requirements-resumption.txt", "requirements-publication.txt",
-                    "design/LOCAL_PILOT_2026_11_08.json", "scripts/export_local_evidence.py"}:
+                    "design/LOCAL_PILOT_2026_11_08.json", "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json",
+                    "scripts/export_local_evidence.py"}:
         return True
     if path.suffix.lower() not in OUTPUT_SUFFIXES:
         return False
@@ -198,7 +203,8 @@ def selected_files(state, project, include_project=True):
     if include_project:
         candidates = [project / p for p in ("LOCAL_RESUME.md", "AGENTS.md", "RESEARCH_SPECIFICATION.md",
                                            "requirements-resumption.txt", "requirements-publication.txt",
-                                           "design/LOCAL_PILOT_2026_11_08.json", "scripts/export_local_evidence.py")]
+                                           "design/LOCAL_PILOT_2026_11_08.json", "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json",
+                                           "scripts/export_local_evidence.py")]
         for directory in ("reports", "manuscript", "artifacts/resumption-2026-11-08", "output/pdf",
                           "literature/resumption_2026_11_08", *sorted(CODE_DIRECTORIES)):
             root = project / directory

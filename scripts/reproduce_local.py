@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+from datetime import datetime
 import gc
 import hashlib
 import importlib.util
@@ -27,6 +28,10 @@ import sys
 
 MODELS = ("baai/bge-m3", "qwen/qwen3-embedding-8b")
 HEX = re.compile(r"^[0-9a-f]{64}$")
+COMPAT_RULE = "ascii_casefold_only"
+COMPAT_AMENDMENT = "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json"
+COMPAT_COLLECTOR = "scripts/collect_embedding_compat.py"
+COMPAT_STATE = "compatibility/embedding-ascii-casefold-v1"
 
 
 class ReproductionError(ValueError):
@@ -102,7 +107,78 @@ def expected_chunks(text):
             for index in range(0, len(spans), 16)]
 
 
-def embedding_calls(state, model, records, bindings):
+def verify_execution_compatibility(state, header, model, bindings):
+    """Permit only the separately bound, explicitly documented ASCII case fix."""
+    execution = header.get("execution_compatibility")
+    if execution is None:
+        if header.get("identity_rule") is not None:
+            raise ReproductionError("Embedding identity rule has no authorized execution amendment")
+        return None
+    required = {"amendment_path": COMPAT_AMENDMENT, "collector_path": COMPAT_COLLECTOR,
+                "model_identity_rule": COMPAT_RULE, "canonical_requested_model": model,
+                "returned_model_identity_preserved": True,
+                "base_protocol_sha256": bindings["protocol_sha256"],
+                "state_binding_path": COMPAT_STATE + "/binding.json"}
+    if (not isinstance(execution, dict) or header.get("identity_rule") != COMPAT_RULE
+            or execution.get("returned_model_identity_preserved") is not True
+            or any(execution.get(key) != value for key, value in required.items())):
+        raise ReproductionError("Embedding execution compatibility metadata is incomplete or unsupported")
+    project = state.parent / "project"
+    amendment_path, collector_path = project / COMPAT_AMENDMENT, project / COMPAT_COLLECTOR
+    if (not amendment_path.is_file() or not collector_path.is_file()
+            or sha(amendment_path.read_bytes()) != execution.get("amendment_sha256")
+            or sha(collector_path.read_bytes()) != execution.get("collector_sha256")):
+        raise ReproductionError("Embedding amendment/collector SHA-256 binding is invalid")
+    amendment = json_file(amendment_path)
+    models = amendment.get("models")
+    if (type(amendment.get("schema_version")) is not int or amendment.get("schema_version") != 1
+            or not isinstance(amendment.get("amendment_id"), str) or not amendment["amendment_id"]
+            or amendment.get("base_protocol_sha256") != bindings["protocol_sha256"]
+            or amendment.get("script_sha256") != execution["collector_sha256"]
+            or amendment.get("model_identity_rule") != COMPAT_RULE
+            or not isinstance(models, list) or len(set(models)) != len(models)
+            or not set(models) <= set(MODELS) or model not in models):
+        raise ReproductionError("Embedding amendment does not authorize this exact canonical model/rule")
+    try:
+        created = datetime.fromisoformat(amendment["created_utc"].replace("Z", "+00:00"))
+        if created.tzinfo is None:
+            raise ValueError
+    except (KeyError, TypeError, ValueError, AttributeError):
+        raise ReproductionError("Embedding amendment lacks a valid timezone-aware timestamp") from None
+    directory = state / COMPAT_STATE
+    if (not (directory / "binding.json").is_file()
+            or not (directory / "amendment.json").is_file() or not (directory / "collector.py").is_file()
+            or (directory / "amendment.json").read_bytes() != amendment_path.read_bytes()
+            or (directory / "collector.py").read_bytes() != collector_path.read_bytes()):
+        raise ReproductionError("Embedding compatibility state has no exact amendment/collector snapshot")
+    binding = json_file(directory / "binding.json")
+    expected_binding = {"schema_version": 1, "amendment_id": amendment["amendment_id"],
+                        "amendment_sha256": execution["amendment_sha256"],
+                        "collector_sha256": execution["collector_sha256"],
+                        "base_protocol_sha256": bindings["protocol_sha256"],
+                        "source_inventory_sha256": bindings["source_inventory_sha256"],
+                        "corpus_sha256": bindings["corpus_sha256"],
+                        "results_sha256": sha((state / "results.json").read_bytes()),
+                        "results_document_sha256": sha(encoded(json_file(state / "results.json"))),
+                        "model_identity_rule": COMPAT_RULE, "models": models,
+                        "amendment_path": COMPAT_AMENDMENT, "collector_path": COMPAT_COLLECTOR,
+                        "scientific_validity": "not_assessed"}
+    if binding != expected_binding:
+        raise ReproductionError("Embedding compatibility state binding differs from the retained evidence")
+    return {**execution, "amendment_id": amendment["amendment_id"],
+            "created_utc": amendment["created_utc"]}
+
+
+def model_identity_matches(returned, requested, compatibility):
+    if not isinstance(returned, str):
+        return False
+    if returned == requested:
+        return True
+    return (compatibility is not None and compatibility.get("model_identity_rule") == COMPAT_RULE
+            and returned.isascii() and requested.isascii() and returned.casefold() == requested.casefold())
+
+
+def embedding_calls(state, model, records, bindings, compatibility=None):
     """Validate whole batches and return their exact vectors by original chunk ID."""
     originals = {row["trace_id"]: row for row in records}
     if len(originals) != len(records):
@@ -118,7 +194,11 @@ def embedding_calls(state, model, records, bindings):
     route = json_file(route_path)
     if route.get("model") != model:
         raise ReproductionError("Embedding route model differs from the requested mode")
-    vectors, batch_count, response_hashes = {}, 0, set()
+    if compatibility is not None and any(route.get(key) != value for key, value in
+            (("identity_rule", COMPAT_RULE), ("amendment_sha256", compatibility["amendment_sha256"]),
+             ("collector_sha256", compatibility["collector_sha256"]), ("provider_identity_verified", True))):
+        raise ReproductionError("Embedding compatibility route is not bound to the amendment/collector")
+    vectors, batch_count, response_hashes, returned_models = {}, 0, set(), set()
     for reservation_path in sorted((state / "calls").glob("*/reservation.json")):
         reservation = json_file(reservation_path)
         if reservation.get("kind") != "embedding" or reservation.get("model") != model:
@@ -160,10 +240,13 @@ def embedding_calls(state, model, records, bindings):
         payload = response.get("json")
         if (response.get("http_status") != 200 or result.get("http_status") != 200
                 or not isinstance(payload, dict) or payload.get("error") is not None
-                or payload.get("model") != model):
+                or not model_identity_matches(payload.get("model"), model, compatibility)):
             raise ReproductionError("Embedding batch has invalid HTTP/API/model status")
+        returned_models.add(payload["model"])
         provider = payload.get("provider")
         provider = provider if isinstance(provider, str) and provider.strip() else None
+        if compatibility is not None and provider is None:
+            raise ReproductionError("Embedding compatibility requires an explicit returned provider")
         items = payload.get("data")
         if (not isinstance(items, list) or len(items) != len(identity)
                 or any(not isinstance(item, dict) or type(item.get("index")) is not int for item in items)
@@ -186,6 +269,21 @@ def embedding_calls(state, model, records, bindings):
                (("model", model), ("provider", provider), ("dimension", dimension))):
             raise ReproductionError("Embedding provider/dimension route drift")
         response_hash = sha(raw["response"])
+        if compatibility is not None:
+            receipt_path = directory / "embedding-compatibility.json"
+            if not receipt_path.is_file():
+                raise ReproductionError("Embedding batch has no bound compatibility acceptance receipt")
+            receipt = json_file(receipt_path)
+            expected_receipt = {"schema_version": 1, "call_id": call_id, "requested_model": model,
+                                "returned_model_id": payload["model"], "provider": provider,
+                                "dimension": dimension, "identity_rule": COMPAT_RULE,
+                                "request_sha256": sha(raw["request"]), "response_sha256": response_hash,
+                                "amendment_sha256": compatibility["amendment_sha256"],
+                                "collector_sha256": compatibility["collector_sha256"],
+                                "scientific_validity": "not_assessed"}
+            if (type(receipt.get("cached_without_resend")) is not bool
+                    or {key: value for key, value in receipt.items() if key != "cached_without_resend"} != expected_receipt):
+                raise ReproductionError("Embedding compatibility receipt differs from its raw batch evidence")
         response_hashes.add(response_hash)
         for item in items:
             index = item["index"]
@@ -194,11 +292,13 @@ def embedding_calls(state, model, records, bindings):
                 raise ReproductionError("Embedding chunk is repeated, absent, or has changed text")
             vectors[key] = {"vector": item["embedding"], "provider": provider,
                             "request_sha256": sha(raw["request"]), "response_sha256": response_hash,
-                            "input_sha256": sha(inputs[index].encode("utf-8"))}
+                            "input_sha256": sha(inputs[index].encode("utf-8")),
+                            "returned_model_id": payload["model"]}
         batch_count += 1
     if not vectors or route.get("first_response_sha256") not in response_hashes:
         raise ReproductionError("Completed embedding route has no matching original responses")
-    return vectors, {"batches": batch_count, "chunks": len(vectors), "route": route}
+    return vectors, {"batches": batch_count, "chunks": len(vectors), "route": route,
+                     "requested_model": model, "returned_model_ids": sorted(returned_models)}
 
 
 def reconstruct_embedding(state, marker, originals, bindings):
@@ -213,6 +313,7 @@ def reconstruct_embedding(state, marker, originals, bindings):
             or header.get("protocol_sha256") != bindings["protocol_sha256"]
             or header.get("word_chunk_size") != 16 or header.get("max_observed_words") != 512):
         raise ReproductionError("Embedding completion header uses another protocol or chunking")
+    compatibility = verify_execution_compatibility(state, header, model, bindings)
     rows = marker.get("records")
     order = marker.get("record_order")
     if not isinstance(rows, list) or not isinstance(order, list):
@@ -227,7 +328,10 @@ def reconstruct_embedding(state, marker, originals, bindings):
         raise ReproductionError("Embedding inventory requests an unsupported or absent model")
     maps, audits = {}, {}
     for needed_model in sorted(needed):
-        maps[needed_model], audits[needed_model] = embedding_calls(state, needed_model, originals, bindings)
+        if compatibility is not None and needed_model != model:
+            raise ReproductionError("Compatibility aggregate must contain only its canonical requested embedder")
+        maps[needed_model], audits[needed_model] = embedding_calls(
+            state, needed_model, originals, bindings, compatibility)
     restored = []
     seen_slots = set()
     for row in rows:
@@ -260,9 +364,16 @@ def reconstruct_embedding(state, marker, originals, bindings):
                     or "vector" in segment or segment.get("model_id") != slot_model
                     or segment.get("identity_verified") is not True
                     or segment.get("provider_identity_verified") is not (found["provider"] is not None)
-                    or any(segment.get(key) != value for key, value in found.items() if key != "vector")
+                    or any(segment.get(key) != value for key, value in found.items()
+                           if key not in ("vector", "returned_model_id"))
                     or segment.get("text") != lookup[trace_id]["text"][segment["start"]:segment["end"]]):
                 raise ReproductionError("Recorded embedding vector/hash/metadata differs from raw evidence")
+            if compatibility is not None and (segment.get("identity_rule") != COMPAT_RULE
+                    or segment.get("returned_model_id") != found["returned_model_id"]):
+                raise ReproductionError("Compatibility segment does not preserve the exact returned model identity")
+            if (compatibility is None and "returned_model_id" in segment
+                    and segment["returned_model_id"] != found["returned_model_id"]):
+                raise ReproductionError("Recorded returned model identity differs from the original response")
             segment["vector"] = vector
         expected_slots = {(embedder, index) for embedder, segments in record.get("embeddings", {}).items()
                           for index in range(len(segments))}
@@ -284,7 +395,8 @@ def reconstruct_embedding(state, marker, originals, bindings):
         raise ReproductionError("Aggregate embedding route differs from its bound state route")
     return restored, {"status": "reconstructed_exact", "model": model,
                       "original_sha256": digest, "original_bytes": count,
-                      "records": len(restored), "validated_modes": audits}
+                      "records": len(restored), "validated_modes": audits,
+                      "execution_compatibility": compatibility}
 
 
 def run_analysis(analysis, records, output, budgets, bootstrap_samples=2000,

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "amendment_id": "embedding-ascii-casefold-v1",
+  "created_utc": "2026-11-08T09:49:15.629075+00:00",
+  "status": "post_API_preflight_before_further_embedding_dispatch",
+  "base_protocol_sha256": "f4b1865945ceee0527ef904615148a33d573bd6ed0374c606bf30f9f2a8f8340",
+  "script_sha256": "b7ee74584f7f1b246a3c061b33d9258249c6fcef941b1ef74caa36168f17210a",
+  "model_identity_rule": "ascii_casefold_only",
+  "models": [
+    "baai/bge-m3",
+    "qwen/qwen3-embedding-8b"
+  ],
+  "expected_routes": {
+    "baai/bge-m3": {
+      "provider": "DeepInfra",
+      "dimension": 1024
+    },
+    "qwen/qwen3-embedding-8b": {
+      "provider": "DeepInfra",
+      "dimension": 4096
+    }
+  },
+  "known_pre_amendment_attempts": [
+    {
+      "call_id": "3810c3e6801d1644484492b41189e53e69e5be6cbe385eaf0024579a15799c0c",
+      "requested_model": "baai/bge-m3",
+      "returned_model_id": "BAAI/bge-m3",
+      "provider": "DeepInfra",
+      "dimension": 1024,
+      "request_sha256": "9e1007ae4a329b3c102f4abe9fb46491113f2ee569bb2f2b49a01b43350fffa6",
+      "response_sha256": "9ff23f8c8deda5c097aadc088711cdb5c5a74319be027a57841a82a47f8a0a4b",
+      "http_status": 200,
+      "role": "known_pre_amendment_response_reused_without_resend"
+    },
+    {
+      "call_id": "58f31bd29eeafb7806cf5d5e4ab2165d08f8dd3de30ca0ad98b6d787e2cfbefc",
+      "requested_model": "qwen/qwen3-embedding-8b",
+      "returned_model_id": "Qwen/Qwen3-Embedding-8B",
+      "provider": "DeepInfra",
+      "dimension": 4096,
+      "request_sha256": "b219f2f2f6fd3616a27139711335f79241ba2a0968d23588d551cfa4feb3c377",
+      "response_sha256": "df46adcb57b7609bab9b9ed6514031078b0d405aaae66a9a84189994fc57fc7f",
+      "http_status": 200,
+      "role": "known_pre_amendment_response_reused_without_resend"
+    }
+  ],
+  "reason": "The frozen collector rejects returned identifier presentation case, while stage0.inspect_embeddings accepts the same exact ASCII identifier ignoring case. Both existing responses are HTTP200 with valid dimensions; no alias or different model is accepted.",
+  "timing_disclosure": "This operational amendment follows two known embedding calibration responses and completed main collection. No semantic contrast had been calculated. Secondary lexical analysis and label coverage were already available. The rule is driven solely by ASCII identifier case, without choosing a representation from its predictive result. It is not an external preregistration or G2.",
+  "invariants": [
+    "Do not change frozen collector, analysis, corpus or base protocol bytes.",
+    "Use the existing shared ledger and call cache. Never resend an unknown attempt.",
+    "Reuse the original first32-chunk requests with identical bodies and identities; no rebatching.",
+    "Preserve returned IDs and original request/response bytes; only canonical derived model_id changes lettercase.",
+    "Exact provider and dimension from the known first response remain required for every batch.",
+    "No whitespace normalization, alias, shortened name, provider normalization, weight revision inference or model substitution.",
+    "H0-H7, primary BGE256 population, source-only fits, controls, costs and deadline remain as specified."
+  ],
+  "scientific_validity": "not_assessed",
+  "E0": "not_passed"
+}
