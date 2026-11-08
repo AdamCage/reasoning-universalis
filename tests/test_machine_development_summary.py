@@ -45,6 +45,16 @@ class MachineSummaryReplayTests(unittest.TestCase):
         cls.fixture = fixtures.MachineDevelopmentRunnerTests()
         cls.fixture.setUp()
         cls.runner = cls.fixture.runner()
+        original_transport = cls.fixture.transport
+        def above_reserved_cost(path, **kwargs):
+            response = original_transport(path, **kwargs)
+            if path == "/chat/completions":
+                from stage0.runner import capture_body
+                payload = response["json"]
+                payload["usage"]["cost"] = "0.1"
+                return {"http_status": 200, **capture_body(encode(payload), kwargs.get("key"))}
+            return response
+        cls.runner.transport = above_reserved_cost
         cls.result = cls.runner.run()
 
     @classmethod
@@ -103,6 +113,34 @@ class MachineSummaryReplayTests(unittest.TestCase):
         try:
             path.write_bytes(encode(value))
             with self.assertRaisesRegex(ValueError, "Earlier shared-ledger"):
+                verify_scope(*self.arguments(), source_root=self.fixture.project, calls=self.runner.calls)
+        finally:
+            path.write_bytes(original)
+
+    def test_lower_reported_cost_and_commitment_cannot_contradict_raw_billing(self):
+        ledger_path, result_path = self.runner.ledger_path, self.runner.scope / "results.json"
+        old_ledger, old_result = ledger_path.read_bytes(), result_path.read_bytes()
+        ledger, result = json.loads(old_ledger), json.loads(old_result)
+        row = ledger[self.fixture.protocol["parent"]["launch_ledger_rows"]]
+        self.assertLess(float(row["reservation_rub"]), .05)
+        row.update(reported_cost_rub="0.05", charged_or_reserved_rub="0.05")
+        from decimal import Decimal
+        result["charged_or_reserved_rub"] = str(sum((Decimal(value["charged_or_reserved_rub"]) for value in ledger), Decimal(0)))
+        try:
+            ledger_path.write_bytes(encode(ledger)); result_path.write_bytes(encode(result))
+            with self.assertRaisesRegex(ValueError, "original known raw cost"):
+                verify_scope(*self.arguments(), source_root=self.fixture.project, calls=self.runner.calls)
+        finally:
+            ledger_path.write_bytes(old_ledger); result_path.write_bytes(old_result)
+
+    def test_permuted_audit_cannot_compare_different_seeds_as_same_seed(self):
+        path = self.runner.scope / "results.json"
+        original = path.read_bytes()
+        value = json.loads(original)
+        next(iter(value["audits"].values()))["votes"].reverse()
+        try:
+            path.write_bytes(encode(value))
+            with self.assertRaisesRegex(ValueError, "audit vote/seed order"):
                 verify_scope(*self.arguments(), source_root=self.fixture.project, calls=self.runner.calls)
         finally:
             path.write_bytes(original)

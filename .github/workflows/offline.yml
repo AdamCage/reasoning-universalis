@@ -42,6 +42,11 @@ jobs:
         run: |
           python -X utf8 scripts/build_post_v2_design.py --check
           python -X utf8 scripts/import_e0_human.py --check-package --package artifacts/e0-human-development-2026-11-08
+      - name: replay published machine annotation without a key
+        run: >-
+          python -X utf8 scripts/reproduce_machine_development.py
+          --manifest evidence/machine-annotation-development-2026-11-08/manifest.json
+          --output .research/ci-machine-annotation
 
   windows-resumption:
     runs-on: windows-latest
@@ -87,4 +92,11 @@ jobs:
       - name: machine annotation offline safety checks without a key
         run: >-
           python -X utf8 -m unittest tests.test_machine_development_annotation
-          tests.test_machine_development_runner tests.test_machine_development_summary -v
+          tests.test_machine_development_runner tests.test_machine_development_summary
+          tests.test_machine_development_evidence tests.test_machine_evidence_index
+          tests.test_machine_vote_failure_audit -v
+      - name: replay published machine annotation without a key
+        run: >-
+          python -X utf8 scripts/reproduce_machine_development.py
+          --manifest evidence/machine-annotation-development-2026-11-08/manifest.json
+          --output .research/ci-machine-annotation

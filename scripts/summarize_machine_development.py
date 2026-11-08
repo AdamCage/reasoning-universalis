@@ -15,6 +15,8 @@ from machine_development import annotation as ann
 from scripts.collect_machine_development import _MachineCore, KIND, MODEL, PROVIDER
 from resumption.runner import ceiling_rates
 from stage0.runner import encode, estimate
+from stage0.runner import StopRun
+from scripts.pilot_v2_ledger_io_compat_v1 import SOURCE_PATH as IO_SOURCE, VERSION as IO_VERSION
 
 VERSION = "machine-development-offline-summary-v1"
 
@@ -75,6 +77,17 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
     p, result, inventory = docs["protocol"], docs["results"], docs["inventory"]
     require(p["status"] == "prospective_frozen_machine_development" and result["phase"] == "machine_development_annotation",
             "Only closed, frozen machine-development observations are supported")
+    generation = p["generation"]
+    require(generation.get("model") == MODEL and generation.get("provider") == PROVIDER
+            and generation.get("temperature") == .7 and generation.get("top_p") == 1.0
+            and generation.get("max_output_tokens") == 1024 and generation.get("reasoning_enabled") is False
+            and generation.get("automatic_retries") == 0, "Declared annotation generation contract changed")
+    require(p["allocation"]["panel_size"] == 5 and p["allocation"]["majority_required"] == 3
+            and p["allocation"]["maximum_rounds"] == 2
+            and amount(p["budget"]["cap_total_rub"]) == Decimal(3300)
+            and amount(p["budget"]["stage_additional_cap_rub"]) == Decimal(2400)
+            and amount(p["budget"]["absolute_stage_ceiling_rub"]) == amount(p["parent"]["launch_charged_or_reserved_rub"]) + Decimal(2400),
+            "Declared machine panel or cumulative funding contract changed")
     require(raw["protocol"] == (scope / "protocol.json").read_bytes()
             and result["protocol_sha256"] == ann.sha(raw["protocol"])
             and result["items_sha256"] == ann.sha(raw["items"]) == p["inputs"]["file_sha256"]
@@ -90,6 +103,11 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
                 and ann.sha((scope / "source" / relative).read_bytes()) == digest
                 and ann.sha((source_root / relative).read_bytes()) == digest,
                 "Frozen machine source/config bytes changed: " + name)
+    prospective_source_pin = p.get("source_freeze", {}).get("expected_source_inventory_sha256")
+    require(prospective_source_pin == ann.sha(raw["inventory"]) or p.get("synthetic_fixture") is True and prospective_source_pin is None,
+            "Prospective protocol source-inventory pin differs from the measured closure")
+    require(p["execution_io_compatibility"] == {"version": IO_VERSION, "path": IO_SOURCE, "sha256": inventory["files"][IO_SOURCE]},
+            "Prospective I/O compatibility helper binding changed")
     inputs, codebook, mapping = docs["items"], docs["codebook"], docs["mapping"]["items"]
     items = inputs["items"]
     require(len(items) == len({item["item_id"] for item in items}) == p["inputs"]["items"]
@@ -97,6 +115,7 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
     core = _MachineCore.__new__(_MachineCore)
     core.protocol, core.protocol_digest = p, ann.sha(raw["protocol"])
     core.items_digest, core.source_inventory_digest = ann.sha(raw["items"]), ann.sha(raw["inventory"])
+    core.calls, core._financial_cache = calls, {}
     core.item_lookup = {item["item_id"]: item for item in items}
     core.audit_ids = ann.audit_item_ids(items)
     core.rendered = {identity: ann.render_item(item, codebook, max_input_bytes=p["generation"].get("maximum_input_utf8_bytes"))
@@ -126,6 +145,7 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
             and Decimal(final["charged_or_reserved_rub"]) == Decimal(result["charged_or_reserved_rub"]),
             "Closed result and retained ledger snapshot are not synchronized")
     planned = {cell["call_id"]: cell for cell in expected_plan["cells"]}
+    require(all(path.stem in planned for path in (scope / "intents").glob("*.json")), "An unknown logical intent lies outside the finite roster")
     registry = result["all_planned_calls"]
     require(len(registry) == maximum and [row["call_id"] for row in registry] == [cell["call_id"] for cell in expected_plan["cells"]],
             "All requested/conditional/audit cells must remain exactly once in planned order")
@@ -155,11 +175,13 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
     for identity, audit in result["audits"].items():
         eligible = all(value is not None for value in votes[identity][1])
         require(len(audit["votes"]) == (5 if eligible else 0), "Fixed audit repaired or retried a technically incomplete original panel")
+        require(not audit["votes"] or [row["vote_index"] for row in audit["votes"]] == list(range(5)),
+                "Fixed audit vote/seed order changed")
         for row in audit["votes"]:
             require(row["item_id"] == identity and row["round_number"] == 1 and row["audit"] is True
                     and row["call_id"] not in executed, "Audit is not a distinct first-round same-seed observation")
             executed[row["call_id"]] = row
-    reservations = set()
+    reservations, cost_cache = set(), {}
     for saved in registry:
         cell = planned[saved["call_id"]]
         directory = calls / cell["call_id"]
@@ -196,8 +218,10 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
             require(price == (Decimal(context["quoted_prompt_rub_per_token"]), Decimal(context["quoted_completion_rub_per_token"]))
                     and estimate(core.body(cell), price) == Decimal(context["reservation_rub"]), "Conservative vote reservation differs from its provider quote")
             cost_path = scope / "cost-plans" / (context["cost_plan_sha256"] + ".json")
-            cost = read(cost_path)
-            require(ann.sha(cost_path.read_bytes()) == context["cost_plan_sha256"]
+            if context["cost_plan_sha256"] not in cost_cache:
+                cost_cache[context["cost_plan_sha256"]] = (cost_path.read_bytes(), read(cost_path))
+            cost_raw, cost = cost_cache[context["cost_plan_sha256"]]
+            require(ann.sha(cost_raw) == context["cost_plan_sha256"]
                     and cost["protocol_sha256"] == core.protocol_digest and cost["source_inventory_sha256"] == core.source_inventory_digest
                     and cost["dispatch_plan_sha256"] == result["dispatch_plan_sha256"]
                     and {row["call_id"] for row in cost["cells"]} == set(planned)
@@ -208,6 +232,14 @@ def verify_scope(scope, protocol_path, input_path, codebook_path, mapping_path, 
                     and Decimal(index[reservation_id]["reservation_rub"]) == Decimal(context["reservation_rub"]),
                     "A physical vote lost or changed its retained shared reserve")
             require(reservation_id not in reservations, "Two physical votes share one budget reservation")
+            quoted_cell = next(row for row in cost["cells"] if row["call_id"] == cell["call_id"])
+            require(quoted_cell["reservation_rub"] == context["reservation_rub"]
+                    and quoted_cell["quote_receipt_sha256"] == context["quote_receipt_sha256"],
+                    "Physical vote reservation differs from its complete-roster cost-plan cell")
+            try:
+                core._verify_raw_accounting(cell["call_id"], index[reservation_id])
+            except StopRun as error:
+                raise ValueError(str(error)) from None
             reservations.add(reservation_id)
         else:
             reserved, intended = (directory / "reservation.json").is_file(), intent_path.is_file()

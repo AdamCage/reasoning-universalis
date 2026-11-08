@@ -1,5 +1,15 @@
 # Продолжение на локальном компьютере
 
+**Актуальный закрытый этап — машинная разметка, 9 ноября 2026 по Москве.** По поручению пользователя 200 сегментов S2 размечены конечным протоколом DeepSeek из пяти голосов: 1125 вызовов, 180 функциональных меток consensus, 15 `ambiguous_other`, 2 неразрешённых расхождения и 3 технически неполных панели. Общий ledger содержит 2109 строк и `2038.3174633704220 RUB charged-or-reserved` из 3300 RUB. Этап закрыт: не повторять collect-команды ниже, не сбрасывать `machine-development/condition-v1.json`, не создавать новый ledger. [Результат](reports/MACHINE_DEVELOPMENT_RESULT.md), [английская записка](manuscript/MACHINE_DEVELOPMENT_NOTE.md), [технический аудит](reports/MACHINE_VOTE_FAILURE_AUDIT.md). Пакет для людей отложен; E0 не пройден, генерации v3 и будущий test не запускались.
+
+Проверенный бесплатный перенос без ключа и `.env` (Python3.12, `requirements-resumption.txt`, новый output-каталог):
+
+```powershell
+python -X utf8 scripts/reproduce_machine_development.py --manifest evidence/machine-annotation-development-2026-11-08/manifest.json --output .research/new-machine-offline-replay
+```
+
+Пакет восстанавливает точные raw source bytes и закрытые observations, включая прежнийR1; результаты и summary воспроизведены byte-exact при0network attempts. Это replay сохранённых ответов, не новый запрос модели или независимая научная валидация. Старые paragraphs/команды ниже сохраняют хронологию и не являются повторным разрешением сбора.
+
 **Текущее offline-продолжение:** [план после v2](design/POST_V2_NEXT_STAGE_2026_11_08.md), [selection-анализ](reports/POST_V2_SELECTION_ANALYSIS.md), [кандидат v3](design/PILOT_V3_CANDIDATE_PROTOCOL_2026_11_08.json) и [human development handoff](design/E0_HUMAN_DEVELOPMENT_HANDOFF_2026_11_08.md). Новый сбор отключён; deadline и paid collector отсутствуют. 24-root human-пакет готовит процедуру, но не заменяет независимую E0-валидацию с минимум 40 roots. Все человеческие ответы/участники пока пусты. Текущий ledger и 823.5589067445220 RUB обязательств не изменены.
 
 Позднейшее уточнение пользователя — «полностью на ИИ переносим пока что»: human handoff отложен. Текущая подготовка переключена на отдельную конечную машинную разметку DeepSeek; это не активирует v3 генерации, не создаёт human gold и не закрывает E0. Перед её paid-исполнением нужны отдельные зафиксированные protocol/source/input/cost receipts; старые paid-команды ниже не повторять.
