@@ -49,5 +49,7 @@ jobs:
           python -m unittest tests.test_stage1_package
           tests.test_resumption_generator_audit tests.test_resumption_tasks
           tests.test_resumption_runner tests.test_resumption_analysis
-          tests.test_resumption_statistical_validity tests.test_resumption_episteme -v
+          tests.test_resumption_statistical_validity tests.test_resumption_episteme
+          tests.test_embedding_compat tests.test_embedding_pinned
+          tests.test_local_evidence_export tests.test_local_reproduction -v
       - run: python -m resumption.tasks --check
