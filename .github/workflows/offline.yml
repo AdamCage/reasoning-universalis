@@ -38,6 +38,10 @@ jobs:
           python -X utf8 scripts/reproduce_pilot_v2_recovery.py
           --manifest evidence/pilot-v2-recovery-2026-11-08/manifest.json
           --output .research/ci-pilot-v2-recovery
+      - name: verify offline post-v2 design and empty human handoff
+        run: |
+          python -X utf8 scripts/build_post_v2_design.py --check
+          python -X utf8 scripts/import_e0_human.py --check-package --package artifacts/e0-human-development-2026-11-08
 
   windows-resumption:
     runs-on: windows-latest
@@ -75,3 +79,12 @@ jobs:
           python -X utf8 scripts/reproduce_pilot_v2_recovery.py
           --manifest evidence/pilot-v2-recovery-2026-11-08/manifest.json
           --output .research/ci-pilot-v2-recovery
+      - name: post-v2 candidate and human handoff checks without a key
+        run: |
+          python -X utf8 -m unittest tests.test_post_v2_candidate tests.test_post_v2_design tests.test_e0_human_handoff -v
+          python -X utf8 scripts/build_post_v2_design.py --check
+          python -X utf8 scripts/import_e0_human.py --check-package --package artifacts/e0-human-development-2026-11-08
+      - name: machine annotation offline safety checks without a key
+        run: >-
+          python -X utf8 -m unittest tests.test_machine_development_annotation
+          tests.test_machine_development_runner tests.test_machine_development_summary -v

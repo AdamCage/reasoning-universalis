@@ -1,5 +1,16 @@
 # Продолжение на локальном компьютере
 
+**Текущее offline-продолжение:** [план после v2](design/POST_V2_NEXT_STAGE_2026_11_08.md), [selection-анализ](reports/POST_V2_SELECTION_ANALYSIS.md), [кандидат v3](design/PILOT_V3_CANDIDATE_PROTOCOL_2026_11_08.json) и [human development handoff](design/E0_HUMAN_DEVELOPMENT_HANDOFF_2026_11_08.md). Новый сбор отключён; deadline и paid collector отсутствуют. 24-root human-пакет готовит процедуру, но не заменяет независимую E0-валидацию с минимум 40 roots. Все человеческие ответы/участники пока пусты. Текущий ledger и 823.5589067445220 RUB обязательств не изменены.
+
+Позднейшее уточнение пользователя — «полностью на ИИ переносим пока что»: human handoff отложен. Текущая подготовка переключена на отдельную конечную машинную разметку DeepSeek; это не активирует v3 генерации, не создаёт human gold и не закрывает E0. Перед её paid-исполнением нужны отдельные зафиксированные protocol/source/input/cost receipts; старые paid-команды ниже не повторять.
+
+Пользователь принял общий лимит **3300 RUB** и сообщил о пополнении после котировки полного 200-segment machine-плана. Текущий отдельный [annotation protocol](design/MACHINE_DEVELOPMENT_PROTOCOL_2026_11_08.json) готовит максимум 2100 calls (1000 round1 + до1000 conditional round2 +100 audit), дополнительные обязательства ≤2400 RUB и absolute stage ceiling 3223.5589067445220 RUB, сохраняя общий ledger. Paid cutoff нового условия — 8 ноября 23:00 UTC / 9 ноября 02:00 по Москве. Пока protocol status draft/source freeze pending, запуск запрещён. Цифры 3000 ниже относятся к закрытым старым стадиям; они не означают новый state или списание исторических резервов.
+
+```powershell
+python -X utf8 scripts/build_post_v2_design.py --check
+python -X utf8 scripts/import_e0_human.py --check-package --package artifacts/e0-human-development-2026-11-08
+```
+
 **Закрытый статус v2/R1, 8 ноября 2026.** Платные вызовы завершены в 14:39:20 UTC / 17:39:20 по Москве. A содержит 98 реальных вызовов и 94 неотправленные ячейки; R1 добавил 96 GPT/AkashML вызовов и переиспользовал все 96 DeepSeek-наблюдений A. Общий ledger теперь содержит 984 строки и 823.5589067445220 RUB charged-or-reserved. Платные команды ниже не повторять; единственное R1 уже использовано, новый namespace или машина не обнуляют обязательства.
 
 Гейт следующего исследования не пройден: общий output cap и окончательный N не выбраны, будущий test не создан, приватный holdout seed не раскрыт. E0 и человеческое scientific review остаются открытыми. Итоги: [PILOT_V2_RECOVERY_RESULT.md](reports/PILOT_V2_RECOVERY_RESULT.md), [английское дополнение](manuscript/PILOT_V2_CALIBRATION_NOTE.md).

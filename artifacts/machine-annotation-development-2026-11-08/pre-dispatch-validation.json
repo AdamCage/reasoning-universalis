@@ -1,0 +1,15 @@
+{
+  "CI": "to_be_checked_on_pushed_commit; not claimed passed here",
+  "completed_at_utc": "2026-11-08T21:34:00.708530+00:00",
+  "elapsed_seconds": 326.991,
+  "machine_fake_tests": 23,
+  "new_paid_calls": 0,
+  "platform": "Windows CPython3.12.11 UTF8",
+  "protocol_sha256": "0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e",
+  "root_tests": 364,
+  "shared_launch_charged_or_reserved_rub": "823.5589067445220",
+  "shared_launch_ledger_rows": 984,
+  "source_inventory_sha256": "942e6a58acc19649cc5407e94acfbd72eed4f2944d4ffae441de624fc41c6f0e",
+  "status": "local_pre_annotation_validation_passed",
+  "test_log_sha256": "b7a2c5ec893f3e0e7039ef0fed5550836bc4546ce5778a32eed26adbebf94eb0"
+}

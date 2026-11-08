@@ -1,0 +1,32 @@
+{
+  "files": {
+    "design/ANNOTATION_CONFIG.json": "b9c8b8e8f347298fa264157a035783433a17b0dd85f60cfe9a9c315435f6e855",
+    "design/ANNOTATION_PROTOCOL.md": "046319b874a32a998d39f1619d6df752d9502cb51d0e3ad4467fa7a34189d40f",
+    "design/ANNOTATION_RESPONSE.schema.json": "e79f3b16339dff36633dac789e0152e705f389569bd438f3dcab26bec9fc4a6e",
+    "design/prompts/segment-role-v1.md": "5657d248c4606d1e0842b9c65845982f0482665f792619fe1262c83bad68edac",
+    "machine_development/__init__.py": "a0322e21702379ae0dcb8eac15e220b53c631126cef5a896646c3bbe58bb68c1",
+    "machine_development/annotation.py": "3f645b018321141f86cb0896f59c7ca901a30cf453bb712cb1002fb75836e3e3",
+    "measurement/__init__.py": "2bc494dae1c0936f841d2d972ed6db8cfdfdfdc1bb54a73dda655c19b62129ba",
+    "measurement/core.py": "4cd381b05a2383753f3f17e356fe81983a75860a625239df2ba3678e968a060a",
+    "measurement/lexical.py": "35c176023a25db18492646196d17e0c480893d4435b83fd34074079ca6d01acd",
+    "resumption/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resumption/analysis.py": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9",
+    "resumption/episteme_adapter.py": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112",
+    "resumption/generator_audit.py": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9",
+    "resumption/runner.py": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8",
+    "resumption/tasks.py": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a",
+    "scripts/collect_machine_development.py": "02ac07f2626d771dc293580e878a4ba7eb98137291ff0c8bde5100f466f9eccf",
+    "scripts/pilot_v2_ledger_io_compat_v1.py": "ea0fad0b8c7de75dc1c977a1bfa253c1af7fded236cecb48c480a579d02ac9a9",
+    "scripts/prepare_machine_development.py": "f4d2f5853e6263990b5871791ac8bcbfa6d6e84ebd293aa434bfd196bfbfde7d",
+    "stage0/__init__.py": "682b039b94db620860cb9a6984656207785480595191fe55c1f8f6aff3ebc48b",
+    "stage0/config.py": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73",
+    "stage0/runner.py": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317",
+    "stage0/tasks.py": "e1ff8e2c30f60f87147363f67a1ab3d5b8d9e98206597788614cc7ee830bc300",
+    "stage0/traces.py": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda",
+    "stage2/__init__.py": "4c4d8dcea5370a11dc331b24af5348393e199507f0bf7fa250d275d1c9b6b756",
+    "stage2/annotation.py": "05edfcd005ffd01e9c52739c7ef59b6455636379e0dc48243ff7f1ac77c339b6",
+    "stage2/observations.py": "9400a2e5a46a6fb338980cd578a03e331d130d5829ea903c36249d72a33a89d5"
+  },
+  "schema_version": 1,
+  "scope": "machine-only annotation sources/config plus exact inherited closure"
+}
