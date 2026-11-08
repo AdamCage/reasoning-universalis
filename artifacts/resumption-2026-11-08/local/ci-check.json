@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "purpose": "mechanical_ci_evidence_not_scientific_review",
+  "commit": "52926f5c80d173f4413ba7b17d77b3cc5982a57d",
+  "workflow": "offline research checks",
+  "run_id": 42474130777,
+  "url": "https://github.com/AdamCage/reasoning-universalis/actions/runs/42474130777",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "tests (3.11)",
+      "job_id": 128711533488,
+      "platform": "Linux",
+      "tests": 214,
+      "conclusion": "success",
+      "acceptance_and_evidence_locks": "success"
+    },
+    {
+      "name": "tests (3.13)",
+      "job_id": 128711533319,
+      "platform": "Linux",
+      "tests": 214,
+      "conclusion": "success",
+      "acceptance_and_evidence_locks": "success"
+    },
+    {
+      "name": "windows-resumption",
+      "job_id": 128711533682,
+      "platform": "Windows",
+      "python": "3.12",
+      "selected_tests": 136,
+      "conclusion": "success",
+      "corpus_check": "success"
+    }
+  ],
+  "local_full_suite": {
+    "python": "3.12.11",
+    "tests": 214,
+    "result": "passed",
+    "utf8_override": true
+  },
+  "scientific_validity": "not_assessed",
+  "human_scientific_review": false,
+  "archive_relation": "Post-seal verification receipt; intentionally outside the immutable raw-evidence bundle."
+}
