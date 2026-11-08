@@ -68,7 +68,7 @@
     "stage_additional_cap_rub": "1200",
     "absolute_stage_ceiling_rub": "1851.5180250837596",
     "shared_state": ".research/resumption-2026-11-08-live",
-    "accounting": "One shared ledger/lock; retain all original and A obligations. The original v2 absolute1851.5180250837596 ceiling is retained, so R1 does not obtain another1200RUB. Reserve full96call pinned-provider quote before execution; no unknown retry or fallback."
+    "accounting": "One shared ledger and OS lock; preserve all 790 launch rows, reserve current conservative pinned-provider quotes before dispatch; retain max(reservation,reported), never release unknown amounts."
   },
   "measurement": {
     "trace_channel": "Returned reasoning only, completed visible-channel operational candidate; never reconstruct from answer.",
@@ -168,7 +168,8 @@
     "collector_sha256": "07e83c0892ce77a6d1b59a755a91f6bf57b70c4b7d783df40d5377eb6074a440",
     "interpretation": "Mixed-provenance development supplement with unchanged physical DeepSeek parent observations and fresh GPT requested-model-ID observations under a new provider execution condition. Not a repair of primary A or independent replication.",
     "parent_delta_manifest_sha256": "6875c4ac2e79844f5c1af27e4fa647c20644cec0314bd16c2a588d66286c11f0",
-    "decision_scope": "One operational recovery R1 motivated by two known503 API errors, decided before A correctness tally; the original A gate remains failed and no further recovery C/D is included."
+    "decision_scope": "One operational recovery R1 motivated by two known503 API errors, decided before A correctness tally; the original A gate remains failed and no further recovery C/D is included.",
+    "budget_scope": "The complete original A budget contract is preserved byte-semantically. R1 launch888rows/811.7621058153828RUB adds no new1200allowance; original v2 absolute ceiling1851.5180250837596 remains."
   },
-  "finalized_utc": "2026-11-08T14:25:24.708732+00:00"
+  "finalized_utc": "2026-11-08T14:27:44.449813+00:00"
 }

@@ -1,0 +1,20 @@
+{
+  "files": {
+    "pilot_v2/__init__.py": "0015bef7430f67370e09057d498b0de8c9dd693082913e63ce8ecec35779b950",
+    "pilot_v2/runner.py": "ed538fe8d49cec58a1a94d718258ab1a5519505286c7a6b4a86fea519351b12c",
+    "pilot_v2/statistical_design.py": "278a9eb6e6571dbeb559964a8e7f0bf87c0dd4ca6facd77bb7ed1d08dd233d81",
+    "pilot_v2/tasks.py": "fc3c355ab3a58fd9bf2d8b35e4770bcf8a2126184436c55b3b13ca61b29f1a37",
+    "resumption/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resumption/analysis.py": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9",
+    "resumption/episteme_adapter.py": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112",
+    "resumption/generator_audit.py": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9",
+    "resumption/runner.py": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8",
+    "resumption/tasks.py": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a",
+    "scripts/collect_pilot_v2_recovery.py": "07e83c0892ce77a6d1b59a755a91f6bf57b70c4b7d783df40d5377eb6074a440",
+    "stage0/config.py": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73",
+    "stage0/runner.py": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317",
+    "stage0/traces.py": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda"
+  },
+  "schema_version": 1,
+  "scope": "all pilot_v2/*.py plus exact inherited collector closure"
+}
