@@ -59,4 +59,8 @@ jobs:
       - name: pilot v2 evidence and recovery checks
         run: >-
           python -m unittest tests.test_pilot_v2_evidence tests.test_pilot_v2_recovery -v
+      - name: pilot v2 recovery reporting and answer audit
+        run: >-
+          python -m unittest tests.test_pilot_v2_recovery_report
+          tests.test_pilot_v2_recovery_evidence tests.test_pilot_v2_answer_audit -v
       - run: python -m resumption.tasks --check

@@ -1,0 +1,13 @@
+model,output_budget_tokens,prefix_budget_words,planned_attempts,represented_cells,recorded_attempts,not_dispatched,unrecorded_attempts,unknown_attempts,unattempted_intents,completed_gradeable,completed_gradeable_fraction_of_planned,eligible_traces,correct_traces,error_traces,planned_roots,error_roots,correct_roots,mixed_roots,censored_attempts,censored_diagnostic_gradeable,censored_diagnostic_prefix_eligible,engineering_readiness,allocation_complete_and_no_unknown
+deepseek/deepseek-v4.1-flash,2048,128,48,48,48,0,0,0,0,14,0.2916666666666667,10,10,0,24,0,7,0,34,0,0,False,True
+deepseek/deepseek-v4.1-flash,2048,256,48,48,48,0,0,0,0,14,0.2916666666666667,9,9,0,24,0,7,0,34,0,0,False,True
+deepseek/deepseek-v4.1-flash,2048,512,48,48,48,0,0,0,0,14,0.2916666666666667,4,4,0,24,0,3,0,34,0,0,False,True
+deepseek/deepseek-v4.1-flash,8192,128,48,48,48,0,0,0,0,37,0.7708333333333334,26,26,0,24,0,17,0,11,0,0,False,True
+deepseek/deepseek-v4.1-flash,8192,256,48,48,48,0,0,0,0,37,0.7708333333333334,21,21,0,24,0,15,0,11,0,0,False,True
+deepseek/deepseek-v4.1-flash,8192,512,48,48,48,0,0,0,0,37,0.7708333333333334,16,16,0,24,0,11,0,11,0,0,False,True
+openai/gpt-oss-20b,2048,128,48,48,48,0,0,0,0,11,0.22916666666666666,11,11,0,24,0,7,0,37,0,0,False,True
+openai/gpt-oss-20b,2048,256,48,48,48,0,0,0,0,11,0.22916666666666666,11,11,0,24,0,7,0,37,0,0,False,True
+openai/gpt-oss-20b,2048,512,48,48,48,0,0,0,0,11,0.22916666666666666,7,7,0,24,0,5,0,37,0,0,False,True
+openai/gpt-oss-20b,8192,128,48,48,48,0,0,0,0,35,0.7291666666666666,33,30,3,24,2,18,1,13,0,0,False,True
+openai/gpt-oss-20b,8192,256,48,48,48,0,0,0,0,35,0.7291666666666666,33,30,3,24,2,18,1,13,0,0,False,True
+openai/gpt-oss-20b,8192,512,48,48,48,0,0,0,0,35,0.7291666666666666,28,25,3,24,2,16,1,13,0,0,False,True

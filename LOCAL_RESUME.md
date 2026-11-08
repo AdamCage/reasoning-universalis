@@ -1,5 +1,19 @@
 # Продолжение на локальном компьютере
 
+**Закрытый статус v2/R1, 8 ноября 2026.** Платные вызовы завершены в 14:39:20 UTC / 17:39:20 по Москве. A содержит 98 реальных вызовов и 94 неотправленные ячейки; R1 добавил 96 GPT/AkashML вызовов и переиспользовал все 96 DeepSeek-наблюдений A. Общий ledger теперь содержит 984 строки и 823.5589067445220 RUB charged-or-reserved. Платные команды ниже не повторять; единственное R1 уже использовано, новый namespace или машина не обнуляют обязательства.
+
+Гейт следующего исследования не пройден: общий output cap и окончательный N не выбраны, будущий test не создан, приватный holdout seed не раскрыт. E0 и человеческое scientific review остаются открытыми. Итоги: [PILOT_V2_RECOVERY_RESULT.md](reports/PILOT_V2_RECOVERY_RESULT.md), [английское дополнение](manuscript/PILOT_V2_CALIBRATION_NOTE.md).
+
+Бесплатный переносимый replay, включая исходный A и R1, без ключа и `.env`:
+
+```powershell
+python -X utf8 scripts/reproduce_pilot_v2_recovery.py --manifest evidence/pilot-v2-recovery-2026-11-08/manifest.json --output .research/new-v2-offline-replay
+```
+
+Установи `requirements-resumption.txt`; выходной каталог должен быть новым. Исходные CRLF-байты унаследованных source snapshots сохраняются. Сильный historical v1 live-comparison verifier следует запускать с восстановленным v1 state, поскольку текущий общий ledger законно дополнен v2; обычный v1 portable replay остаётся самодостаточным.
+
+Ниже сохранена хронология запуска уже закрытых этапов.
+
 **Новое продолжение — pilot v2.** Пользователь после завершения v1 поручил начать следующий development-пилот. Сначала читать [PILOT_V2_SESSION.md](reports/PILOT_V2_SESSION.md) и `design/PILOT_V2_PROTOCOL_2026_11_08.json`. Максимум 192 новых вызова по фиксированному факторному плану, только после source/corpus/protocol freeze и offline-проверок. Все расходы продолжают единственный `.research/resumption-2026-11-08-live/ledger.json`; v1-данные и результаты не перезаписываются. Новые code/artifacts находятся в `pilot_v2/` и `artifacts/pilot-v2-2026-11-08/`. Ниже — закрытый v1 и его история.
 
 **Состояние после выполнения, 8 ноября 2026.** Платный сбор закрыт: 384 основные попытки, два полных набора по 5778 embedding chunks и пять завершённых анализов. Не запускать приведённые ниже исторические paid-команды повторно. Общий ledger содержит 790 записей, charged-or-reserved — 651.5180250837596 RUB из разрешённых 3000 RUB. Итог и научные ограничения — [LOCAL_RESEARCH_RESULT_RU.md](reports/LOCAL_RESEARCH_RESULT_RU.md); E0 и независимое человеческое review остаются открытыми.
