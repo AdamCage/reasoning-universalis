@@ -45,7 +45,18 @@ class MachineEvidenceTests(unittest.TestCase):
         for name in required:
             destination = cls.project / name
             destination.parent.mkdir(parents=True, exist_ok=True)
-            destination.write_bytes((ROOT / name).read_bytes())
+            if name in inherited:
+                # The sealed parent owns these exact bytes. A fresh Git
+                # checkout may normalize legacy CRLF and must not replace it.
+                raw = (old / "project" / name).read_bytes()
+                if ann.sha(raw) != inherited[name]:
+                    raise AssertionError("Sealed parent fixture source differs")
+            else:
+                raw = (ROOT / name).read_bytes()
+                # Exercise LF checkout portability even on this Windows host.
+                if destination.suffix in (".py", ".md", ".json"):
+                    raw = raw.replace(b"\r\n", b"\n")
+            destination.write_bytes(raw)
         cls.inputs = cls.project / "machine-inputs"
         cls.inputs.mkdir()
         items = [{"item_id": "synthetic-" + str(index), "problem_statement": "Synthetic annotation-only fixture.",
@@ -70,6 +81,13 @@ class MachineEvidenceTests(unittest.TestCase):
         p["inputs"] = {**spec("input-items.json"), "items": 24, "roots": 24,
                        "codebook": spec("codebook.json"), "mapping": spec("machine-mapping.json")}
         p["allocation"].update(first_round_calls=120, conditional_second_round_calls=120, audit_items=3, audit_calls=15, maximum_calls=255)
+        fixture = object.__new__(MachineDevelopmentRunner)
+        fixture.project, fixture.state = cls.project, cls.state
+        source_bytes = fixture._sources()
+        inventory = {"schema_version": 1, "scope": "machine-only annotation sources/config plus exact inherited closure",
+                     "files": {name: ann.sha(data) for name, data in source_bytes.items()}}
+        p["source_freeze"] = {"expected_source_inventory_sha256": ann.sha(encode(inventory)),
+                              "status": "synthetic_fixture_actual_byte_binding"}
         cls.protocol = cls.project / "design/synthetic-machine-protocol.json"
         cls.protocol.write_bytes(encode(p))
         cls.zero_project = root / "zero-project"
