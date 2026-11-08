@@ -1,0 +1,23 @@
+# Observable Prefix Transfer Evidence Sheet
+
+**Status as of 8 November 2026:** preparation evidence for an exploratory pilot with audited code. This sheet records established preparation and the scope of the empirical question. It incorporates no completed cohort result, personal application response or scientific approval.
+
+**Question.** Do ordered features of externally visible reasoning prefixes add information about independently verified final-answer correctness beyond task, lexical-path, surface-text and pooled-content controls under target-model and task-root holdout?
+
+**Design.** The main corpus contains 96 tasks in 48 paired roots across exact arithmetic, CNF logic, topological ordering and bounded grid planning. Fixed splits contain 48 training, 16 validation and 32 test tasks; four additional admission tasks are separate. Prefixes are 128, 256 or 512 whitespace words, divided into exact 16-word chunks. The main reporting contrast is equal-root static-minus-dynamic log loss at 256 words with BGE-M3 for every held-out model. All learned transforms use source training only; regularization uses source validation. Direct refitted reverse/shuffle contrasts and common-prefix embedder comparisons test narrower alternatives. See the [prospective v2 plan](../design/LOCAL_PILOT_2026_11_08.json) and [methods](RELATED_WORK_AND_METHODS.md).
+
+| Established evidence | What it demonstrates | Limit |
+|---|---|---|
+| [Generator audit](../reports/GENERATOR_AUDIT_2026_11_08.md) | Exact-repeat and scorer-compatibility checks; a separate versioned reference verifier | Task feasibility and verifier tests are not model correctness measurements |
+| [Local preflight](../reports/LOCAL_PREFLIGHT.md) | 172/172 root tests passed before paid dispatch on Windows/Python 3.12.11; source-only fitting, one-root intervals and OOV reporting checked | Synthetic invariants verify implementation, not empirical transfer |
+| [Frozen analysis](../resumption/analysis.py) | Per-target predictions, equal-root paired uncertainty, direct refitted-order contrasts and supplementary matched-embedder fits | Pointwise intervals condition on fitted predictors and eligible observed roots |
+| [Local kernel check](../reports/LOCAL_KERNEL_CHECK.md) | Historical offline replay completed with 12/12 primary/reanalysis attempts and unchanged repeat history | Same-data mechanical replay; no new model evidence or human scientific review |
+| [Bounded local plan](../design/LOCAL_PILOT_2026_11_08.json) | Exact corpus/source binding, conservative rates and one shared ledger; total cap 3000 RUB including historical obligations | A spending ceiling and planned request count are not actual spending or achieved coverage |
+
+**Safety relevance.** The test concerns the reliability of an observable-text monitor under a change of model identity. It does not evaluate deception, harmful intent, adversarial robustness or alignment. New test roots from the same programmed distributions do not establish transfer to new task mechanisms, and model holdout is not automatically independent family holdout.
+
+**Interpretive limits.** E0 remains unpassed. Exposed text is not verified faithful internal reasoning. The eligible population depends on completion, grading, prefix length and embedding availability; OOV chunks can affect lexical geometry. Predictive gains would not by themselves establish functional states, universal dynamics, practical equivalence to no effect, or a useful stopping intervention. Unavailable contrasts remain unestimated.
+
+**Contribution record.** The repository owner supplied the research objective, recorded design choices and execution authorization. Codex and programming assistants performed substantial implementation, testing, source review, analysis preparation and drafting. Automated audits are AI-assisted checks, not independent human scientific review. Repository ownership does not establish unaided execution of each artifact or personal leadership experience. Any personal application must describe actual involvement in the owner's own initial draft, consistent with [Anthropic candidate AI guidance](https://www.anthropic.com/candidate-ai-guidance).
+
+**Research evidence to accompany the final result.** The final package must add actual model/provider admissions, attempted/completed/eligible denominators, class balance, measured spending and reservations, the complete BGE/256 target matrix, direct order controls, a claim-to-artifact map and a free offline reproduction command. Until those artifacts exist, this sheet supports the preparation and audit work only. No article, application or third-party message is submitted.

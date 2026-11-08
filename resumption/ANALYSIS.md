@@ -130,3 +130,24 @@ writing a conclusion. Better prediction alone does not establish universal
 functional states, faithful cognition, harmful overthinking, or benefits of
 early stopping. A portfolio or manuscript must state which narrower observable
 text claim was actually tested.
+
+## Local software revision before collection
+
+Version `observable-prefix-transfer-v1.1` was frozen before the local collection.
+A paired gain based on one independent root retains its point estimate but has
+`null` confidence limits and an explicit insufficient-root interval status.
+Source, validation and target diagnostics also report zero TF-IDF chunk vectors;
+the original feature convention remains unchanged. These diagnostics do not turn
+lexical geometry into a validated semantic measure.
+
+For a supplementary comparison on common support, add
+`--matched-embedding-input OTHER_EMBEDDER.json` to each semantic run. The two
+inputs are intersected on exact trace/prefix identities before every source fit,
+validation choice and target evaluation. Run both directions on the same two
+inputs. This option does not replace the original-population BGE-M3/256-word
+primary reporting contrast.
+
+The local protocol, cap increase and actual state are recorded in
+`design/LOCAL_PILOT_2026_11_08.json` and `reports/LOCAL_SESSION.md`. Raw journal
+export and offline restoration use `scripts/export_local_evidence.py`; free
+analysis from the exported frozen source uses `scripts/reproduce_local.py`.
