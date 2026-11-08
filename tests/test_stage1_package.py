@@ -3,18 +3,36 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("stage1_verify", ROOT / "design/verify_stage1.py")
 verify = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(verify)
+APPROVED_SNAPSHOT = "68fc12da05000674e3d770a07e449c37a4fbc119"
+APPROVED_PAYLOAD_SHA256 = "04988a3ec82db073a04a71519e35f91740398d9a66636dc2935ce3377c079963"
 
 
 class ReviewPackageTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # This is a historical approval fixture, not the evolving working tree.
+        receipt = json.loads((ROOT / "design/G1.json").read_bytes())
+        if (receipt["approved_commit"] != APPROVED_SNAPSHOT or
+                receipt["approved_artifact_hashes"]["payload_sha256"] != APPROVED_PAYLOAD_SHA256):
+            raise AssertionError("Stage 1 approval receipt differs from the pinned historical fixture")
+        try:
+            cls.snapshot = {path: subprocess.check_output(
+                ["git", "-C", str(ROOT), "show", APPROVED_SNAPSHOT + ":" + path],
+                stderr=subprocess.PIPE)
+                for path in verify.REVIEW_FILES | {verify.MANIFEST}}
+        except (OSError, subprocess.CalledProcessError) as exc:
+            raise RuntimeError("Stage 1 tests require the approved Git snapshot " + APPROVED_SNAPSHOT +
+                               "; use a full Git clone/history, not a shallow or source-only archive") from exc
+
     def setUp(self):
-        self.files = {path: (ROOT / path).read_bytes()
-                      for path in verify.REVIEW_FILES | {verify.MANIFEST}}
+        self.files = dict(self.snapshot)
 
     def read(self, path):
         return self.files[path]

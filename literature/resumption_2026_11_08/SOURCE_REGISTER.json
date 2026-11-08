@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-11-08",
+  "verification_method": "Read primary pages through the web research tool; prior October full-text reviews are distinguished from newly read passages.",
+  "experimental_reproduction": false,
+  "sources": [
+    {
+      "id": "anthropic_residency_2026",
+      "url": "https://alignment.anthropic.com/2026/anthropic-residency/",
+      "access": "Full announcement",
+      "supports": ["program target", "research areas", "duration", "deadline date"]
+    },
+    {
+      "id": "anthropic_resident_us_application",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5438311008",
+      "access": "Role, logistics and application questions",
+      "supports": ["deadline 2026-11-22 23:59 America/Los_Angeles", "application evidence fields", "interview process", "January 2027 offer expectation"]
+    },
+    {
+      "id": "anthropic_resident_uk_application",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5439169008",
+      "access": "Role and logistics",
+      "supports": ["separate UK remote posting", "London office option", "deadline"]
+    },
+    {
+      "id": "anthropic_candidate_ai_guidance",
+      "url": "https://www.anthropic.com/candidate-ai-guidance",
+      "access": "Full guidance",
+      "source_last_updated": "2025-07-10",
+      "supports": ["AI preparation and refinement", "candidate writes initial application draft", "transparent attribution", "assessment restrictions"]
+    },
+    {
+      "id": "anthropic_recommended_directions",
+      "url": "https://alignment.anthropic.com/2025/recommended-directions/",
+      "access": "Monitoring and scalable-oversight passages",
+      "supports": ["monitor shift robustness", "process oversight", "weak-to-strong generalization"]
+    },
+    {
+      "id": "yu_state_dynamics",
+      "url": "https://arxiv.org/abs/2509.00190v2",
+      "version": "v2",
+      "access": "Abstract and metadata newly checked; October full-text review retained",
+      "supports": ["spectral step states", "Markov trajectory analysis"]
+    },
+    {
+      "id": "shahariar_hierarchical_thinking",
+      "url": "https://arxiv.org/abs/2510.22437v2",
+      "version": "v2",
+      "access": "Abstract and metadata newly checked; October full-text review retained",
+      "supports": ["functional finite-state analysis", "activation steering"]
+    },
+    {
+      "id": "carson_statistical_physics",
+      "url": "https://arxiv.org/html/2506.04374v1",
+      "version": "v1",
+      "access": "October methods review retained; not independently reread in this update",
+      "supports": ["switching dynamics predecessor", "transfer predecessor"]
+    },
+    {
+      "id": "dong_learnstop",
+      "url": "https://arxiv.org/abs/2606.30852v2",
+      "version": "v2",
+      "access": "Abstract and metadata newly checked; October methods review retained",
+      "supports": ["matched-risk stopping", "calibrated scalar competitors", "serving-cost accounting"]
+    },
+    {
+      "id": "caldarella_harmful_overthinking",
+      "url": "https://arxiv.org/abs/2606.02835v1",
+      "version": "v1",
+      "access": "Abstract and metadata newly checked; October full-text review retained",
+      "supports": ["verbose versus harmful overthinking", "ground-truth-dependent first-correct oracle"]
+    },
+    {
+      "id": "chrabaszcz_probe_trajectories",
+      "url": "https://arxiv.org/html/2605.18549v2",
+      "version": "v2",
+      "source_last_revised": "2026-11-02",
+      "access": "Abstract, sections 2 through 3.3, conclusions, limitations and selected evaluation-protocol passages",
+      "supports": ["temporal features of activation probes", "within- versus cross-dataset transfer", "diagnostic versus deployable evaluation distinction"]
+    },
+    {
+      "id": "harrasse_latent_policy_states",
+      "url": "https://arxiv.org/html/2607.18532v1",
+      "version": "v1",
+      "access": "Abstract, selected sections 3 through 8, appendix E.2 temporal controls",
+      "supports": ["functional latent regimes", "temporal and correctness controls", "policy transplantation", "prefix pruning"]
+    },
+    {
+      "id": "liu_pathological_cot",
+      "url": "https://arxiv.org/html/2602.13904v2",
+      "version": "v2",
+      "source_last_revised": "2026-07-23",
+      "access": "Methods, selected results and limitations",
+      "supports": ["intervention-based pathology metrics", "model organisms", "intervention distribution-shift caveat"]
+    },
+    {
+      "id": "anwar_trainable_monitorability",
+      "url": "https://arxiv.org/abs/2610.29734v1",
+      "version": "v1",
+      "access": "Abstract and metadata only",
+      "supports": ["post-training monitorability research exists"],
+      "limitation": "Full methods not reviewed; not a source for quantitative comparisons here."
+    },
+    {
+      "id": "lewis_lim_efficiency_monitorability",
+      "url": "https://arxiv.org/abs/2610.03509v1",
+      "version": "v1",
+      "access": "Abstract and metadata only",
+      "supports": ["faithfulness and monitorability require distinct evaluation"],
+      "limitation": "Full methods not reviewed."
+    },
+    {
+      "id": "van_deventer_initial_tokens",
+      "url": "https://arxiv.org/abs/2610.40939v1",
+      "version": "v1",
+      "access": "Abstract and metadata only",
+      "supports": ["opening-token and control-category sensitivity"],
+      "limitation": "Full methods not reviewed; does not establish the mechanism of this project's observations."
+    },
+    {
+      "id": "tmlr_acceptance",
+      "url": "https://jmlr.org/tmlr/acceptance-criteria.html",
+      "access": "Full criteria",
+      "supports": ["claim-evidence alignment", "interest criterion", "systematic reproducibility studies may qualify"]
+    },
+    {
+      "id": "tmlr_author_guide",
+      "url": "https://jmlr.org/tmlr/author-guide.html",
+      "access": "Full guide",
+      "supports": ["anonymous complete manuscript", "OpenReview profiles", "LaTeX template", "supporting reproducibility artifacts"]
+    }
+  ]
+}
