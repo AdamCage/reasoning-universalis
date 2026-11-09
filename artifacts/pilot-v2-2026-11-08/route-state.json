@@ -1,0 +1,9 @@
+{
+  "operational_failure_calls": {
+    "openai/gpt-oss-20b|DeepInfra": [
+      "9646b15f04ff76351bd5615de01265b7e7f01f509446209b18a93c50598f0a64",
+      "b8de0a0eab6d254e5129d380d47f25956f2c3284b94f1b942961078e582cf0a9"
+    ]
+  },
+  "schema_version": 1
+}

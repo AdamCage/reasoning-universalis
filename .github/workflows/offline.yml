@@ -33,6 +33,11 @@ jobs:
           python -m stage3.roster_v2 --check design/PILOT_SECTION_5_5_ROSTER_V2.json
           python -m stage3.roster_v3 --check design/PILOT_SECTION_5_5_ROSTER_V3.json
           python -m stage3.roster_v4 --check design/PILOT_SECTION_5_5_ROSTER_V4.json
+      - name: replay published pilot v2 evidence without a key
+        run: >-
+          python -X utf8 scripts/reproduce_pilot_v2_recovery.py
+          --manifest evidence/pilot-v2-recovery-2026-11-08/manifest.json
+          --output .research/ci-pilot-v2-recovery
 
   windows-resumption:
     runs-on: windows-latest
@@ -52,4 +57,21 @@ jobs:
           tests.test_resumption_statistical_validity tests.test_resumption_episteme
           tests.test_embedding_compat tests.test_embedding_pinned
           tests.test_local_evidence_export tests.test_local_reproduction -v
+      - name: pilot v2 offline checks without a key
+        run: >-
+          python -m unittest tests.test_pilot_v2_tasks tests.test_pilot_v2_statistics
+          tests.test_pilot_v2_runner tests.test_pilot_v2_integration -v
+      - name: pilot v2 evidence and recovery checks
+        run: >-
+          python -m unittest tests.test_pilot_v2_evidence tests.test_pilot_v2_recovery -v
+      - name: pilot v2 recovery reporting and answer audit
+        run: >-
+          python -m unittest tests.test_pilot_v2_recovery_report
+          tests.test_pilot_v2_recovery_evidence tests.test_pilot_v2_answer_audit
+          tests.test_pilot_v2_ledger_io_compat -v
       - run: python -m resumption.tasks --check
+      - name: replay published pilot v2 evidence without a key
+        run: >-
+          python -X utf8 scripts/reproduce_pilot_v2_recovery.py
+          --manifest evidence/pilot-v2-recovery-2026-11-08/manifest.json
+          --output .research/ci-pilot-v2-recovery

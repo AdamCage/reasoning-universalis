@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "purpose": "pre-dispatch freeze and price envelope, not scientific approval",
+  "created_utc": "2026-11-08T13:52:59.328624+00:00",
+  "source_commit": "aa5bf0c1bad321e05eb5ec6e5cc332dc3eecea18",
+  "protocol_sha256": "7109124aa2e18842d63c748ba32bb44ace42dff875ba19abe18f4e3b49f8c138",
+  "corpus_sha256": "ba2bef2bb73c5b3512cec81a80449a7e796ec56e1f9d936808f2e5789370c724",
+  "source_inventory_sha256": "c974cfc5fe05a761824e0daad8e774104fdf97ba411ef45447f0140b5ede7c89",
+  "source_comparison": [
+    {
+      "path": "pilot_v2/__init__.py",
+      "frozen_sha256": "0015bef7430f67370e09057d498b0de8c9dd693082913e63ce8ecec35779b950",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": false
+    },
+    {
+      "path": "pilot_v2/runner.py",
+      "frozen_sha256": "ed538fe8d49cec58a1a94d718258ab1a5519505286c7a6b4a86fea519351b12c",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": false
+    },
+    {
+      "path": "pilot_v2/statistical_design.py",
+      "frozen_sha256": "278a9eb6e6571dbeb559964a8e7f0bf87c0dd4ca6facd77bb7ed1d08dd233d81",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": false
+    },
+    {
+      "path": "pilot_v2/tasks.py",
+      "frozen_sha256": "fc3c355ab3a58fd9bf2d8b35e4770bcf8a2126184436c55b3b13ca61b29f1a37",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": false
+    },
+    {
+      "path": "resumption/__init__.py",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "resumption/analysis.py",
+      "frozen_sha256": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "resumption/episteme_adapter.py",
+      "frozen_sha256": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "resumption/generator_audit.py",
+      "frozen_sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "resumption/runner.py",
+      "frozen_sha256": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "resumption/tasks.py",
+      "frozen_sha256": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a",
+      "raw_git_equal": true,
+      "git_difference": null,
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "stage0/config.py",
+      "frozen_sha256": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73",
+      "raw_git_equal": false,
+      "git_difference": "inherited_CRLF_snapshot_vs_LF_Git_blob_only",
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "stage0/runner.py",
+      "frozen_sha256": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317",
+      "raw_git_equal": false,
+      "git_difference": "inherited_CRLF_snapshot_vs_LF_Git_blob_only",
+      "inherited_v1_snapshot_exact": true
+    },
+    {
+      "path": "stage0/traces.py",
+      "frozen_sha256": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda",
+      "raw_git_equal": false,
+      "git_difference": "inherited_CRLF_snapshot_vs_LF_Git_blob_only",
+      "inherited_v1_snapshot_exact": true
+    }
+  ],
+  "new_source_files_raw_git_exact": true,
+  "inherited_source_files_exact_v1_snapshot": true,
+  "files": [
+    {
+      "path": "artifacts/pilot-v2-2026-11-08/source-inventory.json",
+      "sha256": "c974cfc5fe05a761824e0daad8e774104fdf97ba411ef45447f0140b5ede7c89"
+    },
+    {
+      "path": "artifacts/pilot-v2-2026-11-08/dispatch-plan.json",
+      "sha256": "eee10bec923c65b194cf72145b4a7502e89a5df7334be2b090fe486bf05c84ec"
+    },
+    {
+      "path": "artifacts/pilot-v2-2026-11-08/preflight-cost-plan.json",
+      "sha256": "74860b6609ade9cfb617c3aa89684c0a44513d2c4bcd1947d9c631225618b507"
+    },
+    {
+      "path": "artifacts/pilot-v2-2026-11-08/ledger-launch.json",
+      "sha256": "c31af39094d10f6b959ee14d4be3b71267dff7e51c1eea138f309a25ad8f815f"
+    }
+  ],
+  "statistical_plan_sha256": "d9b62942f9fa626b891256ac253fb15fc7f35984ad2bf4cb1209d7da16b24a42",
+  "tests_before_paid": {
+    "total": 260,
+    "passed": 260
+  },
+  "preflight": {
+    "absolute_stage_ceiling_rub": "1851.5180250837596",
+    "created_utc": "2026-11-08T13:50:16.159155+00:00",
+    "current_shared_charged_or_reserved_rub": "651.5180250837596",
+    "dispatch_plan_sha256": "eee10bec923c65b194cf72145b4a7502e89a5df7334be2b090fe486bf05c84ec",
+    "full_roster_fits_stage_budget": true,
+    "full_roster_reservation_rub": "176.7285443763840",
+    "launch_charged_or_reserved_rub": "651.5180250837596",
+    "paid_requests": 0,
+    "protocol_sha256": "7109124aa2e18842d63c748ba32bb44ace42dff875ba19abe18f4e3b49f8c138",
+    "remaining_new_reservation_rub": "176.7285443763840",
+    "schema_version": 1,
+    "source_inventory_sha256": "c974cfc5fe05a761824e0daad8e774104fdf97ba411ef45447f0140b5ede7c89"
+  },
+  "paid_calls_at_freeze": 0,
+  "scientific_validity": "not_assessed",
+  "E0": "not_passed"
+}

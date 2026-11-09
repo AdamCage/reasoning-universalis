@@ -1,5 +1,11 @@
 # Reasoning Universalis
 
+**Development-пилот v2 и однократный recovery R1 завершены 8 ноября.** Проверены 24 новых root-группы при двух лимитах генерации. В объединённом R1-наборе 97 завершённых оцениваемых ответов: 93 верных и четыре ошибки; ещё 95 трасс обрезаны. Общий гейт поддержки классов не пройден; основной сбор и новый test не запускались. [Итог R1](reports/PILOT_V2_RECOVERY_RESULT.md), [исходный A](reports/PILOT_V2_RESULT.md), [протокол](design/PILOT_V2_PROTOCOL_2026_11_08.json), [статистический план](design/PILOT_V2_STATISTICAL_PLAN.md), [английское дополнение к рукописи](manuscript/PILOT_V2_CALIBRATION_NOTE.md). V1 ниже сохраняется как закрытый результат; E0 не пройден.
+
+Все расходы продолжают общий ledger: 823.5589067445220 RUB charged-or-reserved из разрешённых 3000 RUB; это не окончательный биллинг. Самодостаточный пакет `evidence/pilot-v2-recovery-2026-11-08/manifest.json` включает закрытый A и воспроизводится без API через `scripts/reproduce_pilot_v2_recovery.py`. Команды и закрытый статус — в [LOCAL_RESUME.md](LOCAL_RESUME.md).
+
+После измерений Windows CI выявил конфликт чтения и замены ledger в frozen collector. [Отдельный слой совместимости I/O](reports/PILOT_V2_WINDOWS_IO_COMPATIBILITY.md) проверен независимо и предназначен для будущих явно зафиксированных версий; измеренные A/R1 и их исходники сохраняются.
+
 **8 ноября 2026: локальный ограниченный пилот завершён.** Сохранены 384 основные попытки, 333 оцениваемых ответа и четыре ошибки; BGE-M3 и Qwen embedding покрывают по 5778 chunks. Основной вопрос о предсказании ошибок остался неразрешённым из-за нехватки классов. [Результат и ограничения](reports/LOCAL_RESEARCH_RESULT_RU.md), [английская рукопись](manuscript/LOCAL_RESEARCH_PAPER.md), [PDF](output/pdf/local-reasoning-pilot.pdf), [evidence sheet](output/pdf/portfolio-evidence-sheet.pdf). E0 не пройден; H0–H7 не подтверждены.
 
 Платный сбор закрыт. Консервативный charged-or-reserved итог — 651.51803 RUB из разрешённых 3000 RUB, включая исторические обязательства; это не измеренная фактическая оплата. Переносимый архив находится в `evidence/local-pilot-2026-11-08/manifest.json`; [бесплатный offline replay](reports/LOCAL_REPRODUCTION_CHECK.md) восстанавливает исходные bytes и повторяет пять анализов без API. Команды и статус для продолжения — [LOCAL_RESUME.md](LOCAL_RESUME.md).

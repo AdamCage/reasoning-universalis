@@ -1,0 +1,1552 @@
+{
+  "absolute_stage_ceiling_rub": "1851.5180250837596",
+  "cells": [
+    {
+      "call_id": "4a248122e0200565470b6bdd6544b29b24317a69d64245ba33d4468189cbc5ae",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7968599068716"
+    },
+    {
+      "call_id": "900c515b32be5b91785573b9cb70bc5da5f5647cb6e31556e0b278ece3a63e72",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7970713316280"
+    },
+    {
+      "call_id": "c0baa93baeef812be50e32f3d50041ce7ae49c50c35562803b4b5e78ad2ca8a1",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5288515113004"
+    },
+    {
+      "call_id": "ae0ade6c342b6aca50534789428124ce8c5686af19071cac1cbb0b59a295b8f9",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5290629360568"
+    },
+    {
+      "call_id": "9646b15f04ff76351bd5615de01265b7e7f01f509446209b18a93c50598f0a64",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0811315807640"
+    },
+    {
+      "call_id": "b8de0a0eab6d254e5129d380d47f25956f2c3284b94f1b942961078e582cf0a9",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0811443943856"
+    },
+    {
+      "call_id": "4e557d9b9404739b249c0e0340d55ad30ebc243961a711594aa9f6f1469c2fa4",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2648276600216"
+    },
+    {
+      "call_id": "e69da06307225664c989c86a010d72dc1428fd30587f80192fbeb55de4722c90",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2648404736432"
+    },
+    {
+      "call_id": "1abaa22c514d19db32a0f4fa5207f069c979ee11eb1da26f85eb21f8dfb3503f",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5101051828996"
+    },
+    {
+      "call_id": "501339b6741d0d0d0121ea8da0752b57b6ae987ebee81d2bf7e065a73bc3fdef",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5100347079808"
+    },
+    {
+      "call_id": "324c4e1194189c8cde71e06e15d8372cc9fbbfd1b0b141ab9b2070e254a77ff2",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794273690912"
+    },
+    {
+      "call_id": "c8144c190699986473ca37369754a18097cc5502cca059f29bc0bd58bac737c3",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794273690912"
+    },
+    {
+      "call_id": "5bb9e2466d32cb3d83ea8b8915aa24c2f4dbec79b425c6dc85b5616d67240d8c",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631234483488"
+    },
+    {
+      "call_id": "cc2f663defff65bb478ffbcd88828eecb9930630e0f25bc2709417b1319eddd0",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631234483488"
+    },
+    {
+      "call_id": "691b320a1053f2e02e20b440fb8354de19299ca889a325e266f5b6f6aff1684d",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7781135784708"
+    },
+    {
+      "call_id": "dbbf0591b951b1ae9f396a0b456b3813b4d1dbc37b9cc31a4a505c51f674718a",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7780431035520"
+    },
+    {
+      "call_id": "c72508588bf02b7b598ef0ef59173b4b2a4089d226be385dffdbb624fcf7b023",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0801769659548"
+    },
+    {
+      "call_id": "bfc00b0b954f9365943a1a6d7bb3cb730d5117aaa4ac76ad6b08e8eff6e4c65c",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0801577455224"
+    },
+    {
+      "call_id": "ad4cade56b1a94ce9f80767b738e05ed36b7e07c7b361860086c08a9ca84d536",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2638730452124"
+    },
+    {
+      "call_id": "8fd8ced96b344a409c6dc9a7bf40bd4d980cc306c4ba0f97ed2654d29f9378d3",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2638538247800"
+    },
+    {
+      "call_id": "ce0ac1c1207210714f161b0d7ba3d662a599206fc3ad34cd7cbd227c0748569c",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7863591439704"
+    },
+    {
+      "call_id": "4c69f98455f3109ba15bd5080de07e88defae4b5c5aec1f4c27d646584e7eebc",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7861477192140"
+    },
+    {
+      "call_id": "2dd11381356263b0d60dcaadd4223ff15b0c94fd75a316aae578ab396a83f6be",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5183507483992"
+    },
+    {
+      "call_id": "98cb6c47abeef13d522d67bf0f539bc2fc73e16c9728efb40f9d1d8607b284b3",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5181393236428"
+    },
+    {
+      "call_id": "4401648cf4d1b6026ada3ffb9d9744f9ed8af45e63d356836734b6cde011cb13",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2669419075856"
+    },
+    {
+      "call_id": "7e815dd14dd00c3a893a77e7a0f66151ef08adfba2527ad45b2646feace88289",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2669419075856"
+    },
+    {
+      "call_id": "6b777e862030fff23914e7c0c382f0040fa760f1162ea3d19bf3f5add4ae7fb7",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8201871049944"
+    },
+    {
+      "call_id": "0d188133a861b60f650fdf66ec869bbf1e3d51a4f04dd50b4181682d48988146",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8200461551568"
+    },
+    {
+      "call_id": "39a4d07c03d9ef59f96935352cd8766e42ebf3003a2d33f3f8ae06444d2fb685",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5521787094232"
+    },
+    {
+      "call_id": "620f61b32316bd40239e6855e8020846672cd56c3a3877ac7e16ac1671ff0069",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5520377595856"
+    },
+    {
+      "call_id": "26bb7ad2b7d3f4fdb78dbcb58cfc7568b24d64f7b6a869a3f773864bcec061c6",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0832458283280"
+    },
+    {
+      "call_id": "093fb173cba3f03fbd7406e11dd36fce55db9ce40ca83ae0361623639daceeeb",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0832458283280"
+    },
+    {
+      "call_id": "0983240036d64383c9fda4d2f42ff57624311b86c775e9a3aa0104c8080763dc",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8005246026492"
+    },
+    {
+      "call_id": "e89e23426d2a5c11ab8f4ce2746e324b22a97488bdec39f919a9f9604a75028c",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8005246026492"
+    },
+    {
+      "call_id": "ca92b76806477cc5f6fa8696d3e55829dae2d533b6b9ff8a05914fa876567026",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5325162070780"
+    },
+    {
+      "call_id": "a141db0d694ed54f66dd13d16ca5c2bd0c42d1525c175e1a30d51ef373d8608b",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5325162070780"
+    },
+    {
+      "call_id": "0fd2dc340b1a1dc778c331754e625a2e295f3d6616f42211d32652cffe8f1c10",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0814647349256"
+    },
+    {
+      "call_id": "337d6ab48ec5e7bbd4e713730caf3c79b2f12bef047cb673c3c2ceaf75c5d9cc",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0814583281148"
+    },
+    {
+      "call_id": "10fb9545033bd8b3ce2aff46b9b504f9ae17f41a3483779020d69bc06f4b4c86",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2651608141832"
+    },
+    {
+      "call_id": "04114eb27ffa9ab4eed27c54d133147567b42f09025240ff2a032cb34b770f14",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2651544073724"
+    },
+    {
+      "call_id": "8e34feb63bdd98eac49f8518accb048b580c183f195065edaf022db24a21268c",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5416074716032"
+    },
+    {
+      "call_id": "2dcd4fdc483d43670385cdcb33fc5e6ccdf141dbcba0654ceeb26e657c0ff6d6",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5426645953852"
+    },
+    {
+      "call_id": "9286a7c0447e83a88e3fcc6ebf7ac6dd57c11f45736e7bf3e6e68a8356b024f4",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0822976203296"
+    },
+    {
+      "call_id": "ae8f20dbc32935a5075efc99f241f97821347c3d76e5e0a5fe7d65706775c9a7",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0823745020592"
+    },
+    {
+      "call_id": "20dcf02cb173a404d7b44bbbdf9738bbaa7ec2495e65f4b4bba2ae2e6db8e367",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2659936995872"
+    },
+    {
+      "call_id": "6174977d43dcf2d7a60aaa69a088bce629bbe2a038ac8543383c6f96192d8303",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2660705813168"
+    },
+    {
+      "call_id": "8ec61b86e8e15e2a376cdacf4896c2a3bee6553e7c0c963e50abeea9aea62955",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8096158671744"
+    },
+    {
+      "call_id": "47cafaa143bb847e51cf95362100150d64299f149ef28c79992fe8964787c94e",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8106729909564"
+    },
+    {
+      "call_id": "20c09d6ca45c10f477bd2f0b52e44e281d37ba6a34e2e69a6250d96e43af38f7",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0853152282164"
+    },
+    {
+      "call_id": "acb57bf61d5d0d3a74cdb136ae4c242639c1c5828c83756caed5a574b7ffaa8f",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0853152282164"
+    },
+    {
+      "call_id": "a316ad9b3e00bd5b402b4512b9d3c7102642fd8354d4f990802c2bc09945b360",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2690113074740"
+    },
+    {
+      "call_id": "fbcc52170aa4e433947880b2ce0c15e11dcc6e883ab869c6669c9f38ed27fa77",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2690113074740"
+    },
+    {
+      "call_id": "52e2477edf6006f486abd7d2baae233af68ab3b2eaf27f8e9b22ba01d2e5b075",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8428800288480"
+    },
+    {
+      "call_id": "9bb54af1993d733940a9d37100b084353c4603d17501d2e86f6c689607a3b9d2",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8428800288480"
+    },
+    {
+      "call_id": "33e06426e77412d93b30ca45a2111fb5ee82979e0f3b90d732d34fd63ec3fed0",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5748716332768"
+    },
+    {
+      "call_id": "78f154e4ada2e7d60182bc5ef7cc181183e8d7d30981bc0e760e7c4c9c9e8d5b",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5748716332768"
+    },
+    {
+      "call_id": "3580d0f4d171a3cde8591ee5e353187a6331312fc09509710b95635556c64ab0",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2653722389396"
+    },
+    {
+      "call_id": "c6d19dbee5501cc6f8558a1ea3719f1cb21f31ea2e1141512b6bbb04a3e922e3",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2653786457504"
+    },
+    {
+      "call_id": "6591931a3e7f24a5b8cad21bb286eda54644c7674a6598efb631000d2c8f4023",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8029207498884"
+    },
+    {
+      "call_id": "5649ddb1650767d2c840f1db865a9e998110eb0261b317b8c2c97b8bcf69dc85",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8029207498884"
+    },
+    {
+      "call_id": "34fa7ef41b72d292e7138aa72f1472c9afe777e2f6573dbdb2c56422663c9a5d",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5349123543172"
+    },
+    {
+      "call_id": "3a0836b6a692dacbdc4e53997ceba299efce2922cdb9fa8fcff8c4c6523be675",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5349123543172"
+    },
+    {
+      "call_id": "61d2e22fb8ea543381e42c4d73850bc3cb8c7fc008a901c7a14b7dc5fa212d7d",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0816761596820"
+    },
+    {
+      "call_id": "f278cef21dc8db496ab01ee1637afb4f07ba6d502b758e7fc530c809c8c8de25",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0816825664928"
+    },
+    {
+      "call_id": "1e369056d2df1bcc6ef22837d42f7227ca77960f149427e911243885c7896aa7",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8210328040200"
+    },
+    {
+      "call_id": "8a2a8b7437c2a90083384be4d23b7f7606770264bdb80da53531bf7f55c76ebe",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8209623291012"
+    },
+    {
+      "call_id": "db62e991db8e3ea20936658caccdfce5390da150b3c77cb39985d3c40095473a",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5530244084488"
+    },
+    {
+      "call_id": "b5c111e63ce52260dfefa597448800a728a3bb49eb6f39cfef141f66e445cbf1",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5529539335300"
+    },
+    {
+      "call_id": "9c455b3866d0fee9eb0d9febec1434cc8080736b1ca38cc22e959c59ced8a3bf",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0833227100576"
+    },
+    {
+      "call_id": "1b4af5d2d64bbdfcdaf8d443e485b33dbf988207df4997c0fb71c2a1dda08452",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0833163032468"
+    },
+    {
+      "call_id": "a310243ad96c793d75a5e9211e641d3a03f4c95ab7d967056d390ff322aa20f2",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2670187893152"
+    },
+    {
+      "call_id": "f1884cbe597c0e211e67e16af889899c3be8a77d567f5e49edddba5cd12d5a1f",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2670123825044"
+    },
+    {
+      "call_id": "ee839bb7e4eb05aafb9e491740860a1a3c0bc728784edae027ac3dacfdbcf305",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5273010630868"
+    },
+    {
+      "call_id": "a3d00a8443b7c31e0400824d4dfab9b3c738f31e2e09711fcfff055fcde0a9aa",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5273010630868"
+    },
+    {
+      "call_id": "c0e00e5a9fdb4f98f60937ad97071d7cd98eb1d0f455eb95f129caaaa3dc01d6",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0809970377372"
+    },
+    {
+      "call_id": "fe3a0569fc7719c162f5498065f5ecef54d2b7196cf09ef84434ca1f099ceac1",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0809906309264"
+    },
+    {
+      "call_id": "48f38d9bce14c6cb5d9ff989e081057c09bca1768493feb63aba4ebd63b7956e",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2646931169948"
+    },
+    {
+      "call_id": "38cbd30feb7e49ed3173c5a7cfae361d51e962afa99aad3b7293cd4d06434793",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2646867101840"
+    },
+    {
+      "call_id": "5088d360d54b7bfdb5c4778d890fc67996044193e275fb59443d2fd6cf2138af",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7953094586580"
+    },
+    {
+      "call_id": "72ce94d0c865913f5e0910a01be5b830cf4c1a6e6fe7ca7efeb57679c4cce08e",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7953094586580"
+    },
+    {
+      "call_id": "7d1fdb8e727444b31430d975e97449e716a95dac2fb732cac09882e188ead3c7",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794465895236"
+    },
+    {
+      "call_id": "84381e1dcbb24c627d56740a3b89556ee8b1f3c2b033cbf0116b9ceda00f2756",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794529963344"
+    },
+    {
+      "call_id": "640482e4092f2324e9f390da70b8948128fa233c9fe2f378cff6c6fcacd07f3c",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631426687812"
+    },
+    {
+      "call_id": "88943f41058ab23434f2ee9cdcb86151db7239dcf4d71fe405d78b617b36f947",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631490755920"
+    },
+    {
+      "call_id": "349a9d49fe79dae220ac9aa6924b57cb2e65fcdb85373395c4c4c46491f8ab26",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7783250032272"
+    },
+    {
+      "call_id": "ba8fb7c792c8395588e7a8e9f4ffa15be2fb0cd0ba49910236a1ddc469e4c0b6",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7783954781460"
+    },
+    {
+      "call_id": "bebd08500330feff74b26c6a429914887bb11a14b9959505d8af5774d3b6250b",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5103166076560"
+    },
+    {
+      "call_id": "ca34cbfb65ca6f290c1e14db6475651052a1309a75d330d76e6baaf4400e51f8",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5103870825748"
+    },
+    {
+      "call_id": "9dae7602fdc80e59b619d8d0d87060ef56400ae036fdf21b5ecdc9fe41f5ef30",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2637256885640"
+    },
+    {
+      "call_id": "4f363afcfab42481b367adbcc25971855854552c33f2377d2f2fcd5c5860c094",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2637256885640"
+    },
+    {
+      "call_id": "ef321f66fc50a44056b97a0a7698b0c7e0037f0e5a64b09b66d0f6f5de7cdd37",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7847382208380"
+    },
+    {
+      "call_id": "875a6e13b1549f454ecbbefd7815dc39a0dab829d8af3491ffec7c8610cb662b",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7847382208380"
+    },
+    {
+      "call_id": "2243799f85eed9b558aae1ae9b70eca2fc877a7a62b3800b289f3b5b313a315e",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5167298252668"
+    },
+    {
+      "call_id": "3e0943ed7d2420d7808354c8316cbddb96a57bb1f96e842882a9f3a3fdc12f84",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5167298252668"
+    },
+    {
+      "call_id": "39169b77aa212f84cb155518204b313cf784583b6014521eef79996fed7c704c",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0800296093064"
+    },
+    {
+      "call_id": "1b35f57915a245f1ab3c4c9a4885ee1d5b691e253997e57678e585aeac5e5271",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0800296093064"
+    },
+    {
+      "call_id": "e7b57cf39e48ce61f63a698653f1065a7213fdf805c1c77688bf4d72d78f648e",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7971418065468"
+    },
+    {
+      "call_id": "3b9588d81c35e21275a9e9d98971850173bf9db03cb0aa4cd1685bba8f47e0af",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7969303817904"
+    },
+    {
+      "call_id": "4bff3a03a616998c195186d6e1eb7d6fb66386341e0de28e3ef46952d92f6951",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5291334109756"
+    },
+    {
+      "call_id": "4cc9c32ba87f9e7fb406d3286c495ea3e4e39acaa35d12787a6f1541b424e15f",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5289219862192"
+    },
+    {
+      "call_id": "63341fc9a9567878b46459e3e607056e3f8ccce504e3159eee6468f3f721aba0",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0811572080072"
+    },
+    {
+      "call_id": "29fdafb434ccc2037b263e24b539e106970cf7863f5e710541fa3efa49796ebf",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0811251739532"
+    },
+    {
+      "call_id": "7d2dfdc7b3633b680c71b7ba14dadf735c90a9f04b9d5a2d7546e6f476346b18",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2648532872648"
+    },
+    {
+      "call_id": "ce10bbc44344c5c3d12b65063df2b3050cabde9a770ca8635cf9e8604981e89d",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2648212532108"
+    },
+    {
+      "call_id": "f1465bbd9856c89386cfb92f8a3b40e6ab7066bae95c4085368c8b49e17a0b5c",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5101051828996"
+    },
+    {
+      "call_id": "3b81dabb6bf2df8864eac788bcc336bae964ec697a8e8f1635ea238cebd361b1",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5101051828996"
+    },
+    {
+      "call_id": "ca7ee65ee8f8ff9c6cd95e0aceeca589f3e59838865f8e890c4c523f52024ed8",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794273690912"
+    },
+    {
+      "call_id": "0783e8270f47f45d7bdc3b9a6082fef0b9a68abbd814b1c966cb16e3a7ea53be",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794273690912"
+    },
+    {
+      "call_id": "d682e8418b653c177dcbea5f75ec6193092613cd5d54ed94178c3f97c47bf28e",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631234483488"
+    },
+    {
+      "call_id": "d7e56f7802d1b16d94fa5670c93043b8cbe98ee2bed251b57654c9ad0fbc6d10",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631234483488"
+    },
+    {
+      "call_id": "44990493a613ba83d17ab0018c1d09c57a6437201524a940858b1f4bcb84f0f0",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7781135784708"
+    },
+    {
+      "call_id": "756deaa029ee010d471e19e98ff42c9c2844898b7cf6ce7c69f401bca72d662e",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7781135784708"
+    },
+    {
+      "call_id": "119f3058bb9a0048034a28f59151494634406a0b220cc7034270c7848b50f0bd",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0801641523332"
+    },
+    {
+      "call_id": "2ea9e8a4953d1728df828f67c961e97566bed9ed94d6bd1e5c1f33e74fbfb577",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0801705591440"
+    },
+    {
+      "call_id": "9c3788c1980a1b5bee16094d14a616b548c5e9968ad2ef71117b4eaddde045ce",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2638602315908"
+    },
+    {
+      "call_id": "7b125ad5dab0ef698f88b0cf3a0425ca2216144b347495e922591c232823ad17",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2638666384016"
+    },
+    {
+      "call_id": "1ecb6305a2d43329c7f5278c7c51ed0f7a8f066e7e7cc96aafcd7541f174ed29",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7862181941328"
+    },
+    {
+      "call_id": "ff9cadb2f7cbfb92ffd9ad36ea423db377fd2a35590049ad0dde8f9b0ad82568",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7862181941328"
+    },
+    {
+      "call_id": "b009885334e67250c4e67508c97eea39f16fd15c0f6c5d3c6c6ca2f7b512b177",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5182097985616"
+    },
+    {
+      "call_id": "698be10e9e9db73b06a4ceb769bbd9b5fc9daeeb82c3283ec53482c1bc0c1e29",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5182097985616"
+    },
+    {
+      "call_id": "a79e5f3af85665c8028e84288b7a74a22f386e239e63e747bfd5246c712ae331",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2669547212072"
+    },
+    {
+      "call_id": "3685cd132d11b89691028c5aacb2f9c4d73c19eeab7546fe40a2b6c069732fa2",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2668906530992"
+    },
+    {
+      "call_id": "0e43d7e29c10a5fdc02976bd290f45474b31a66bed3c9613fbadc9a404d45071",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8202575799132"
+    },
+    {
+      "call_id": "54906f8e59b58f0f71caed6eb8afc23d27afa7b7221c2b83390968c607265f4f",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8195528307252"
+    },
+    {
+      "call_id": "8f94749894e2ad3443d80b125665714d58a531c2e33314771f3b009b66ac7575",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5522491843420"
+    },
+    {
+      "call_id": "6bd27f9ea01d703b01dd6f4ac21f05e4ab161a9308e0784b989c3e2bea3e70aa",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5515444351540"
+    },
+    {
+      "call_id": "5bbf972249895ec880a2849c281bf152743ba52239b2476f40f0a50dc8960e50",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0832586419496"
+    },
+    {
+      "call_id": "5f6dd1672ea115ba1da0383bbf6cfa1e614aa05584ae5e7896fff8d890bf8199",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0831945738416"
+    },
+    {
+      "call_id": "9d5fcd65ee14407afe55cb0365c6cace3e784d308cff9d5c9563c81e13b6344d",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8009474521620"
+    },
+    {
+      "call_id": "8d03b35d65ab074ef387ae7ef52fd1a221a462fde47bbe2474cd9ef25162f0f1",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8009474521620"
+    },
+    {
+      "call_id": "bc140fb7516a68c938e26102f120a0731a86eb5cf5ac630eaed37e77bfb1b3a7",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5329390565908"
+    },
+    {
+      "call_id": "c311a52434e9893dc1c5adb426230339bd8ec7196c121c6f175df189beb2cfcf",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5329390565908"
+    },
+    {
+      "call_id": "58445553b139e07adc47f56c10c7a5159160e24a73a5ccddb3f56444d32e01d9",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0814967689796"
+    },
+    {
+      "call_id": "c59932a321f32460df080a573627cda18d8487c418c28a930439874119b38fc6",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0815031757904"
+    },
+    {
+      "call_id": "0ff434b6f432724c184d6390ff692f008c5ccff7b42a0c7a25b1214d6decd373",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2651928482372"
+    },
+    {
+      "call_id": "97619713a45392d204d2ab49e83ac40c941423d62aaaa9f69fc3e9167449c141",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2651992550480"
+    },
+    {
+      "call_id": "f8533fcb17ce8981084de47183826ea1f3a2b9b98a6d4bd44aa7d6ba3572e272",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5434398194920"
+    },
+    {
+      "call_id": "378479e7f9ace6d36046623fcc2932ddefd711f6be2e617cc453a6a207f0f247",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5434398194920"
+    },
+    {
+      "call_id": "0c148a31e46038602dd6034334cfab1e2f505e9699b47bb3d52e895686a6da21",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0824577905996"
+    },
+    {
+      "call_id": "293468c2b9462277e7e9061dc05841fddeac6bdeec08bac42cc3fce037c090db",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0824641974104"
+    },
+    {
+      "call_id": "07c1e4bd43d825b5f51864413c569867390fedf88f029eef1e26b99f5c8cd478",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2661538698572"
+    },
+    {
+      "call_id": "d25c9185d42c79422d82dde35c70da025ca929658905c5da64493a33647daa7c",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2661602766680"
+    },
+    {
+      "call_id": "7f6ddffbde791ff99c54826084c135c12bc39a905dac57f6a1f0858063cae63b",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8114482150632"
+    },
+    {
+      "call_id": "9d2f15139ddeb74a2ae50e8d580adca189bebacc404b342cbac16faaccc40e3d",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8114482150632"
+    },
+    {
+      "call_id": "b42e6443a11e71de0e1ea013394f466d41e2eadc8317e025299e03fc020509c3",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0853152282164"
+    },
+    {
+      "call_id": "6e2b969a5a83a146dadce97c48a9a736b32f3bcd21e38228de67c90f90d145d4",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0853088214056"
+    },
+    {
+      "call_id": "fb35d35888d0a3fb223c729cc896d686806abc1ff0471b9e344daf8f7fee138f",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2690113074740"
+    },
+    {
+      "call_id": "12426172d9c38f328544109bf4b0283a99d85e5e841170aa8ab64af1bba3db56",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2690049006632"
+    },
+    {
+      "call_id": "5083d472e1455ac29bb1aa147916e7f190b245eb254ddb7175a32f4195381e11",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8428095539292"
+    },
+    {
+      "call_id": "0e796f755a2b10fe4f82283a580065eca58e3f30a00e9a1453bb8f5f33649086",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8428800288480"
+    },
+    {
+      "call_id": "335f6160879925816e7ef22e1c6e9b1d0f41d57d28770d70b60a3edcac421830",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5748011583580"
+    },
+    {
+      "call_id": "265776ed293a7eb8d4885bf2f8c2b1459e640c4ac350c764ea4cb6066ff9dd0c",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5748716332768"
+    },
+    {
+      "call_id": "2b974f363e8f24970e7dbc759a78baff53368b608a964e26f208844d36e15d08",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2653722389396"
+    },
+    {
+      "call_id": "8f933825e0c62f0afe821cd7458b86edd2b530b629bfdf23bf951bf14fcf1127",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2653658321288"
+    },
+    {
+      "call_id": "7eb2b3ae5396ce4d38ca03dbe4851a3a736331d1482cd72348d47499f339e798",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8027798000508"
+    },
+    {
+      "call_id": "049f46a1cbdd048bda6819e8c5b730fed68ed4df1a2bd9016017dce82f692d9a",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8027798000508"
+    },
+    {
+      "call_id": "32e13e9739866e2e555d12c250c4d12dbca6413a49008d44aeb627b98572a3a3",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5347714044796"
+    },
+    {
+      "call_id": "f653f3ce9a9e2606e9122670563978fa1b57cf0a2cb04e01dd84fbe626e5e35e",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5347714044796"
+    },
+    {
+      "call_id": "b4b5c3629a68614a56194a29ef232336f4782544a33944f766f75f79c3e5ed5a",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0816761596820"
+    },
+    {
+      "call_id": "4e3ea466f841414544e0b3f13e37764436c7891a5d38a8f3456797e39ef95595",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0816697528712"
+    },
+    {
+      "call_id": "b26a7fb654ab0a5d74f0ac5c298f203ec5bc452f8167501aa7f2a92c433b890f",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8216670782892"
+    },
+    {
+      "call_id": "f455a5ea3a9e8e225631c56cd33d4445b4c7b9aac26cba0f7b5d372ce5e9abf5",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.8216670782892"
+    },
+    {
+      "call_id": "fc8dac0e06b46068bfc23de60357159859e64bd09bb86fc160c3545a87b670c9",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5536586827180"
+    },
+    {
+      "call_id": "620e592de8c0958b657816f6e4c40778bacd3cae2e6671f80c2a84c7e4878c5c",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5536586827180"
+    },
+    {
+      "call_id": "d88c79800ad1a779972b85309da1792807b8ea5952cb8719f331d4fc863eb1df",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0833867781656"
+    },
+    {
+      "call_id": "a614d3d47b7954edf1e563381bb15fd18c7d72f649219802450cdbbbd439c21d",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0833931849764"
+    },
+    {
+      "call_id": "00b4ab91e1fe425c243f35886aafb35f2eb060edba9665bf3c42578d6e58b8cb",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2670828574232"
+    },
+    {
+      "call_id": "194c9ccd9669b351adab47faa6304d20f36946a7fd6043d517c35d9c55bd9dc7",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2670892642340"
+    },
+    {
+      "call_id": "92baaa484a8723bca4169e27486c94e974555eab83488e031118fcf725d9df02",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5272305881680"
+    },
+    {
+      "call_id": "b336ec1d06e260347247dceaa8b6e4efd6d2a24b9bc339161416678af4246338",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5273010630868"
+    },
+    {
+      "call_id": "bf330e09f4f1dd65609b30605393fbadd21984ee0cd88e8e770ebf1e3f09eae0",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0809842241156"
+    },
+    {
+      "call_id": "eaacabaaee1ceb1a606d419b48a127021c513ed1974939a7758e8a09c0d89c16",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0809906309264"
+    },
+    {
+      "call_id": "45ffdef3e07eb76978d3f6dfa571c1703407999bff9f649ae54af4949f394859",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2646803033732"
+    },
+    {
+      "call_id": "d7a41a1c2a4a49b469fb6d2d4aea7655383d17c4d1a95a842a9de9db639a81d8",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2646867101840"
+    },
+    {
+      "call_id": "d835e085ec4b0882b7cf1a5cb83c13b0d9c49e01eb8f5f2447f49ed07e22bfca",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7952389837392"
+    },
+    {
+      "call_id": "2f396707d8b39d58d1db1c8922b81fc7a5ddd9158871652145d0783185aa7753",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7953094586580"
+    },
+    {
+      "call_id": "60111f75ca31708c6a7193965caf3509e31e2d943904aacc8178f0da5a113b8f",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794529963344"
+    },
+    {
+      "call_id": "70ff34f8fb4243074f9693ca29bef7ff7573c84ba73787527e0c0640e34820ef",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0794529963344"
+    },
+    {
+      "call_id": "9b60fc5a666b82b37bab85aa61a192cda8c5fd3d1938f544de00d8df0676c891",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631490755920"
+    },
+    {
+      "call_id": "ea7b22b31ae9c13c0b4f6dc216bf6b7b9c8f83f96d05c3f28fd815308479cac6",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2631490755920"
+    },
+    {
+      "call_id": "abac226c04a810963fd4f547a73972232a583ceba3928b755c4d5005674a5eb4",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7783250032272"
+    },
+    {
+      "call_id": "0f7deaa0c2fb2f8cce4b3a62e540b8e708f413569e057025e76a2e0816062d95",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7783250032272"
+    },
+    {
+      "call_id": "74ced935639dcc202d694f62e675978fb348654c02b85798e3cd12c7bbcf4264",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5103166076560"
+    },
+    {
+      "call_id": "4d52ab5e3975056859574626a7976288fcae4518a575c444cf439bd11ad56c87",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5103166076560"
+    },
+    {
+      "call_id": "3dbafd5d7542f98ebf7a2669f47223110994301e2bb80269f085b510d724a4a1",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2637256885640"
+    },
+    {
+      "call_id": "acf7a72785cc349b545d9d417c152e1fed65bebc94c9eb4a0b4b7dd6ad50a9d2",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.2637256885640"
+    },
+    {
+      "call_id": "101b5632b16892ec449e33edcb17c1e6bc304da0e4a4bf6d53515689ecf265a6",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7847382208380"
+    },
+    {
+      "call_id": "92208ac47d5aba8bd9afb18cc7837a479254eb6f9add43fa157670f3b5a45426",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "0.7846677459192"
+    },
+    {
+      "call_id": "5b71cb34ac86990c91985b9d73b9fd909614f23a6e5e1bcece72ebf5e6e553cf",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5167298252668"
+    },
+    {
+      "call_id": "1eea45edf15a59dca605cfbb6fbba87dbb2c180b8ab0a8299c02e0254c51ea55",
+      "completion_rub_per_token": "0.0001409498376",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000352374594",
+      "quote_receipt_sha256": "ccb079bb87ee4945a0f9780f8ce7e415a581c07b0ed01c4746bc53967e00a52a",
+      "reservation_rub": "2.5166593503480"
+    },
+    {
+      "call_id": "1a77f066d31becf01894cbde50f253b0d3a6af39f42eabe22767c48e017105d4",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0800296093064"
+    },
+    {
+      "call_id": "d5ced3b55eb00d7e1e621219c1885b1d3659d092c02634dbf85e995dfadfe282",
+      "completion_rub_per_token": "0.0000149492252",
+      "previously_attempted": false,
+      "prompt_rub_per_token": "0.0000032034054",
+      "quote_receipt_sha256": "428a0f08d863fca5427aa3e9061e525ae846194922333c5845ac91901b7c1a96",
+      "reservation_rub": "0.0800296093064"
+    }
+  ],
+  "created_utc": "2026-11-08T13:53:33.985750+00:00",
+  "current_shared_charged_or_reserved_rub": "651.5180250837596",
+  "dispatch_plan_sha256": "eee10bec923c65b194cf72145b4a7502e89a5df7334be2b090fe486bf05c84ec",
+  "full_roster_fits_stage_budget": true,
+  "full_roster_reservation_rub": "176.7285443763840",
+  "launch_charged_or_reserved_rub": "651.5180250837596",
+  "paid_requests": 0,
+  "protocol_sha256": "7109124aa2e18842d63c748ba32bb44ace42dff875ba19abe18f4e3b49f8c138",
+  "remaining_new_reservation_rub": "176.7285443763840",
+  "schema_version": 1,
+  "source_inventory_sha256": "c974cfc5fe05a761824e0daad8e774104fdf97ba411ef45447f0140b5ede7c89"
+}

@@ -1,0 +1,252 @@
+{
+  "E0": "not_passed",
+  "artifacts": [
+    {
+      "bytes": 10852,
+      "format": "json",
+      "path": "design/PILOT_V2_PROVIDER_RECOVERY_PROTOCOL.json",
+      "role": "protocol",
+      "sha256": "af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121"
+    },
+    {
+      "bytes": 130349,
+      "format": "json",
+      "path": "artifacts/pilot-v2-2026-11-08/development-tasks.json",
+      "role": "tasks",
+      "sha256": "ba2bef2bb73c5b3512cec81a80449a7e796ec56e1f9d936808f2e5789370c724"
+    },
+    {
+      "bytes": 2995550,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/results.json",
+      "role": "results",
+      "sha256": "a5655374be653f1fc50f69ec049672b2ac27f3b6b00342982ca6f92a3678600d"
+    },
+    {
+      "bytes": 60874,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/class-support.json",
+      "role": "support",
+      "sha256": "2ed34355982b3c91c7e35df1d97585b4a5bb7c588ce0313ab44e8273661391ed"
+    },
+    {
+      "bytes": 1959,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/budget-final.json",
+      "role": "cost",
+      "sha256": "6e27b62c3a9b172175c5b5e732b3828023880885f251835ee5f003f36692b3e9"
+    },
+    {
+      "bytes": 22887,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/future-design-decision.json",
+      "role": "future_decision",
+      "sha256": "10e1cc7e85018f1b491d95b40c6c4717674a46344f2e474c19f40b89471c919d"
+    },
+    {
+      "bytes": 70,
+      "format": "bytes",
+      "path": "pilot_v2/__init__.py",
+      "role": "source",
+      "sha256": "0015bef7430f67370e09057d498b0de8c9dd693082913e63ce8ecec35779b950"
+    },
+    {
+      "bytes": 36555,
+      "format": "bytes",
+      "path": "pilot_v2/runner.py",
+      "role": "source",
+      "sha256": "ed538fe8d49cec58a1a94d718258ab1a5519505286c7a6b4a86fea519351b12c"
+    },
+    {
+      "bytes": 31652,
+      "format": "bytes",
+      "path": "pilot_v2/statistical_design.py",
+      "role": "source",
+      "sha256": "278a9eb6e6571dbeb559964a8e7f0bf87c0dd4ca6facd77bb7ed1d08dd233d81"
+    },
+    {
+      "bytes": 38263,
+      "format": "bytes",
+      "path": "pilot_v2/tasks.py",
+      "role": "source",
+      "sha256": "fc3c355ab3a58fd9bf2d8b35e4770bcf8a2126184436c55b3b13ca61b29f1a37"
+    },
+    {
+      "bytes": 37602,
+      "format": "bytes",
+      "path": "resumption/analysis.py",
+      "role": "source",
+      "sha256": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9"
+    },
+    {
+      "bytes": 18592,
+      "format": "bytes",
+      "path": "resumption/episteme_adapter.py",
+      "role": "source",
+      "sha256": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112"
+    },
+    {
+      "bytes": 28638,
+      "format": "bytes",
+      "path": "resumption/generator_audit.py",
+      "role": "source",
+      "sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9"
+    },
+    {
+      "bytes": 51060,
+      "format": "bytes",
+      "path": "resumption/runner.py",
+      "role": "source",
+      "sha256": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8"
+    },
+    {
+      "bytes": 10457,
+      "format": "bytes",
+      "path": "resumption/tasks.py",
+      "role": "source",
+      "sha256": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a"
+    },
+    {
+      "bytes": 25287,
+      "format": "bytes",
+      "path": "scripts/collect_pilot_v2_recovery.py",
+      "role": "source",
+      "sha256": "07e83c0892ce77a6d1b59a755a91f6bf57b70c4b7d783df40d5377eb6074a440"
+    },
+    {
+      "bytes": 5127,
+      "format": "bytes",
+      "path": "stage0/config.py",
+      "role": "source",
+      "sha256": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73"
+    },
+    {
+      "bytes": 20663,
+      "format": "bytes",
+      "path": "stage0/runner.py",
+      "role": "source",
+      "sha256": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317"
+    },
+    {
+      "bytes": 3572,
+      "format": "bytes",
+      "path": "stage0/traces.py",
+      "role": "source",
+      "sha256": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda"
+    },
+    {
+      "bytes": 1488,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/pilot-v2-recovery/af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121/source-inventory.json",
+      "role": "source_inventory",
+      "sha256": "e88ec11d49348ee468a8b4cc9d2d676c514379c69b1cc02ee02abafaafefa0d7"
+    },
+    {
+      "bytes": 138662,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/pilot-v2-recovery/af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121/dispatch-plan.json",
+      "role": "dispatch_plan",
+      "sha256": "45607e7dc57219bcbb239f35c454caa1ea4d96325b3e8bf75a238b4900cf9ec5"
+    },
+    {
+      "bytes": 37001,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/pilot-v2-recovery/af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121/cost-plan.json",
+      "role": "prospective_cost_plan",
+      "sha256": "c515ca48f88af17a44ae8209395c25f94722c416ea710cf74239629d332dbb6d"
+    },
+    {
+      "bytes": 239682,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/pilot-v2-recovery/af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121/ledger-launch.json",
+      "role": "launch_ledger",
+      "sha256": "dc2b2e867c518371d6a9bdbaa774a6d184a91aacbefd5a90ee92947b6951be89"
+    },
+    {
+      "bytes": 265759,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/ledger-final.json",
+      "role": "supplementary",
+      "sha256": "2f4507696a0eb06a5d9daad46875af6a837f728182c8be4dce1ff0669c54c95a"
+    },
+    {
+      "bytes": 37001,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/cost-plan-final.json",
+      "role": "supplementary",
+      "sha256": "c515ca48f88af17a44ae8209395c25f94722c416ea710cf74239629d332dbb6d"
+    },
+    {
+      "bytes": 1847,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/reproduction-check.json",
+      "role": "supplementary",
+      "sha256": "f4c256ff41fc3f6645c2c5f41ff84e642c992f34fc1f65a43bece1bb8e707f2e"
+    },
+    {
+      "bytes": 124801,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/reuse-mapping.json",
+      "role": "supplementary",
+      "sha256": "3e143ed8e6e64e33b78385a456a11580d2a08cda8cf9d327edee3b6d60e65f19"
+    },
+    {
+      "bytes": 186694,
+      "format": "json",
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/error-audit.json",
+      "role": "supplementary",
+      "sha256": "2bc7cfa3e9575cff8a19f1c0c2eac59a760480bbab2a3901fea2e72797ae4f52"
+    },
+    {
+      "bytes": 162234,
+      "format": "json",
+      "path": "evidence/pilot-v2-recovery-2026-11-08/manifest.json",
+      "role": "supplementary",
+      "sha256": "3b860159967a5fb08c3c1474c01af41918f662ad04b8c8cc09ec62945bd5a424"
+    },
+    {
+      "bytes": 165103,
+      "format": "json",
+      "path": "evidence/pilot-v2-2026-11-08/manifest.json",
+      "role": "supplementary",
+      "sha256": "6875c4ac2e79844f5c1af27e4fa647c20644cec0314bd16c2a588d66286c11f0"
+    },
+    {
+      "bytes": 7124,
+      "format": "json",
+      "path": "artifacts/pilot-v2-2026-11-08/index.json",
+      "role": "supplementary",
+      "sha256": "4144724ce31a4eca15661d47449b466159161a1e522508b56cc807d150f53e0f"
+    },
+    {
+      "bytes": 8043,
+      "format": "bytes",
+      "path": "scripts/build_pilot_v2_evidence_index.py",
+      "role": "supplementary",
+      "sha256": "80b068260b093ad264a6af5d173ca542edfb68d307f00924eff4c5652d91c67d"
+    },
+    {
+      "bytes": 14461,
+      "format": "bytes",
+      "path": "scripts/audit_pilot_v2_answers.py",
+      "role": "supplementary",
+      "sha256": "323c7ba711fd0e88fc63820a662070fa8c41bfb413b4e2c059e3707248bb3d19"
+    }
+  ],
+  "corpus_file_sha256": "ba2bef2bb73c5b3512cec81a80449a7e796ec56e1f9d936808f2e5789370c724",
+  "empty_source_files_retained_in_inventory": [
+    {
+      "path": "resumption/__init__.py",
+      "reason": "Empty source is retained by the indexed inventory; pack forbids empty individual artifacts",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "protocol_sha256": "af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121",
+  "purpose": "pilot_v2_completed_artifact_integrity_index",
+  "registered_after_collection": true,
+  "review": "not_requested",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "scope": "Previously observed development artifacts; exact byte integrity only. The offline primary/reanalysis jobs hash indexed artifacts and do not independently rerun the support analysis.",
+  "source_inventory_sha256": "e88ec11d49348ee468a8b4cc9d2d676c514379c69b1cc02ee02abafaafefa0d7"
+}

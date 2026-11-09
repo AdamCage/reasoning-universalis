@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-08T14:28:37.688552+00:00",
+  "condition": "R1",
+  "source_code_commit": "7c9cb2226b7ee9f34bc89993026cfc252f40349c",
+  "protocol_sha256": "af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121",
+  "source_inventory_sha256": "e88ec11d49348ee468a8b4cc9d2d676c514379c69b1cc02ee02abafaafefa0d7",
+  "parent_A_manifest_sha256": "6875c4ac2e79844f5c1af27e4fa647c20644cec0314bd16c2a588d66286c11f0",
+  "source_files": 14,
+  "new_calls": 96,
+  "reused_records": 96,
+  "original_roots": 24,
+  "paid_calls_at_this_checkpoint": 0,
+  "preflight": {
+    "absolute_stage_ceiling_rub": "1851.5180250837596",
+    "created_utc": "2026-11-08T14:27:45.542692+00:00",
+    "current_shared_charged_or_reserved_rub": "811.7621058153828",
+    "dispatch_plan_sha256": "45607e7dc57219bcbb239f35c454caa1ea4d96325b3e8bf75a238b4900cf9ec5",
+    "full_roster_fits_stage_budget": true,
+    "full_roster_reservation_rub": "11.7968009291392",
+    "launch_charged_or_reserved_rub": "811.7621058153828",
+    "new_calls": 96,
+    "paid_requests": 0,
+    "phase": "pilot_v2_provider_recovery_R1",
+    "protocol_sha256": "af85f015ec692d4be4ddc74218d276d4c3c7632fbad19301638c351bc81e8121",
+    "remaining_new_reservation_rub": "11.7968009291392",
+    "reused_records": 96,
+    "schema_version": 1,
+    "source_inventory_sha256": "e88ec11d49348ee468a8b4cc9d2d676c514379c69b1cc02ee02abafaafefa0d7"
+  },
+  "frozen_files": [
+    {
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/dispatch-plan.json",
+      "sha256": "45607e7dc57219bcbb239f35c454caa1ea4d96325b3e8bf75a238b4900cf9ec5"
+    },
+    {
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/reuse-mapping.json",
+      "sha256": "3e143ed8e6e64e33b78385a456a11580d2a08cda8cf9d327edee3b6d60e65f19"
+    },
+    {
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/source-inventory.json",
+      "sha256": "e88ec11d49348ee468a8b4cc9d2d676c514379c69b1cc02ee02abafaafefa0d7"
+    },
+    {
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/ledger-launch.json",
+      "sha256": "dc2b2e867c518371d6a9bdbaa774a6d184a91aacbefd5a90ee92947b6951be89"
+    },
+    {
+      "path": "artifacts/pilot-v2-recovery-2026-11-08/preflight-cost-plan.json",
+      "sha256": "717ea2f5572ca9ca334e4198f14b463fbc93be66867f9db83c5f8a1b9f4783fd"
+    }
+  ],
+  "tests_before_R1": {
+    "total": 276,
+    "passed": 276
+  },
+  "scientific_validity": "not_assessed",
+  "E0": "not_passed"
+}
