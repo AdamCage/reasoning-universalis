@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "scope": "Exploratory ceiling-limited development pilot; original H0-H7 preserved.",
+  "scientific_validity": "not_assessed",
+  "E0": "not_passed",
+  "human_scientific_review": false,
+  "manuscript_approved": false,
+  "claims": [
+    {
+      "id": "C1",
+      "kind": "operational_observation",
+      "statement": "Two candidate model identities passed the finite visible-channel admission; Qwen3-32B was not admitted after two output-length-limited responses. Operational admission does not prove complete faithful reasoning.",
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/admission-results.json",
+          "sha256": "0cac8b9cb7fa3b97352ae065767feb5c322e6260158639124d976831b3e536fc"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/admissions.json",
+          "sha256": "51c9a2ba4e7c01ae7aede2a66c6673b7c508b9db489e22afe25d9e5c60756575"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/allocation-before-collection.json",
+          "sha256": "fd5b421b1366a37c709f669f86336682973c263de60747cc2fb2a4f4f7ea26df"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "kind": "descriptive_sampling_result",
+      "statement": "The admitted allocation produced 384 saved attempts across 96 tasks in 48 paired roots: 335 completed traces, 49 truncated attempts, 333 gradeable answers, 329 correct and 4 incorrect. These are dependent observations and conditional denominators.",
+      "counts": {
+        "attempted": 384,
+        "planned_candidate_rows": 576,
+        "candidate_rows_not_dispatched": 192,
+        "roots_planned": 48,
+        "completed": 335,
+        "gradeable": 333,
+        "correct": 329,
+        "incorrect": 4
+      },
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/results.json",
+          "sha256": "03044956b33fbe75899d0c98b5af2ac5341681d73f6e859b233776d7ad93ba29"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/tables/planned-matrix.json",
+          "sha256": "5a9f431d979485083b779a01f65e21064072d60957d1256f60518f1bf446775b"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/error-audit.json",
+          "sha256": "0ed44b036dc788a1d26b6616cbb34a6554fc1d59bef90b5698fd58054f9e3623"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "kind": "primary_conditional_score_estimates",
+      "statement": "BGE-M3/256-word root-paired loss differences do not establish incremental error discrimination; DeepSeek target is single-class and the GPT-OSS source-training sample invokes identical constant predictors. Zero contrast is not equivalence evidence.",
+      "estimates": {
+        "deepseek/deepseek-v4.1-flash": {
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 271828,
+          "bootstrap_unit": "task_root_with_all_models_and_repeats",
+          "brier_gain": -0.000503173966694835,
+          "brier_gain_ci95": [
+            -0.002129305352897642,
+            0.0006909042291117569
+          ],
+          "interval_status": "estimated",
+          "log_loss_gain": -0.0015393917352612627,
+          "log_loss_gain_ci95": [
+            -0.006687386286370183,
+            0.0028993240405904676
+          ],
+          "positive_means_candidate_improves": true,
+          "root_count": 9,
+          "status": "estimated",
+          "trace_count": 20,
+          "uncertainty_scope": "conditional_on_fitted_models_and_observed_roots"
+        },
+        "openai/gpt-oss-20b": {
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 271828,
+          "bootstrap_unit": "task_root_with_all_models_and_repeats",
+          "brier_gain": 0.0,
+          "brier_gain_ci95": [
+            0.0,
+            0.0
+          ],
+          "interval_status": "estimated",
+          "log_loss_gain": 0.0,
+          "log_loss_gain_ci95": [
+            0.0,
+            0.0
+          ],
+          "positive_means_candidate_improves": true,
+          "root_count": 11,
+          "status": "estimated",
+          "trace_count": 34,
+          "uncertainty_scope": "conditional_on_fitted_models_and_observed_roots"
+        }
+      },
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/analysis-bge.json",
+          "sha256": "0f095bc18e696e81da6fef3764372913b8d108d032c3d8c27ce163b94e3673eb"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/tables/prefix-support.json",
+          "sha256": "66f9290f9b3e8973901579a0e901f007938b8d935ff75d8a2bec1d70317441a9"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "kind": "exploratory_order_controls",
+      "statement": "The primary BGE/256 direct log-loss order-control intervals span zero for DeepSeek; GPT-OSS has identical constant predictors. All Brier/control outputs are retained; secondary scores do not replace the primary endpoint.",
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/analysis-bge.json",
+          "sha256": "0f095bc18e696e81da6fef3764372913b8d108d032c3d8c27ce163b94e3673eb"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "kind": "alternate_measurement_and_common_support",
+      "statement": "Qwen embeddings give the same class-support limitation. Complete common support produces identical original/matched fitted predictions and gains within each embedder; this is a software/coverage check, not independent replication.",
+      "alternate_256": {
+        "deepseek/deepseek-v4.1-flash": {
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 271828,
+          "bootstrap_unit": "task_root_with_all_models_and_repeats",
+          "brier_gain": -0.0008654733123095674,
+          "brier_gain_ci95": [
+            -0.002378930298847199,
+            0.00040855954256052327
+          ],
+          "interval_status": "estimated",
+          "log_loss_gain": -0.0025866885118311722,
+          "log_loss_gain_ci95": [
+            -0.007000960889436466,
+            0.0013816814980151509
+          ],
+          "positive_means_candidate_improves": true,
+          "root_count": 9,
+          "status": "estimated",
+          "trace_count": 20,
+          "uncertainty_scope": "conditional_on_fitted_models_and_observed_roots"
+        },
+        "openai/gpt-oss-20b": {
+          "bootstrap_samples": 2000,
+          "bootstrap_seed": 271828,
+          "bootstrap_unit": "task_root_with_all_models_and_repeats",
+          "brier_gain": 0.0,
+          "brier_gain_ci95": [
+            0.0,
+            0.0
+          ],
+          "interval_status": "estimated",
+          "log_loss_gain": 0.0,
+          "log_loss_gain_ci95": [
+            0.0,
+            0.0
+          ],
+          "positive_means_candidate_improves": true,
+          "root_count": 11,
+          "status": "estimated",
+          "trace_count": 34,
+          "uncertainty_scope": "conditional_on_fitted_models_and_observed_roots"
+        }
+      },
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/analysis-qwen.json",
+          "sha256": "cf7d859369f8180fa042e686ac4de9c164e9482268934d665637ae7315ed9f1d"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/analysis-bge-matched.json",
+          "sha256": "ba5f92c7d8356b22eab2827a4e68c1a6f116f4d8325094438e77e9c76e0ae174"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/analysis-qwen-matched.json",
+          "sha256": "8c98e7a8bc6d3b6b1c630a943cd265af30a528eeae3093c5146473b82826dfa1"
+        }
+      ]
+    },
+    {
+      "id": "C6",
+      "kind": "API_measurement_provenance",
+      "statement": "A post-preflight operational amendment permits ASCII identifier case only; a subsequent distinct condition pins DeepInfra. Three known valid batches are reused, two rejected routing batches retained, and all 11,556 selected vectors link to raw responses. Unknown requests are not retried and no ledger is reset.",
+      "evidence": [
+        {
+          "path": "design/LOCAL_EMBEDDING_COMPAT_2026_11_08.json",
+          "sha256": "f822dab8f70c080c228bb1c64a3fdb288c19665ca0693e589659d96877b601b0"
+        },
+        {
+          "path": "design/LOCAL_EMBEDDING_PINNED_2026_11_08.json",
+          "sha256": "732975e60b72a934b79d31fd58d589916a286f6d8def119d49451c2b0b399c82"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/embedding-routing-preflight.json",
+          "sha256": "89a98c17867de437d8ad1835591eaf748908347ebfd57d90542b3913e9fb7a20"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/run-manifest.json",
+          "sha256": "79512c8463ffdaab01242a809596d105ff7051dabd07b336d35955dbf5abe824"
+        }
+      ]
+    },
+    {
+      "id": "C7",
+      "kind": "accounting_observation",
+      "statement": "Total charged-or-reserved commitments are 651.5180250837596 RUB under a 3000 RUB cap, including 246.7988793802352 historical commitments. New generation/admission reported cost is 22.262539632314696395 RUB; 364 embedding costs are not reported and retain 4.1759082418116 RUB reserves. Commitment is not actual spending.",
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/ledger.json",
+          "sha256": "c31af39094d10f6b959ee14d4be3b71267dff7e51c1eea138f309a25ad8f815f"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/budget-final.json",
+          "sha256": "76e981e2944cdee8e53b66ffc884071b936f119406a69cd95d71b841b4eabfdb"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/historical-ledger.json",
+          "sha256": "e062d9bdd228933ddcca0047d9ee15e564b82413bf88f92c5d06550c9febb88d"
+        }
+      ]
+    },
+    {
+      "id": "C8",
+      "kind": "mechanical_integrity_only",
+      "statement": "The pinned EpistemeOS core stage completed 54 offline primary/reanalysis attempts over 27 captured artifacts (26 inputs plus the index), with criteria_met, exploratory/inconclusive, scientific validity not assessed and review not requested. Backup restoration preserved 340 events and the recorded graph hash. This establishes mechanical integrity only.",
+      "stage_result_path": "artifacts/resumption-2026-11-08/local/episteme-stage-result.json",
+      "evidence": [
+        {
+          "path": "artifacts/resumption-2026-11-08/local/evidence-index.json",
+          "sha256": "a49a0e2d8e333f662501c896c8f51cf476e443151dcce1653863a5b4caf356b0"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/episteme-stage-result.json",
+          "sha256": "a36e7ad223426c28c7f51206fb3352c41b7821408c57470406d81aeda9e0e09c"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/episteme-backup-check.json",
+          "sha256": "735b6e3b113e9d65217e175444a39a4204ae1abcc071462bfb25560101072314"
+        },
+        {
+          "path": "evidence/episteme-local-stage-2026-11-08.zip",
+          "sha256": "614c111420a49a76e205ebc55e389d75471518a7b2f9204ad520eed316634bfd"
+        },
+        {
+          "path": "artifacts/resumption-2026-11-08/local/episteme-archive-check.json",
+          "sha256": "2b328731ca833240fb4d73bc3b16cd7992991dcfe6d780cb47a343b09e7d263e"
+        }
+      ]
+    },
+    {
+      "id": "C9",
+      "kind": "reproduction_method",
+      "statement": "The portable archive retains raw responses, immutable source and accounting. The one-command offline reproducer reconstructs complete embedding aggregates and repeats fixed analyses without API calls. The actual verification receipt is separate from the archive to avoid self-referential hashes.",
+      "archive_manifest_path": "evidence/local-pilot-2026-11-08/manifest.json",
+      "verification_receipt_path": "reports/LOCAL_REPRODUCTION_CHECK.md",
+      "evidence": [
+        {
+          "path": "scripts/export_local_evidence.py",
+          "sha256": "694706b3a2cbcf66138369ee27af89089e47020a882dd409f30009f78bf433e0"
+        },
+        {
+          "path": "scripts/reproduce_local.py",
+          "sha256": "3b816106ed2c53642e5e574c6cd67f2e00905d38f0b52c335642ee05fe9f62bd"
+        }
+      ]
+    }
+  ],
+  "hypothesis_status": {
+    "H0": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No equivalence margin or sufficient design for accepting the composite null; non-rejection is not evidence of absence."
+    },
+    "H1": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No independently validated functional-state measurement; E0 not passed."
+    },
+    "H2": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No prespecified supported-edge topology test in the narrow prefix study."
+    },
+    "H3": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No shared-state transition/dwell analysis; model-specific prediction is a different object."
+    },
+    "H4": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No sufficiently supported matched successful-versus-failed trajectory comparison."
+    },
+    "H5": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No independent repeated prefix probes or intervention on continued reasoning."
+    },
+    "H6": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "No comparable same-lineage scaling pair admitted."
+    },
+    "H7": {
+      "status": "not_confirmed_by_this_pilot",
+      "reason": "Only a restricted observational predictive component was evaluated; primary class support is inadequate for error discrimination and no controlled stopping experiment was performed."
+    }
+  },
+  "forbidden_inferences": [
+    "Universal cognition or faithful internal computation.",
+    "Functional-state validity from embeddings or machine agreement.",
+    "H0 acceptance/equivalence from a non-significant or identical-predictor contrast.",
+    "Error-monitor validity from an all-correct target or single-class source.",
+    "Causal stopping benefits or full H7 support.",
+    "New-data replication or independent human review from an offline same-code replay."
+  ]
+}

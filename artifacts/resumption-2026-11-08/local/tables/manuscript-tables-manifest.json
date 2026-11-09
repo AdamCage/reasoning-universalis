@@ -1,0 +1,54 @@
+{
+  "outputs": [
+    {
+      "path": "observed-contrasts.csv",
+      "sha256": "1d109ac922fd4e377f9116622613ccc0343c8c017981816d25429d54018c1733"
+    },
+    {
+      "path": "all-method-metrics.csv",
+      "sha256": "c9aa37d3d1e96c3fe2c388c6e90d285c1f2ddf7752146a90b2466f9f996d2e68"
+    },
+    {
+      "path": "all-order-contrasts.csv",
+      "sha256": "9f55fde00ce74276edb8a7c9e902aec44633d8fdbbd05a7ea4300e6dbcac5972"
+    },
+    {
+      "path": "observed-secondary.md",
+      "sha256": "befc6b8e8da71fa2d05a5c7a4acfe6d6cec74565641e78fb4918e12f413448b3"
+    },
+    {
+      "path": "matched-embedding-check.json",
+      "sha256": "126328998f145126d6b2622aa686ce84a3d74a212e3c60b972c137be010ba0fe"
+    }
+  ],
+  "purpose": "deterministic_reporting_only_no_refit_or_new_inference",
+  "row_counts": {
+    "all_method_metrics": 450,
+    "all_order_contrasts": 120,
+    "observed_contrasts": 30
+  },
+  "schema_version": 1,
+  "script_sha256": "4abc1718cbe93adca968a7730df884c52278d77351ccd79644a62fb1e8fac995",
+  "sources": [
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-lexical.json",
+      "sha256": "ea99cfec486e15fe53e873fcf93f1b0dada98fc36c5f738c26b084fc4091a17e"
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-bge.json",
+      "sha256": "0f095bc18e696e81da6fef3764372913b8d108d032c3d8c27ce163b94e3673eb"
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-qwen.json",
+      "sha256": "cf7d859369f8180fa042e686ac4de9c164e9482268934d665637ae7315ed9f1d"
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-bge-matched.json",
+      "sha256": "ba5f92c7d8356b22eab2827a4e68c1a6f116f4d8325094438e77e9c76e0ae174"
+    },
+    {
+      "path": "artifacts/resumption-2026-11-08/local/analysis-qwen-matched.json",
+      "sha256": "8c98e7a8bc6d3b6b1c630a943cd265af30a528eeae3093c5146473b82826dfa1"
+    }
+  ]
+}

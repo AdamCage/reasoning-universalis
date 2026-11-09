@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "retrieved_date": "2026-11-08",
+  "upstream_repository": "https://github.com/AdamCage/EpistemeOS",
+  "upstream_revision": "7f5a1a0e43d7c35196cc8b3c9c74a618aa2559c3",
+  "upstream_revision_date": "2026-11-04T14:01:49Z",
+  "bundled_upstream_equivalent": "5c4da6f3f37d27d2fb2ad40e04ffcac5bd87a63d",
+  "bundled_git_tree": "a03380f3cb5e9a842c44c655a0340fe74f5c01d7",
+  "changed_upstream_files": [
+    {
+      "path": "README.md",
+      "sha256": "c1f0fa708d9fca305b4ec290830bf2117787752ded8e98aa16aad6a3ca52e12d"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "59d651247ea1afe6d2d0df78415fb77817ce9cba4ac3dbb336173af38662caae"
+    },
+    {
+      "path": "docs/command-api.md",
+      "sha256": "36a9fac4fc9814c3f2fc668ecd6c3c3966426fcefe0e3400d34de450d29a028c"
+    },
+    {
+      "path": "docs/decisions/0026-stage-control.md",
+      "sha256": "5ec28d64db5102839c2813df52398027376b2029fddb472c9c973b2080c15867"
+    },
+    {
+      "path": "docs/mvp-plan.md",
+      "sha256": "25041b811f8dd4a25576b8112fd5199182372c795bd9d776cbc202b1fd88fc53"
+    },
+    {
+      "path": "docs/repository-map.md",
+      "sha256": "c6db364663cbd138c77ba594f2c3906957d30ac60b79314e2a9bcf3465475ba9"
+    },
+    {
+      "path": "docs/validation.md",
+      "sha256": "bcf0568b4e471daf9e4c7cdcd430bdb175df2abec3b51119aee78409f3be051a"
+    },
+    {
+      "path": "schemas/command-v1.schema.json",
+      "sha256": "9d7367c3d0fe30acf81723dd40cd9e25ae77974e403e119c28c7d3bac0a1b076"
+    },
+    {
+      "path": "src/episteme/cli.py",
+      "sha256": "f09de85817026f4f544b767cd9413fde49f12c9b546c8f46ee68256cb46caa03"
+    },
+    {
+      "path": "src/episteme/commands.py",
+      "sha256": "99b752890e3b62f093f18c6a9f5ddf88decf3b5c5ba8ddbfbc73e2e0b78018bf"
+    },
+    {
+      "path": "src/episteme/graph.py",
+      "sha256": "3d6f09189387c7a699b6e2eb483ef766ae5e9e64c351ea78bc611e47b96de505"
+    },
+    {
+      "path": "src/episteme/stages.py",
+      "sha256": "52ecd4a3ea3d05aff5938c2eafe8e5bb470cefb5cea3cd3d3661ff937189925f"
+    },
+    {
+      "path": "tests/test_stages.py",
+      "sha256": "0f71e0312564609b884f5e1b28108c0fca17116f3d84f7a276dfbea52b07c04a"
+    }
+  ],
+  "upstream_tests": {
+    "stage_tests": 8,
+    "status": "passed"
+  },
+  "compatibility_tests": {
+    "existing_domainpack_tests": 9,
+    "status": "passed"
+  },
+  "new_capture_unit_tests": {
+    "count": 5,
+    "status": "passed"
+  },
+  "historical_smoke": {
+    "historical_traces": 6,
+    "new_model_generations": 0,
+    "attempts_completed": 12,
+    "disposition": "criteria_met",
+    "outcome": "inconclusive",
+    "inference_mode": "exploratory",
+    "scientific_validity": "not_assessed",
+    "review": "not_requested",
+    "replay": "same_history_no_new_attempt"
+  },
+  "limitations": [
+    "Same-user local execution, no OS sandbox",
+    "No human E0 validation or scientific review",
+    "Integrity checks do not establish scientific validity",
+    "Historical replay is not replication",
+    "Bundled kernel unchanged"
+  ],
+  "historical_replay_archive": {
+    "path": "evidence/episteme-stage-replay-2026-11-08.zip",
+    "bytes": 339006,
+    "sha256": "216efd5e8d6b8e867a27f19345f42a07d8019c25a8bb2ff4516941cfd77c7907",
+    "restore_verified": true,
+    "restored_graph_snapshot_hash": "efe5178ad1fb7c415489c6732436523dd4b5a859978496998765a9593b8fc0bb"
+  },
+  "generic_fixture_integration": {
+    "artifacts": 5,
+    "offline_attempts_completed": 10,
+    "disposition": "criteria_met",
+    "outcome": "inconclusive",
+    "inference_mode": "exploratory",
+    "review": "not_requested",
+    "scientific_validity": "not_assessed",
+    "replay": "same_history_no_new_attempt",
+    "synthetic_fixture": true
+  }
+}

@@ -1,0 +1,6 @@
+# Keep hash-bound protocol/corpus/source bytes identical on Windows and Linux.
+* text=auto eol=lf
+*.zip binary
+*.gz binary
+*.png binary
+*.pdf binary

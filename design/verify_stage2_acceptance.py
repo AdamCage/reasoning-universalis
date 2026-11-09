@@ -82,7 +82,11 @@ def verify(read) -> dict:
     evidence = read(EVIDENCE)
     require(len(evidence) == 484814 and sha(evidence) == EVIDENCE_SHA256, "Evidence archive changed")
     for path, digest in LOCKS.items():
-        require(sha(read(path)) == digest, "Locked file changed: " + path)
+        # These four text locks identify canonical UTF-8/LF repository content.
+        # Existing Windows checkouts can retain CRLF after .gitattributes changes.
+        # Keep implementation files, the receipt and the evidence archive byte-exact.
+        locked_text = read(path).decode("utf-8").replace("\r\n", "\n").encode("utf-8")
+        require(sha(locked_text) == digest, "Locked file changed: " + path)
     receipt_bytes = read(RECEIPT)
     require(sha(receipt_bytes) == RECEIPT_SHA256, "Acceptance receipt bytes mismatch")
     check_receipt(json.loads(receipt_bytes))

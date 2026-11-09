@@ -1,0 +1,2478 @@
+{
+  "E0": "not_passed",
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.0"
+  },
+  "historical_surface_gate_limitations": [
+    "fit and score on same data (resubstitution), not heldout prediction",
+    "math tasks omitted from family/parity/length/structure feasibility scores",
+    "reported parity/length/structure score is maximum over domains",
+    "binary instance feasibility is not a generated answer correctness label"
+  ],
+  "input_sha256": {
+    "design/PILOT_SECTION_5_5_ROSTER.json": "4ead783164e285a4683e4d3c7f24e031dfc294eff74b28c2ddc25e678a57c6bf",
+    "design/PILOT_SECTION_5_5_ROSTER_V2.json": "93337fddcedceeb8a1ce760750f946adae01885af5b10ea5b922a7a2ee931bba",
+    "design/PILOT_SECTION_5_5_ROSTER_V3.json": "9f17c9f0a79d00d37b89e85c6207a1f3e2acef2bd116abf8f723e3c5675185b5",
+    "design/PILOT_SECTION_5_5_ROSTER_V4.json": "f04fa3312ccc5a9cc3d99bc688ce5181120cae4c595bfa684194d93a780561c9",
+    "resumption/generator_audit.py": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9",
+    "stage2/datasets.py": "a87f03b09ff45a68a3bce352d47db8ceb47273cccb2e887eee27388da77fc232",
+    "stage3/baseline_audit.py": "a1530137c9624ac8c8af67937572e42ad3aca01b3db293c72cd19d9f9687b129",
+    "stage3/generators_v2.py": "95fa4754a1fe5551b3fdcb9e24e7583da6a6d15ad50fbc17c900a8ac24d0e3ca",
+    "stage3/generators_v3.py": "e475f67ef0b298372c64a658690530cc1098e51fcdf5175034f400c733b7e1e2",
+    "stage3/generators_v4.py": "2b10d5ee6b9141f5ae9ac6af476dedb74dff730e51878bb9b563b4a18e3666ee"
+  },
+  "instance_manifest": {
+    "compressed_sha256": "1ef0f4d3a7c5131faa512e9fd06c8cb5c3abac9dd032f3c67a4065784370a180",
+    "path": "instances.jsonl.gz",
+    "rows": 6560,
+    "uncompressed_sha256": "8d7e3431775da60c83ead9fcb6a4fce472cd45cb34ee9a0167b3e6a739ef1db3"
+  },
+  "paid_calls": 0,
+  "schema_version": 1,
+  "scientific_hypotheses_evaluated": [],
+  "seed_range": [
+    0,
+    47
+  ],
+  "seeds_per_cell": 48,
+  "source_versions_preserved": true,
+  "status": "completed_offline_exploratory_generator_audit",
+  "versions": {
+    "v1": {
+      "extended": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "d1-d4-development-v1:algorithms:easy:0",
+              "d1-d4-development-v1:algorithms:easy:2",
+              "d1-d4-development-v1:algorithms:easy:24",
+              "d1-d4-development-v1:algorithms:easy:40"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:1",
+              "d1-d4-development-v1:algorithms:easy:13",
+              "d1-d4-development-v1:algorithms:easy:14",
+              "d1-d4-development-v1:algorithms:easy:21",
+              "d1-d4-development-v1:algorithms:easy:25"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:3",
+              "d1-d4-development-v1:algorithms:easy:8",
+              "d1-d4-development-v1:algorithms:easy:16",
+              "d1-d4-development-v1:algorithms:easy:18",
+              "d1-d4-development-v1:algorithms:easy:43"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:4",
+              "d1-d4-development-v1:algorithms:easy:31",
+              "d1-d4-development-v1:algorithms:easy:32",
+              "d1-d4-development-v1:algorithms:easy:39",
+              "d1-d4-development-v1:algorithms:easy:41"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:5",
+              "d1-d4-development-v1:algorithms:easy:6",
+              "d1-d4-development-v1:algorithms:easy:11",
+              "d1-d4-development-v1:algorithms:easy:12",
+              "d1-d4-development-v1:algorithms:easy:17"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:7",
+              "d1-d4-development-v1:algorithms:easy:28",
+              "d1-d4-development-v1:algorithms:easy:47"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:9",
+              "d1-d4-development-v1:algorithms:easy:22",
+              "d1-d4-development-v1:algorithms:easy:26",
+              "d1-d4-development-v1:algorithms:easy:30",
+              "d1-d4-development-v1:algorithms:easy:42"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:10",
+              "d1-d4-development-v1:algorithms:easy:15",
+              "d1-d4-development-v1:algorithms:easy:29",
+              "d1-d4-development-v1:algorithms:easy:37",
+              "d1-d4-development-v1:algorithms:easy:38"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 53,
+          "conservative_component_count": 12,
+          "declared_root_count": 12,
+          "duplicate_canonical_instance_excess": 111,
+          "duplicate_prompt_excess": 111,
+          "rows_in_crossing_canonical_groups": 155,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 576,
+          "unique_canonical_instance_count": 465,
+          "unique_prompt_count": 465
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "1": 144
+              },
+              "folds": [
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                }
+              ],
+              "groups": 3,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "prompt_length_stump": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "structure_count_stump": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "training_majority": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                }
+              },
+              "tasks": 144
+            },
+            "logic": {
+              "class_counts": {
+                "0": 1,
+                "1": 143
+              },
+              "folds": [
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                }
+              ],
+              "groups": 3,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.16433566433566432
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.16433566433566432
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3321678321678322
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3321678321678322
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.48951048951048953
+                },
+                "training_majority": {
+                  "accuracy": 0.9930555555555556,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.16433566433566432
+                }
+              },
+              "tasks": 144
+            },
+            "planning": {
+              "class_counts": {
+                "0": 29,
+                "1": 115
+              },
+              "folds": [
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 48,
+                  "train_groups": 2,
+                  "train_tasks": 96
+                }
+              ],
+              "groups": 3,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3416791604197901
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.7265367316341829
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3416791604197901
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.4712143928035982
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.46401799100449775
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.46401799100449775
+                },
+                "training_majority": {
+                  "accuracy": 0.7986111111111112,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3416791604197901
+                }
+              },
+              "tasks": 144
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        }
+      },
+      "published": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "d1-d4-development-v1:algorithms:easy:0",
+              "d1-d4-development-v1:algorithms:easy:2"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:1",
+              "d1-d4-development-v1:algorithms:easy:13",
+              "d1-d4-development-v1:algorithms:easy:14"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:10",
+              "d1-d4-development-v1:algorithms:easy:15"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:11",
+              "d1-d4-development-v1:algorithms:easy:12",
+              "d1-d4-development-v1:algorithms:easy:5",
+              "d1-d4-development-v1:algorithms:easy:6"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:easy:16",
+              "d1-d4-development-v1:algorithms:easy:3",
+              "d1-d4-development-v1:algorithms:easy:8"
+            ],
+            [
+              "d1-d4-development-v1:algorithms:medium:11",
+              "d1-d4-development-v1:algorithms:medium:5"
+            ],
+            [
+              "d1-d4-development-v1:planning:easy:1",
+              "d1-d4-development-v1:planning:easy:2"
+            ],
+            [
+              "d1-d4-development-v1:planning:easy:12",
+              "d1-d4-development-v1:planning:easy:13"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 12,
+          "conservative_component_count": 12,
+          "declared_root_count": 12,
+          "duplicate_canonical_instance_excess": 19,
+          "duplicate_prompt_excess": 19,
+          "rows_in_crossing_canonical_groups": 28,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 200,
+          "unique_canonical_instance_count": 181,
+          "unique_prompt_count": 181
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "1": 50
+              },
+              "folds": [
+                {
+                  "test_groups": 1,
+                  "test_tasks": 17,
+                  "train_groups": 2,
+                  "train_tasks": 33
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 17,
+                  "train_groups": 2,
+                  "train_tasks": 33
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 16,
+                  "train_groups": 2,
+                  "train_tasks": 34
+                }
+              ],
+              "groups": 3,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "prompt_length_stump": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "structure_count_stump": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                },
+                "training_majority": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": null,
+                  "roc_auc": null
+                }
+              },
+              "tasks": 50
+            },
+            "logic": {
+              "class_counts": {
+                "0": 1,
+                "1": 49
+              },
+              "folds": [
+                {
+                  "test_groups": 1,
+                  "test_tasks": 17,
+                  "train_groups": 2,
+                  "train_tasks": 33
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 17,
+                  "train_groups": 2,
+                  "train_tasks": 33
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 16,
+                  "train_groups": 2,
+                  "train_tasks": 34
+                }
+              ],
+              "groups": 3,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.98,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.16326530612244897
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.98,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.16326530612244897
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.98,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.98,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.336734693877551
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.98,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.32653061224489793
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.96,
+                  "balanced_accuracy": 0.4897959183673469,
+                  "roc_auc": 0.4897959183673469
+                },
+                "training_majority": {
+                  "accuracy": 0.98,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.16326530612244897
+                }
+              },
+              "tasks": 50
+            },
+            "planning": {
+              "class_counts": {
+                "0": 9,
+                "1": 41
+              },
+              "folds": [
+                {
+                  "test_groups": 1,
+                  "test_tasks": 17,
+                  "train_groups": 2,
+                  "train_tasks": 33
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 17,
+                  "train_groups": 2,
+                  "train_tasks": 33
+                },
+                {
+                  "test_groups": 1,
+                  "test_tasks": 16,
+                  "train_groups": 2,
+                  "train_tasks": 34
+                }
+              ],
+              "groups": 3,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3265582655826558
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5962059620596207
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3265582655826558
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.29810298102981025
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.49593495934959353
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.49593495934959353
+                },
+                "training_majority": {
+                  "accuracy": 0.82,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3265582655826558
+                }
+              },
+              "tasks": 50
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        },
+        "independent_reference": {
+          "by_domain": {
+            "algorithms": 50,
+            "logic": 50,
+            "math": 50,
+            "planning": 50
+          },
+          "garbage_answers_accepted": [],
+          "old_solver_reference_disagreements": [],
+          "reference_witnesses_rejected": [],
+          "tasks_checked": 200
+        }
+      }
+    },
+    "v2": {
+      "extended": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "stage3-generators-v2:math:two_moduli:easy:0",
+              "stage3-generators-v2:math:two_moduli:medium:0",
+              "stage3-generators-v2:math:two_moduli:hard:0"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:1",
+              "stage3-generators-v2:math:two_moduli:medium:1",
+              "stage3-generators-v2:math:two_moduli:hard:1"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:2",
+              "stage3-generators-v2:math:two_moduli:medium:2",
+              "stage3-generators-v2:math:two_moduli:hard:2"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:3",
+              "stage3-generators-v2:math:two_moduli:medium:3",
+              "stage3-generators-v2:math:two_moduli:hard:3"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:4",
+              "stage3-generators-v2:math:two_moduli:medium:4",
+              "stage3-generators-v2:math:two_moduli:hard:4"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:5",
+              "stage3-generators-v2:math:two_moduli:medium:5",
+              "stage3-generators-v2:math:two_moduli:hard:5"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:6",
+              "stage3-generators-v2:math:two_moduli:medium:6",
+              "stage3-generators-v2:math:two_moduli:hard:6"
+            ],
+            [
+              "stage3-generators-v2:math:two_moduli:easy:7",
+              "stage3-generators-v2:math:two_moduli:medium:7",
+              "stage3-generators-v2:math:two_moduli:hard:7"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 200,
+          "conservative_component_count": 1408,
+          "declared_root_count": 1728,
+          "duplicate_canonical_instance_excess": 320,
+          "duplicate_prompt_excess": 279,
+          "rows_in_crossing_canonical_groups": 493,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 1728,
+          "unique_canonical_instance_count": 1408,
+          "unique_prompt_count": 1449
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "0": 144,
+                "1": 288
+              },
+              "folds": [
+                {
+                  "test_groups": 65,
+                  "test_tasks": 87,
+                  "train_groups": 262,
+                  "train_tasks": 345
+                },
+                {
+                  "test_groups": 65,
+                  "test_tasks": 87,
+                  "train_groups": 262,
+                  "train_tasks": 345
+                },
+                {
+                  "test_groups": 65,
+                  "test_tasks": 86,
+                  "train_groups": 262,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 66,
+                  "test_tasks": 86,
+                  "train_groups": 261,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 66,
+                  "test_tasks": 86,
+                  "train_groups": 261,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 327,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.6481481481481481,
+                  "balanced_accuracy": 0.4930555555555556,
+                  "roc_auc": 0.7574266975308643
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5878544560185186
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.40358555169753085
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5878544560185186
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.7268518518518519,
+                  "balanced_accuracy": 0.6284722222222222,
+                  "roc_auc": 0.7522786458333334
+                },
+                "training_majority": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.47847945601851855
+                }
+              },
+              "tasks": 432
+            },
+            "logic": {
+              "class_counts": {
+                "0": 288,
+                "1": 144
+              },
+              "folds": [
+                {
+                  "test_groups": 83,
+                  "test_tasks": 87,
+                  "train_groups": 333,
+                  "train_tasks": 345
+                },
+                {
+                  "test_groups": 84,
+                  "test_tasks": 87,
+                  "train_groups": 332,
+                  "train_tasks": 345
+                },
+                {
+                  "test_groups": 83,
+                  "test_tasks": 86,
+                  "train_groups": 333,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 83,
+                  "test_tasks": 86,
+                  "train_groups": 333,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 83,
+                  "test_tasks": 86,
+                  "train_groups": 333,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 416,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.8935185185185185,
+                  "balanced_accuracy": 0.8420138888888888,
+                  "roc_auc": 0.8298008294753085
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.4283251350308642
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6574074074074074,
+                  "balanced_accuracy": 0.5399305555555556,
+                  "roc_auc": 0.7409456983024691
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "training_majority": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.48541184413580246
+                }
+              },
+              "tasks": 432
+            },
+            "planning": {
+              "class_counts": {
+                "0": 144,
+                "1": 288
+              },
+              "folds": [
+                {
+                  "test_groups": 66,
+                  "test_tasks": 87,
+                  "train_groups": 263,
+                  "train_tasks": 345
+                },
+                {
+                  "test_groups": 66,
+                  "test_tasks": 87,
+                  "train_groups": 263,
+                  "train_tasks": 345
+                },
+                {
+                  "test_groups": 65,
+                  "test_tasks": 86,
+                  "train_groups": 264,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 66,
+                  "test_tasks": 86,
+                  "train_groups": 263,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 66,
+                  "test_tasks": 86,
+                  "train_groups": 263,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 329,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_length_stump": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.36428192515432095
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6134259259259259,
+                  "balanced_accuracy": 0.5347222222222222,
+                  "roc_auc": 0.6891999421296298
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "training_majority": {
+                  "accuracy": 0.6666666666666666,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.4178722993827161
+                }
+              },
+              "tasks": 432
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        }
+      },
+      "published": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "stage3-generators-v2:algorithms:back_edge:easy:2",
+              "stage3-generators-v2:algorithms:back_edge:easy:5"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 1,
+          "conservative_component_count": 199,
+          "declared_root_count": 200,
+          "duplicate_canonical_instance_excess": 1,
+          "duplicate_prompt_excess": 0,
+          "rows_in_crossing_canonical_groups": 2,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 200,
+          "unique_canonical_instance_count": 199,
+          "unique_prompt_count": 200
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "0": 16,
+                "1": 34
+              },
+              "folds": [
+                {
+                  "test_groups": 9,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 49,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.68,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.71875
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.68,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5974264705882353
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.68,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.296875
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.68,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5974264705882353
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.76,
+                  "balanced_accuracy": 0.6415441176470589,
+                  "roc_auc": 0.7748161764705883
+                },
+                "training_majority": {
+                  "accuracy": 0.68,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.463235294117647
+                }
+              },
+              "tasks": 50
+            },
+            "logic": {
+              "class_counts": {
+                "0": 33,
+                "1": 17
+              },
+              "folds": [
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 50,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.7,
+                  "balanced_accuracy": 0.5588235294117647,
+                  "roc_auc": 0.9893048128342247
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.9,
+                  "balanced_accuracy": 0.8529411764705883,
+                  "roc_auc": 0.8083778966131907
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.66,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.33600713012477723
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6,
+                  "balanced_accuracy": 0.5258467023172906,
+                  "roc_auc": 0.6934046345811051
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "training_majority": {
+                  "accuracy": 0.66,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.41087344028520495
+                }
+              },
+              "tasks": 50
+            },
+            "planning": {
+              "class_counts": {
+                "0": 17,
+                "1": 33
+              },
+              "folds": [
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 50,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "prompt_length_stump": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.66,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.357397504456328
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.66,
+                  "balanced_accuracy": 0.7281639928698752,
+                  "roc_auc": 0.7174688057040998
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "training_majority": {
+                  "accuracy": 0.66,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.44652406417112306
+                }
+              },
+              "tasks": 50
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        },
+        "historical_resubstitution_gate": {
+          "family_majority_accuracy": 1.0,
+          "logic_always_sat": 0.34,
+          "logic_always_unsat": 0.66,
+          "math": {
+            "easy_count": 17,
+            "easy_with_multiplication": 4,
+            "hard_count": 16,
+            "hard_with_extra_structure": 0
+          },
+          "prompt_length_accuracy": 1.0,
+          "seed_parity_accuracy": 0.68,
+          "structure_count_accuracy": 0.7
+        },
+        "independent_reference": {
+          "by_domain": {
+            "algorithms": 50,
+            "logic": 50,
+            "math": 50,
+            "planning": 50
+          },
+          "garbage_answers_accepted": [],
+          "old_solver_reference_disagreements": [],
+          "reference_witnesses_rejected": [],
+          "tasks_checked": 200
+        }
+      }
+    },
+    "v3": {
+      "extended": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "stage3-generators-v3:math:left_fold:easy:1",
+              "stage3-generators-v3:math:left_fold:easy:22"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:6",
+              "stage3-generators-v3:math:left_fold:easy:34"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:7",
+              "stage3-generators-v3:math:left_fold:easy:28",
+              "stage3-generators-v3:math:left_fold:easy:35",
+              "stage3-generators-v3:math:left_fold:easy:42"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:11",
+              "stage3-generators-v3:math:left_fold:easy:32"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:15",
+              "stage3-generators-v3:math:left_fold:easy:36"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:16",
+              "stage3-generators-v3:math:left_fold:easy:37"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:20",
+              "stage3-generators-v3:math:left_fold:easy:27"
+            ],
+            [
+              "stage3-generators-v3:math:left_fold:easy:24",
+              "stage3-generators-v3:math:left_fold:easy:45"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 122,
+          "conservative_component_count": 1513,
+          "declared_root_count": 1728,
+          "duplicate_canonical_instance_excess": 215,
+          "duplicate_prompt_excess": 199,
+          "rows_in_crossing_canonical_groups": 313,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 1728,
+          "unique_canonical_instance_count": 1513,
+          "unique_prompt_count": 1529
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "0": 216,
+                "1": 216
+              },
+              "folds": [
+                {
+                  "test_groups": 30,
+                  "test_tasks": 88,
+                  "train_groups": 134,
+                  "train_tasks": 344
+                },
+                {
+                  "test_groups": 32,
+                  "test_tasks": 86,
+                  "train_groups": 132,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 33,
+                  "test_tasks": 86,
+                  "train_groups": 131,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 34,
+                  "test_tasks": 86,
+                  "train_groups": 130,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 35,
+                  "test_tasks": 86,
+                  "train_groups": 129,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 164,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.7314814814814815,
+                  "balanced_accuracy": 0.7314814814814814,
+                  "roc_auc": 0.8392489711934157
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.6157407407407407,
+                  "balanced_accuracy": 0.6157407407407407,
+                  "roc_auc": 0.6145404663923183
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6157407407407407,
+                  "balanced_accuracy": 0.6157407407407407,
+                  "roc_auc": 0.6145404663923183
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.7523148148148148,
+                  "balanced_accuracy": 0.7523148148148148,
+                  "roc_auc": 0.7694080075445816
+                },
+                "training_majority": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                }
+              },
+              "tasks": 432
+            },
+            "logic": {
+              "class_counts": {
+                "0": 216,
+                "1": 216
+              },
+              "folds": [
+                {
+                  "test_groups": 44,
+                  "test_tasks": 88,
+                  "train_groups": 172,
+                  "train_tasks": 344
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 216,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.9652777777777778,
+                  "balanced_accuracy": 0.9652777777777778,
+                  "roc_auc": 0.9860253772290809
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.9444444444444444,
+                  "balanced_accuracy": 0.9444444444444444,
+                  "roc_auc": 0.939804098079561
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.9490740740740741,
+                  "balanced_accuracy": 0.9490740740740741,
+                  "roc_auc": 0.946116255144033
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.9768518518518519,
+                  "balanced_accuracy": 0.9768518518518519,
+                  "roc_auc": 0.9827139060356653
+                },
+                "training_majority": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                }
+              },
+              "tasks": 432
+            },
+            "planning": {
+              "class_counts": {
+                "0": 215,
+                "1": 217
+              },
+              "folds": [
+                {
+                  "test_groups": 21,
+                  "test_tasks": 88,
+                  "train_groups": 120,
+                  "train_tasks": 344
+                },
+                {
+                  "test_groups": 29,
+                  "test_tasks": 86,
+                  "train_groups": 112,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 30,
+                  "test_tasks": 86,
+                  "train_groups": 111,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 30,
+                  "test_tasks": 86,
+                  "train_groups": 111,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 31,
+                  "test_tasks": 86,
+                  "train_groups": 110,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 141,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.4976851851851852,
+                  "balanced_accuracy": 0.4990997749437359,
+                  "roc_auc": 0.499099774943736
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.8101851851851852,
+                  "balanced_accuracy": 0.8101811167077484,
+                  "roc_auc": 0.9034401457507234
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.4976851851851852,
+                  "balanced_accuracy": 0.4963133640552996,
+                  "roc_auc": 0.4963347979852106
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.9976851851851852,
+                  "balanced_accuracy": 0.9976958525345623,
+                  "roc_auc": 0.9958418175972567
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6087962962962963,
+                  "balanced_accuracy": 0.6105990783410138,
+                  "roc_auc": 0.5950701961204586
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.7199074074074074,
+                  "balanced_accuracy": 0.7211981566820277,
+                  "roc_auc": 0.761204586861001
+                },
+                "training_majority": {
+                  "accuracy": 0.4976851851851852,
+                  "balanced_accuracy": 0.49629193012538847,
+                  "roc_auc": 0.4962919301253885
+                }
+              },
+              "tasks": 432
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        }
+      },
+      "published": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "stage3-generators-v3:algorithms:sparse_dag:easy:3",
+              "stage3-generators-v3:algorithms:sparse_dag:easy:9"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 1,
+          "conservative_component_count": 199,
+          "declared_root_count": 200,
+          "duplicate_canonical_instance_excess": 1,
+          "duplicate_prompt_excess": 0,
+          "rows_in_crossing_canonical_groups": 2,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 200,
+          "unique_canonical_instance_count": 199,
+          "unique_prompt_count": 200
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "0": 24,
+                "1": 26
+              },
+              "folds": [
+                {
+                  "test_groups": 9,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 49,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.12,
+                  "balanced_accuracy": 0.1233974358974359,
+                  "roc_auc": 0.07291666666666666
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.54,
+                  "balanced_accuracy": 0.5384615384615384,
+                  "roc_auc": 0.4967948717948718
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.6,
+                  "balanced_accuracy": 0.6105769230769231,
+                  "roc_auc": 0.5088141025641026
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6,
+                  "balanced_accuracy": 0.6105769230769231,
+                  "roc_auc": 0.5088141025641026
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.54,
+                  "balanced_accuracy": 0.5432692307692308,
+                  "roc_auc": 0.6073717948717949
+                },
+                "training_majority": {
+                  "accuracy": 0.4,
+                  "balanced_accuracy": 0.39583333333333337,
+                  "roc_auc": 0.3557692307692308
+                }
+              },
+              "tasks": 50
+            },
+            "logic": {
+              "class_counts": {
+                "0": 24,
+                "1": 26
+              },
+              "folds": [
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 50,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.14,
+                  "balanced_accuracy": 0.14262820512820512,
+                  "roc_auc": 0.07772435897435898
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.64,
+                  "balanced_accuracy": 0.6378205128205128,
+                  "roc_auc": 0.7035256410256411
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.9,
+                  "balanced_accuracy": 0.8990384615384616,
+                  "roc_auc": 0.9198717948717949
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.9,
+                  "balanced_accuracy": 0.8990384615384616,
+                  "roc_auc": 0.9038461538461539
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.96,
+                  "balanced_accuracy": 0.9583333333333333,
+                  "roc_auc": 0.9583333333333333
+                },
+                "training_majority": {
+                  "accuracy": 0.32,
+                  "balanced_accuracy": 0.32371794871794873,
+                  "roc_auc": 0.27564102564102566
+                }
+              },
+              "tasks": 50
+            },
+            "planning": {
+              "class_counts": {
+                "0": 24,
+                "1": 26
+              },
+              "folds": [
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 50,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.1,
+                  "balanced_accuracy": 0.10416666666666667,
+                  "roc_auc": 0.05208333333333334
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.36,
+                  "balanced_accuracy": 0.35096153846153844,
+                  "roc_auc": 0.3044871794871795
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.44,
+                  "balanced_accuracy": 0.4310897435897436,
+                  "roc_auc": 0.3966346153846154
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 1.0,
+                  "balanced_accuracy": 1.0,
+                  "roc_auc": 1.0
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.6,
+                  "balanced_accuracy": 0.592948717948718,
+                  "roc_auc": 0.5120192307692308
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.64,
+                  "balanced_accuracy": 0.6394230769230769,
+                  "roc_auc": 0.7451923076923077
+                },
+                "training_majority": {
+                  "accuracy": 0.4,
+                  "balanced_accuracy": 0.39583333333333337,
+                  "roc_auc": 0.3717948717948718
+                }
+              },
+              "tasks": 50
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        },
+        "historical_resubstitution_gate": {
+          "family_majority_accuracy": 0.52,
+          "logic_always_sat": 0.52,
+          "logic_always_unsat": 0.48,
+          "math": {
+            "easy_count": 17,
+            "easy_with_multiplication": 0,
+            "hard_count": 16,
+            "hard_with_extra_structure": 16
+          },
+          "prompt_length_accuracy": 0.94,
+          "seed_parity_accuracy": 1.0,
+          "structure_count_accuracy": 0.94
+        },
+        "independent_reference": {
+          "by_domain": {
+            "algorithms": 50,
+            "logic": 50,
+            "math": 50,
+            "planning": 50
+          },
+          "garbage_answers_accepted": [],
+          "old_solver_reference_disagreements": [],
+          "reference_witnesses_rejected": [],
+          "tasks_checked": 200
+        }
+      }
+    },
+    "v4": {
+      "extended": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:0",
+              "stage3-generators-v4:math:fixed_fold:easy:7",
+              "stage3-generators-v4:math:fixed_fold:easy:14",
+              "stage3-generators-v4:math:fixed_fold:easy:21",
+              "stage3-generators-v4:math:fixed_fold:easy:28"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:1",
+              "stage3-generators-v4:math:fixed_fold:easy:8",
+              "stage3-generators-v4:math:fixed_fold:easy:15",
+              "stage3-generators-v4:math:fixed_fold:easy:22",
+              "stage3-generators-v4:math:fixed_fold:easy:29"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:2",
+              "stage3-generators-v4:math:fixed_fold:easy:9",
+              "stage3-generators-v4:math:fixed_fold:easy:16",
+              "stage3-generators-v4:math:fixed_fold:easy:23",
+              "stage3-generators-v4:math:fixed_fold:easy:30"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:3",
+              "stage3-generators-v4:math:fixed_fold:easy:10",
+              "stage3-generators-v4:math:fixed_fold:easy:17",
+              "stage3-generators-v4:math:fixed_fold:easy:24",
+              "stage3-generators-v4:math:fixed_fold:easy:31"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:4",
+              "stage3-generators-v4:math:fixed_fold:easy:11",
+              "stage3-generators-v4:math:fixed_fold:easy:18",
+              "stage3-generators-v4:math:fixed_fold:easy:25",
+              "stage3-generators-v4:math:fixed_fold:easy:32"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:5",
+              "stage3-generators-v4:math:fixed_fold:easy:12",
+              "stage3-generators-v4:math:fixed_fold:easy:19",
+              "stage3-generators-v4:math:fixed_fold:easy:26",
+              "stage3-generators-v4:math:fixed_fold:easy:33"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:easy:6",
+              "stage3-generators-v4:math:fixed_fold:easy:13",
+              "stage3-generators-v4:math:fixed_fold:easy:20",
+              "stage3-generators-v4:math:fixed_fold:easy:27",
+              "stage3-generators-v4:math:fixed_fold:easy:34"
+            ],
+            [
+              "stage3-generators-v4:math:fixed_fold:medium:0",
+              "stage3-generators-v4:math:fixed_fold:medium:7",
+              "stage3-generators-v4:math:fixed_fold:medium:14",
+              "stage3-generators-v4:math:fixed_fold:medium:21",
+              "stage3-generators-v4:math:fixed_fold:medium:28"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 74,
+          "conservative_component_count": 1500,
+          "declared_root_count": 1728,
+          "duplicate_canonical_instance_excess": 228,
+          "duplicate_prompt_excess": 185,
+          "rows_in_crossing_canonical_groups": 284,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 1728,
+          "unique_canonical_instance_count": 1500,
+          "unique_prompt_count": 1543
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "0": 216,
+                "1": 216
+              },
+              "folds": [
+                {
+                  "test_groups": 43,
+                  "test_tasks": 88,
+                  "train_groups": 172,
+                  "train_tasks": 344
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 172,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 172,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 172,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 172,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 215,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.49301268861454045
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.48148148148148145,
+                  "balanced_accuracy": 0.48148148148148145,
+                  "roc_auc": 0.4842463991769548
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "training_majority": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                }
+              },
+              "tasks": 432
+            },
+            "logic": {
+              "class_counts": {
+                "0": 216,
+                "1": 216
+              },
+              "folds": [
+                {
+                  "test_groups": 44,
+                  "test_tasks": 88,
+                  "train_groups": 172,
+                  "train_tasks": 344
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 43,
+                  "test_tasks": 86,
+                  "train_groups": 173,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 216,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.5092592592592593,
+                  "balanced_accuracy": 0.5092592592592593,
+                  "roc_auc": 0.4921339163237311
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.502775634430727
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.4027777777777778,
+                  "balanced_accuracy": 0.4027777777777778,
+                  "roc_auc": 0.3905178326474623
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.5208333333333334,
+                  "balanced_accuracy": 0.5208333333333334,
+                  "roc_auc": 0.5417309670781894
+                },
+                "training_majority": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                }
+              },
+              "tasks": 432
+            },
+            "planning": {
+              "class_counts": {
+                "0": 216,
+                "1": 216
+              },
+              "folds": [
+                {
+                  "test_groups": 31,
+                  "test_tasks": 88,
+                  "train_groups": 142,
+                  "train_tasks": 344
+                },
+                {
+                  "test_groups": 34,
+                  "test_tasks": 86,
+                  "train_groups": 139,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 36,
+                  "test_tasks": 86,
+                  "train_groups": 137,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 36,
+                  "test_tasks": 86,
+                  "train_groups": 137,
+                  "train_tasks": 346
+                },
+                {
+                  "test_groups": 36,
+                  "test_tasks": 86,
+                  "train_groups": 137,
+                  "train_tasks": 346
+                }
+              ],
+              "groups": 173,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.6319444444444444,
+                  "balanced_accuracy": 0.6319444444444444,
+                  "roc_auc": 0.6673954046639231
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.47685185185185186,
+                  "balanced_accuracy": 0.47685185185185186,
+                  "roc_auc": 0.46300582990397804
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                },
+                "training_majority": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.5
+                }
+              },
+              "tasks": 432
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        },
+        "math_source_shortcuts": {
+          "fixed_fold_tasks": 144,
+          "fixed_fold_unique_prompts": 21,
+          "fixed_residues_answer_equals_seed_plus_one_mod_span": 144,
+          "fixed_residues_tasks": 144,
+          "math_tasks_omitted_by_historical_surface_audit": 432,
+          "scope": "Seed/source-code access shortcut, not a prompt-visible seed leak; report separately from model-visible baselines"
+        }
+      },
+      "published": {
+        "duplicates": {
+          "canonical_duplicate_examples": [
+            [
+              "stage3-generators-v4:planning:grid_a:easy:12",
+              "stage3-generators-v4:planning:grid_c:easy:2"
+            ]
+          ],
+          "canonical_groups_crossing_task_id_hash_folds": 1,
+          "conservative_component_count": 199,
+          "declared_root_count": 200,
+          "duplicate_canonical_instance_excess": 1,
+          "duplicate_prompt_excess": 0,
+          "rows_in_crossing_canonical_groups": 2,
+          "scope": "Exact normalized data; not full graph isomorphism or algebraic equivalence",
+          "task_count": 200,
+          "unique_canonical_instance_count": 199,
+          "unique_prompt_count": 200
+        },
+        "heldout_shortcuts": {
+          "domains": {
+            "algorithms": {
+              "class_counts": {
+                "0": 29,
+                "1": 21
+              },
+              "folds": [
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 50,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.48,
+                  "balanced_accuracy": 0.4400656814449918,
+                  "roc_auc": 0.4162561576354679
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.58,
+                  "balanced_accuracy": 0.506568144499179,
+                  "roc_auc": 0.34154351395730703
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.44417077175697867,
+                  "roc_auc": 0.325944170771757
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.46,
+                  "balanced_accuracy": 0.39655172413793105,
+                  "roc_auc": 0.33087027914614114
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.44417077175697867,
+                  "roc_auc": 0.325944170771757
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.44417077175697867,
+                  "roc_auc": 0.3308702791461412
+                },
+                "training_majority": {
+                  "accuracy": 0.58,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.33579638752052543
+                }
+              },
+              "tasks": 50
+            },
+            "logic": {
+              "class_counts": {
+                "0": 22,
+                "1": 28
+              },
+              "folds": [
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 50,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.6,
+                  "balanced_accuracy": 0.5892857142857143,
+                  "roc_auc": 0.5219155844155844
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.52,
+                  "balanced_accuracy": 0.4642857142857143,
+                  "roc_auc": 0.2987012987012987
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.46,
+                  "balanced_accuracy": 0.4253246753246753,
+                  "roc_auc": 0.35551948051948057
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.42,
+                  "balanced_accuracy": 0.38961038961038963,
+                  "roc_auc": 0.36282467532467527
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.34,
+                  "balanced_accuracy": 0.33766233766233766,
+                  "roc_auc": 0.32711038961038963
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.461038961038961,
+                  "roc_auc": 0.39691558441558444
+                },
+                "training_majority": {
+                  "accuracy": 0.56,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.3701298701298701
+                }
+              },
+              "tasks": 50
+            },
+            "planning": {
+              "class_counts": {
+                "0": 29,
+                "1": 21
+              },
+              "folds": [
+                {
+                  "test_groups": 9,
+                  "test_tasks": 10,
+                  "train_groups": 40,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                },
+                {
+                  "test_groups": 10,
+                  "test_tasks": 10,
+                  "train_groups": 39,
+                  "train_tasks": 40
+                }
+              ],
+              "groups": 49,
+              "scores": {
+                "family_and_level_lookup": {
+                  "accuracy": 0.52,
+                  "balanced_accuracy": 0.4811165845648604,
+                  "roc_auc": 0.4326765188834154
+                },
+                "prompt_char_ngram_logistic": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.43760262725779964,
+                  "roc_auc": 0.32019704433497537
+                },
+                "prompt_length_stump": {
+                  "accuracy": 0.48,
+                  "balanced_accuracy": 0.4203612479474549,
+                  "roc_auc": 0.23399014778325122
+                },
+                "seed_parity_lookup": {
+                  "accuracy": 0.5,
+                  "balanced_accuracy": 0.43103448275862066,
+                  "roc_auc": 0.312807881773399
+                },
+                "structure_count_stump": {
+                  "accuracy": 0.48,
+                  "balanced_accuracy": 0.4203612479474549,
+                  "roc_auc": 0.21839080459770113
+                },
+                "surface_tree_depth3": {
+                  "accuracy": 0.46,
+                  "balanced_accuracy": 0.40311986863711,
+                  "roc_auc": 0.23973727422003283
+                },
+                "training_majority": {
+                  "accuracy": 0.58,
+                  "balanced_accuracy": 0.5,
+                  "roc_auc": 0.30295566502463056
+                }
+              },
+              "tasks": 50
+            }
+          },
+          "fit_scope": "training_folds_only",
+          "group_rule": "connected_declared_root_plus_normalized_instance_plus_v3_v4_target_seed_pairs",
+          "metrics_status": "descriptive_offline_audit_not_confirmatory",
+          "one_class_domain_auc_and_balanced_accuracy": "null",
+          "seed": 20261108,
+          "target": "instance_feasibility_not_model_correctness"
+        },
+        "historical_resubstitution_gate": {
+          "family_majority_accuracy": 0.5933333333333334,
+          "logic_always_sat": 0.56,
+          "logic_always_unsat": 0.44,
+          "math": {
+            "easy_count": 17,
+            "easy_with_multiplication": 0,
+            "hard_count": 16,
+            "hard_with_extra_structure": 5
+          },
+          "prompt_length_accuracy": 0.58,
+          "seed_parity_accuracy": 0.58,
+          "structure_count_accuracy": 0.58
+        },
+        "independent_reference": {
+          "by_domain": {
+            "algorithms": 50,
+            "logic": 50,
+            "math": 50,
+            "planning": 50
+          },
+          "garbage_answers_accepted": [],
+          "old_solver_reference_disagreements": [],
+          "reference_witnesses_rejected": [],
+          "tasks_checked": 200
+        },
+        "legacy_verifier_compatibility": {
+          "interpretation": "Compatibility test of hypothetical reuse; no assertion that an actual paid run used these functions",
+          "results": {
+            "v2_verify_reused": {
+              "examples": [
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:0",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:12",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:15",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:3",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:6",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:9",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:hard:11",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:hard:14",
+                  "verdict": "unparseable"
+                }
+              ],
+              "independently_valid_witness_verdicts_by_domain": {
+                "algorithms": {
+                  "correct": 50
+                },
+                "logic": {
+                  "correct": 50
+                },
+                "math": {
+                  "unparseable": 50
+                },
+                "planning": {
+                  "correct": 50
+                }
+              }
+            },
+            "v3_verify_reused": {
+              "examples": [
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:0",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:12",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:15",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:3",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:6",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:easy:9",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:hard:11",
+                  "verdict": "unparseable"
+                },
+                {
+                  "task_id": "stage3-generators-v4:math:fixed_fold:hard:14",
+                  "verdict": "unparseable"
+                }
+              ],
+              "independently_valid_witness_verdicts_by_domain": {
+                "algorithms": {
+                  "correct": 50
+                },
+                "logic": {
+                  "correct": 50
+                },
+                "math": {
+                  "unparseable": 50
+                },
+                "planning": {
+                  "correct": 50
+                }
+              }
+            }
+          },
+          "v4_has_own_verify_function": false
+        },
+        "math_source_shortcuts": {
+          "fixed_fold_tasks": 17,
+          "fixed_fold_unique_prompts": 17,
+          "fixed_residues_answer_equals_seed_plus_one_mod_span": 16,
+          "fixed_residues_tasks": 16,
+          "math_tasks_omitted_by_historical_surface_audit": 50,
+          "scope": "Seed/source-code access shortcut, not a prompt-visible seed leak; report separately from model-visible baselines"
+        }
+      }
+    }
+  }
+}

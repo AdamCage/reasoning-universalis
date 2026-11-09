@@ -1,0 +1,31 @@
+{
+  "E0": "not_passed",
+  "budget": {
+    "attempts_including_historical": 32,
+    "cap_rub": "900",
+    "charged_or_reserved_rub": "246.7988793802352",
+    "collection_cap_rub": "800",
+    "historical_ledger_sha256": "e062d9bdd228933ddcca0047d9ee15e564b82413bf88f92c5d06550c9febb88d",
+    "minimum_embedding_headroom_rub": "100",
+    "remaining_rub": "653.2011206197648"
+  },
+  "corpus_sha256": "78fbe31abbf07626bf34d24bfe997446e48b9c155f44d1a3116d6c028e7a0868",
+  "credential_present": false,
+  "deadline": "2026-11-08T15:19:12+00:00",
+  "dry_run": true,
+  "models": [
+    "qwen/qwen3-32b",
+    "deepseek/deepseek-v4.1-flash",
+    "openai/gpt-oss-20b"
+  ],
+  "network_requests": 0,
+  "observed_trace_admissions_required": true,
+  "paid_requests": 0,
+  "planned_generation_requests": 576,
+  "price_quote": "not_retrieved_in_dry_run",
+  "protocol_sha256": "6ca2b783343cd119bacf4749f9696a8e534eb3ea673b9748b0cd0dce32f6d911",
+  "root_groups": 48,
+  "source_inventory_sha256": "2fdfe0a3203b43f30fe11d6372cacd3f0ae2c54ad0071535ca82553deab09683",
+  "tasks": 96,
+  "verifier_source_sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9"
+}

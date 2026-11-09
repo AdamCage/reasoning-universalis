@@ -1,0 +1,34 @@
+{
+  "completed_traces": 335,
+  "chunks": 5778,
+  "batch_size": 32,
+  "maximum_batches_per_model": 181,
+  "quotes": [
+    {
+      "model": "baai/bge-m3",
+      "rates": [
+        "0.0000010678018",
+        "0.0"
+      ],
+      "ceiling_rub": "1.9922609992812"
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "rates": [
+        "0.0000042712072",
+        "0.0"
+      ],
+      "ceiling_rub": "7.9752664231552"
+    }
+  ],
+  "budget_before_embeddings": {
+    "cap_rub": "3000",
+    "charged_or_reserved_rub": "647.3421168419480",
+    "collection_cap_rub": "2900",
+    "minimum_embedding_headroom_rub": "100",
+    "remaining_rub": "2352.6578831580520",
+    "attempts_including_historical": 426,
+    "historical_ledger_sha256": "e062d9bdd228933ddcca0047d9ee15e564b82413bf88f92c5d06550c9febb88d"
+  },
+  "scientific_effects_used_for_allocation": false
+}

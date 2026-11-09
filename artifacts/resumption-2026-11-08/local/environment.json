@@ -1,0 +1,43 @@
+{
+  "python": "3.12.11",
+  "python_flags": [
+    "-X",
+    "utf8"
+  ],
+  "platform": "Windows",
+  "machine": "AMD64",
+  "analysis_dependencies": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3",
+    "threadpoolctl": "3.6.0"
+  },
+  "plotting_dependencies": {
+    "matplotlib": "3.11.2",
+    "pillow": "13.0.0"
+  },
+  "pdf_runtime": {
+    "python": "3.12.14",
+    "reportlab": "4.4.9",
+    "pypdf": "6.21.4",
+    "source": "Codex bundled local runtime"
+  },
+  "collector_and_analysis_commit": "fcd4426",
+  "supporting_tools_commit": "2bde820",
+  "source_inventory_sha256": "f328e8582d44a4af2b0516f8e95c00995e49696b302a1263b7b3f9cdf22ce593",
+  "source_files": {
+    "resumption/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resumption/analysis.py": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9",
+    "resumption/episteme_adapter.py": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112",
+    "resumption/generator_audit.py": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9",
+    "resumption/runner.py": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8",
+    "resumption/tasks.py": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a",
+    "stage0/config.py": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73",
+    "stage0/runner.py": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317",
+    "stage0/traces.py": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda"
+  },
+  "paid_api": "RouterAI only",
+  "scientific_validity": "not_assessed",
+  "E0": "not_passed"
+}

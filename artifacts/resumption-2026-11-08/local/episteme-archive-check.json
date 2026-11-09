@@ -1,0 +1,11 @@
+{
+  "all_member_hashes_verified": true,
+  "archive": "evidence/episteme-local-stage-2026-11-08.zip",
+  "bytes": 7186964,
+  "configured_credential_scan_passed": true,
+  "graph_snapshot_hash": "8cbb413ffca128e7f534a2615c107b32ee9c0a7b9749054939fbb85a89c3ffd6",
+  "members": 328,
+  "scientific_validity": "not_assessed",
+  "sha256": "614c111420a49a76e205ebc55e389d75471518a7b2f9204ad520eed316634bfd",
+  "uncompressed_bytes": 34662227
+}

@@ -16,6 +16,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install uv==0.11.28
+      - run: python -m pip install -r requirements-resumption.txt
       - name: root suite without a key
         env:
           PYTHONPATH: EpistemeOS/src
@@ -32,3 +33,23 @@ jobs:
           python -m stage3.roster_v2 --check design/PILOT_SECTION_5_5_ROSTER_V2.json
           python -m stage3.roster_v3 --check design/PILOT_SECTION_5_5_ROSTER_V3.json
           python -m stage3.roster_v4 --check design/PILOT_SECTION_5_5_ROSTER_V4.json
+
+  windows-resumption:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-resumption.txt
+      - name: local handoff checks without a key
+        run: >-
+          python -m unittest tests.test_stage1_package
+          tests.test_resumption_generator_audit tests.test_resumption_tasks
+          tests.test_resumption_runner tests.test_resumption_analysis
+          tests.test_resumption_statistical_validity tests.test_resumption_episteme
+          tests.test_embedding_compat tests.test_embedding_pinned
+          tests.test_local_evidence_export tests.test_local_reproduction -v
+      - run: python -m resumption.tasks --check

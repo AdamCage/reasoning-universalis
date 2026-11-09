@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_commit": "77ccc97b96b27cdcc7b92bcd5b2dabfef14cc299",
+  "renderer": "scripts/render_local_paper.py",
+  "renderer_sha256": "d47c94695438e88b53d851e4e2b7f7e6d92f259bdb030db493ee9a1d8757256d",
+  "runtime_python": "3.12.14",
+  "reportlab": "4.4.9",
+  "pypdf": "6.21.4",
+  "render_qa": "pdftoppm: paper110dpi, sheet120dpi; all11paper+1sheet pages inspected",
+  "outputs": [
+    {
+      "source": "manuscript/LOCAL_RESEARCH_PAPER.md",
+      "source_sha256": "2f1f1ed0861d8b35532dfcc42dc2ef23a008560a9255b3fe4d0f60e2e5d576a2",
+      "output": "output/pdf/local-reasoning-pilot.pdf",
+      "pdf_sha256": "669b950401d97445623e549ccbce43565b0d1c1ca2d49495934f13bf0d50ae2e",
+      "pages": 11,
+      "embedded_source_links": 23,
+      "all_pages_rendered_and_visually_reviewed": true,
+      "clipping_overlap_missing_glyphs_observed": false
+    },
+    {
+      "source": "manuscript/PORTFOLIO_EVIDENCE_SHEET.md",
+      "source_sha256": "86a2426281f933339b14e20f25b07d1847d26e2d8706e11f9e314eda29462fc9",
+      "output": "output/pdf/portfolio-evidence-sheet.pdf",
+      "pdf_sha256": "b8ec28864b185f53a1a75af35f5bbbd5c118cbf39799a646500f4396512dae0c",
+      "pages": 1,
+      "embedded_source_links": 7,
+      "all_pages_rendered_and_visually_reviewed": true,
+      "clipping_overlap_missing_glyphs_observed": false
+    }
+  ],
+  "scientific_validity": "not_assessed",
+  "human_scientific_review": false
+}

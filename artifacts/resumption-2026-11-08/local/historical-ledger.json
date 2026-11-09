@@ -1,0 +1,258 @@
+[
+  {
+    "charged_or_reserved_rub": "97.318730808",
+    "id": "5394d6091f944b45b8fc5fc63386ec52",
+    "purpose": "probe-0-reasoning-true",
+    "reported_cost_rub": null,
+    "reservation_rub": "97.318730808",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "97.351843680",
+    "id": "2595b5bf076846d19248b40a21f40634",
+    "purpose": "probe-0-reasoning-false",
+    "reported_cost_rub": null,
+    "reservation_rub": "97.351843680",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "9.0307830720432",
+    "id": "bdfa42520da04ee78a88786959387048",
+    "purpose": "probe-1-reasoning-true",
+    "reported_cost_rub": "0.017366597601600003",
+    "reservation_rub": "9.0307830720432",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "9.0310016169984",
+    "id": "74a89358a16049ef891e82c227d2cab9",
+    "purpose": "probe-1-reasoning-false",
+    "reported_cost_rub": "0.228401553432",
+    "reservation_rub": "9.0310016169984",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.76250",
+    "id": "bf30cb87a90a4d7f9f2be768d65766cf",
+    "purpose": "probe-2-reasoning-true",
+    "reported_cost_rub": "0.001887433704",
+    "reservation_rub": "2.76250",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.76276",
+    "id": "aa726c6e11b1422d81b9325479c7b29f",
+    "purpose": "probe-2-reasoning-false",
+    "reported_cost_rub": null,
+    "reservation_rub": "2.76276",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.900820038688",
+    "id": "fda5f912b4eb4460847911ff81678b6d",
+    "purpose": "probe-3-reasoning-true",
+    "reported_cost_rub": "0.052715692224",
+    "reservation_rub": "2.900820038688",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.900897302056",
+    "id": "ae4d6ac6f79641709806122b72a39c7b",
+    "purpose": "probe-3-reasoning-false",
+    "reported_cost_rub": null,
+    "reservation_rub": "2.900897302056",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.482979744544",
+    "id": "202a4c81f182463fb666a86f4ce3627a",
+    "purpose": "probe-4-reasoning-true",
+    "reported_cost_rub": "0.0458260073232",
+    "reservation_rub": "2.482979744544",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.483145308904",
+    "id": "d31240805a9b4e959605c7af4c09ded8",
+    "purpose": "probe-4-reasoning-false",
+    "reported_cost_rub": "0.018446077228800005",
+    "reservation_rub": "2.483145308904",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.4664014246944",
+    "id": "367b9b1357d3412db914f67f8dea9d64",
+    "purpose": "probe-5-reasoning-true",
+    "reported_cost_rub": "0.0087285530592",
+    "reservation_rub": "0.4664014246944",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.4664146698432",
+    "id": "17a4a875efeb42d3a962b674fdbce7e5",
+    "purpose": "probe-5-reasoning-false",
+    "reported_cost_rub": "0.0130199812704",
+    "reservation_rub": "0.4664146698432",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "da62370487834919a81b0f2c5e99d2c3",
+    "purpose": "embedding-probe-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0191083346688",
+    "id": "828d795f956c4a589e2ca303d41d14af",
+    "purpose": "embedding-probe-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0191083346688",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.76250",
+    "id": "f39929c091214956b4d9b176e6e460fb",
+    "purpose": "pilot-openai_gpt-oss-20b-0",
+    "reported_cost_rub": "0.0049404405024",
+    "reservation_rub": "2.76250",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "ce8e2a51c22b45989bc1f6ba844bb234",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-0-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0253158944064",
+    "id": "2da7494ff17a40b7ba7d31b42ec966b5",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-0-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0253158944064",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.76016",
+    "id": "8521bf0b7e8740afadc75be68f70ae43",
+    "purpose": "pilot-openai_gpt-oss-20b-1",
+    "reported_cost_rub": "0.0022307038104000003",
+    "reservation_rub": "2.76016",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "9de4a3dea9dd4cd2ba84e2ac8d32dc49",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-1-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0217926848256",
+    "id": "4db7a84d7d3449b6821fc99d4985918a",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-1-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0217926848256",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.76224",
+    "id": "71621ab46b894f5b9076b970b22a6815",
+    "purpose": "pilot-openai_gpt-oss-20b-2",
+    "reported_cost_rub": "0.0024989180736000004",
+    "reservation_rub": "2.76224",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "f00bbe0e24724eba8671739bbc3452bf",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-2-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0231878404992",
+    "id": "71bc9fb4097b4c27ad22f2db00817028",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-2-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0231878404992",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.76510",
+    "id": "30e502a75b1a4ce28a349eedc37e3ffd",
+    "purpose": "pilot-openai_gpt-oss-20b-3",
+    "reported_cost_rub": "0.0044029082136",
+    "reservation_rub": "2.76510",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "dd582001f62249508fd13d077c8ee01d",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-3-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0232143307968",
+    "id": "0557e63a118a40309810e00cb0e47d3c",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-3-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0232143307968",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.77212",
+    "id": "248e04fa97dc470a80e90063d6d4ee4b",
+    "purpose": "pilot-openai_gpt-oss-20b-4",
+    "reported_cost_rub": "0.00186955275312",
+    "reservation_rub": "2.77212",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "cb1521c269f94b078ef6900be519686d",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-4-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0234968939712",
+    "id": "f7641273e8b54849ba574a87c14dba5a",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-4-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0234968939712",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "2.78252",
+    "id": "b61581b55bb3433aba77a663996bb06f",
+    "purpose": "pilot-openai_gpt-oss-20b-5",
+    "reported_cost_rub": "0.011440497276",
+    "reservation_rub": "2.78252",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.01",
+    "id": "6bb51ee715f44e9da1d55e8695ba47df",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-5-0",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.01",
+    "state": "finished"
+  },
+  {
+    "charged_or_reserved_rub": "0.0298457352960",
+    "id": "7515dbb114b544d58fb03160000e04c1",
+    "purpose": "pilot-embedding-openai_gpt-oss-20b-5-1",
+    "reported_cost_rub": null,
+    "reservation_rub": "0.0298457352960",
+    "state": "finished"
+  }
+]

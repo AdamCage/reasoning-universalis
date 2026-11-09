@@ -1,0 +1,77 @@
+{
+  "repository": "https://github.com/AdamCage/llm-semantic-afterlife",
+  "commit": "bda1858376701b5b2c1833c7195c6f4b689923e6",
+  "checked_at_utc": "2026-11-08",
+  "source_files": [
+    {
+      "path": "docs/stages/stage-3/REPORT.md",
+      "sha256": "fd03d081ff76a44e599c5967a747951e4194c692ed7cc95997f698842f50f204"
+    },
+    {
+      "path": "docs/stages/stage-9/REPORT.md",
+      "sha256": "128ad445ce1e23138a5671a92d4e4b9371374124c04529311d41d0a286cc880e"
+    },
+    {
+      "path": "docs/stages/stage-11/REPORT.md",
+      "sha256": "6620a53fea92e58728679c807638677790cc3734bbf5a1f2929abe67f5208185"
+    },
+    {
+      "path": "docs/stages/stage-12/REPORT.md",
+      "sha256": "153693409e8d004565c2700dd0e3d47de9f5daee6c6f8719c70c615d0054056f"
+    },
+    {
+      "path": "docs/stages/stage-13/REPORT.md",
+      "sha256": "8c925cfb276298501fdedb04d110512f22582ae3533d97eb6d515e9f5499a4bb"
+    },
+    {
+      "path": "artifacts/stage-9/gt_last_band/gt_last_band.csv",
+      "sha256": "6a4ffa5e8afcf2fff1aadf3b95abd8c613155fef9f3c4a6a0d498945b93eb186"
+    },
+    {
+      "path": "artifacts/stage-11/gt_last_band/gt_last_band.csv",
+      "sha256": "bdb97ad6fa63a7f7251c588948c863e041a1befe33968d2d371f5665b971ae01"
+    },
+    {
+      "path": "artifacts/stage-12/tau_escape/tau_escape.meta.json",
+      "sha256": "177f123e966dc19868887026bb049944689fd841f61d3f3b44eed42e3fab9d13"
+    },
+    {
+      "path": "src/semantic_afterlife/analysis/persistence.py",
+      "sha256": "a8f9cb7adc3507ad2224168f98287c48d5b6193adfa39afd3dbcd6ad302dd831"
+    },
+    {
+      "path": "src/semantic_afterlife/analysis/degeneracy.py",
+      "sha256": "bac914ba6b8b05c418823c19211667fcdf3122c7a96f7c82cd0df6bb9be90125"
+    }
+  ],
+  "validation": {
+    "s9_gt_csv_rows": 8,
+    "s11_gt_csv_rows": 8,
+    "s12_report_and_metadata_checked": true,
+    "s12_parquet_read": false,
+    "s12_parquet_read_limitation": "pyarrow and fastparquet absent; report and metadata inspected, original trajectories not re-generated",
+    "generation_rerun": false,
+    "source_repo_modified": false,
+    "bootstrap_synthetic_actual_source": {
+      "seed_ids": [
+        "A",
+        "B"
+      ],
+      "descendants_per_seed": 2,
+      "embedding_A": [
+        1.0,
+        0.0
+      ],
+      "embedding_B": [
+        -1.0,
+        0.0
+      ],
+      "point_G": 2.0,
+      "n_boot": 2000,
+      "rng_seed": 0,
+      "published_function_G_lo": 0.0,
+      "published_function_G_hi": 2.0,
+      "interpretation": "Duplicate occurrences are relabelled as new seed groups; pair eligibility changes. This is a resampling-estimand concern, not a corrected full-data reanalysis."
+    }
+  }
+}

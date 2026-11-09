@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "protocol_id": "ru-local-resumption-2026-11-08-v2",
+  "status": "prospective_local_development_plan_not_executed",
+  "created_utc": "2026-11-08T09:06:14.844952+00:00",
+  "authorization": "reports/RESUMPTION_SCOPE_2026_11_08.md",
+  "scientific_specification": {
+    "path": "RESEARCH_SPECIFICATION.md",
+    "sha256": "a776fbd34d4a0a8172127debe71395f94c8586af187400200bfe847000dd26ee",
+    "hypotheses": "H0-H7 preserved; narrow pilot does not complete them"
+  },
+  "tasks": {
+    "path": "artifacts/resumption-2026-11-08/tasks.json",
+    "file_sha256": "78fbe31abbf07626bf34d24bfe997446e48b9c155f44d1a3116d6c028e7a0868",
+    "tasks": 96,
+    "paired_roots": 48,
+    "admission_tasks": 4,
+    "split_tasks": {
+      "train": 48,
+      "validation": 16,
+      "test": 32
+    },
+    "split_rule": "fixed before responses, grouped paired roots, domain blocked; no target model fitting"
+  },
+  "models": {
+    "candidates": [
+      "qwen/qwen3-32b",
+      "deepseek/deepseek-v4.1-flash",
+      "openai/gpt-oss-20b"
+    ],
+    "automatic_substitution": false,
+    "admission": "exact response model+provider, completed exposed reasoning text, no summary or encryption; operational only, full_visible_trace=False",
+    "model_family_scope": "three candidate families; unadmitted routes are exclusions, not silently replaced",
+    "provider_drift": "record and exclude, new route requires new recorded admission"
+  },
+  "generation": {
+    "samples_per_task": 2,
+    "max_output_tokens": 4096,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "seed": 42,
+    "concurrency_max": 3,
+    "request_timeout_seconds": 900,
+    "automatic_retries": 0,
+    "allocation": "admit on separate tasks, then deterministic root-balanced task queue across models; stop before sending if budget or deadline fails; report incomplete blocks",
+    "deadline": "original eight-hour delivery target is retained across cloud-to-local transfer; dispatch ends one hour before delivery",
+    "dispatch_deadline_utc": "2026-11-08T15:19:12+00:00",
+    "final_delivery_deadline_utc": "2026-11-08T16:19:12+00:00"
+  },
+  "correctness": {
+    "verifier": "resumption.generator_audit.verify_answer",
+    "independent_reference": "exact CNF, independent exhaustive topological search, bounded planning simulation, arithmetic recomputation",
+    "strict_format": "last nonempty line ANSWER: value; unparseable is its own outcome; correctness estimand and coverage reported separately",
+    "not_a_label": "task solvability is not model correctness"
+  },
+  "measurement": {
+    "trace_channel": "only returned reasoning channel; never reconstructed from answer",
+    "answer_censor": "remove first ANSWER: marker and everything after it from predictor input",
+    "word_unit": "Unicode non-whitespace spans, not model-native tokens",
+    "observed_prefix_words": [
+      128,
+      256,
+      512
+    ],
+    "chunk_words": 16,
+    "embedders": [
+      "baai/bge-m3",
+      "qwen/qwen3-embedding-8b"
+    ],
+    "dimensions": {
+      "baai/bge-m3": 1024,
+      "qwen/qwen3-embedding-8b": "1..4096, same per route"
+    },
+    "input_binding": "exact chunk text, Python character offsets, SHA256, response identity verified",
+    "missing_short_traces": "exclude per budget without padding; report attempted, completed, gradeable, prefix and embedding coverage by model/domain/split/outcome",
+    "E0": "not_passed; no functional-state interpretation or human validation claimed",
+    "embedding_route": "Persist first observed provider (or explicitly not returned) and dimension; reject subsequent drift. Exact model identity and raw request/response hashes mandatory. Unknown provider does not establish identical backend weights."
+  },
+  "analysis": {
+    "implementation": "resumption.analysis",
+    "target": "independently verified final answer correctness from observed prefix",
+    "outer_holdout": "each candidate model held out; source models train roots only fit; source validation roots choose C; heldout model test roots evaluated once",
+    "source_only_fit": [
+      "TF-IDF vocabulary",
+      "numeric scaling",
+      "metadata encoding",
+      "classifier",
+      "hyperparameters"
+    ],
+    "C_grid": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "baselines": [
+      "task domain+difficulty and observed prefix statistics",
+      "static TF-IDF text and lexical recurrence",
+      "pooled segment embedding when semantic representation used"
+    ],
+    "dynamic_addition": [
+      "adjacent distance mean, sd and slope",
+      "lag2 distance",
+      "endpoint distance",
+      "path efficiency",
+      "turning cosine",
+      "nonadjacent revisit and nearest distance",
+      "early-late centroid distance",
+      "displacement slope"
+    ],
+    "controls": [
+      "reverse order",
+      "three within-trace chunk permutations preserving content and count, retrain each pipeline"
+    ],
+    "permutation_seeds": [
+      104729,
+      130363,
+      155921
+    ],
+    "primary_reporting": "all heldout-model static-minus-dynamic logloss contrasts at 256 words with BGE-M3; no selection by favorable result",
+    "secondary_reporting": [
+      "128/512 words",
+      "Qwen embedding",
+      "lexical geometry",
+      "Brier and AUROC",
+      "order controls",
+      "pooled equal-root contrasts across targets"
+    ],
+    "uncertainty": "paired bootstrap of original heldout task roots; replicate roots use multiplicity, never create fictitious independent roots; intervals descriptive and pointwise",
+    "multiplicity": "no confirmatory significance or hypothesis confirmation from the matrix of exploratory intervals",
+    "one_class": "report not identifiable or smoothed constant baseline; AUROC null; never fabricate both classes",
+    "missing_models": "less than two admitted model families means cross-family transfer not estimable",
+    "software_amendments": "One-root point estimates have no estimable bootstrap interval; OOV coverage reported; matched-embedder refits are supplementary and preserve the primary BGE estimand."
+  },
+  "budget": {
+    "cap_total_rub": "3000",
+    "historical_charged_or_reserved_rub": "246.7988793802352",
+    "remaining_before_new_calls_rub": "2753.2011206197648",
+    "historical_ledger_archive": "evidence/stage0-2026-10-12.zip",
+    "member": "evidence/stage0-budget.json",
+    "sha256": "e062d9bdd228933ddcca0047d9ee15e564b82413bf88f92c5d06550c9febb88d",
+    "accounting": "restore historical rows, verify current endpoint rates, reserve before dispatch under shared lock, retain max(reservation,reported), retain unknown charges",
+    "unknown_units": "fail closed, no paid request",
+    "collection_cap_total_rub": "2900",
+    "embedding_reserved_room_rub": "100",
+    "authorization": "User message in current local chat, 8 November 2026: maximum 3000 RUB, including historical obligations.",
+    "pricing_ceiling": "Maximum finite rub/token quote across all explicitly declared time bands; never select a discount by clock. Before route admission use maximum over all endpoints; pinned collection uses only the exact admitted provider, with fallbacks disabled. Unknown units or nonzero unsupported charges fail closed.",
+    "admission_plan": "Admit only when the finite admission envelope fits. Quote the full generation allocation again on admitted pinned providers before collection; reduce only prospectively, never from correctness."
+  },
+  "scope_limits": [
+    "This is a locally timestamped development analysis plan, not an external preregistration.",
+    "No claim of common internal computation or complete faithful traces.",
+    "No H1 functional-state inference without E0.",
+    "No causal stopping policy, cost saving, or full H7 support without intervention.",
+    "No H5 intervention or H6 scaling conclusion from unlike checkpoints.",
+    "No independent task-family generalization from named RNG variants.",
+    "No journal acceptance, published paper, Residency submission or personal leadership claim."
+  ],
+  "artifacts_required": [
+    "raw request and response journal",
+    "all-attempt ledger and coverage",
+    "immutable model/provider admission records",
+    "analysis inputs, predictions, source-fit diagnostics and controls",
+    "claims-to-evidence map",
+    "English manuscript plus Russian result summary",
+    "one-command offline reanalysis package"
+  ],
+  "epistemeos": {
+    "commit": "7f5a1a0e43d7c35196cc8b3c9c74a618aa2559c3",
+    "adapter": "resumption.episteme_adapter",
+    "mechanical_completion": "does not imply scientific validity; exploratory/inconclusive with review not requested"
+  },
+  "supersedes": {
+    "path": "design/RESUMPTION_PROTOCOL_2026_11_08.json",
+    "sha256": "6ca2b783343cd119bacf4749f9696a8e534eb3ea673b9748b0cd0dce32f6d911",
+    "reason": "Explicit user raised total shared ceiling to 3000 RUB; live preflight found time-of-day metadata, requiring conservative maximum-rate quotes. Scientific hypotheses, corpus, estimand, splits, inference parameters and deadline retained."
+  },
+  "execution": {
+    "platform": "Windows",
+    "python": "CPython 3.12.11",
+    "python_flags": [
+      "-X",
+      "utf8"
+    ],
+    "state": ".research/resumption-2026-11-08-live",
+    "preflight_state": ".research/resumption-2026-11-08",
+    "preflight_paid_calls": 0,
+    "state_rule": "Both preflight states are preserved with exactly the 32 historical ledger rows and zero new paid calls. Software review completed before binding this single live state. All subsequent paid requests and obligations share its ledger; no paid-ledger reset or merge.",
+    "preflight_states": [
+      ".research/resumption-2026-11-08",
+      ".research/resumption-2026-11-08-local-v2"
+    ]
+  }
+}

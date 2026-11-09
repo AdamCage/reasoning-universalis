@@ -1,0 +1,157 @@
+{
+  "E0": "not_passed",
+  "analyses": [
+    {
+      "analysis_population": "original_embedder_specific_eligible_prefixes",
+      "analysis_version": "observable-prefix-transfer-v1.1",
+      "bytes": 899144,
+      "constant_training_estimators": 30,
+      "exact": true,
+      "parsed_json_equal": true,
+      "published_path": "artifacts/resumption-2026-11-08/local/analysis-lexical.json",
+      "record_digest": "a4148b8f880fcb0b7407c4582034a11f363c768de74ca2c23f6ef08cdfb3e8e9",
+      "replay_path": "analysis-lexical.json",
+      "sha256": "ea99cfec486e15fe53e873fcf93f1b0dada98fc36c5f738c26b084fc4091a17e"
+    },
+    {
+      "analysis_population": "original_embedder_specific_eligible_prefixes",
+      "analysis_version": "observable-prefix-transfer-v1.1",
+      "bytes": 899177,
+      "constant_training_estimators": 30,
+      "exact": true,
+      "parsed_json_equal": true,
+      "published_path": "artifacts/resumption-2026-11-08/local/analysis-bge.json",
+      "record_digest": "979d4a81b3b7e55ceff922c36a8b5d131bf7b3966e4b26c252de1c2579e39065",
+      "replay_path": "analysis-baai_bge-m3.json",
+      "sha256": "0f095bc18e696e81da6fef3764372913b8d108d032c3d8c27ce163b94e3673eb"
+    },
+    {
+      "analysis_population": "original_embedder_specific_eligible_prefixes",
+      "analysis_version": "observable-prefix-transfer-v1.1",
+      "bytes": 899317,
+      "constant_training_estimators": 30,
+      "exact": true,
+      "parsed_json_equal": true,
+      "published_path": "artifacts/resumption-2026-11-08/local/analysis-qwen.json",
+      "record_digest": "f48818681d9bf308f64259e8248a2b6f978c3327d71481d65f130294cceef508",
+      "replay_path": "analysis-qwen_qwen3-embedding-8b.json",
+      "sha256": "cf7d859369f8180fa042e686ac4de9c164e9482268934d665637ae7315ed9f1d"
+    },
+    {
+      "analysis_population": "supplementary_matched_embedding_prefixes",
+      "analysis_version": "observable-prefix-transfer-v1.1",
+      "bytes": 1139534,
+      "constant_training_estimators": 30,
+      "exact": true,
+      "parsed_json_equal": true,
+      "published_path": "artifacts/resumption-2026-11-08/local/analysis-bge-matched.json",
+      "record_digest": "979d4a81b3b7e55ceff922c36a8b5d131bf7b3966e4b26c252de1c2579e39065",
+      "replay_path": "analysis-baai_bge-m3-matched.json",
+      "sha256": "ba5f92c7d8356b22eab2827a4e68c1a6f116f4d8325094438e77e9c76e0ae174"
+    },
+    {
+      "analysis_population": "supplementary_matched_embedding_prefixes",
+      "analysis_version": "observable-prefix-transfer-v1.1",
+      "bytes": 1139662,
+      "constant_training_estimators": 30,
+      "exact": true,
+      "parsed_json_equal": true,
+      "published_path": "artifacts/resumption-2026-11-08/local/analysis-qwen-matched.json",
+      "record_digest": "f48818681d9bf308f64259e8248a2b6f978c3327d71481d65f130294cceef508",
+      "replay_path": "analysis-qwen_qwen3-embedding-8b-matched.json",
+      "sha256": "8c98e7a8bc6d3b6b1c630a943cd265af30a528eeae3093c5146473b82826dfa1"
+    }
+  ],
+  "bootstrap_samples": 2000,
+  "completed_utc": "2026-11-08T11:11:09.820716+00:00",
+  "core_bindings": {
+    "corpus.json": {
+      "bytes": 122668,
+      "exact": true,
+      "sha256": "78fbe31abbf07626bf34d24bfe997446e48b9c155f44d1a3116d6c028e7a0868"
+    },
+    "protocol.json": {
+      "bytes": 9682,
+      "exact": true,
+      "sha256": "f4b1865945ceee0527ef904615148a33d573bd6ed0374c606bf30f9f2a8f8340"
+    },
+    "results.json": {
+      "bytes": 3411914,
+      "exact": true,
+      "sha256": "03044956b33fbe75899d0c98b5af2ac5341681d73f6e859b233776d7ad93ba29"
+    },
+    "source-inventory.json": {
+      "bytes": 1002,
+      "exact": true,
+      "sha256": "f328e8582d44a4af2b0516f8e95c00995e49696b302a1263b7b3f9cdf22ce593"
+    }
+  },
+  "executed_helper_files": {
+    "export_local_evidence.py": {
+      "bytes": 35353,
+      "exact": true,
+      "sha256": "694706b3a2cbcf66138369ee27af89089e47020a882dd409f30009f78bf433e0"
+    },
+    "reproduce_local.py": {
+      "bytes": 57878,
+      "exact": true,
+      "sha256": "3b816106ed2c53642e5e574c6cd67f2e00905d38f0b52c335642ee05fe9f62bd"
+    }
+  },
+  "interpretation": "Exact deterministic replay establishes byte/computational consistency. It does not establish H0, equivalence, measurement validity or independent scientific review.",
+  "live_state_files_exact": 4209,
+  "manifest_bytes": 3420906,
+  "manifest_path": "evidence/local-pilot-2026-11-08/manifest.json",
+  "manifest_sha256": "b76ca2977d70169980db11e255011742577d6367c003eb5212bda6060519e828",
+  "network_guard": {
+    "attempts": 0,
+    "socket_connect_and_dns_disabled": true
+  },
+  "omitted_embedding_aggregates": [
+    {
+      "bytes": 226553651,
+      "live_descriptor_reconstructed_exact": true,
+      "model": "baai/bge-m3",
+      "sha256": "bb513ae407ad6888d24b906d23ab7fe407a8a114f956eb4ec9d8416d3c550832"
+    },
+    {
+      "bytes": 875698757,
+      "live_descriptor_reconstructed_exact": true,
+      "model": "qwen/qwen3-embedding-8b",
+      "sha256": "b21a1c6ce7b86c3384f58bd24efc838353c634107862c895be99e14303d47cde"
+    }
+  ],
+  "purpose": "same_code_offline_reanalysis_not_independent_replication",
+  "raw_journal_files_exact": 3791,
+  "reproduction_report_sha256": "862a631b0b56ab374b5d483be8d58f25da171ee958f2aaf4f7f8af1897af68c0",
+  "restored_files_verified": 4355,
+  "review": "not_requested",
+  "runtime": {
+    "joblib": "1.5.3",
+    "numpy": "2.3.5",
+    "python": "3.12.11",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.0",
+    "threadpoolctl": "3.6.0"
+  },
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "shared_ledger": {
+    "authorized_cap_rub": "3000",
+    "bytes": 212002,
+    "charged_or_reserved_rub": "651.5180250837596",
+    "exact": true,
+    "historical_prefix_rows_retained": 32,
+    "new_attempt_reservations_retained": 758,
+    "sha256": "c31af39094d10f6b959ee14d4be3b71267dff7e51c1eea138f309a25ad8f815f"
+  },
+  "started_utc": "2026-11-08T11:03:41.371094+00:00",
+  "status": "passed",
+  "thread_settings": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "verification_program_path": "scripts/verify_local_replay.py",
+  "verification_program_scope": "post-seal verifier committed alongside the external verification receipt",
+  "verification_program_sha256": "22ac3b95c9a5399789e346b53aad7082de6aa9b47bf4a091aeb18e0e69304d56"
+}
