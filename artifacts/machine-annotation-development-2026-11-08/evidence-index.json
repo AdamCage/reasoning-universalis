@@ -1,0 +1,361 @@
+{
+  "E0": "not_passed",
+  "artifacts": [
+    {
+      "bytes": 6414,
+      "format": "json",
+      "path": "design/MACHINE_DEVELOPMENT_PROTOCOL_2026_11_08.json",
+      "role": "protocol",
+      "sha256": "0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e"
+    },
+    {
+      "bytes": 217032,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/input-items.json",
+      "role": "tasks",
+      "sha256": "f8baeb48792d347531ce6dfb020a43cb5843a4cdae0d908c4c38f145d7209e7a"
+    },
+    {
+      "bytes": 3510641,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/results.json",
+      "role": "results",
+      "sha256": "7570bed861267d56f8be1632a794b79977c84d1b2c7351ec6ee8dde90b4112af"
+    },
+    {
+      "bytes": 215642,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/summary.json",
+      "role": "summary",
+      "sha256": "0ba38c725c0e21ec3cd53513bdeb09c58f80d01324342e3aaf138324969caf3e"
+    },
+    {
+      "bytes": 935,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/budget-final.json",
+      "role": "budget",
+      "sha256": "59a11088bd76613fb95b78227e5b41a736db4d12203cfc53a7a4fe087a7b7cf4"
+    },
+    {
+      "bytes": 598090,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/ledger-final.json",
+      "role": "final_ledger",
+      "sha256": "b809dcd7921c8c25d13e8a6f83b5fe8220fc4665ad2116b1af48dd966f070447"
+    },
+    {
+      "bytes": 1791292,
+      "format": "json",
+      "path": "evidence/machine-annotation-development-2026-11-08/manifest.json",
+      "role": "export_manifest",
+      "sha256": "be1f842baf2fbf071d822b57760a47d892177eef1f46de3e2b1e893f9b0031a6"
+    },
+    {
+      "bytes": 1219,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/reproduction-check.json",
+      "role": "reproduction",
+      "sha256": "bb58042253b2bf020690397f06a12a903c8dc51d1113c01c01203b0c75bb0769"
+    },
+    {
+      "bytes": 2313,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/design/ANNOTATION_CONFIG.json",
+      "role": "source",
+      "sha256": "b9c8b8e8f347298fa264157a035783433a17b0dd85f60cfe9a9c315435f6e855"
+    },
+    {
+      "bytes": 9964,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/design/ANNOTATION_PROTOCOL.md",
+      "role": "source",
+      "sha256": "046319b874a32a998d39f1619d6df752d9502cb51d0e3ad4467fa7a34189d40f"
+    },
+    {
+      "bytes": 2193,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/design/ANNOTATION_RESPONSE.schema.json",
+      "role": "source",
+      "sha256": "e79f3b16339dff36633dac789e0152e705f389569bd438f3dcab26bec9fc4a6e"
+    },
+    {
+      "bytes": 3263,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/design/prompts/segment-role-v1.md",
+      "role": "source",
+      "sha256": "5657d248c4606d1e0842b9c65845982f0482665f792619fe1262c83bad68edac"
+    },
+    {
+      "bytes": 79,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/machine_development/__init__.py",
+      "role": "source",
+      "sha256": "a0322e21702379ae0dcb8eac15e220b53c631126cef5a896646c3bbe58bb68c1"
+    },
+    {
+      "bytes": 13629,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/machine_development/annotation.py",
+      "role": "source",
+      "sha256": "3f645b018321141f86cb0896f59c7ca901a30cf453bb712cb1002fb75836e3e3"
+    },
+    {
+      "bytes": 79,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/measurement/__init__.py",
+      "role": "source",
+      "sha256": "2bc494dae1c0936f841d2d972ed6db8cfdfdfdc1bb54a73dda655c19b62129ba"
+    },
+    {
+      "bytes": 8960,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/measurement/core.py",
+      "role": "source",
+      "sha256": "4cd381b05a2383753f3f17e356fe81983a75860a625239df2ba3678e968a060a"
+    },
+    {
+      "bytes": 3807,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/measurement/lexical.py",
+      "role": "source",
+      "sha256": "35c176023a25db18492646196d17e0c480893d4435b83fd34074079ca6d01acd"
+    },
+    {
+      "bytes": 37602,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/resumption/analysis.py",
+      "role": "source",
+      "sha256": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9"
+    },
+    {
+      "bytes": 18592,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/resumption/episteme_adapter.py",
+      "role": "source",
+      "sha256": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112"
+    },
+    {
+      "bytes": 28638,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/resumption/generator_audit.py",
+      "role": "source",
+      "sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9"
+    },
+    {
+      "bytes": 51060,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/resumption/runner.py",
+      "role": "source",
+      "sha256": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8"
+    },
+    {
+      "bytes": 10457,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/resumption/tasks.py",
+      "role": "source",
+      "sha256": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a"
+    },
+    {
+      "bytes": 46082,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/scripts/collect_machine_development.py",
+      "role": "source",
+      "sha256": "02ac07f2626d771dc293580e878a4ba7eb98137291ff0c8bde5100f466f9eccf"
+    },
+    {
+      "bytes": 3495,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/scripts/pilot_v2_ledger_io_compat_v1.py",
+      "role": "source",
+      "sha256": "ea0fad0b8c7de75dc1c977a1bfa253c1af7fded236cecb48c480a579d02ac9a9"
+    },
+    {
+      "bytes": 12998,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/scripts/prepare_machine_development.py",
+      "role": "source",
+      "sha256": "f4d2f5853e6263990b5871791ac8bcbfa6d6e84ebd293aa434bfd196bfbfde7d"
+    },
+    {
+      "bytes": 81,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage0/__init__.py",
+      "role": "source",
+      "sha256": "682b039b94db620860cb9a6984656207785480595191fe55c1f8f6aff3ebc48b"
+    },
+    {
+      "bytes": 5127,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage0/config.py",
+      "role": "source",
+      "sha256": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73"
+    },
+    {
+      "bytes": 20663,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage0/runner.py",
+      "role": "source",
+      "sha256": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317"
+    },
+    {
+      "bytes": 1428,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage0/tasks.py",
+      "role": "source",
+      "sha256": "e1ff8e2c30f60f87147363f67a1ab3d5b8d9e98206597788614cc7ee830bc300"
+    },
+    {
+      "bytes": 3572,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage0/traces.py",
+      "role": "source",
+      "sha256": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda"
+    },
+    {
+      "bytes": 77,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage2/__init__.py",
+      "role": "source",
+      "sha256": "4c4d8dcea5370a11dc331b24af5348393e199507f0bf7fa250d275d1c9b6b756"
+    },
+    {
+      "bytes": 4113,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage2/annotation.py",
+      "role": "source",
+      "sha256": "05edfcd005ffd01e9c52739c7ef59b6455636379e0dc48243ff7f1ac77c339b6"
+    },
+    {
+      "bytes": 8040,
+      "format": "bytes",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/stage2/observations.py",
+      "role": "source",
+      "sha256": "9400a2e5a46a6fb338980cd578a03e331d130d5829ea903c36249d72a33a89d5"
+    },
+    {
+      "bytes": 2755,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source-inventory.json",
+      "role": "source_inventory",
+      "sha256": "942e6a58acc19649cc5407e94acfbd72eed4f2944d4ffae441de624fc41c6f0e"
+    },
+    {
+      "bytes": 1013833,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/dispatch-plan.json",
+      "role": "dispatch_plan",
+      "sha256": "4079772da592d9127834d5f4988d519a19c11ee0213a20722d4848a963a8c6d8"
+    },
+    {
+      "bytes": 265759,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/ledger-launch.json",
+      "role": "launch_ledger",
+      "sha256": "2f4507696a0eb06a5d9daad46875af6a837f728182c8be4dce1ff0669c54c95a"
+    },
+    {
+      "bytes": 580293,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/cost-plan.json",
+      "role": "prospective_worst_case_cost_plan",
+      "sha256": "f30f70002d1830f008731304a37b5668565ee117cae084567cc8ed1a05583b69"
+    },
+    {
+      "bytes": 8332,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/codebook.json",
+      "role": "bound_codebook",
+      "sha256": "a0c35e0eee2f4a6173b66962add7ea62dc7d9178927b24455c0bf385acbf3e93"
+    },
+    {
+      "bytes": 211233,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/mapping.json",
+      "role": "bound_mapping",
+      "sha256": "5b2c8771fa79630979acf5d7cf6d75bed3fb482aefc7a65411bbb3e919392f21"
+    },
+    {
+      "bytes": 2313,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/annotation_config.json",
+      "role": "bound_annotation_config",
+      "sha256": "b9c8b8e8f347298fa264157a035783433a17b0dd85f60cfe9a9c315435f6e855"
+    },
+    {
+      "bytes": 117654,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/route_metadata.json",
+      "role": "bound_route_metadata",
+      "sha256": "9f30517aaba367902972115d1ebf2652bf9d2911b349864ae05cbbae09e77db6"
+    },
+    {
+      "bytes": 339,
+      "format": "json",
+      "path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/license_receipt.json",
+      "role": "bound_license_receipt",
+      "sha256": "6f0bcdc3eb3a0a0db42b0adb0b52511b063cdded02c7e75672a71369276c7d2a"
+    },
+    {
+      "bytes": 702669,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/failure-audit.json",
+      "role": "postdata_supplementary",
+      "sha256": "1d327b595d78d9259a2dad13f7ebdf055625d426f9600b8a2f89f73ce478c8dc"
+    },
+    {
+      "bytes": 2970,
+      "format": "bytes",
+      "path": "reports/MACHINE_VOTE_FAILURE_AUDIT.md",
+      "role": "postdata_supplementary",
+      "sha256": "1631a2e80d9b611beabb1c1ae5c1e57bbddd12cc090c91353ed711b346d9a065"
+    },
+    {
+      "bytes": 94169,
+      "format": "bytes",
+      "path": "artifacts/machine-annotation-development-2026-11-08/source-snapshot.zip",
+      "role": "postdata_supplementary",
+      "sha256": "72700c8c66b5e369432577789bace7fde5f2cdcab0427778bf9212166f66dc49"
+    },
+    {
+      "bytes": 4643,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/pre-dispatch-manifest.json",
+      "role": "postdata_supplementary",
+      "sha256": "f16b197bc9219271eecbecbdee3dca5be10b66c54b030b59361bf57610f209e8"
+    },
+    {
+      "bytes": 2535,
+      "format": "json",
+      "path": "artifacts/machine-annotation-development-2026-11-08/summary-manifest.json",
+      "role": "postdata_supplementary",
+      "sha256": "12eafd7222fd9ceb76b299d48c970bb790bd6be39d417667ac550a4f1caa72cc"
+    },
+    {
+      "bytes": 13409,
+      "format": "bytes",
+      "path": "scripts/build_machine_evidence_index.py",
+      "role": "postdata_supplementary",
+      "sha256": "b54cada279883e132a6be5308b4a7cfceb51e28acabfcfc1b7b79bfffe83e29d"
+    }
+  ],
+  "closed_utc": "2026-11-08T21:45:41.086949+00:00",
+  "empty_source_files_retained_in_inventory": [
+    {
+      "reason": "Exact empty source retained by indexed inventory; kernel pack forbids empty CAS inputs",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_path": ".research/resumption-2026-11-08-live/machine-development/0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e/source/resumption/__init__.py",
+      "source_path": "resumption/__init__.py"
+    }
+  ],
+  "human_gold": "not_created",
+  "items_sha256": "f8baeb48792d347531ce6dfb020a43cb5843a4cdae0d908c4c38f145d7209e7a",
+  "protocol_sha256": "0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e",
+  "purpose": "machine_development_completed_artifact_integrity_index",
+  "registered_after_collection": true,
+  "review": "not_requested",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "scope": "Exact postcollection byte hashes only; primary/reanalysis hash jobs share data and author, without independent statistical recomputation",
+  "source_inventory_sha256": "942e6a58acc19649cc5407e94acfbd72eed4f2944d4ffae441de624fc41c6f0e",
+  "source_scope": "Actual frozen scope/source bytes, including CRLF; current Git LF files are not substituted"
+}

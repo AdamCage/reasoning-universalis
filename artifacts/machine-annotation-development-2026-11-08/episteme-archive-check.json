@@ -1,0 +1,14 @@
+{
+  "E0": "not_passed",
+  "all_members_sha256_and_size_verified": true,
+  "bytes": 9972264,
+  "configured_credential_and_common_encodings_scanned_in_memory": true,
+  "graph_snapshot_hash": "7ef01bf967f0f4f368751729ab142ac2ff561e033f424c28c396778e7aec0779",
+  "members": 620,
+  "path": "evidence/episteme-machine-annotation-2026-11-08.zip",
+  "review": "not_requested",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "sha256": "21844be84bae9e267c4e12176b7f82515917ea38b48192ee29487b3474c5e382",
+  "uncompressed_member_bytes": 48125289
+}

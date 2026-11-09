@@ -1,5 +1,26 @@
 # Продолжение на локальном компьютере
 
+**Актуальный закрытый этап — машинная разметка, 9 ноября 2026 по Москве.** По поручению пользователя 200 сегментов S2 размечены конечным протоколом DeepSeek из пяти голосов: 1125 вызовов, 180 функциональных меток consensus, 15 `ambiguous_other`, 2 неразрешённых расхождения и 3 технически неполных панели. Общий ledger содержит 2109 строк и `2038.3174633704220 RUB charged-or-reserved` из 3300 RUB. Этап закрыт: не повторять collect-команды ниже, не сбрасывать `machine-development/condition-v1.json`, не создавать новый ledger. [Результат](reports/MACHINE_DEVELOPMENT_RESULT.md), [английская записка](manuscript/MACHINE_DEVELOPMENT_NOTE.md), [технический аудит](reports/MACHINE_VOTE_FAILURE_AUDIT.md). Пакет для людей отложен; E0 не пройден, генерации v3 и будущий test не запускались.
+
+Проверенный бесплатный перенос без ключа и `.env` (reference CPython3.12.11 для точных численных bytes, `requirements-resumption.txt`, новый output-каталог):
+
+```powershell
+python -X utf8 scripts/reproduce_machine_development.py --manifest evidence/machine-annotation-development-2026-11-08/manifest.json --output .research/new-machine-offline-replay
+```
+
+Пакет восстанавливает точные raw source bytes и закрытые observations, включая прежнийR1; результаты и summary воспроизведены byte-exact при0network attempts. Это replay сохранённых ответов, не новый запрос модели или независимая научная валидация. Старые paragraphs/команды ниже сохраняют хронологию и не являются повторным разрешением сбора.
+
+**Текущее offline-продолжение:** [план после v2](design/POST_V2_NEXT_STAGE_2026_11_08.md), [selection-анализ](reports/POST_V2_SELECTION_ANALYSIS.md), [кандидат v3](design/PILOT_V3_CANDIDATE_PROTOCOL_2026_11_08.json) и [human development handoff](design/E0_HUMAN_DEVELOPMENT_HANDOFF_2026_11_08.md). Новый сбор отключён; deadline и paid collector отсутствуют. 24-root human-пакет готовит процедуру, но не заменяет независимую E0-валидацию с минимум 40 roots. Все человеческие ответы/участники пока пусты. Текущий ledger и 823.5589067445220 RUB обязательств не изменены.
+
+Позднейшее уточнение пользователя — «полностью на ИИ переносим пока что»: human handoff отложен. Текущая подготовка переключена на отдельную конечную машинную разметку DeepSeek; это не активирует v3 генерации, не создаёт human gold и не закрывает E0. Перед её paid-исполнением нужны отдельные зафиксированные protocol/source/input/cost receipts; старые paid-команды ниже не повторять.
+
+Пользователь принял общий лимит **3300 RUB** и сообщил о пополнении после котировки полного 200-segment machine-плана. Текущий отдельный [annotation protocol](design/MACHINE_DEVELOPMENT_PROTOCOL_2026_11_08.json) готовит максимум 2100 calls (1000 round1 + до1000 conditional round2 +100 audit), дополнительные обязательства ≤2400 RUB и absolute stage ceiling 3223.5589067445220 RUB, сохраняя общий ledger. Paid cutoff нового условия — 8 ноября 23:00 UTC / 9 ноября 02:00 по Москве. Пока protocol status draft/source freeze pending, запуск запрещён. Цифры 3000 ниже относятся к закрытым старым стадиям; они не означают новый state или списание исторических резервов.
+
+```powershell
+python -X utf8 scripts/build_post_v2_design.py --check
+python -X utf8 scripts/import_e0_human.py --check-package --package artifacts/e0-human-development-2026-11-08
+```
+
 **Закрытый статус v2/R1, 8 ноября 2026.** Платные вызовы завершены в 14:39:20 UTC / 17:39:20 по Москве. A содержит 98 реальных вызовов и 94 неотправленные ячейки; R1 добавил 96 GPT/AkashML вызовов и переиспользовал все 96 DeepSeek-наблюдений A. Общий ledger теперь содержит 984 строки и 823.5589067445220 RUB charged-or-reserved. Платные команды ниже не повторять; единственное R1 уже использовано, новый namespace или машина не обнуляют обязательства.
 
 Гейт следующего исследования не пройден: общий output cap и окончательный N не выбраны, будущий test не создан, приватный holdout seed не раскрыт. E0 и человеческое scientific review остаются открытыми. Итоги: [PILOT_V2_RECOVERY_RESULT.md](reports/PILOT_V2_RECOVERY_RESULT.md), [английское дополнение](manuscript/PILOT_V2_CALIBRATION_NOTE.md).

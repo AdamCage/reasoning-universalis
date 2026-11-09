@@ -1,0 +1,178 @@
+{
+  "E0": "not_passed",
+  "all_indexed_files_unchanged_after_stage": true,
+  "artifact_count": 49,
+  "attempt_ledger": {
+    "blocked_dependency": 0,
+    "ceiling": 98,
+    "completed": 98,
+    "enqueued": 98,
+    "failed": 0,
+    "launched": true,
+    "roster_size": 98,
+    "unknown": 0
+  },
+  "backup_manifest_sha256": "ae1fc0a6f51a1888c352ee2c4db30969da495ff5ea5bb138e0f1b5e6be6f6dac",
+  "backup_restore": "verified",
+  "changed_measured_source_files": 0,
+  "event_export_utf8_bytes": 546457,
+  "events": 604,
+  "events_jsonl_sha256": "fa013cc4416535a4aac088b82d1e8e222f0980d189cffb51527fa8c0bfe4bc2f",
+  "evidence_index_sha256": "557ec9aa9ce3d1f2a52e5044187a08a91ddd12148cefbb7b3344e44ac3a0ce1d",
+  "exact_database_and_CAS_restore_bytes_equal": true,
+  "exact_event_export_equal": true,
+  "exact_receipt_export_equal": true,
+  "first_capture_path_failure": "Windows MAX_PATH before kernel Store/events; preserved partial capture, then fresh extended-length-path stage",
+  "graph_snapshot_hash": "7ef01bf967f0f4f368751729ab142ac2ff561e033f424c28c396778e7aec0779",
+  "human_gold": "not_created",
+  "kernel_revision": "7f5a1a0e43d7c35196cc8b3c9c74a618aa2559c3",
+  "measured_source_files_exact": 26,
+  "network_calls": 0,
+  "new_model_calls": 0,
+  "post_stage_backup_path_compatibility": "Extended-path SQLite URI export failed after closed stage; same closed Store reopened via normal path, unchanged events/receipts, then backup/export completed",
+  "receipt_export_utf8_bytes": 429597,
+  "receipts": 303,
+  "restore_files": 562,
+  "restored_database_sha256": "2dce77e42a33d488c626a9e7c06eb9c4cb396602a6bd98dad29d9df45ead1b32",
+  "restored_graph_snapshot_hash": "7ef01bf967f0f4f368751729ab142ac2ff561e033f424c28c396778e7aec0779",
+  "restored_store_bytes": 37661248,
+  "review": "not_requested",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "scope": "postcollection byte and graph integrity; same-author hash reanalysis is not independent statistics or scientific review",
+  "source_diff": [
+    {
+      "current_and_snapshot_exact": true,
+      "path": "design/ANNOTATION_CONFIG.json",
+      "sha256": "b9c8b8e8f347298fa264157a035783433a17b0dd85f60cfe9a9c315435f6e855"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "design/ANNOTATION_PROTOCOL.md",
+      "sha256": "046319b874a32a998d39f1619d6df752d9502cb51d0e3ad4467fa7a34189d40f"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "design/ANNOTATION_RESPONSE.schema.json",
+      "sha256": "e79f3b16339dff36633dac789e0152e705f389569bd438f3dcab26bec9fc4a6e"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "design/prompts/segment-role-v1.md",
+      "sha256": "5657d248c4606d1e0842b9c65845982f0482665f792619fe1262c83bad68edac"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "machine_development/__init__.py",
+      "sha256": "a0322e21702379ae0dcb8eac15e220b53c631126cef5a896646c3bbe58bb68c1"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "machine_development/annotation.py",
+      "sha256": "3f645b018321141f86cb0896f59c7ca901a30cf453bb712cb1002fb75836e3e3"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "measurement/__init__.py",
+      "sha256": "2bc494dae1c0936f841d2d972ed6db8cfdfdfdc1bb54a73dda655c19b62129ba"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "measurement/core.py",
+      "sha256": "4cd381b05a2383753f3f17e356fe81983a75860a625239df2ba3678e968a060a"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "measurement/lexical.py",
+      "sha256": "35c176023a25db18492646196d17e0c480893d4435b83fd34074079ca6d01acd"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "resumption/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "resumption/analysis.py",
+      "sha256": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "resumption/episteme_adapter.py",
+      "sha256": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "resumption/generator_audit.py",
+      "sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "resumption/runner.py",
+      "sha256": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "resumption/tasks.py",
+      "sha256": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "scripts/collect_machine_development.py",
+      "sha256": "02ac07f2626d771dc293580e878a4ba7eb98137291ff0c8bde5100f466f9eccf"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "scripts/pilot_v2_ledger_io_compat_v1.py",
+      "sha256": "ea0fad0b8c7de75dc1c977a1bfa253c1af7fded236cecb48c480a579d02ac9a9"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "scripts/prepare_machine_development.py",
+      "sha256": "f4d2f5853e6263990b5871791ac8bcbfa6d6e84ebd293aa434bfd196bfbfde7d"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage0/__init__.py",
+      "sha256": "682b039b94db620860cb9a6984656207785480595191fe55c1f8f6aff3ebc48b"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage0/config.py",
+      "sha256": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage0/runner.py",
+      "sha256": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage0/tasks.py",
+      "sha256": "e1ff8e2c30f60f87147363f67a1ab3d5b8d9e98206597788614cc7ee830bc300"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage0/traces.py",
+      "sha256": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage2/__init__.py",
+      "sha256": "4c4d8dcea5370a11dc331b24af5348393e199507f0bf7fa250d275d1c9b6b756"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage2/annotation.py",
+      "sha256": "05edfcd005ffd01e9c52739c7ef59b6455636379e0dc48243ff7f1ac77c339b6"
+    },
+    {
+      "current_and_snapshot_exact": true,
+      "path": "stage2/observations.py",
+      "sha256": "9400a2e5a46a6fb338980cd578a03e331d130d5829ea903c36249d72a33a89d5"
+    }
+  ],
+  "source_inventory_sha256": "942e6a58acc19649cc5407e94acfbd72eed4f2944d4ffae441de624fc41c6f0e",
+  "stage": "stage_open-ce4e6ef15a254d31",
+  "stage_result_sha256": "2addc99b8ccca58e4e7cd2815ec02b65f6136ed78a6cc5e9f9abcce12c471c5e"
+}
