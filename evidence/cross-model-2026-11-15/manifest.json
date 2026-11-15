@@ -1,0 +1,458 @@
+{
+  "archive": {
+    "bytes": 23484792,
+    "path": "evidence.zip",
+    "sha256": "6f909928a40cc788fc041f37cda5309ad113a0773bb6c6878db2eb8d046f04b8"
+  },
+  "format": "reasoning-universalis-cross-model-evidence-v1",
+  "payload": {
+    "E0": "not_passed",
+    "analysis_state": "offline_existing_data_only",
+    "annotation_artifact_present": true,
+    "annotation_state": "no_new_annotations",
+    "attempted_cells": 2,
+    "budget": {
+      "authorization_state": "explicit_confirmation_recorded",
+      "final": {
+        "additional_charged_or_reserved_rub": "0.9101845221248",
+        "cap_additional_rub": "400",
+        "charged_or_reserved_rub": "2039.2276478925468",
+        "launch_rub": "2038.3174633704220",
+        "ledger_rows": 2111,
+        "reported_new_cost_rub": "0"
+      },
+      "final_budget_artifact_present": true,
+      "launch_charged_or_reserved_rub": "2038.3174633704220",
+      "launch_rows": 2109,
+      "new_cap_rub": "400",
+      "quoted_worst_case_reservation_rub": "90.7233206178416"
+    },
+    "collection_state": "technical_probes_only",
+    "files": [
+      {
+        "bytes": 12358,
+        "path": "README.md",
+        "sha256": "78e6e8782348b4eeef659e69badae565decfe7cb585e3d378b429cb8f4e7d816"
+      },
+      {
+        "bytes": 111606,
+        "path": "RESEARCH_SPECIFICATION.md",
+        "sha256": "f88b5747a29650e622b155e598b4ce7e820599b12e410f1fc125d28b768e07e7"
+      },
+      {
+        "bytes": 110408,
+        "path": "artifacts/cross-model-2026-11-15/analysis/item-level.json",
+        "sha256": "a6d3591ba4ec6f2c3faf4ecc6b3c791e2780dad751199ff2a42275e23be3fe5c"
+      },
+      {
+        "bytes": 347596,
+        "path": "artifacts/cross-model-2026-11-15/analysis/summary.json",
+        "sha256": "bb28e77d45e2e8bdc959789128e7ceccbbacfe3b6bf48335c1d0a59aef1b0a4a"
+      },
+      {
+        "bytes": 427,
+        "path": "artifacts/cross-model-2026-11-15/budget-authorization.json",
+        "sha256": "bd893953b18a4eb88bbbc3e1a41bda781cfe608b77d65a37ea68777b629c99a2"
+      },
+      {
+        "bytes": 212,
+        "path": "artifacts/cross-model-2026-11-15/budget-final.json",
+        "sha256": "d288b5168a93ee342d7cfc1cfb46d42e90e77e5322a3a234c5c0e1e12dccbdc1"
+      },
+      {
+        "bytes": 8332,
+        "path": "artifacts/cross-model-2026-11-15/codebook.json",
+        "sha256": "a0c35e0eee2f4a6173b66962add7ea62dc7d9178927b24455c0bf385acbf3e93"
+      },
+      {
+        "bytes": 1665,
+        "path": "artifacts/cross-model-2026-11-15/cost-quote.json",
+        "sha256": "09365cc2a619fe1601af8e8db3ba538e9806a67c2d7e88120c4b9e371abe0087"
+      },
+      {
+        "bytes": 80512,
+        "path": "artifacts/cross-model-2026-11-15/input-items.json",
+        "sha256": "e2faf06562217d5cf364ebdb53782e04b9c9c4c9a9cb0c365174ca8763302463"
+      },
+      {
+        "bytes": 510152,
+        "path": "artifacts/cross-model-2026-11-15/ledger-final.json",
+        "sha256": "27b59749fd0d44adfe72688059b1d520635c4f44895237b91b410507a9b93332"
+      },
+      {
+        "bytes": 509512,
+        "path": "artifacts/cross-model-2026-11-15/ledger-launch.json",
+        "sha256": "57a81c140e903f650e151129448543acbed2edd61085d73678137e0717747a23"
+      },
+      {
+        "bytes": 100648,
+        "path": "artifacts/cross-model-2026-11-15/mapping.json",
+        "sha256": "99c2c6dd53f705b31296fb9bd1a72c4b6869f76c370aa7fb403e9c2873eef67e"
+      },
+      {
+        "bytes": 522,
+        "path": "artifacts/cross-model-2026-11-15/metadata/license-check.json",
+        "sha256": "7dab766397928858a5990631946abadee1590756a7884e90c90dbf131c4eb61f"
+      },
+      {
+        "bytes": 39542,
+        "path": "artifacts/cross-model-2026-11-15/metadata/openai_gpt-oss-20b.json",
+        "sha256": "31c689d8d740877414d9faa3ad78f5de0cd05e6b8d6071bfc47890c08bf80a99"
+      },
+      {
+        "bytes": 20404,
+        "path": "artifacts/cross-model-2026-11-15/metadata/qwen_qwen3-32b.json",
+        "sha256": "bc217535de419da158c3f5989b530e25855b668492946ddaeaed04a249795db9"
+      },
+      {
+        "bytes": 73959,
+        "path": "artifacts/cross-model-2026-11-15/metadata/qwen_qwen3.8-27b.json",
+        "sha256": "9347927af07b3258b8ec0453758a18fde32f280a98d9cb27d57fcec766e7c704"
+      },
+      {
+        "bytes": 33309,
+        "path": "artifacts/cross-model-2026-11-15/new-annotations.json",
+        "sha256": "ffc9195a47a3a3a4a1189f9306cd876683456db7e0e8001b99fbeacd84bc398c"
+      },
+      {
+        "bytes": 1615,
+        "path": "artifacts/cross-model-2026-11-15/parent-integrity.json",
+        "sha256": "ccead3dccc15144bb573b9e3913f86c8bc04da29142757436a8b5987c99c2e57"
+      },
+      {
+        "bytes": 339,
+        "path": "artifacts/cross-model-2026-11-15/raw/b857e2e951052f7e288d460b45df68b9b48e2d43891234b181a4d8c63ac884f0/intent.json",
+        "sha256": "fc2df4246090b766c5f4d85192af8f5ecad176bc80025b36f1123ef7eb3c65b3"
+      },
+      {
+        "bytes": 9514,
+        "path": "artifacts/cross-model-2026-11-15/raw/b857e2e951052f7e288d460b45df68b9b48e2d43891234b181a4d8c63ac884f0/request.json",
+        "sha256": "42ec18cdd3e8c9ee7aa2c12a570769666c18d4e3034d06d903fab77fa698d230"
+      },
+      {
+        "bytes": 319,
+        "path": "artifacts/cross-model-2026-11-15/raw/b857e2e951052f7e288d460b45df68b9b48e2d43891234b181a4d8c63ac884f0/reservation.json",
+        "sha256": "506fe3e3c63bc298839159fc76248d71a360154f179874740bcdfef6b2d1ca21"
+      },
+      {
+        "bytes": 2583,
+        "path": "artifacts/cross-model-2026-11-15/raw/b857e2e951052f7e288d460b45df68b9b48e2d43891234b181a4d8c63ac884f0/response.json",
+        "sha256": "de8c63930d317304eca8a84aa5a1351f5978f595677685dcd747bb8a1d26cda9"
+      },
+      {
+        "bytes": 740,
+        "path": "artifacts/cross-model-2026-11-15/raw/b857e2e951052f7e288d460b45df68b9b48e2d43891234b181a4d8c63ac884f0/result.json",
+        "sha256": "d2052381924e364971b56738af526d743c2c6138b03b697e04bd8af69986f97b"
+      },
+      {
+        "bytes": 343,
+        "path": "artifacts/cross-model-2026-11-15/raw/e4f18c6de4c8fbe0aff9021697a2918c07ea2516daf71391bc6d86cee401a2a6/intent.json",
+        "sha256": "ce7d652521eb4fe3c41ed4dfa0c359326c858230aba10d2b77fb0d2156a5e619"
+      },
+      {
+        "bytes": 9518,
+        "path": "artifacts/cross-model-2026-11-15/raw/e4f18c6de4c8fbe0aff9021697a2918c07ea2516daf71391bc6d86cee401a2a6/request.json",
+        "sha256": "39213c0ef57fd8cd41166fcbc502fe4bbed1be293562b096dc19fdd30f350079"
+      },
+      {
+        "bytes": 319,
+        "path": "artifacts/cross-model-2026-11-15/raw/e4f18c6de4c8fbe0aff9021697a2918c07ea2516daf71391bc6d86cee401a2a6/reservation.json",
+        "sha256": "b39ce3a3973662df3c1a89749069f5152337f811fe0ba5d8104517f6de4ef46b"
+      },
+      {
+        "bytes": 2221,
+        "path": "artifacts/cross-model-2026-11-15/raw/e4f18c6de4c8fbe0aff9021697a2918c07ea2516daf71391bc6d86cee401a2a6/response.json",
+        "sha256": "ff9e46090e7b06ad73e574849412c7a90fd079e0d67d89eeb02aa70b0bae8a2b"
+      },
+      {
+        "bytes": 744,
+        "path": "artifacts/cross-model-2026-11-15/raw/e4f18c6de4c8fbe0aff9021697a2918c07ea2516daf71391bc6d86cee401a2a6/result.json",
+        "sha256": "08320f9a19c7d0b9eae317b7738033cbe70145adf248471b946a8de4eefff6c0"
+      },
+      {
+        "bytes": 5229,
+        "path": "artifacts/cross-model-2026-11-15/selection-summary.json",
+        "sha256": "a7670ca1a446b62cb919d418d3e5aa4457475a43cf6e9d867ba53bd6d790290a"
+      },
+      {
+        "bytes": 3486,
+        "path": "artifacts/cross-model-2026-11-15/source-inventory.json",
+        "sha256": "34996110a79cacf99228022ae36e9b05f8c2fb114ed6da7e56f59f34b48833e4"
+      },
+      {
+        "bytes": 119051,
+        "path": "artifacts/cross-model-2026-11-15/source-snapshot.zip",
+        "sha256": "d6e7fb856701a8c6425d210ef2eb4c19c5f8e5b2c43e49da60679855e116bf89"
+      },
+      {
+        "bytes": 8332,
+        "path": "artifacts/machine-annotation-development-2026-11-08/codebook.json",
+        "sha256": "a0c35e0eee2f4a6173b66962add7ea62dc7d9178927b24455c0bf385acbf3e93"
+      },
+      {
+        "bytes": 217032,
+        "path": "artifacts/machine-annotation-development-2026-11-08/input-items.json",
+        "sha256": "f8baeb48792d347531ce6dfb020a43cb5843a4cdae0d908c4c38f145d7209e7a"
+      },
+      {
+        "bytes": 211233,
+        "path": "artifacts/machine-annotation-development-2026-11-08/machine-mapping.json",
+        "sha256": "5b2c8771fa79630979acf5d7cf6d75bed3fb482aefc7a65411bbb3e919392f21"
+      },
+      {
+        "bytes": 3510641,
+        "path": "artifacts/machine-annotation-development-2026-11-08/results.json",
+        "sha256": "7570bed861267d56f8be1632a794b79977c84d1b2c7351ec6ee8dde90b4112af"
+      },
+      {
+        "bytes": 2755,
+        "path": "artifacts/machine-annotation-development-2026-11-08/source-inventory.json",
+        "sha256": "942e6a58acc19649cc5407e94acfbd72eed4f2944d4ffae441de624fc41c6f0e"
+      },
+      {
+        "bytes": 94169,
+        "path": "artifacts/machine-annotation-development-2026-11-08/source-snapshot.zip",
+        "sha256": "72700c8c66b5e369432577789bace7fde5f2cdcab0427778bf9212166f66dc49"
+      },
+      {
+        "bytes": 215642,
+        "path": "artifacts/machine-annotation-development-2026-11-08/summary.json",
+        "sha256": "0ba38c725c0e21ec3cd53513bdeb09c58f80d01324342e3aaf138324969caf3e"
+      },
+      {
+        "bytes": 75,
+        "path": "cross_model/__init__.py",
+        "sha256": "056a5cc290ae5259b80726fe346ca99d8751587bdd5f217e99cabd04e83cca96"
+      },
+      {
+        "bytes": 4782,
+        "path": "cross_model/analysis.py",
+        "sha256": "886d81b0ef392502555e066e975ac3f1590dd2635fdebdeb664d1b27ccc03de4"
+      },
+      {
+        "bytes": 3332,
+        "path": "cross_model/annotation.py",
+        "sha256": "02c36e78a0f15e935dd5e9230a997986338051f64af70a46ab7646acc63b2c63"
+      },
+      {
+        "bytes": 1303,
+        "path": "cross_model/common.py",
+        "sha256": "5723f23a7f3b504a85690a21b3d9093a4ad219a4260997f8c01b45cdc996ce3a"
+      },
+      {
+        "bytes": 5773,
+        "path": "cross_model/prepare.py",
+        "sha256": "182d4b5fdf43d659a46632dc216d0158f274898adbe176d342fcf1b104bb19e5"
+      },
+      {
+        "bytes": 18789,
+        "path": "cross_model/runner.py",
+        "sha256": "ba1f015355c24c9ffd095d0122caa3a44563357dd131a7783adee0fffc9ad8d9"
+      },
+      {
+        "bytes": 2313,
+        "path": "design/ANNOTATION_CONFIG.json",
+        "sha256": "b9c8b8e8f347298fa264157a035783433a17b0dd85f60cfe9a9c315435f6e855"
+      },
+      {
+        "bytes": 9964,
+        "path": "design/ANNOTATION_PROTOCOL.md",
+        "sha256": "046319b874a32a998d39f1619d6df752d9502cb51d0e3ad4467fa7a34189d40f"
+      },
+      {
+        "bytes": 2193,
+        "path": "design/ANNOTATION_RESPONSE.schema.json",
+        "sha256": "e79f3b16339dff36633dac789e0152e705f389569bd438f3dcab26bec9fc4a6e"
+      },
+      {
+        "bytes": 11215,
+        "path": "design/CROSS_MODEL_PROTOCOL_2026_11_15.json",
+        "sha256": "7ed5feaaf8168fac4ae5e653fb53b2bacd012cf5f57049f6171c941c3207bdb1"
+      },
+      {
+        "bytes": 6414,
+        "path": "design/MACHINE_DEVELOPMENT_PROTOCOL_2026_11_08.json",
+        "sha256": "0d53274f64e17249611815abe5bb380f5779818bde5545b5732315127bb1fb5e"
+      },
+      {
+        "bytes": 3263,
+        "path": "design/prompts/segment-role-v1.md",
+        "sha256": "5657d248c4606d1e0842b9c65845982f0482665f792619fe1262c83bad68edac"
+      },
+      {
+        "bytes": 23675674,
+        "path": "evidence/machine-annotation-development-2026-11-08/evidence.zip",
+        "sha256": "342bfa8f353d2d23e93235eb397de57faae71baeae3c95b1613c32518858e734"
+      },
+      {
+        "bytes": 1791292,
+        "path": "evidence/machine-annotation-development-2026-11-08/manifest.json",
+        "sha256": "be1f842baf2fbf071d822b57760a47d892177eef1f46de3e2b1e893f9b0031a6"
+      },
+      {
+        "bytes": 79,
+        "path": "machine_development/__init__.py",
+        "sha256": "a0322e21702379ae0dcb8eac15e220b53c631126cef5a896646c3bbe58bb68c1"
+      },
+      {
+        "bytes": 13629,
+        "path": "machine_development/annotation.py",
+        "sha256": "3f645b018321141f86cb0896f59c7ca901a30cf453bb712cb1002fb75836e3e3"
+      },
+      {
+        "bytes": 79,
+        "path": "measurement/__init__.py",
+        "sha256": "2bc494dae1c0936f841d2d972ed6db8cfdfdfdc1bb54a73dda655c19b62129ba"
+      },
+      {
+        "bytes": 8960,
+        "path": "measurement/core.py",
+        "sha256": "4cd381b05a2383753f3f17e356fe81983a75860a625239df2ba3678e968a060a"
+      },
+      {
+        "bytes": 3807,
+        "path": "measurement/lexical.py",
+        "sha256": "35c176023a25db18492646196d17e0c480893d4435b83fd34074079ca6d01acd"
+      },
+      {
+        "bytes": 0,
+        "path": "resumption/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 37602,
+        "path": "resumption/analysis.py",
+        "sha256": "6c2ca6ff3211c3a404b7f72be7662c5f60b8210162bceefee50a76d84804b6d9"
+      },
+      {
+        "bytes": 18592,
+        "path": "resumption/episteme_adapter.py",
+        "sha256": "0bac998ed066459b5f5308672e937009b3a06f3080f64c6eb1c676fde5ee3112"
+      },
+      {
+        "bytes": 28638,
+        "path": "resumption/generator_audit.py",
+        "sha256": "e9691184f125a6d994052129b4ff6daa221149a2573976fe08a25f96e2be74a9"
+      },
+      {
+        "bytes": 51060,
+        "path": "resumption/runner.py",
+        "sha256": "df41e6bbb9e723f31851054a16a4400e028d9df51021cbcf1bf4a34da7b425f8"
+      },
+      {
+        "bytes": 10457,
+        "path": "resumption/tasks.py",
+        "sha256": "c950554f454c59f71c7e6659b18da68f04ff52c4738a080065b11d75808cd24a"
+      },
+      {
+        "bytes": 1444,
+        "path": "scripts/collect_cross_model.py",
+        "sha256": "9db5ddae2d0e3a04cb93fb7e6c7db106d016f85c33627b1522162da76b118062"
+      },
+      {
+        "bytes": 46082,
+        "path": "scripts/collect_machine_development.py",
+        "sha256": "02ac07f2626d771dc293580e878a4ba7eb98137291ff0c8bde5100f466f9eccf"
+      },
+      {
+        "bytes": 16653,
+        "path": "scripts/export_cross_model.py",
+        "sha256": "a43688f4ab36051b88a8103126838aa79c12ab541cd95fc128421617cd3f93da"
+      },
+      {
+        "bytes": 9612,
+        "path": "scripts/freeze_cross_model.py",
+        "sha256": "2c7d6c4c56d8ec7a30f15fbbb4c0434f69048ea965fd102afe40a3e6c489c69c"
+      },
+      {
+        "bytes": 3495,
+        "path": "scripts/pilot_v2_ledger_io_compat_v1.py",
+        "sha256": "ea0fad0b8c7de75dc1c977a1bfa253c1af7fded236cecb48c480a579d02ac9a9"
+      },
+      {
+        "bytes": 12998,
+        "path": "scripts/prepare_machine_development.py",
+        "sha256": "f4d2f5853e6263990b5871791ac8bcbfa6d6e84ebd293aa434bfd196bfbfde7d"
+      },
+      {
+        "bytes": 9877,
+        "path": "scripts/reproduce_cross_model.py",
+        "sha256": "06c68b7aedddeb5366d81b2e7f15415b7c468d337c926063522ddaa65316ab9d"
+      },
+      {
+        "bytes": 81,
+        "path": "stage0/__init__.py",
+        "sha256": "682b039b94db620860cb9a6984656207785480595191fe55c1f8f6aff3ebc48b"
+      },
+      {
+        "bytes": 5127,
+        "path": "stage0/config.py",
+        "sha256": "1c8fb307ad71d8e458f30a968386fa77247df07e48ddb3a80135430184738d73"
+      },
+      {
+        "bytes": 20663,
+        "path": "stage0/runner.py",
+        "sha256": "f65cda0cbad4a89dac7f9fb1a05e69acc619ebd3a8708fcefa52d088ec522317"
+      },
+      {
+        "bytes": 1428,
+        "path": "stage0/tasks.py",
+        "sha256": "e1ff8e2c30f60f87147363f67a1ab3d5b8d9e98206597788614cc7ee830bc300"
+      },
+      {
+        "bytes": 3572,
+        "path": "stage0/traces.py",
+        "sha256": "056a09d984a6ebed3536eb0d6a97eb7173b41bb7b941c2cec5a3623b34996cda"
+      },
+      {
+        "bytes": 77,
+        "path": "stage2/__init__.py",
+        "sha256": "4c4d8dcea5370a11dc331b24af5348393e199507f0bf7fa250d275d1c9b6b756"
+      },
+      {
+        "bytes": 4113,
+        "path": "stage2/annotation.py",
+        "sha256": "05edfcd005ffd01e9c52739c7ef59b6455636379e0dc48243ff7f1ac77c339b6"
+      },
+      {
+        "bytes": 8040,
+        "path": "stage2/observations.py",
+        "sha256": "9400a2e5a46a6fb338980cd578a03e331d130d5829ea903c36249d72a33a89d5"
+      },
+      {
+        "bytes": 14073,
+        "path": "tests/test_cross_model_export.py",
+        "sha256": "a2d66da55216135b6a741ca60efff2d1f145adde71d1d80ca298d2e428a2fbea"
+      },
+      {
+        "bytes": 23130,
+        "path": "tests/test_cross_model_integrity.py",
+        "sha256": "bace657e038f5a828aaa271a5ebd30f0cebfb83dff51db7f4f1afc7f8f17563b"
+      }
+    ],
+    "format": "reasoning-universalis-cross-model-evidence-v1",
+    "human_gold": "not_created",
+    "missing_optional_files": [
+      "reports/CROSS_MODEL_MEASUREMENT_REPORT.md",
+      "output/pdf/cross-model-measurement-pilot.pdf"
+    ],
+    "missing_planned_cells": 0,
+    "missing_raw_files": {},
+    "planned_calls": 194,
+    "protocol_path": "design/CROSS_MODEL_PROTOCOL_2026_11_15.json",
+    "protocol_sha256": "7ed5feaaf8168fac4ae5e653fb53b2bacd012cf5f57049f6171c941c3207bdb1",
+    "recorded_cells": 194,
+    "reproduction": "Extract members into an empty directory; run python scripts/reproduce_cross_model.py without credentials",
+    "schema_probe_attempted_cells": 2,
+    "scope": "Exploratory machine annotation instruments; no ground-truth or internal-state claim",
+    "study_attempted_cells": 0,
+    "study_valid_annotations": 0,
+    "technical_status_counts": {
+      "invalid": 2,
+      "not_dispatched": 192
+    },
+    "valid_annotations": 0
+  },
+  "payload_sha256": "f8af2bee7964b515e680c103b57ed76ed483a3b99b628676abec7b7cb9931190",
+  "schema_version": 1
+}

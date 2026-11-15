@@ -1,0 +1,254 @@
+{
+  "endpoint": "/models/qwen/qwen3-32b/endpoints",
+  "paid_requests": 0,
+  "response": {
+    "body_base64": "eyJkYXRhIjp7ImlkIjoicXdlbi9xd2VuMy0zMmIiLCJuYW1lIjoiUXdlbjogUXdlbjMgMzJCIiwiY3JlYXRlZCI6MTc0NTg3NTk0NSwiZGVzY3JpcHRpb24iOiJRd2VuMy0zMkIg4oCUINGN0YLQviDQv9C70L7RgtC90LDRjyDQv9GA0LjRh9C40L3QvdC+LdGB0LvQtdC00YHRgtCy0LXQvdC90LDRjyDRj9C30YvQutC+0LLQsNGPINC80L7QtNC10LvRjCDRgSAzMiw4INC80LjQu9C70LjQsNGA0LTQsNC80Lgg0L/QsNGA0LDQvNC10YLRgNC+0LIg0LjQtyDRgdC10YDQuNC4IFF3ZW4zLCDQvtC/0YLQuNC80LjQt9C40YDQvtCy0LDQvdC90LDRjyDQutCw0Log0LTQu9GPINGB0LvQvtC20L3Ri9GFINGA0LDRgdGB0YPQttC00LXQvdC40LksINGC0LDQuiDQuCDQtNC70Y8g0Y3RhNGE0LXQutGC0LjQstC90L7Qs9C+INC00LjQsNC70L7Qs9CwLiDQntC90LAg0L/QvtC00LTQtdGA0LbQuNCy0LDQtdGCINCx0LXRgdGI0L7QstC90L7QtSDQv9C10YDQtdC60LvRjtGH0LXQvdC40LUg0LzQtdC20LTRgyDRgNC10LbQuNC80L7QvCBcItC80YvRiNC70LXQvdC40Y9cIiDQtNC70Y8g0LfQsNC00LDRhywg0YLQsNC60LjRhSDQutCw0Log0LzQsNGC0LXQvNCw0YLQuNC60LAsINC/0YDQvtCz0YDQsNC80LzQuNGA0L7QstCw0L3QuNC1INC4INC70L7Qs9C40YfQtdGB0LrQvtC1INGD0LzQvtC30LDQutC70Y7Rh9C10L3QuNC1LCDQuCDRgNC10LbQuNC80L7QvCBcItC90LXQvNGL0YjQu9C10L3QuNGPXCIg0LTQu9GPINCx0L7Qu9C10LUg0LHRi9GB0YLRgNC+0LPQviwg0YPQvdC40LLQtdGA0YHQsNC70YzQvdC+0LPQviDQvtCx0YnQtdC90LjRjy4g0JzQvtC00LXQu9GMINC00LXQvNC+0L3RgdGC0YDQuNGA0YPQtdGCINCy0YvRgdC+0LrRg9GOINC/0YDQvtC40LfQstC+0LTQuNGC0LXQu9GM0L3QvtGB0YLRjCDQsiDRgdC70LXQtNC+0LLQsNC90LjQuCDQuNC90YHRgtGA0YPQutGG0LjRj9C8LCDQuNGB0L/QvtC70YzQt9C+0LLQsNC90LjQuCDQuNC90YHRgtGA0YPQvNC10L3RgtC+0LIg0LDQs9C10L3RgtCwLCDRgtCy0L7RgNGH0LXRgdC60L7QvCDQv9C40YHRjNC80LUg0Lgg0LzQvdC+0LPQvtGP0LfRi9GH0L3Ri9GFINC30LDQtNCw0YfQsNGFINC90LAg0LHQvtC70LXQtSDRh9C10LwgMTAwINGP0LfRi9C60LDRhSDQuCDQtNC40LDQu9C10LrRgtCw0YUuINCe0L3QsCDQuNC30L3QsNGH0LDQu9GM0L3QviDQvtCx0YDQsNCx0LDRgtGL0LLQsNC10YIg0LrQvtC90YLQtdC60YHRgtGLINGBIDMyINGC0YvRgdGP0YfQsNC80Lgg0YLQvtC60LXQvdC+0LIg0Lgg0LzQvtC20LXRgiDRgNCw0YHRiNC40YDRj9GC0YzRgdGPINC00L4gMTMxINGC0YvRgdGP0YfQuCDRgtC+0LrQtdC90L7QsiDRgSDQuNGB0L/QvtC70YzQt9C+0LLQsNC90LjQtdC8INC80LDRgdGI0YLQsNCx0LjRgNC+0LLQsNC90LjRjyDQvdCwINC+0YHQvdC+0LLQtSBZYVJOLiIsImFyY2hpdGVjdHVyZSI6eyJtb2RhbGl0eSI6InRleHQtXHUwMDNldGV4dCIsInRva2VuaXplciI6IlF3ZW4zIiwiaW5zdHJ1Y3RfdHlwZSI6InF3ZW4zIiwiaW5wdXRfbW9kYWxpdGllcyI6WyJ0ZXh0Il0sIm91dHB1dF9tb2RhbGl0aWVzIjpbInRleHQiXX0sImVuZHBvaW50cyI6W3sibmFtZSI6IkRlZXBJbmZyYSB8IHF3ZW4vcXdlbjMtMzJiIiwicHJvdmlkZXJfbmFtZSI6IkRlZXBJbmZyYSIsInRhZyI6ImRlZXBpbmZyYSIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6NDA5NjAsInF1YW50aXphdGlvbiI6ImZwOCIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MTYzODQsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwibWF4X3Rva2VucyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJzdG9wIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5IiwidG9wX2siLCJzZWVkIiwibWluX3AiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwic3RydWN0dXJlZF9vdXRwdXRzIiwibG9naXRfYmlhcyIsInJlc3BvbnNlX2Zvcm1hdCJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAwODU0Mzc2NjQsImNvbXBsZXRpb24iOjAuMDAwMDI5OTAzMTgyNH0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJEZWVwSW5mcmEgfCBxd2VuL3F3ZW4zLTMyYiIsInByb3ZpZGVyX25hbWUiOiJEZWVwSW5mcmEiLCJ0YWciOiJkZWVwaW5mcmEvZmxleCIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6NDA5NjAsInF1YW50aXphdGlvbiI6ImZwOCIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MTYzODQsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwibWF4X3Rva2VucyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJzdG9wIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5IiwidG9wX2siLCJzZWVkIiwibWluX3AiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwic3RydWN0dXJlZF9vdXRwdXRzIiwibG9naXRfYmlhcyIsInJlc3BvbnNlX2Zvcm1hdCJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAwNjgzNTAxMzEyLCJjb21wbGV0aW9uIjowLjAwMDAyMzkyMjU0NTkyfSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6IkRlZXBJbmZyYSB8IHF3ZW4vcXdlbjMtMzJiIiwicHJvdmlkZXJfbmFtZSI6IkRlZXBJbmZyYSIsInRhZyI6ImRlZXBpbmZyYS9wcmlvcml0eSIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6NDA5NjAsInF1YW50aXphdGlvbiI6ImZwOCIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MTYzODQsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwibWF4X3Rva2VucyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJzdG9wIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5IiwidG9wX2siLCJzZWVkIiwibWluX3AiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwic3RydWN0dXJlZF9vdXRwdXRzIiwibG9naXRfYmlhcyIsInJlc3BvbnNlX2Zvcm1hdCJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAxMjgxNTY0OTYsImNvbXBsZXRpb24iOjAuMDAwMDQ0ODU0NzczNn0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJUZW5zdG9ycmVudCB8IHF3ZW4vcXdlbjMtMzJiIiwicHJvdmlkZXJfbmFtZSI6IlRlbnN0b3JyZW50IiwidGFnIjoidGVuc3RvcnJlbnQiLCJjb3VudHJ5IjoidXMiLCJjb3VudHJpZXMiOlsidXMiXSwiY29udGV4dF9sZW5ndGgiOjIwMDAwLCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjE2NDAwLCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsInRlbXBlcmF0dXJlIiwicmVwZXRpdGlvbl9wZW5hbHR5IiwidG9wX3AiLCJzdG9wIiwidG9wX2siLCJzZWVkIiwibWluX3AiLCJtYXhfdG9rZW5zIiwidG9wX2EiLCJmcmVxdWVuY3lfcGVuYWx0eSIsImxvZ2l0X2JpYXMiLCJwcmVzZW5jZV9wZW5hbHR5IiwibG9ncHJvYnMiLCJ0b3BfbG9ncHJvYnMiLCJ0b29scyIsInRvb2xfY2hvaWNlIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDE0OTUxNTkxMiwiY29tcGxldGlvbiI6MC4wMDAwNDI3MTg4MzIsImlucHV0X2NhY2hlX3JlYWQiOjAuMDAwMDA5NjExNzM3Mn0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJTaWxpY29uRmxvdyB8IHF3ZW4vcXdlbjMtMzJiIiwicHJvdmlkZXJfbmFtZSI6IlNpbGljb25GbG93IiwidGFnIjoic2lsaWNvbmZsb3ciLCJjb3VudHJ5IjoidXMiLCJjb3VudHJpZXMiOlsidXMiXSwiY29udGV4dF9sZW5ndGgiOjEzMTA3MiwicXVhbnRpemF0aW9uIjoiZnA4IiwibWF4X2NvbXBsZXRpb25fdG9rZW5zIjoxMzEwNzIsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwic3RydWN0dXJlZF9vdXRwdXRzIiwicmVzcG9uc2VfZm9ybWF0IiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInRvcF9rIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwibWF4X3Rva2VucyJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAxNDk1MTU5MTIsImNvbXBsZXRpb24iOjAuMDAwMDYwODc0MzM1Nn0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfV19fQ==",
+    "body_sha256": "e795090d74a43a58d7f6ec9c36fb4f0306c3ba0799f52cbadc44a6f6eba081a7",
+    "body_storage": "original_bytes",
+    "elapsed_seconds": 0.551696500275284,
+    "headers": {
+      "Access-Control-Allow-Headers": "Authorization, Content-Type, Accept, X-Requested-With, x-api-key, anthropic-version, anthropic-beta, OpenAI-Beta, OpenAI-Organization, OpenAI-Project, X-Session-Id",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Expose-Headers": "X-Session-Id, X-Generation-Id",
+      "Access-Control-Max-Age": "86400",
+      "Alt-Svc": "h3=\":443\"; ma=2592000",
+      "Connection": "close",
+      "Content-Security-Policy": "upgrade-insecure-requests;",
+      "Content-Type": "application/json",
+      "Date": "Sun, 15 Nov 2026 09:09:29 GMT",
+      "Server": "ddos-guard",
+      "Set-Cookie": "__ddg8_=7YDjtO9b4sEDftEv; Domain=.routerai.ru; Path=/; Expires=Sun, 15-Nov-2026 09:29:29 GMT",
+      "Transfer-Encoding": "chunked",
+      "Vary": "Access-Control-Request-Headers",
+      "Via": "1.1 Caddy"
+    },
+    "http_status": 200,
+    "json": {
+      "data": {
+        "architecture": {
+          "input_modalities": [
+            "text"
+          ],
+          "instruct_type": "qwen3",
+          "modality": "text->text",
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Qwen3"
+        },
+        "created": 1745875945,
+        "description": "Qwen3-32B — это плотная причинно-следственная языковая модель с 32,8 миллиардами параметров из серии Qwen3, оптимизированная как для сложных рассуждений, так и для эффективного диалога. Она поддерживает бесшовное переключение между режимом \"мышления\" для задач, таких как математика, программирование и логическое умозаключение, и режимом \"немышления\" для более быстрого, универсального общения. Модель демонстрирует высокую производительность в следовании инструкциям, использовании инструментов агента, творческом письме и многоязычных задачах на более чем 100 языках и диалектах. Она изначально обрабатывает контексты с 32 тысячами токенов и может расширяться до 131 тысячи токенов с использованием масштабирования на основе YaRN.",
+        "endpoints": [
+          {
+            "context_length": 40960,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 16384,
+            "name": "DeepInfra | qwen/qwen3-32b",
+            "pricing": {
+              "completion": 2.99031824e-05,
+              "prompt": 8.5437664e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "prompt": "token"
+            },
+            "provider_name": "DeepInfra",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "top_k",
+              "seed",
+              "min_p",
+              "tools",
+              "tool_choice",
+              "structured_outputs",
+              "logit_bias",
+              "response_format"
+            ],
+            "tag": "deepinfra",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 40960,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 16384,
+            "name": "DeepInfra | qwen/qwen3-32b",
+            "pricing": {
+              "completion": 2.392254592e-05,
+              "prompt": 6.83501312e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "prompt": "token"
+            },
+            "provider_name": "DeepInfra",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "top_k",
+              "seed",
+              "min_p",
+              "tools",
+              "tool_choice",
+              "structured_outputs",
+              "logit_bias",
+              "response_format"
+            ],
+            "tag": "deepinfra/flex",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 40960,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 16384,
+            "name": "DeepInfra | qwen/qwen3-32b",
+            "pricing": {
+              "completion": 4.48547736e-05,
+              "prompt": 1.28156496e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "prompt": "token"
+            },
+            "provider_name": "DeepInfra",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "top_k",
+              "seed",
+              "min_p",
+              "tools",
+              "tool_choice",
+              "structured_outputs",
+              "logit_bias",
+              "response_format"
+            ],
+            "tag": "deepinfra/priority",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 20000,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 16400,
+            "name": "Tenstorrent | qwen/qwen3-32b",
+            "pricing": {
+              "completion": 4.2718832e-05,
+              "input_cache_read": 9.6117372e-06,
+              "prompt": 1.49515912e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Tenstorrent",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "repetition_penalty",
+              "top_p",
+              "stop",
+              "top_k",
+              "seed",
+              "min_p",
+              "max_tokens",
+              "top_a",
+              "frequency_penalty",
+              "logit_bias",
+              "presence_penalty",
+              "logprobs",
+              "top_logprobs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "tenstorrent",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 131072,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 131072,
+            "name": "SiliconFlow | qwen/qwen3-32b",
+            "pricing": {
+              "completion": 6.08743356e-05,
+              "prompt": 1.49515912e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "prompt": "token"
+            },
+            "provider_name": "SiliconFlow",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "structured_outputs",
+              "response_format",
+              "temperature",
+              "top_p",
+              "top_k",
+              "frequency_penalty",
+              "tools",
+              "tool_choice",
+              "max_tokens"
+            ],
+            "tag": "siliconflow",
+            "variable_pricings": []
+          }
+        ],
+        "id": "qwen/qwen3-32b",
+        "name": "Qwen: Qwen3 32B"
+      }
+    },
+    "raw_body": "{\"data\":{\"id\":\"qwen/qwen3-32b\",\"name\":\"Qwen: Qwen3 32B\",\"created\":1745875945,\"description\":\"Qwen3-32B — это плотная причинно-следственная языковая модель с 32,8 миллиардами параметров из серии Qwen3, оптимизированная как для сложных рассуждений, так и для эффективного диалога. Она поддерживает бесшовное переключение между режимом \\\"мышления\\\" для задач, таких как математика, программирование и логическое умозаключение, и режимом \\\"немышления\\\" для более быстрого, универсального общения. Модель демонстрирует высокую производительность в следовании инструкциям, использовании инструментов агента, творческом письме и многоязычных задачах на более чем 100 языках и диалектах. Она изначально обрабатывает контексты с 32 тысячами токенов и может расширяться до 131 тысячи токенов с использованием масштабирования на основе YaRN.\",\"architecture\":{\"modality\":\"text-\\u003etext\",\"tokenizer\":\"Qwen3\",\"instruct_type\":\"qwen3\",\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"]},\"endpoints\":[{\"name\":\"DeepInfra | qwen/qwen3-32b\",\"provider_name\":\"DeepInfra\",\"tag\":\"deepinfra\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":40960,\"quantization\":\"fp8\",\"max_completion_tokens\":16384,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"top_k\",\"seed\",\"min_p\",\"tools\",\"tool_choice\",\"structured_outputs\",\"logit_bias\",\"response_format\"],\"status\":0,\"pricing\":{\"prompt\":0.0000085437664,\"completion\":0.0000299031824},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\"},\"variable_pricings\":[]},{\"name\":\"DeepInfra | qwen/qwen3-32b\",\"provider_name\":\"DeepInfra\",\"tag\":\"deepinfra/flex\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":40960,\"quantization\":\"fp8\",\"max_completion_tokens\":16384,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"top_k\",\"seed\",\"min_p\",\"tools\",\"tool_choice\",\"structured_outputs\",\"logit_bias\",\"response_format\"],\"status\":0,\"pricing\":{\"prompt\":0.00000683501312,\"completion\":0.00002392254592},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\"},\"variable_pricings\":[]},{\"name\":\"DeepInfra | qwen/qwen3-32b\",\"provider_name\":\"DeepInfra\",\"tag\":\"deepinfra/priority\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":40960,\"quantization\":\"fp8\",\"max_completion_tokens\":16384,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"top_k\",\"seed\",\"min_p\",\"tools\",\"tool_choice\",\"structured_outputs\",\"logit_bias\",\"response_format\"],\"status\":0,\"pricing\":{\"prompt\":0.0000128156496,\"completion\":0.0000448547736},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Tenstorrent | qwen/qwen3-32b\",\"provider_name\":\"Tenstorrent\",\"tag\":\"tenstorrent\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":20000,\"quantization\":\"fp8\",\"max_completion_tokens\":16400,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"repetition_penalty\",\"top_p\",\"stop\",\"top_k\",\"seed\",\"min_p\",\"max_tokens\",\"top_a\",\"frequency_penalty\",\"logit_bias\",\"presence_penalty\",\"logprobs\",\"top_logprobs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.0000149515912,\"completion\":0.000042718832,\"input_cache_read\":0.0000096117372},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"SiliconFlow | qwen/qwen3-32b\",\"provider_name\":\"SiliconFlow\",\"tag\":\"siliconflow\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":131072,\"quantization\":\"fp8\",\"max_completion_tokens\":131072,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"structured_outputs\",\"response_format\",\"temperature\",\"top_p\",\"top_k\",\"frequency_penalty\",\"tools\",\"tool_choice\",\"max_tokens\"],\"status\":0,\"pricing\":{\"prompt\":0.0000149515912,\"completion\":0.0000608743356},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\"},\"variable_pricings\":[]}]}}",
+    "received_body_sha256": "e795090d74a43a58d7f6ec9c36fb4f0306c3ba0799f52cbadc44a6f6eba081a7"
+  },
+  "retrieved_utc": "2026-11-15T09:09:29.863727+00:00"
+}

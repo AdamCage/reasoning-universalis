@@ -1,0 +1,1065 @@
+{
+  "endpoint": "/models/qwen/qwen3.8-27b/endpoints",
+  "paid_requests": 0,
+  "response": {
+    "body_base64": "eyJkYXRhIjp7ImlkIjoicXdlbi9xd2VuMy44LTI3YiIsIm5hbWUiOiJRd2VuOiBRd2VuMy44IDI3QiIsImNyZWF0ZWQiOjE3ODY3MjI5MTAsImRlc2NyaXB0aW9uIjoiUXdlbjMuOCAyN0Ig4oCUINGN0YLQviDQvNC+0LTQtdC70Ywg0YEg0L/Qu9C+0YLQvdC+0Lkg0LDRgNGF0LjRgtC10LrRgtGD0YDQvtC5INC00LvRjyDQvtCx0YDQsNCx0L7RgtC60Lgg0LjQt9C+0LHRgNCw0LbQtdC90LjQuSDQuCDRgtC10LrRgdGC0LAg0L7RgiBRd2VuLiDQntC90LAg0L/QvtC00YXQvtC00LjRgiDQtNC70Y8g0L/RgNC+0LPRgNCw0LzQvNC40YDQvtCy0LDQvdC40Y8sINC/0YDQvtGE0LXRgdGB0LjQvtC90LDQu9GM0L3Ri9GFINGA0LDQsdC+0YfQuNGFINC/0YDQvtGG0LXRgdGB0L7Qsiwg0LjRgdGB0LvQtdC00L7QstCw0L3QuNC5LCDQvNGD0LvRjNGC0LjQvNC+0LTQsNC70YzQvdC+0LPQviDQstC30LDQuNC80L7QtNC10LnRgdGC0LLQuNGPINC4INC00LvQuNGC0LXQu9GM0L3Ri9GFINC30LDQtNCw0Ycg0LDQs9C10L3RgtC+0LIsINGBINCy0L7Qt9C80L7QttC90L7RgdGC0YzRjiDQstC60LvRjtGH0LXQvdC40Y8g0LjQu9C4INC+0YLQutC70Y7Rh9C10L3QuNGPINCz0LjQsdC60L7Qs9C+INC80YvRiNC70LXQvdC40Y8uIiwiYXJjaGl0ZWN0dXJlIjp7Im1vZGFsaXR5IjoidGV4dCtpbWFnZSt2aWRlby1cdTAwM2V0ZXh0IiwidG9rZW5pemVyIjoiUXdlbiIsImluc3RydWN0X3R5cGUiOm51bGwsImlucHV0X21vZGFsaXRpZXMiOlsidGV4dCIsImltYWdlIiwidmlkZW8iXSwib3V0cHV0X21vZGFsaXRpZXMiOlsidGV4dCJdfSwiZW5kcG9pbnRzIjpbeyJuYW1lIjoiUHJpbWVJbnRlbGxlY3QgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IlByaW1lSW50ZWxsZWN0IiwidGFnIjoicHJpbWVpbnRlbGxlY3QiLCJjb3VudHJ5IjpudWxsLCJjb3VudHJpZXMiOltdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjY1NTM2LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsImZyZXF1ZW5jeV9wZW5hbHR5IiwibG9naXRfYmlhcyIsIm1heF90b2tlbnMiLCJtaW5fcCIsInByZXNlbmNlX3BlbmFsdHkiLCJyZWFzb25pbmdfZWZmb3J0IiwicmVwZXRpdGlvbl9wZW5hbHR5Iiwic2VlZCIsInN0b3AiLCJ0ZW1wZXJhdHVyZSIsInRvcF9hIiwidG9wX2siLCJ0b3BfcCIsInJlc3BvbnNlX2Zvcm1hdCIsInN0cnVjdHVyZWRfb3V0cHV0cyIsInRvb2xzIiwidG9vbF9jaG9pY2UiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwMDUyMzMwNTY5MiwiY29tcGxldGlvbiI6MC4wMDAwMzY5NTE3ODk2OCwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDA1MzM5ODU0fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6IlN0cmVhbUxha2UgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IlN0cmVhbUxha2UiLCJ0YWciOiJzdHJlYW1sYWtlIiwiY291bnRyeSI6ImNuIiwiY291bnRyaWVzIjpbImNuIl0sImNvbnRleHRfbGVuZ3RoIjoxMDI0MDAwLCJxdWFudGl6YXRpb24iOiJ1bmtub3duIiwibWF4X2NvbXBsZXRpb25fdG9rZW5zIjoxMjgwMDAsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwibWF4X3Rva2VucyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJzdG9wIiwicmVhc29uaW5nX2VmZm9ydCIsInJlc3BvbnNlX2Zvcm1hdCIsInRvb2xzIiwidG9vbF9jaG9pY2UiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAxODY4OTQ4OSwiY29tcGxldGlvbiI6MC4wMDAxMTIxMzY5MzQsImlucHV0X2NhY2hlX3JlYWQiOjAuMDAwMDAzNzM3ODk3OH0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJDaHV0ZXMgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IkNodXRlcyIsInRhZyI6ImNodXRlcyIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjY1NTM2LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsIm1heF90b2tlbnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwic3RvcCIsImZyZXF1ZW5jeV9wZW5hbHR5IiwicHJlc2VuY2VfcGVuYWx0eSIsInNlZWQiLCJ0b3BfayIsInJlcGV0aXRpb25fcGVuYWx0eSIsInJlc3BvbnNlX2Zvcm1hdCIsInN0cnVjdHVyZWRfb3V0cHV0cyIsInRvb2xzIiwidG9vbF9jaG9pY2UiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwMDQxNjUwODYxMiwiY29tcGxldGlvbiI6MC4wMDAxMzM0OTYzNSwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDA0MTY1MDg2MTJ9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiTmVhciBBSSB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiTmVhciBBSSIsInRhZyI6Im5lYXItYWkiLCJjb3VudHJ5IjpudWxsLCJjb3VudHJpZXMiOltdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjY1NTM2LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJ0b3BfayIsIm1heF90b2tlbnMiLCJzdG9wIiwic2VlZCIsInN0cnVjdHVyZWRfb3V0cHV0cyIsInRvb2xzIiwidG9vbF9jaG9pY2UiLCJyZXNwb25zZV9mb3JtYXQiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAwNDI3MTg4MzIsImNvbXBsZXRpb24iOjAuMDAwMTQ0MTc2MDU4LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwMTkyMjM0NzQ0fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6IkRhcmtibG9vbSB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiRGFya2Jsb29tIiwidGFnIjoiZGFya2Jsb29tIiwiY291bnRyeSI6bnVsbCwiY291bnRyaWVzIjpbXSwiY29udGV4dF9sZW5ndGgiOjI2MjE0NCwicXVhbnRpemF0aW9uIjoiZnA0IiwibWF4X2NvbXBsZXRpb25fdG9rZW5zIjoxMzEwNzIsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInRvcF9rIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5Iiwic3RvcCIsInNlZWQiLCJtYXhfdG9rZW5zIiwicmVzcG9uc2VfZm9ybWF0Iiwic3RydWN0dXJlZF9vdXRwdXRzIiwidG9vbHMiLCJ0b29sX2Nob2ljZSIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDAzNzM3ODk3OCwiY29tcGxldGlvbiI6MC4wMDAxNjAxOTU2MiwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDE4Njg5NDg5fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6IlRlbnN0b3JyZW50IHwgcXdlbi9xd2VuMy44LTI3YiIsInByb3ZpZGVyX25hbWUiOiJUZW5zdG9ycmVudCIsInRhZyI6InRlbnN0b3JyZW50IiwiY291bnRyeSI6InVzIiwiY291bnRyaWVzIjpbInVzIl0sImNvbnRleHRfbGVuZ3RoIjoyNjIxNDQsInF1YW50aXphdGlvbiI6ImZwOCIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MjYyMTQ0LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJ0b3BfayIsInN0b3AiLCJzZWVkIiwibWF4X3Rva2VucyIsInRvb2xzIiwidG9vbF9jaG9pY2UiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJyZXNwb25zZV9mb3JtYXQiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwMTYwMTk1NjIsImNvbXBsZXRpb24iOjAuMDAwMTcwODc1MzI4LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwNTMzOTg1NH0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJDZXJlYnJhcyB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiQ2VyZWJyYXMiLCJ0YWciOiJjZXJlYnJhcyIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6NjU1MzYsInF1YW50aXphdGlvbiI6ImZwMTYiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjMyNzY4LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsIm1heF90b2tlbnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwic3RvcCIsInNlZWQiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyIsImZyZXF1ZW5jeV9wZW5hbHR5IiwicHJlc2VuY2VfcGVuYWx0eSIsImxvZ2l0X2JpYXMiLCJ0b29scyIsInRvb2xfY2hvaWNlIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMTA1NzI5MTA5MiwiY29tcGxldGlvbiI6MC4wMDAxNTkxMjc2NDkyLCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDEwNTcyOTEwOTJ9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiRGVlcEluZnJhIHwgcXdlbi9xd2VuMy44LTI3YiIsInByb3ZpZGVyX25hbWUiOiJEZWVwSW5mcmEiLCJ0YWciOiJkZWVwaW5mcmEiLCJjb3VudHJ5IjoidXMiLCJjb3VudHJpZXMiOlsidXMiXSwiY29udGV4dF9sZW5ndGgiOjI2MjE0NCwicXVhbnRpemF0aW9uIjoiYmYxNiIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MjM1OTI5LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsIm1heF90b2tlbnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwic3RvcCIsImZyZXF1ZW5jeV9wZW5hbHR5IiwicHJlc2VuY2VfcGVuYWx0eSIsInJlcGV0aXRpb25fcGVuYWx0eSIsInRvcF9rIiwic2VlZCIsIm1pbl9wIiwibG9naXRfYmlhcyIsInJlc3BvbnNlX2Zvcm1hdCIsInN0cnVjdHVyZWRfb3V0cHV0cyIsInRvb2xzIiwidG9vbF9jaG9pY2UiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwMTYwMTk1NjIsImNvbXBsZXRpb24iOjAuMDAwMjAwMjQ0NTI1LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwNDAwNDg5MDV9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiSW9uc3RyZWFtIHwgcXdlbi9xd2VuMy44LTI3YiIsInByb3ZpZGVyX25hbWUiOiJJb25zdHJlYW0iLCJ0YWciOiJpb25zdHJlYW0iLCJjb3VudHJ5IjoidXMiLCJjb3VudHJpZXMiOlsidXMiXSwiY29udGV4dF9sZW5ndGgiOjI2MjE0NCwicXVhbnRpemF0aW9uIjoiZnA4IiwibWF4X2NvbXBsZXRpb25fdG9rZW5zIjo2NTUzNiwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwibG9ncHJvYnMiLCJ0b3BfbG9ncHJvYnMiLCJ0b3BfcCIsInRvcF9rIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5Iiwic3RvcCIsInNlZWQiLCJsb2dpdF9iaWFzIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDA0MjcxODgzMiwiY29tcGxldGlvbiI6MC4wMDAyMDgyNTQzMDYsImlucHV0X2NhY2hlX3JlYWQiOjAuMDAwMDAyMTM1OTQxNn0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJNYW5jZXIgMiB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiTWFuY2VyIDIiLCJ0YWciOiJtYW5jZXIiLCJjb3VudHJ5IjpudWxsLCJjb3VudHJpZXMiOltdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjI2MjE0NCwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInN0b3AiLCJmcmVxdWVuY3lfcGVuYWx0eSIsInByZXNlbmNlX3BlbmFsdHkiLCJyZXBldGl0aW9uX3BlbmFsdHkiLCJsb2dpdF9iaWFzIiwidG9wX2siLCJtaW5fcCIsInNlZWQiLCJ0b3BfYSIsInJlc3BvbnNlX2Zvcm1hdCIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIiwic3RydWN0dXJlZF9vdXRwdXRzIiwidG9vbHMiLCJ0b29sX2Nob2ljZSJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAxMzM0OTYzNSwiY29tcGxldGlvbiI6MC4wMDAyMTM1OTQxNiwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDUzMzk4NTR9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiQWthc2hNTCB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiQWthc2hNTCIsInRhZyI6ImFrYXNobWwiLCJjb3VudHJ5IjpudWxsLCJjb3VudHJpZXMiOltdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjEzMTA3Miwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwidG9wX2siLCJzdG9wIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5Iiwic2VlZCIsIm1heF90b2tlbnMiLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyIsInRvb2xzIiwidG9vbF9jaG9pY2UiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwMjQwMjkzNDMsImNvbXBsZXRpb24iOjAuMDAwMjExNDU4MjE4NCwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDUzMzk4NTR9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiU2VsZWN0ZWwgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IlNlbGVjdGVsIiwidGFnIjoic2VsZWN0ZWwiLCJjb3VudHJ5IjoicnUiLCJjb3VudHJpZXMiOlsicnUiXSwiY29udGV4dF9sZW5ndGgiOjI2MjE0NCwicXVhbnRpemF0aW9uIjoiZnA0IiwibWF4X2NvbXBsZXRpb25fdG9rZW5zIjoxMzEwNzIsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwicmVhc29uaW5nX2VmZm9ydCIsIm1heF90b2tlbnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwidG9wX2siLCJzdG9wIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVwZXRpdGlvbl9wZW5hbHR5Iiwic2VlZCIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIiwidG9vbHMiLCJ0b29sX2Nob2ljZSIsInJlc3BvbnNlX2Zvcm1hdCIsInN0cnVjdHVyZWRfb3V0cHV0cyJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsiaW1hZ2UiOjAuMCwicHJvbXB0IjowLjAwMDAzNDI2NjA1LCJyZXF1ZXN0IjowLjAsImNvbXBsZXRpb24iOjAuMDAwMjI4MTgyNSwid2ViX3NlYXJjaCI6MC4wLCJpbWFnZV9vdXRwdXQiOjAuMCwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDM0MjU1LCJpbnRlcm5hbF9yZWFzb25pbmciOjAuMH0sInByaWNpbmdfdW5pdHMiOnsiaW1hZ2UiOiJ0b2tlbiIsInByb21wdCI6InRva2VuIiwicmVxdWVzdCI6InJlcXVlc3QiLCJjb21wbGV0aW9uIjoidG9rZW4iLCJ3ZWJfc2VhcmNoIjoicmVxdWVzdCIsImltYWdlX291dHB1dCI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIiwiaW50ZXJuYWxfcmVhc29uaW5nIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJXYWZlciB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiV2FmZXIiLCJ0YWciOiJ3YWZlciIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjI2MjE0NCwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwidG9wX2siLCJtaW5fcCIsImZyZXF1ZW5jeV9wZW5hbHR5IiwicHJlc2VuY2VfcGVuYWx0eSIsInJlcGV0aXRpb25fcGVuYWx0eSIsInN0b3AiLCJzZWVkIiwibWF4X3Rva2VucyIsImxvZ2l0X2JpYXMiLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwibG9ncHJvYnMiLCJ0b3BfbG9ncHJvYnMiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwMDY0MDc4MjQ4LCJjb21wbGV0aW9uIjowLjAwMDIzNDk1MzU3NiwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDYzMDEwMjc3Mn0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJQYXJhc2FpbCB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiUGFyYXNhaWwiLCJ0YWciOiJwYXJhc2FpbCIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjI2MjE0NCwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsImZyZXF1ZW5jeV9wZW5hbHR5IiwicHJlc2VuY2VfcGVuYWx0eSIsInJlcGV0aXRpb25fcGVuYWx0eSIsInNlZWQiLCJzdG9wIiwidG9wX2siLCJsb2dpdF9iaWFzIiwicmVzcG9uc2VfZm9ybWF0Iiwic3RydWN0dXJlZF9vdXRwdXRzIiwidG9vbHMiLCJ0b29sX2Nob2ljZSIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDI1NjMxMjk5MiwiY29tcGxldGlvbiI6MC4wMDAyMzQ5NTM1NzYsImlucHV0X2NhY2hlX3JlYWQiOjAuMDAwMDA1MzM5ODU0fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6Ik1vZGFsIHwgcXdlbi9xd2VuMy44LTI3YiIsInByb3ZpZGVyX25hbWUiOiJNb2RhbCIsInRhZyI6Im1vZGFsIiwiY291bnRyeSI6InVzIiwiY291bnRyaWVzIjpbInVzIl0sImNvbnRleHRfbGVuZ3RoIjoyNjIxNDQsInF1YW50aXphdGlvbiI6InVua25vd24iLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjI2MjE0NCwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwidG9wX2siLCJzdG9wIiwibWF4X3Rva2VucyIsInJlc3BvbnNlX2Zvcm1hdCIsInN0cnVjdHVyZWRfb3V0cHV0cyIsInRvb2xzIiwidG9vbF9jaG9pY2UiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDAwNDI3MTg4MzIsImNvbXBsZXRpb24iOjAuMDAwMjQ1NjMzMjg0LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwMjEzNTk0MTZ9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiRGVrYUxMTSB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiRGVrYUxMTSIsInRhZyI6ImRla2FsbG0iLCJjb3VudHJ5IjoiaWQiLCJjb3VudHJpZXMiOlsiaWQiXSwiY29udGV4dF9sZW5ndGgiOjI2MjE0NCwicXVhbnRpemF0aW9uIjoidW5rbm93biIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MjM1OTI5LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsImZyZXF1ZW5jeV9wZW5hbHR5IiwibG9naXRfYmlhcyIsIm1heF90b2tlbnMiLCJwcmVzZW5jZV9wZW5hbHR5Iiwic2VlZCIsInN0b3AiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwicmVzcG9uc2VfZm9ybWF0Iiwic3RydWN0dXJlZF9vdXRwdXRzIiwidG9vbHMiLCJ0b29sX2Nob2ljZSIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDA0MjcxODgzMiwiY29tcGxldGlvbiI6MC4wMDAyNjY5OTI3LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwMjEzNTk0MTZ9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIiwiaW5wdXRfY2FjaGVfcmVhZCI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiUmVrYSB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiUmVrYSIsInRhZyI6InJla2EiLCJjb3VudHJ5IjpudWxsLCJjb3VudHJpZXMiOltdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjI2MjE0NCwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwibG9ncHJvYnMiLCJ0b3BfbG9ncHJvYnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwidG9wX2siLCJtYXhfdG9rZW5zIiwic3RvcCIsInNlZWQiLCJmcmVxdWVuY3lfcGVuYWx0eSIsInByZXNlbmNlX3BlbmFsdHkiLCJyZXBldGl0aW9uX3BlbmFsdHkiLCJtaW5fcCIsImxvZ2l0X2JpYXMiLCJyZWFzb25pbmdfZWZmb3J0Il0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDE2MDE5NTYyLCJjb21wbGV0aW9uIjowLjAwMDI2Njk5MjcsImlucHV0X2NhY2hlX3JlYWQiOjAuMDAwMDA1MzM5ODU0fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6IkFsaWJhYmEgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IkFsaWJhYmEiLCJ0YWciOiJhbGliYWJhIiwiY291bnRyeSI6InNnIiwiY291bnRyaWVzIjpbInNnIiwiY24iXSwiY29udGV4dF9sZW5ndGgiOjEwMDAwMDAsInF1YW50aXphdGlvbiI6InVua25vd24iLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjEzMTA3Miwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInNlZWQiLCJwcmVzZW5jZV9wZW5hbHR5IiwicmVzcG9uc2VfZm9ybWF0IiwidG9wX2siLCJmcmVxdWVuY3lfcGVuYWx0eSIsInN0b3AiLCJ0b29scyIsInRvb2xfY2hvaWNlIiwibG9ncHJvYnMiLCJ0b3BfbG9ncHJvYnMiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwNDUzODg3NTksImNvbXBsZXRpb24iOjAuMDAwMjcyMzMyNTU0LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwOTA3Nzc1MTgsImlucHV0X2NhY2hlX3dyaXRlIjowLjAwMDA1NjczNTk0ODc1fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiIsImlucHV0X2NhY2hlX3dyaXRlIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJDb3JlV2VhdmUgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IkNvcmVXZWF2ZSIsInRhZyI6ImNvcmV3ZWF2ZSIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjI2MjE0NCwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInRvcF9rIiwicmVwZXRpdGlvbl9wZW5hbHR5IiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5Iiwic3RvcCIsInNlZWQiLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJ0b29scyIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIiwidG9vbF9jaG9pY2UiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwNDI3MTg4MzIsImNvbXBsZXRpb24iOjAuMDAwMzIwMzkxMjQsImlucHV0X2NhY2hlX3JlYWQiOjAuMDAwMDE2MDE5NTYyfSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6Ik5vdml0YSB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiTm92aXRhIiwidGFnIjoibm92aXRhIiwiY291bnRyeSI6InVzIiwiY291bnRyaWVzIjpbInVzIl0sImNvbnRleHRfbGVuZ3RoIjoxMDAwMDAwLCJxdWFudGl6YXRpb24iOiJ1bmtub3duIiwibWF4X2NvbXBsZXRpb25fdG9rZW5zIjoxMzEwNzIsInN1cHBvcnRlZF9wYXJhbWV0ZXJzIjpbInJlYXNvbmluZyIsImluY2x1ZGVfcmVhc29uaW5nIiwibWF4X3Rva2VucyIsInRlbXBlcmF0dXJlIiwidG9wX3AiLCJzdG9wIiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5Iiwic2VlZCIsInRvcF9rIiwicmVwZXRpdGlvbl9wZW5hbHR5IiwicmVzcG9uc2VfZm9ybWF0IiwidG9vbHMiLCJ0b29sX2Nob2ljZSIsImxvZ3Byb2JzIiwidG9wX2xvZ3Byb2JzIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDQ0ODU0NzczNiwiY29tcGxldGlvbiI6MC4wMDAzMjAzOTEyNCwiaW5wdXRfY2FjaGVfcmVhZCI6MC4wMDAwMDkwNzc3NTE4fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119LHsibmFtZSI6Ik5lYml1cyB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiTmViaXVzIiwidGFnIjoibmViaXVzIiwiY291bnRyeSI6Im5sIiwiY291bnRyaWVzIjpbIm5sIl0sImNvbnRleHRfbGVuZ3RoIjoxMDAwMDAwLCJxdWFudGl6YXRpb24iOiJmcDQiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjIzNTkyOSwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInN0b3AiLCJmcmVxdWVuY3lfcGVuYWx0eSIsInByZXNlbmNlX3BlbmFsdHkiLCJzZWVkIiwidG9wX2siLCJsb2dpdF9iaWFzIiwibG9ncHJvYnMiLCJ0b3BfbG9ncHJvYnMiLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJ0b29scyIsInRvb2xfY2hvaWNlIl0sInN0YXR1cyI6MCwicHJpY2luZyI6eyJwcm9tcHQiOjAuMDAwMDQ4MDU4Njg2LCJjb21wbGV0aW9uIjowLjAwMDMyMDM5MTI0LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAxMDY3OTcwOH0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJWZW5pY2UgfCBxd2VuL3F3ZW4zLjgtMjdiIiwicHJvdmlkZXJfbmFtZSI6IlZlbmljZSIsInRhZyI6InZlbmljZSIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjY1NTM2LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsIm1heF90b2tlbnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwic3RvcCIsImZyZXF1ZW5jeV9wZW5hbHR5IiwicHJlc2VuY2VfcGVuYWx0eSIsInRvcF9rIiwicmVzcG9uc2VfZm9ybWF0Iiwic3RydWN0dXJlZF9vdXRwdXRzIiwidG9vbHMiLCJ0b29sX2Nob2ljZSJdLCJzdGF0dXMiOjAsInByaWNpbmciOnsicHJvbXB0IjowLjAwMDA0ODA1ODY4NiwiY29tcGxldGlvbiI6MC4wMDAzNDE3NTA2NTZ9LCJwcmljaW5nX3VuaXRzIjp7InByb21wdCI6InRva2VuIiwiY29tcGxldGlvbiI6InRva2VuIn0sInZhcmlhYmxlX3ByaWNpbmdzIjpbXX0seyJuYW1lIjoiQ2xvdWRmbGFyZSB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiQ2xvdWRmbGFyZSIsInRhZyI6ImNsb3VkZmxhcmUiLCJjb3VudHJ5IjoidXMiLCJjb3VudHJpZXMiOlsidXMiXSwiY29udGV4dF9sZW5ndGgiOjI2MjE0NCwicXVhbnRpemF0aW9uIjoidW5rbm93biIsIm1heF9jb21wbGV0aW9uX3Rva2VucyI6MjYyMTQ0LCJzdXBwb3J0ZWRfcGFyYW1ldGVycyI6WyJyZWFzb25pbmciLCJpbmNsdWRlX3JlYXNvbmluZyIsIm1heF90b2tlbnMiLCJ0ZW1wZXJhdHVyZSIsInRvcF9wIiwidG9wX2siLCJzZWVkIiwicmVwZXRpdGlvbl9wZW5hbHR5IiwiZnJlcXVlbmN5X3BlbmFsdHkiLCJwcmVzZW5jZV9wZW5hbHR5IiwibWluX3AiLCJzdG9wIiwibG9naXRfYmlhcyIsInJlc3BvbnNlX2Zvcm1hdCIsInN0cnVjdHVyZWRfb3V0cHV0cyIsInRvb2xzIiwidG9vbF9jaG9pY2UiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyJdLCJzdGF0dXMiOi0yLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwNDgwNTg2ODYsImNvbXBsZXRpb24iOjAuMDAwMzQxNzUwNjU2LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAwNTMzOTg1NH0sInByaWNpbmdfdW5pdHMiOnsicHJvbXB0IjoidG9rZW4iLCJjb21wbGV0aW9uIjoidG9rZW4iLCJpbnB1dF9jYWNoZV9yZWFkIjoidG9rZW4ifSwidmFyaWFibGVfcHJpY2luZ3MiOltdfSx7Im5hbWUiOiJHTUlDbG91ZCB8IHF3ZW4vcXdlbjMuOC0yN2IiLCJwcm92aWRlcl9uYW1lIjoiR01JQ2xvdWQiLCJ0YWciOiJnbWljbG91ZCIsImNvdW50cnkiOiJ1cyIsImNvdW50cmllcyI6WyJ1cyJdLCJjb250ZXh0X2xlbmd0aCI6MjYyMTQ0LCJxdWFudGl6YXRpb24iOiJmcDgiLCJtYXhfY29tcGxldGlvbl90b2tlbnMiOjIzNTkyOSwic3VwcG9ydGVkX3BhcmFtZXRlcnMiOlsicmVhc29uaW5nIiwiaW5jbHVkZV9yZWFzb25pbmciLCJtYXhfdG9rZW5zIiwidGVtcGVyYXR1cmUiLCJ0b3BfcCIsInNlZWQiLCJyZXNwb25zZV9mb3JtYXQiLCJzdHJ1Y3R1cmVkX291dHB1dHMiLCJsb2dwcm9icyIsInRvcF9sb2dwcm9icyIsInRvb2xzIiwidG9vbF9jaG9pY2UiXSwic3RhdHVzIjowLCJwcmljaW5nIjp7InByb21wdCI6MC4wMDAwNDgwNTg2ODYsImNvbXBsZXRpb24iOjAuMDAwMzQxNzUwNjU2LCJpbnB1dF9jYWNoZV9yZWFkIjowLjAwMDAyNjY5OTI3fSwicHJpY2luZ191bml0cyI6eyJwcm9tcHQiOiJ0b2tlbiIsImNvbXBsZXRpb24iOiJ0b2tlbiIsImlucHV0X2NhY2hlX3JlYWQiOiJ0b2tlbiJ9LCJ2YXJpYWJsZV9wcmljaW5ncyI6W119XX19",
+    "body_sha256": "8c0e77d1f971e96ad6b70fb8987bc91f860fbff93105a5efbf5643bcab11f414",
+    "body_storage": "original_bytes",
+    "elapsed_seconds": 0.5327050997875631,
+    "headers": {
+      "Access-Control-Allow-Headers": "Authorization, Content-Type, Accept, X-Requested-With, x-api-key, anthropic-version, anthropic-beta, OpenAI-Beta, OpenAI-Organization, OpenAI-Project, X-Session-Id",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Expose-Headers": "X-Session-Id, X-Generation-Id",
+      "Access-Control-Max-Age": "86400",
+      "Alt-Svc": "h3=\":443\"; ma=2592000",
+      "Connection": "close",
+      "Content-Security-Policy": "upgrade-insecure-requests;",
+      "Content-Type": "application/json",
+      "Date": "Sun, 15 Nov 2026 09:09:30 GMT",
+      "Server": "ddos-guard",
+      "Set-Cookie": "__ddg8_=i0M9gDk3UxwAa77e; Domain=.routerai.ru; Path=/; Expires=Sun, 15-Nov-2026 09:29:30 GMT",
+      "Transfer-Encoding": "chunked",
+      "Vary": "Access-Control-Request-Headers",
+      "Via": "1.1 Caddy"
+    },
+    "http_status": 200,
+    "json": {
+      "data": {
+        "architecture": {
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "instruct_type": null,
+          "modality": "text+image+video->text",
+          "output_modalities": [
+            "text"
+          ],
+          "tokenizer": "Qwen"
+        },
+        "created": 1786722910,
+        "description": "Qwen3.8 27B — это модель с плотной архитектурой для обработки изображений и текста от Qwen. Она подходит для программирования, профессиональных рабочих процессов, исследований, мультимодального взаимодействия и длительных задач агентов, с возможностью включения или отключения гибкого мышления.",
+        "endpoints": [
+          {
+            "context_length": 262144,
+            "countries": [],
+            "country": null,
+            "max_completion_tokens": 65536,
+            "name": "PrimeIntellect | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 3.695178968e-05,
+              "input_cache_read": 5.339854e-07,
+              "prompt": 5.23305692e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "PrimeIntellect",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "frequency_penalty",
+              "logit_bias",
+              "max_tokens",
+              "min_p",
+              "presence_penalty",
+              "reasoning_effort",
+              "repetition_penalty",
+              "seed",
+              "stop",
+              "temperature",
+              "top_a",
+              "top_k",
+              "top_p",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "primeintellect",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 1024000,
+            "countries": [
+              "cn"
+            ],
+            "country": "cn",
+            "max_completion_tokens": 128000,
+            "name": "StreamLake | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000112136934,
+              "input_cache_read": 3.7378978e-06,
+              "prompt": 1.8689489e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "StreamLake",
+            "quantization": "unknown",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "reasoning_effort",
+              "response_format",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "streamlake",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 65536,
+            "name": "Chutes | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.00013349635,
+              "input_cache_read": 4.16508612e-07,
+              "prompt": 4.16508612e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Chutes",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "seed",
+              "top_k",
+              "repetition_penalty",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "chutes",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [],
+            "country": null,
+            "max_completion_tokens": 65536,
+            "name": "Near AI | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000144176058,
+              "input_cache_read": 1.92234744e-06,
+              "prompt": 4.2718832e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Near AI",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "top_p",
+              "top_k",
+              "max_tokens",
+              "stop",
+              "seed",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "response_format",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "near-ai",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [],
+            "country": null,
+            "max_completion_tokens": 131072,
+            "name": "Darkbloom | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.00016019562,
+              "input_cache_read": 1.8689489e-06,
+              "prompt": 3.7378978e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Darkbloom",
+            "quantization": "fp4",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "top_p",
+              "top_k",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "stop",
+              "seed",
+              "max_tokens",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "darkbloom",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 262144,
+            "name": "Tenstorrent | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000170875328,
+              "input_cache_read": 5.339854e-06,
+              "prompt": 1.6019562e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Tenstorrent",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "top_p",
+              "top_k",
+              "stop",
+              "seed",
+              "max_tokens",
+              "tools",
+              "tool_choice",
+              "structured_outputs",
+              "response_format"
+            ],
+            "tag": "tenstorrent",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 65536,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 32768,
+            "name": "Cerebras | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.0001591276492,
+              "input_cache_read": 0.0001057291092,
+              "prompt": 0.0001057291092
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Cerebras",
+            "quantization": "fp16",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "seed",
+              "logprobs",
+              "top_logprobs",
+              "frequency_penalty",
+              "presence_penalty",
+              "logit_bias",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "cerebras",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 235929,
+            "name": "DeepInfra | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000200244525,
+              "input_cache_read": 4.0048905e-06,
+              "prompt": 1.6019562e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "DeepInfra",
+            "quantization": "bf16",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "top_k",
+              "seed",
+              "min_p",
+              "logit_bias",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "deepinfra",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 65536,
+            "name": "Ionstream | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000208254306,
+              "input_cache_read": 2.1359416e-06,
+              "prompt": 4.2718832e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Ionstream",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs",
+              "top_p",
+              "top_k",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "stop",
+              "seed",
+              "logit_bias"
+            ],
+            "tag": "ionstream",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [],
+            "country": null,
+            "max_completion_tokens": 262144,
+            "name": "Mancer 2 | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.00021359416,
+              "input_cache_read": 5.339854e-06,
+              "prompt": 1.3349635e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Mancer 2",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "logit_bias",
+              "top_k",
+              "min_p",
+              "seed",
+              "top_a",
+              "response_format",
+              "logprobs",
+              "top_logprobs",
+              "structured_outputs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "mancer",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [],
+            "country": null,
+            "max_completion_tokens": 131072,
+            "name": "AkashML | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.0002114582184,
+              "input_cache_read": 5.339854e-06,
+              "prompt": 2.4029343e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "AkashML",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "top_p",
+              "top_k",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "seed",
+              "max_tokens",
+              "response_format",
+              "structured_outputs",
+              "logprobs",
+              "top_logprobs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "akashml",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "ru"
+            ],
+            "country": "ru",
+            "max_completion_tokens": 131072,
+            "name": "Selectel | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.0002281825,
+              "image": 0.0,
+              "image_output": 0.0,
+              "input_cache_read": 3.4255e-06,
+              "internal_reasoning": 0.0,
+              "prompt": 3.426605e-05,
+              "request": 0.0,
+              "web_search": 0.0
+            },
+            "pricing_units": {
+              "completion": "token",
+              "image": "token",
+              "image_output": "token",
+              "input_cache_read": "token",
+              "internal_reasoning": "token",
+              "prompt": "token",
+              "request": "request",
+              "web_search": "request"
+            },
+            "provider_name": "Selectel",
+            "quantization": "fp4",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "reasoning_effort",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "top_k",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "seed",
+              "logprobs",
+              "top_logprobs",
+              "tools",
+              "tool_choice",
+              "response_format",
+              "structured_outputs"
+            ],
+            "tag": "selectel",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 262144,
+            "name": "Wafer | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000234953576,
+              "input_cache_read": 6.30102772e-06,
+              "prompt": 6.4078248e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Wafer",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "top_p",
+              "top_k",
+              "min_p",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "stop",
+              "seed",
+              "max_tokens",
+              "logit_bias",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "wafer",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 262144,
+            "name": "Parasail | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000234953576,
+              "input_cache_read": 5.339854e-06,
+              "prompt": 2.56312992e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Parasail",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "seed",
+              "stop",
+              "top_k",
+              "logit_bias",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "parasail",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 262144,
+            "name": "Modal | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000245633284,
+              "input_cache_read": 2.1359416e-06,
+              "prompt": 4.2718832e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Modal",
+            "quantization": "unknown",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "temperature",
+              "top_p",
+              "top_k",
+              "stop",
+              "max_tokens",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "modal",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "id"
+            ],
+            "country": "id",
+            "max_completion_tokens": 235929,
+            "name": "DekaLLM | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.0002669927,
+              "input_cache_read": 2.1359416e-06,
+              "prompt": 4.2718832e-06
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "DekaLLM",
+            "quantization": "unknown",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "frequency_penalty",
+              "logit_bias",
+              "max_tokens",
+              "presence_penalty",
+              "seed",
+              "stop",
+              "temperature",
+              "top_p",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "dekallm",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [],
+            "country": null,
+            "max_completion_tokens": 262144,
+            "name": "Reka | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.0002669927,
+              "input_cache_read": 5.339854e-06,
+              "prompt": 1.6019562e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Reka",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs",
+              "temperature",
+              "top_p",
+              "top_k",
+              "max_tokens",
+              "stop",
+              "seed",
+              "frequency_penalty",
+              "presence_penalty",
+              "repetition_penalty",
+              "min_p",
+              "logit_bias",
+              "reasoning_effort"
+            ],
+            "tag": "reka",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 1000000,
+            "countries": [
+              "sg",
+              "cn"
+            ],
+            "country": "sg",
+            "max_completion_tokens": 131072,
+            "name": "Alibaba | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000272332554,
+              "input_cache_read": 9.0777518e-06,
+              "input_cache_write": 5.673594875e-05,
+              "prompt": 4.5388759e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "input_cache_write": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Alibaba",
+            "quantization": "unknown",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "seed",
+              "presence_penalty",
+              "response_format",
+              "top_k",
+              "frequency_penalty",
+              "stop",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "alibaba",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 262144,
+            "name": "CoreWeave | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.00032039124,
+              "input_cache_read": 1.6019562e-05,
+              "prompt": 4.2718832e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "CoreWeave",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "top_k",
+              "repetition_penalty",
+              "frequency_penalty",
+              "presence_penalty",
+              "stop",
+              "seed",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "logprobs",
+              "top_logprobs",
+              "tool_choice"
+            ],
+            "tag": "coreweave",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 1000000,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 131072,
+            "name": "Novita | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.00032039124,
+              "input_cache_read": 9.0777518e-06,
+              "prompt": 4.48547736e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Novita",
+            "quantization": "unknown",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "seed",
+              "top_k",
+              "repetition_penalty",
+              "response_format",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "novita",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 1000000,
+            "countries": [
+              "nl"
+            ],
+            "country": "nl",
+            "max_completion_tokens": 235929,
+            "name": "Nebius | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.00032039124,
+              "input_cache_read": 1.0679708e-05,
+              "prompt": 4.8058686e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Nebius",
+            "quantization": "fp4",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "seed",
+              "top_k",
+              "logit_bias",
+              "logprobs",
+              "top_logprobs",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "nebius",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 65536,
+            "name": "Venice | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000341750656,
+              "prompt": 4.8058686e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Venice",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "stop",
+              "frequency_penalty",
+              "presence_penalty",
+              "top_k",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "venice",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 262144,
+            "name": "Cloudflare | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000341750656,
+              "input_cache_read": 5.339854e-06,
+              "prompt": 4.8058686e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "Cloudflare",
+            "quantization": "unknown",
+            "status": -2,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "top_k",
+              "seed",
+              "repetition_penalty",
+              "frequency_penalty",
+              "presence_penalty",
+              "min_p",
+              "stop",
+              "logit_bias",
+              "response_format",
+              "structured_outputs",
+              "tools",
+              "tool_choice",
+              "logprobs",
+              "top_logprobs"
+            ],
+            "tag": "cloudflare",
+            "variable_pricings": []
+          },
+          {
+            "context_length": 262144,
+            "countries": [
+              "us"
+            ],
+            "country": "us",
+            "max_completion_tokens": 235929,
+            "name": "GMICloud | qwen/qwen3.8-27b",
+            "pricing": {
+              "completion": 0.000341750656,
+              "input_cache_read": 2.669927e-05,
+              "prompt": 4.8058686e-05
+            },
+            "pricing_units": {
+              "completion": "token",
+              "input_cache_read": "token",
+              "prompt": "token"
+            },
+            "provider_name": "GMICloud",
+            "quantization": "fp8",
+            "status": 0,
+            "supported_parameters": [
+              "reasoning",
+              "include_reasoning",
+              "max_tokens",
+              "temperature",
+              "top_p",
+              "seed",
+              "response_format",
+              "structured_outputs",
+              "logprobs",
+              "top_logprobs",
+              "tools",
+              "tool_choice"
+            ],
+            "tag": "gmicloud",
+            "variable_pricings": []
+          }
+        ],
+        "id": "qwen/qwen3.8-27b",
+        "name": "Qwen: Qwen3.8 27B"
+      }
+    },
+    "raw_body": "{\"data\":{\"id\":\"qwen/qwen3.8-27b\",\"name\":\"Qwen: Qwen3.8 27B\",\"created\":1786722910,\"description\":\"Qwen3.8 27B — это модель с плотной архитектурой для обработки изображений и текста от Qwen. Она подходит для программирования, профессиональных рабочих процессов, исследований, мультимодального взаимодействия и длительных задач агентов, с возможностью включения или отключения гибкого мышления.\",\"architecture\":{\"modality\":\"text+image+video-\\u003etext\",\"tokenizer\":\"Qwen\",\"instruct_type\":null,\"input_modalities\":[\"text\",\"image\",\"video\"],\"output_modalities\":[\"text\"]},\"endpoints\":[{\"name\":\"PrimeIntellect | qwen/qwen3.8-27b\",\"provider_name\":\"PrimeIntellect\",\"tag\":\"primeintellect\",\"country\":null,\"countries\":[],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":65536,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"frequency_penalty\",\"logit_bias\",\"max_tokens\",\"min_p\",\"presence_penalty\",\"reasoning_effort\",\"repetition_penalty\",\"seed\",\"stop\",\"temperature\",\"top_a\",\"top_k\",\"top_p\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.00000523305692,\"completion\":0.00003695178968,\"input_cache_read\":0.0000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"StreamLake | qwen/qwen3.8-27b\",\"provider_name\":\"StreamLake\",\"tag\":\"streamlake\",\"country\":\"cn\",\"countries\":[\"cn\"],\"context_length\":1024000,\"quantization\":\"unknown\",\"max_completion_tokens\":128000,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"reasoning_effort\",\"response_format\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.000018689489,\"completion\":0.000112136934,\"input_cache_read\":0.0000037378978},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Chutes | qwen/qwen3.8-27b\",\"provider_name\":\"Chutes\",\"tag\":\"chutes\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":65536,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"seed\",\"top_k\",\"repetition_penalty\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.00000416508612,\"completion\":0.00013349635,\"input_cache_read\":0.000000416508612},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Near AI | qwen/qwen3.8-27b\",\"provider_name\":\"Near AI\",\"tag\":\"near-ai\",\"country\":null,\"countries\":[],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":65536,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"top_p\",\"top_k\",\"max_tokens\",\"stop\",\"seed\",\"structured_outputs\",\"tools\",\"tool_choice\",\"response_format\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000042718832,\"completion\":0.000144176058,\"input_cache_read\":0.00000192234744},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Darkbloom | qwen/qwen3.8-27b\",\"provider_name\":\"Darkbloom\",\"tag\":\"darkbloom\",\"country\":null,\"countries\":[],\"context_length\":262144,\"quantization\":\"fp4\",\"max_completion_tokens\":131072,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"top_p\",\"top_k\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"stop\",\"seed\",\"max_tokens\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000037378978,\"completion\":0.00016019562,\"input_cache_read\":0.0000018689489},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Tenstorrent | qwen/qwen3.8-27b\",\"provider_name\":\"Tenstorrent\",\"tag\":\"tenstorrent\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"top_p\",\"top_k\",\"stop\",\"seed\",\"max_tokens\",\"tools\",\"tool_choice\",\"structured_outputs\",\"response_format\"],\"status\":0,\"pricing\":{\"prompt\":0.000016019562,\"completion\":0.000170875328,\"input_cache_read\":0.000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Cerebras | qwen/qwen3.8-27b\",\"provider_name\":\"Cerebras\",\"tag\":\"cerebras\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":65536,\"quantization\":\"fp16\",\"max_completion_tokens\":32768,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"seed\",\"logprobs\",\"top_logprobs\",\"frequency_penalty\",\"presence_penalty\",\"logit_bias\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.0001057291092,\"completion\":0.0001591276492,\"input_cache_read\":0.0001057291092},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"DeepInfra | qwen/qwen3.8-27b\",\"provider_name\":\"DeepInfra\",\"tag\":\"deepinfra\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"bf16\",\"max_completion_tokens\":235929,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"top_k\",\"seed\",\"min_p\",\"logit_bias\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000016019562,\"completion\":0.000200244525,\"input_cache_read\":0.0000040048905},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Ionstream | qwen/qwen3.8-27b\",\"provider_name\":\"Ionstream\",\"tag\":\"ionstream\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":65536,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\",\"top_p\",\"top_k\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"stop\",\"seed\",\"logit_bias\"],\"status\":0,\"pricing\":{\"prompt\":0.0000042718832,\"completion\":0.000208254306,\"input_cache_read\":0.0000021359416},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Mancer 2 | qwen/qwen3.8-27b\",\"provider_name\":\"Mancer 2\",\"tag\":\"mancer\",\"country\":null,\"countries\":[],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"logit_bias\",\"top_k\",\"min_p\",\"seed\",\"top_a\",\"response_format\",\"logprobs\",\"top_logprobs\",\"structured_outputs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000013349635,\"completion\":0.00021359416,\"input_cache_read\":0.000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"AkashML | qwen/qwen3.8-27b\",\"provider_name\":\"AkashML\",\"tag\":\"akashml\",\"country\":null,\"countries\":[],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":131072,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"top_p\",\"top_k\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"seed\",\"max_tokens\",\"response_format\",\"structured_outputs\",\"logprobs\",\"top_logprobs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000024029343,\"completion\":0.0002114582184,\"input_cache_read\":0.000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Selectel | qwen/qwen3.8-27b\",\"provider_name\":\"Selectel\",\"tag\":\"selectel\",\"country\":\"ru\",\"countries\":[\"ru\"],\"context_length\":262144,\"quantization\":\"fp4\",\"max_completion_tokens\":131072,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"reasoning_effort\",\"max_tokens\",\"temperature\",\"top_p\",\"top_k\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"seed\",\"logprobs\",\"top_logprobs\",\"tools\",\"tool_choice\",\"response_format\",\"structured_outputs\"],\"status\":0,\"pricing\":{\"image\":0.0,\"prompt\":0.00003426605,\"request\":0.0,\"completion\":0.0002281825,\"web_search\":0.0,\"image_output\":0.0,\"input_cache_read\":0.0000034255,\"internal_reasoning\":0.0},\"pricing_units\":{\"image\":\"token\",\"prompt\":\"token\",\"request\":\"request\",\"completion\":\"token\",\"web_search\":\"request\",\"image_output\":\"token\",\"input_cache_read\":\"token\",\"internal_reasoning\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Wafer | qwen/qwen3.8-27b\",\"provider_name\":\"Wafer\",\"tag\":\"wafer\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"top_p\",\"top_k\",\"min_p\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"stop\",\"seed\",\"max_tokens\",\"logit_bias\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000064078248,\"completion\":0.000234953576,\"input_cache_read\":0.00000630102772},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Parasail | qwen/qwen3.8-27b\",\"provider_name\":\"Parasail\",\"tag\":\"parasail\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"seed\",\"stop\",\"top_k\",\"logit_bias\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000256312992,\"completion\":0.000234953576,\"input_cache_read\":0.000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Modal | qwen/qwen3.8-27b\",\"provider_name\":\"Modal\",\"tag\":\"modal\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"unknown\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"temperature\",\"top_p\",\"top_k\",\"stop\",\"max_tokens\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000042718832,\"completion\":0.000245633284,\"input_cache_read\":0.0000021359416},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"DekaLLM | qwen/qwen3.8-27b\",\"provider_name\":\"DekaLLM\",\"tag\":\"dekallm\",\"country\":\"id\",\"countries\":[\"id\"],\"context_length\":262144,\"quantization\":\"unknown\",\"max_completion_tokens\":235929,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"frequency_penalty\",\"logit_bias\",\"max_tokens\",\"presence_penalty\",\"seed\",\"stop\",\"temperature\",\"top_p\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000042718832,\"completion\":0.0002669927,\"input_cache_read\":0.0000021359416},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Reka | qwen/qwen3.8-27b\",\"provider_name\":\"Reka\",\"tag\":\"reka\",\"country\":null,\"countries\":[],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\",\"temperature\",\"top_p\",\"top_k\",\"max_tokens\",\"stop\",\"seed\",\"frequency_penalty\",\"presence_penalty\",\"repetition_penalty\",\"min_p\",\"logit_bias\",\"reasoning_effort\"],\"status\":0,\"pricing\":{\"prompt\":0.000016019562,\"completion\":0.0002669927,\"input_cache_read\":0.000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Alibaba | qwen/qwen3.8-27b\",\"provider_name\":\"Alibaba\",\"tag\":\"alibaba\",\"country\":\"sg\",\"countries\":[\"sg\",\"cn\"],\"context_length\":1000000,\"quantization\":\"unknown\",\"max_completion_tokens\":131072,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"seed\",\"presence_penalty\",\"response_format\",\"top_k\",\"frequency_penalty\",\"stop\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.000045388759,\"completion\":0.000272332554,\"input_cache_read\":0.0000090777518,\"input_cache_write\":0.00005673594875},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\",\"input_cache_write\":\"token\"},\"variable_pricings\":[]},{\"name\":\"CoreWeave | qwen/qwen3.8-27b\",\"provider_name\":\"CoreWeave\",\"tag\":\"coreweave\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"top_k\",\"repetition_penalty\",\"frequency_penalty\",\"presence_penalty\",\"stop\",\"seed\",\"response_format\",\"structured_outputs\",\"tools\",\"logprobs\",\"top_logprobs\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000042718832,\"completion\":0.00032039124,\"input_cache_read\":0.000016019562},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Novita | qwen/qwen3.8-27b\",\"provider_name\":\"Novita\",\"tag\":\"novita\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":1000000,\"quantization\":\"unknown\",\"max_completion_tokens\":131072,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"seed\",\"top_k\",\"repetition_penalty\",\"response_format\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":0,\"pricing\":{\"prompt\":0.0000448547736,\"completion\":0.00032039124,\"input_cache_read\":0.0000090777518},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Nebius | qwen/qwen3.8-27b\",\"provider_name\":\"Nebius\",\"tag\":\"nebius\",\"country\":\"nl\",\"countries\":[\"nl\"],\"context_length\":1000000,\"quantization\":\"fp4\",\"max_completion_tokens\":235929,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"seed\",\"top_k\",\"logit_bias\",\"logprobs\",\"top_logprobs\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000048058686,\"completion\":0.00032039124,\"input_cache_read\":0.000010679708},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Venice | qwen/qwen3.8-27b\",\"provider_name\":\"Venice\",\"tag\":\"venice\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":65536,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"stop\",\"frequency_penalty\",\"presence_penalty\",\"top_k\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000048058686,\"completion\":0.000341750656},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\"},\"variable_pricings\":[]},{\"name\":\"Cloudflare | qwen/qwen3.8-27b\",\"provider_name\":\"Cloudflare\",\"tag\":\"cloudflare\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"unknown\",\"max_completion_tokens\":262144,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"top_k\",\"seed\",\"repetition_penalty\",\"frequency_penalty\",\"presence_penalty\",\"min_p\",\"stop\",\"logit_bias\",\"response_format\",\"structured_outputs\",\"tools\",\"tool_choice\",\"logprobs\",\"top_logprobs\"],\"status\":-2,\"pricing\":{\"prompt\":0.000048058686,\"completion\":0.000341750656,\"input_cache_read\":0.000005339854},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]},{\"name\":\"GMICloud | qwen/qwen3.8-27b\",\"provider_name\":\"GMICloud\",\"tag\":\"gmicloud\",\"country\":\"us\",\"countries\":[\"us\"],\"context_length\":262144,\"quantization\":\"fp8\",\"max_completion_tokens\":235929,\"supported_parameters\":[\"reasoning\",\"include_reasoning\",\"max_tokens\",\"temperature\",\"top_p\",\"seed\",\"response_format\",\"structured_outputs\",\"logprobs\",\"top_logprobs\",\"tools\",\"tool_choice\"],\"status\":0,\"pricing\":{\"prompt\":0.000048058686,\"completion\":0.000341750656,\"input_cache_read\":0.00002669927},\"pricing_units\":{\"prompt\":\"token\",\"completion\":\"token\",\"input_cache_read\":\"token\"},\"variable_pricings\":[]}]}}",
+    "received_body_sha256": "8c0e77d1f971e96ad6b70fb8987bc91f860fbff93105a5efbf5643bcab11f414"
+  },
+  "retrieved_utc": "2026-11-15T09:09:30.854902+00:00"
+}

@@ -1,0 +1,1 @@
+{"call_id":"b857e2e951052f7e288d460b45df68b9b48e2d43891234b181a4d8c63ac884f0","condition":"schema_probe","item_id":"cross-model-structured-output-probe-v1","model":"qwen/qwen3-32b","protocol_sha256":"7ed5feaaf8168fac4ae5e653fb53b2bacd012cf5f57049f6171c941c3207bdb1","provider":"DeepInfra","started_utc":"2026-11-15T09:24:29.766486+00:00"}

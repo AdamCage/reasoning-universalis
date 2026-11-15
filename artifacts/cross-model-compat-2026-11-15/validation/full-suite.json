@@ -1,0 +1,11 @@
+{
+  "tests": 428,
+  "failures": 0,
+  "errors": 0,
+  "success": true,
+  "elapsed_seconds": 472.9304420002736,
+  "python": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+  "utf8_mode": 1,
+  "test_package_resolution": "explicit local tests namespace; prevents unrelated installed tests package from shadowing checkout",
+  "network_experiments": 0
+}

@@ -4,3 +4,6 @@
 *.gz binary
 *.png binary
 *.pdf binary
+# Preserve the exact published cross-model evidence bytes, including CSV CRLF.
+artifacts/cross-model-2026-11-15/** -text whitespace=cr-at-eol
+artifacts/cross-model-compat-2026-11-15/** -text whitespace=cr-at-eol

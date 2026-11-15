@@ -1,0 +1,1 @@
+{"call_id":"e4f18c6de4c8fbe0aff9021697a2918c07ea2516daf71391bc6d86cee401a2a6","condition":"schema_probe","item_id":"cross-model-structured-output-probe-v1","model":"openai/gpt-oss-20b","protocol_sha256":"7ed5feaaf8168fac4ae5e653fb53b2bacd012cf5f57049f6171c941c3207bdb1","provider":"DeepInfra","started_utc":"2026-11-15T09:24:30.940571+00:00"}

@@ -1,0 +1,10 @@
+DeepSeek_reference_role,problem_formulation,planning,deduction_computation,exploration,verification,uncertainty,backtracking_correction,conclusion,ambiguous_other
+problem_formulation,2,1,1,0,0,0,1,0,0
+planning,0,2,0,0,1,0,0,0,1
+deduction_computation,2,0,13,0,0,1,0,0,12
+exploration,0,0,0,0,0,0,0,0,1
+verification,0,0,1,0,0,0,0,0,0
+uncertainty,0,0,0,0,0,0,0,0,2
+backtracking_correction,0,0,0,0,0,0,0,0,0
+conclusion,0,0,0,0,0,0,0,0,0
+ambiguous_other,0,0,0,0,0,0,0,0,2
